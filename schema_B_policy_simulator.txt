@@ -1,0 +1,723 @@
+智慧入学项目数据 Schema（B：政策与模拟工程师）
+版本：v1.0-draft
+适用角色：B · 政策与模拟工程师
+主要目标：真实政策链接 + 政策归档 + 政策对比 + 辟谣模块 + 可选录取建议模拟
+
+============================================================
+一、B 组负责/主要使用的数据文件
+============================================================
+
+B 组主要维护以下文件：
+
+1. data/policies.json
+   用途：招生政策、报名流程、材料要求、学区调整、随迁子女政策等真实政策文件。
+
+2. data/policy_diff.json
+   用途：不同年份政策差异对比。
+
+3. data/rumors.json
+   用途：政策辟谣、误区澄清、通俗解释。
+
+4. data/simulator_rules.json
+   用途：录取建议模拟器规则。当前为可选功能，不作为必须交付核心。
+
+5. data/admission_scores.json
+   用途：往年分数线、积分线或录取参考线。如果找不到可靠来源，可以暂不制作或只保留空文件说明。
+
+B 组也可能读取：
+- data/schools.json
+- data/zones.geojson
+- data/materials.json
+
+============================================================
+二、全局数据约定
+============================================================
+
+1. 字段命名统一使用 camelCase。
+   正确示例：
+   - policyId
+   - publishDate
+   - sourceUrl
+   - relatedPolicyIds
+
+2. 政策尽量使用真实官方链接。
+   如果不能找到可靠来源，不要编造链接。
+
+3. 凡是真实政策、真实分数线、真实联系方式，必须尽量带来源字段：
+   - sourceName
+   - sourceUrl
+   - sourceType
+   - verifiedDate
+   - dataStatus
+
+4. sourceType 建议值：
+   - official：政府或教育主管部门官方来源
+   - school：学校官网或学校官方公众号
+   - media：可信媒体报道
+   - manual：团队人工整理
+   - demo：示例数据
+
+5. dataStatus 建议值：
+   - verified：已核验
+   - estimated：根据公开文字整理或估算
+   - demo：示例数据
+   - outdated：可能过期
+
+6. 录取建议模拟器当前不强制做。
+   如果找不到准确的往年分数/积分来源，不建议强行做“按分数推荐学校”。
+
+============================================================
+三、data/policies.json
+============================================================
+
+用途：
+存储招生政策、报名流程、材料要求、学区划分、随迁子女、政策提醒等信息。
+
+结构示例：
+
+[
+  {
+    "policyId": "policy_2025_001",
+    "title": "泰山区2025年义务教育学校招生入学工作实施意见",
+    "year": 2025,
+    "category": "招生政策",
+    "source": "泰山区教育和体育局",
+    "sourceName": "泰山区教育和体育局",
+    "sourceUrl": "https://example.gov.cn/policy-2025.html",
+    "sourceType": "official",
+    "publishDate": "2025-06-01",
+    "effectiveDate": "2025-06-01",
+    "documentNo": "",
+    "summary": "说明2025年义务教育招生对象、报名条件、时间安排、学区划分等内容。",
+    "url": "https://example.gov.cn/policy-2025.html",
+    "relatedZoneIds": ["zone_001", "zone_002"],
+    "relatedSchoolIds": ["school_m_001"],
+    "attachments": [
+      {
+        "name": "政策原文附件",
+        "url": "https://example.gov.cn/attachment.pdf",
+        "type": "pdf"
+      }
+    ],
+    "verifiedDate": "2026-05-15",
+    "dataStatus": "verified"
+  }
+]
+
+字段说明：
+
+policyId
+- 类型：string
+- 必填：是
+- 说明：政策唯一 ID
+- 示例：policy_2025_001
+
+title
+- 类型：string
+- 必填：是
+- 说明：政策标题
+
+year
+- 类型：number
+- 必填：是
+- 说明：政策年份
+
+category
+- 类型：string
+- 必填：是
+- 建议值：
+  - 招生政策
+  - 报名流程
+  - 材料要求
+  - 随迁子女
+  - 政策提醒
+  - 学区调整
+  - 政策解读
+  - 录取规则
+
+source
+- 类型：string
+- 必填：是
+- 说明：前端兼容旧字段，可与 sourceName 相同
+
+sourceName
+- 类型：string
+- 必填：真实数据建议必填
+- 说明：来源名称
+
+sourceUrl
+- 类型：string
+- 必填：真实数据建议必填
+- 说明：数据来源链接
+
+sourceType
+- 类型：string
+- 必填：真实数据建议必填
+- 可选值：official / school / media / manual / demo
+
+publishDate
+- 类型：string
+- 必填：建议填写
+- 格式：YYYY-MM-DD
+- 说明：发布日期
+
+effectiveDate
+- 类型：string
+- 必填：否
+- 格式：YYYY-MM-DD
+- 说明：生效日期
+
+documentNo
+- 类型：string
+- 必填：否
+- 说明：文件文号，没有则为空字符串
+
+summary
+- 类型：string
+- 必填：是
+- 说明：政策摘要，前端卡片显示
+
+url
+- 类型：string
+- 必填：建议填写
+- 说明：前端“查看原文”按钮跳转链接。可与 sourceUrl 相同。
+
+relatedZoneIds
+- 类型：string[]
+- 必填：否
+- 说明：关联学区 ID
+
+relatedSchoolIds
+- 类型：string[]
+- 必填：否
+- 说明：关联学校 ID
+
+attachments
+- 类型：array
+- 必填：否
+- 说明：政策附件列表
+
+attachments[].name
+- 类型：string
+- 必填：是
+- 说明：附件名称
+
+attachments[].url
+- 类型：string
+- 必填：是
+- 说明：附件链接
+
+attachments[].type
+- 类型：string
+- 必填：否
+- 示例：pdf / doc / docx / image
+
+verifiedDate
+- 类型：string
+- 必填：真实数据建议必填
+- 格式：YYYY-MM-DD
+
+dataStatus
+- 类型：string
+- 必填：真实数据建议必填
+- 可选值：verified / estimated / demo / outdated
+
+约束：
+1. policyId 不允许重复。
+2. year 必须是 number，例如 2025，不写成 "2025"。
+3. url 不确定时可以先为空字符串，但不要编造。
+4. 如果是真实政策，sourceUrl 和 verifiedDate 必须尽量填写。
+5. relatedZoneIds、relatedSchoolIds 中的 ID 必须能在对应文件中找到。
+
+============================================================
+四、data/policy_diff.json
+============================================================
+
+用途：
+存储政策年份之间的差异点，用于“政策对比视图”。
+
+结构示例：
+
+[
+  {
+    "diffId": "diff_2024_2025",
+    "yearA": 2024,
+    "yearB": 2025,
+    "title": "2024 与 2025 年义务教育招生政策对比",
+    "summary": "对比招生对象、报名方式、材料要求、时间安排等重点变化。",
+    "sourcePolicyIds": ["policy_2024_001", "policy_2025_001"],
+    "diffPoints": [
+      {
+        "topic": "招生年龄",
+        "valueA": "2018年8月31日前出生的适龄儿童",
+        "valueB": "2019年8月31日前出生的适龄儿童",
+        "isChange": true,
+        "changeLevel": "normal",
+        "explanation": "招生年龄随年度正常顺延。"
+      },
+      {
+        "topic": "报名方式",
+        "valueA": "线上报名为主，线下补充核验",
+        "valueB": "线上报名为主，线下补充核验",
+        "isChange": false,
+        "changeLevel": "none",
+        "explanation": "报名方式无明显变化。"
+      }
+    ],
+    "sourceName": "团队根据公开政策整理",
+    "sourceUrl": "",
+    "sourceType": "manual",
+    "verifiedDate": "2026-05-15",
+    "dataStatus": "estimated"
+  }
+]
+
+字段说明：
+
+diffId
+- 类型：string
+- 必填：是
+- 说明：政策对比记录唯一 ID
+
+yearA
+- 类型：number
+- 必填：是
+- 说明：左侧对比年份
+
+yearB
+- 类型：number
+- 必填：是
+- 说明：右侧对比年份
+
+title
+- 类型：string
+- 必填：是
+- 说明：对比标题
+
+summary
+- 类型：string
+- 必填：否
+- 说明：整体对比摘要
+
+sourcePolicyIds
+- 类型：string[]
+- 必填：建议填写
+- 说明：对比依据的政策 ID
+
+diffPoints
+- 类型：array
+- 必填：是
+- 说明：差异点列表
+
+diffPoints[].topic
+- 类型：string
+- 必填：是
+- 说明：对比主题
+- 示例：招生年龄 / 报名时间 / 材料要求 / 随迁子女 / 学区调整
+
+diffPoints[].valueA
+- 类型：string
+- 必填：是
+- 说明：年份 A 的内容
+
+diffPoints[].valueB
+- 类型：string
+- 必填：是
+- 说明：年份 B 的内容
+
+diffPoints[].isChange
+- 类型：boolean
+- 必填：是
+- 说明：是否有变化
+
+diffPoints[].changeLevel
+- 类型：string
+- 必填：建议填写
+- 可选值：none / normal / important / major
+
+diffPoints[].explanation
+- 类型：string
+- 必填：否
+- 说明：通俗解释
+
+sourceName / sourceUrl / sourceType / verifiedDate / dataStatus
+- 同全局来源字段
+
+约束：
+1. yearA 和 yearB 不能相同。
+2. sourcePolicyIds 中的 policyId 必须能在 policies.json 中找到。
+3. 如果 valueA / valueB 是团队整理内容，dataStatus 建议写 estimated。
+4. 不确定是否变化时，不要写死 isChange，可以先暂缓录入。
+
+============================================================
+五、data/rumors.json
+============================================================
+
+用途：
+存储政策辟谣、常见误区、官方澄清，用于政策解读与辟谣模块。
+
+结构示例：
+
+[
+  {
+    "rumorId": "rumor_001",
+    "rumor": "听说今年所有学区都会重新划分？",
+    "truth": "根据公开政策资料，学区范围以当年官方公告为准，并非所有学区都会重新划分。",
+    "category": "学区调整",
+    "sourceName": "泰山区教育和体育局",
+    "sourceUrl": "https://example.gov.cn/policy-2025.html",
+    "sourceType": "official",
+    "publishDate": "2025-06-10",
+    "relatedPolicyIds": ["policy_2025_001"],
+    "severity": "medium",
+    "verifiedDate": "2026-05-15",
+    "dataStatus": "verified"
+  }
+]
+
+字段说明：
+
+rumorId
+- 类型：string
+- 必填：是
+- 说明：辟谣卡片唯一 ID
+
+rumor
+- 类型：string
+- 必填：是
+- 说明：谣言、误区或家长常见误解
+
+truth
+- 类型：string
+- 必填：是
+- 说明：澄清内容
+
+category
+- 类型：string
+- 必填：是
+- 建议值：
+  - 学区调整
+  - 报名时间
+  - 材料审核
+  - 随迁子女
+  - 录取规则
+  - 入学年龄
+
+sourceName
+- 类型：string
+- 必填：真实数据建议必填
+- 说明：澄清依据来源
+
+sourceUrl
+- 类型：string
+- 必填：真实数据建议必填
+- 说明：澄清依据链接
+
+sourceType
+- 类型：string
+- 必填：真实数据建议必填
+- 可选值：official / school / media / manual / demo
+
+publishDate
+- 类型：string
+- 必填：否
+- 格式：YYYY-MM-DD
+
+relatedPolicyIds
+- 类型：string[]
+- 必填：否
+- 说明：关联政策 ID
+
+severity
+- 类型：string
+- 必填：否
+- 可选值：low / medium / high
+- 说明：影响程度
+
+verifiedDate
+- 类型：string
+- 必填：真实数据建议必填
+
+dataStatus
+- 类型：string
+- 必填：真实数据建议必填
+
+约束：
+1. 不要编造“官方澄清”。
+2. 如果只是团队根据政策整理，sourceType 写 manual，dataStatus 写 estimated。
+3. relatedPolicyIds 必须能在 policies.json 中找到。
+
+============================================================
+六、data/admission_scores.json（可选）
+============================================================
+
+用途：
+存储往年录取分数、积分线、参考线。该文件只有在能找到可靠来源时才建议启用。
+
+当前状态：
+用户已说明“录取分数暂时还没有准确来源”，因此本文件建议作为可选项。B 组可以先不实现，或先建空数组并写说明。
+
+推荐空文件内容：
+
+[]
+
+有可靠来源时的结构示例：
+
+[
+  {
+    "scoreId": "score_2024_m_001",
+    "year": 2024,
+    "schoolId": "school_m_001",
+    "schoolName": "泰山学院附属中学",
+    "stage": "初中",
+    "studentType": "本地户籍",
+    "batch": "第一批",
+    "minScore": 82,
+    "scoreType": "积分",
+    "notes": "达到往年参考分不代表一定录取，需结合当年招生计划和官方审核结果。",
+    "sourceName": "泰山区教育和体育局",
+    "sourceUrl": "https://example.gov.cn/admission-score.html",
+    "sourceType": "official",
+    "verifiedDate": "2026-05-15",
+    "dataStatus": "verified"
+  }
+]
+
+字段说明：
+
+scoreId
+- 类型：string
+- 必填：是
+- 说明：分数记录唯一 ID
+
+year
+- 类型：number
+- 必填：是
+- 说明：年份
+
+schoolId
+- 类型：string
+- 必填：是
+- 说明：关联学校 ID
+
+schoolName
+- 类型：string
+- 必填：否
+- 说明：冗余学校名称，方便人工阅读
+
+stage
+- 类型：string
+- 必填：是
+- 可选值：小学 / 初中
+
+studentType
+- 类型：string
+- 必填：建议填写
+- 可选值：本地户籍 / 随迁子女 / 集体户 / 人户分离 / 其他
+
+batch
+- 类型：string
+- 必填：否
+- 示例：第一批 / 第二批 / 统筹安排
+
+minScore
+- 类型：number
+- 必填：是
+- 说明：最低分、积分线或参考线
+
+scoreType
+- 类型：string
+- 必填：建议填写
+- 可选值：积分 / 分数 / 位次 / 其他
+
+notes
+- 类型：string
+- 必填：否
+- 说明：说明该分数的限制和使用边界
+
+sourceName / sourceUrl / sourceType / verifiedDate / dataStatus
+- 同全局来源字段
+
+约束：
+1. 找不到可靠来源时，不要编造数据。
+2. 如果只是演示数据，必须写 dataStatus: "demo"。
+3. 前端展示时必须提示“仅供参考，不代表官方录取结果”。
+
+============================================================
+七、data/simulator_rules.json（可选）
+============================================================
+
+用途：
+定义录取建议模拟器的输入项、匹配逻辑和输出文案。
+
+当前建议：
+因为暂时没有准确录取分数来源，v1.0 不建议把模拟器作为必须交付项。可以先做成“资格核对 + 材料提醒 + 若有分数线则参考匹配”的轻量模块。
+
+结构示例：
+
+{
+  "version": "1.0",
+  "enabled": false,
+  "source": "团队整理",
+  "disclaimer": "模拟结果仅供参考，不代表官方录取结果。若缺少官方往年分数线，本模块仅提供材料和资格核对建议。",
+  "inputFields": [
+    {
+      "key": "studentStage",
+      "label": "申请学段",
+      "type": "select",
+      "required": true,
+      "options": ["小学", "初中"]
+    },
+    {
+      "key": "studentType",
+      "label": "学生类型",
+      "type": "select",
+      "required": true,
+      "options": ["本地户籍", "随迁子女", "集体户", "人户分离"]
+    },
+    {
+      "key": "hasLocalSchoolStatus",
+      "label": "是否有本地学籍",
+      "type": "select",
+      "required": false,
+      "options": ["是", "否", "不确定"]
+    },
+    {
+      "key": "score",
+      "label": "积分或参考分数",
+      "type": "number",
+      "required": false
+    }
+  ],
+  "matchRules": [
+    {
+      "key": "scoreGteMinScore",
+      "label": "用户分数大于等于往年最低参考分",
+      "enabled": false
+    },
+    {
+      "key": "studentTypeMatch",
+      "label": "学生类型匹配",
+      "enabled": true
+    },
+    {
+      "key": "stageMatch",
+      "label": "申请学段匹配",
+      "enabled": true
+    }
+  ],
+  "outputLevels": [
+    {
+      "level": "info",
+      "title": "请以官方审核为准",
+      "message": "当前仅提供资格和材料准备建议，不作为录取预测。"
+    },
+    {
+      "level": "matched",
+      "title": "存在往年参考匹配",
+      "message": "根据已录入的往年参考线，该学校可能符合条件，但仍需以当年政策为准。"
+    },
+    {
+      "level": "notEnoughData",
+      "title": "暂无足够数据",
+      "message": "当前缺少可靠的往年分数线，无法进行学校推荐。"
+    }
+  ]
+}
+
+字段说明：
+
+version
+- 类型：string
+- 必填：是
+- 说明：规则版本
+
+enabled
+- 类型：boolean
+- 必填：是
+- 说明：是否启用模拟器
+
+source
+- 类型：string
+- 必填：是
+- 说明：规则来源
+
+disclaimer
+- 类型：string
+- 必填：是
+- 说明：免责声明，前端必须展示
+
+inputFields
+- 类型：array
+- 必填：是
+- 说明：用户输入项
+
+inputFields[].key
+- 类型：string
+- 必填：是
+- 说明：字段 key
+
+inputFields[].label
+- 类型：string
+- 必填：是
+- 说明：前端标签
+
+inputFields[].type
+- 类型：string
+- 必填：是
+- 可选值：select / number / text / checkbox
+
+inputFields[].required
+- 类型：boolean
+- 必填：是
+- 说明：是否必填
+
+inputFields[].options
+- 类型：string[]
+- 必填：select 类型需要
+- 说明：下拉选项
+
+matchRules
+- 类型：array
+- 必填：是
+- 说明：匹配规则
+
+matchRules[].key
+- 类型：string
+- 必填：是
+
+matchRules[].label
+- 类型：string
+- 必填：是
+
+matchRules[].enabled
+- 类型：boolean
+- 必填：是
+
+outputLevels
+- 类型：array
+- 必填：是
+- 说明：输出等级
+
+outputLevels[].level
+- 类型：string
+- 必填：是
+
+outputLevels[].title
+- 类型：string
+- 必填：是
+
+outputLevels[].message
+- 类型：string
+- 必填：是
+
+============================================================
+八、B 组开发建议
+============================================================
+
+1. 先做真实政策归档，不要急着做模拟器。
+2. 政策链接能找到官方来源就填真实链接，找不到就暂缓，不要编造。
+3. 政策对比可以由团队人工整理，但必须标明 sourceType: "manual"。
+4. 录取分数没有可靠来源时，不要输出“某学校可录取”这种确定结论。
+5. 模拟器如果实现，优先做“资格核对 + 材料提醒”，分数推荐作为后续增强。
+6. 所有“预测”“推荐”类结果必须显示免责声明。

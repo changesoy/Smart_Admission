@@ -1,0 +1,572 @@
+智慧入学项目数据 Schema（C：互动与内容工程师）
+版本：v1.0-draft
+适用角色：C · 互动与内容工程师
+主要目标：材料清单增强 + FAQ 分类筛选 + 相关问题推荐 + 真实联系方式 + 留言表单
+
+============================================================
+一、C 组负责/主要使用的数据文件
+============================================================
+
+C 组主要维护以下文件：
+
+1. data/materials.json
+   用途：不同学生类型的入学材料清单、模板链接、常见被拒原因、有效期说明。
+
+2. data/faq.json
+   用途：常见问题、分类筛选、关键词搜索、相关问题推荐。
+
+3. data/contacts.json
+   用途：教育主管部门、学校、社区、咨询入口等真实公开联系方式。
+
+4. data/interaction_topics.json（可选）
+   用途：留言表单的问题类型、咨询分类、提示文案。
+
+C 组也可能读取：
+- data/policies.json
+- data/schools.json
+- data/zones.geojson
+
+============================================================
+二、全局数据约定
+============================================================
+
+1. 字段命名统一使用 camelCase。
+   正确示例：
+   - materialId
+   - rejectReasons
+   - relatedFaqIds
+   - contactId
+
+2. 真实联系方式必须尽量带来源字段：
+   - sourceName
+   - sourceUrl
+   - sourceType
+   - verifiedDate
+   - dataStatus
+
+3. 联系方式只填写公开电话、公开邮箱、公开地址。
+   禁止填写个人手机号、私人微信、非公开联系人信息。
+
+4. FAQ 和材料清单如果来自官方政策整理，应关联 policyId。
+
+5. 前端所有材料、FAQ、联系方式都从 data 文件读取，不要写死在 HTML 中。
+
+============================================================
+三、data/materials.json
+============================================================
+
+用途：
+存储不同入学类型所需材料，用于入学材料清单模块。
+
+结构示例：
+
+[
+  {
+    "groupId": "material_group_001",
+    "group": "本地户籍",
+    "description": "适用于适龄儿童少年户籍在本区的家庭。",
+    "applicableStage": ["小学", "初中"],
+    "relatedPolicyIds": ["policy_2025_001"],
+    "items": [
+      {
+        "materialId": "material_001",
+        "name": "户口簿",
+        "required": true,
+        "note": "需提供首页、户主页、儿童本人页。",
+        "templateUrl": "",
+        "rejectReasons": ["户籍信息与报名信息不一致", "页面缺失或照片模糊"],
+        "validity": "以最新户籍信息为准",
+        "sourceName": "泰山区教育和体育局",
+        "sourceUrl": "https://example.gov.cn/policy-2025.html",
+        "sourceType": "official",
+        "verifiedDate": "2026-05-15",
+        "dataStatus": "verified"
+      }
+    ]
+  }
+]
+
+字段说明：
+
+groupId
+- 类型：string
+- 必填：建议填写
+- 说明：材料分组唯一 ID
+
+group
+- 类型：string
+- 必填：是
+- 建议值：
+  - 本地户籍
+  - 随迁子女
+  - 集体户
+  - 人户分离
+  - 人才子女
+
+description
+- 类型：string
+- 必填：是
+- 说明：材料分组说明
+
+applicableStage
+- 类型：string[]
+- 必填：建议填写
+- 可选值：小学 / 初中
+- 说明：适用学段
+
+relatedPolicyIds
+- 类型：string[]
+- 必填：否
+- 说明：关联政策 ID
+
+items
+- 类型：array
+- 必填：是
+- 说明：材料项列表
+
+items[].materialId
+- 类型：string
+- 必填：建议填写
+- 说明：材料项唯一 ID
+
+items[].name
+- 类型：string
+- 必填：是
+- 说明：材料名称
+
+items[].required
+- 类型：boolean
+- 必填：是
+- 说明：是否必需材料
+
+items[].note
+- 类型：string
+- 必填：否
+- 说明：材料说明
+
+items[].templateUrl
+- 类型：string
+- 必填：否
+- 说明：模板下载链接，没有则为空字符串
+
+items[].rejectReasons
+- 类型：string[]
+- 必填：否
+- 说明：常见被拒原因
+
+items[].validity
+- 类型：string
+- 必填：否
+- 说明：有效期说明
+
+items[].sourceName
+- 类型：string
+- 必填：真实数据建议填写
+- 说明：来源名称
+
+items[].sourceUrl
+- 类型：string
+- 必填：真实数据建议填写
+- 说明：来源链接
+
+items[].sourceType
+- 类型：string
+- 必填：真实数据建议填写
+- 可选值：official / school / manual / demo
+
+items[].verifiedDate
+- 类型：string
+- 必填：真实数据建议填写
+- 格式：YYYY-MM-DD
+
+items[].dataStatus
+- 类型：string
+- 必填：真实数据建议填写
+- 可选值：verified / estimated / demo / outdated
+
+约束：
+1. group 不允许重复，除非确实要分成不同学段。
+2. required 必须是 boolean，不能写成 "是" 或 "否"。
+3. relatedPolicyIds 中的 ID 必须能在 policies.json 中找到。
+4. 如果 templateUrl 不确定，先写空字符串，不要编造。
+5. 材料勾选状态由前端控制，不写入 materials.json。
+
+============================================================
+四、data/faq.json
+============================================================
+
+用途：
+存储常见问题，用于 FAQ 搜索、分类筛选、相关推荐。
+
+结构示例：
+
+[
+  {
+    "faqId": "faq_001",
+    "question": "如何查询我家对应的学区？",
+    "answer": "可以在地图查询区输入小区、道路、学校或附近地标，系统会先匹配本地地址库，再进行地图点面判断。",
+    "category": "学区查询",
+    "keywords": ["学区", "查询", "小区", "道路", "地址"],
+    "relatedFaqIds": ["faq_002", "faq_003"],
+    "relatedPolicyIds": ["policy_2025_001"],
+    "priority": 100,
+    "sourceName": "团队根据项目功能整理",
+    "sourceUrl": "",
+    "sourceType": "manual",
+    "verifiedDate": "2026-05-15",
+    "dataStatus": "estimated"
+  }
+]
+
+字段说明：
+
+faqId
+- 类型：string
+- 必填：是
+- 说明：FAQ 唯一 ID
+
+question
+- 类型：string
+- 必填：是
+- 说明：问题
+
+answer
+- 类型：string
+- 必填：是
+- 说明：回答
+
+category
+- 类型：string
+- 必填：是
+- 建议值：
+  - 学区查询
+  - 报名时间
+  - 材料准备
+  - 随迁子女
+  - 入学资格
+  - 政策变化
+  - 咨询方式
+  - 数据说明
+  - 原型边界
+  - 录取规则
+
+keywords
+- 类型：string[]
+- 必填：否
+- 说明：搜索关键词
+
+relatedFaqIds
+- 类型：string[]
+- 必填：否
+- 说明：相关问题 ID
+
+relatedPolicyIds
+- 类型：string[]
+- 必填：否
+- 说明：关联政策 ID
+
+priority
+- 类型：number
+- 必填：否
+- 说明：排序优先级，数值越大越靠前
+
+sourceName
+- 类型：string
+- 必填：建议填写
+- 说明：来源名称
+
+sourceUrl
+- 类型：string
+- 必填：否
+- 说明：来源链接
+
+sourceType
+- 类型：string
+- 必填：建议填写
+- 可选值：official / school / manual / demo
+
+verifiedDate
+- 类型：string
+- 必填：建议填写
+- 格式：YYYY-MM-DD
+
+dataStatus
+- 类型：string
+- 必填：建议填写
+- 可选值：verified / estimated / demo / outdated
+
+约束：
+1. faqId 不允许重复。
+2. relatedFaqIds 中的 ID 必须能在 faq.json 中找到。
+3. relatedPolicyIds 中的 ID 必须能在 policies.json 中找到。
+4. 如果 answer 来自官方政策，应填写 sourceUrl。
+5. 如果 answer 是团队解释，应写 sourceType: "manual"，dataStatus: "estimated"。
+
+============================================================
+五、data/contacts.json
+============================================================
+
+用途：
+存储教育主管部门、学校、社区、线上咨询入口等联系方式。
+
+结构示例：
+
+[
+  {
+    "contactId": "contact_001",
+    "name": "泰山区教育和体育局",
+    "type": "教育主管部门",
+    "district": "泰山区",
+    "phone": "0538-XXXXXXX",
+    "email": "",
+    "address": "山东省泰安市泰山区示范地址",
+    "hours": "工作日 09:00-17:00",
+    "serviceScope": ["义务教育招生", "学区咨询", "政策咨询"],
+    "note": "公开办公电话，具体办理时间以官方公告为准。",
+    "channels": [
+      {
+        "name": "电话咨询",
+        "value": "0538-XXXXXXX"
+      },
+      {
+        "name": "现场咨询",
+        "value": "山东省泰安市泰山区示范地址"
+      }
+    ],
+    "relatedSchoolIds": [],
+    "relatedPolicyIds": ["policy_2025_001"],
+    "sourceName": "泰山区人民政府",
+    "sourceUrl": "https://example.gov.cn/contact.html",
+    "sourceType": "official",
+    "verifiedDate": "2026-05-15",
+    "dataStatus": "verified"
+  }
+]
+
+字段说明：
+
+contactId
+- 类型：string
+- 必填：是
+- 说明：联系方式唯一 ID
+
+name
+- 类型：string
+- 必填：是
+- 说明：单位或机构名称
+
+type
+- 类型：string
+- 必填：是
+- 建议值：
+  - 教育主管部门
+  - 小学
+  - 初中
+  - 九年一贯制学校
+  - 社区
+  - 线上咨询
+
+district
+- 类型：string
+- 必填：建议填写
+- 示例：泰山区
+
+phone
+- 类型：string
+- 必填：真实数据建议填写
+- 说明：公开办公电话
+
+email
+- 类型：string
+- 必填：否
+- 说明：公开邮箱，没有则为空字符串
+
+address
+- 类型：string
+- 必填：否
+- 说明：办公地址或学校地址
+
+hours
+- 类型：string
+- 必填：否
+- 说明：服务时间
+
+serviceScope
+- 类型：string[]
+- 必填：否
+- 说明：服务范围
+
+note
+- 类型：string
+- 必填：否
+- 说明：补充说明
+
+channels
+- 类型：array
+- 必填：否
+- 说明：咨询渠道列表
+
+channels[].name
+- 类型：string
+- 必填：是
+- 示例：电话咨询 / 现场咨询 / 官网入口
+
+channels[].value
+- 类型：string
+- 必填：是
+- 说明：电话号码、地址或链接
+
+relatedSchoolIds
+- 类型：string[]
+- 必填：否
+- 说明：关联学校 ID
+
+relatedPolicyIds
+- 类型：string[]
+- 必填：否
+- 说明：关联政策 ID
+
+sourceName
+- 类型：string
+- 必填：真实数据建议填写
+- 说明：来源名称
+
+sourceUrl
+- 类型：string
+- 必填：真实数据建议填写
+- 说明：来源链接
+
+sourceType
+- 类型：string
+- 必填：真实数据建议填写
+- 可选值：official / school / manual / demo
+
+verifiedDate
+- 类型：string
+- 必填：真实数据建议填写
+- 格式：YYYY-MM-DD
+
+dataStatus
+- 类型：string
+- 必填：真实数据建议填写
+- 可选值：verified / estimated / demo / outdated
+
+约束：
+1. contactId 不允许重复。
+2. phone 只填写公开电话，不填写私人手机号。
+3. type 为“小学”或“初中”时，建议 relatedSchoolIds 关联 schools.json。
+4. 真实联系方式必须填写 sourceUrl 或至少填写 sourceName。
+5. 联系方式容易变化，verifiedDate 必须尽量填写。
+
+============================================================
+六、data/interaction_topics.json（可选）
+============================================================
+
+用途：
+如果 C 组要做留言表单，可以用此文件维护咨询类型、表单提示、处理说明。
+
+结构示例：
+
+[
+  {
+    "topicId": "topic_001",
+    "name": "学区查询咨询",
+    "description": "用于咨询居住地址对应学区、学校信息等问题。",
+    "requiredFields": ["name", "phone", "address", "question"],
+    "tips": "请尽量填写完整居住地址，例如街道、小区、楼号。",
+    "relatedFaqIds": ["faq_001"],
+    "relatedContactIds": ["contact_001"]
+  },
+  {
+    "topicId": "topic_002",
+    "name": "材料审核咨询",
+    "description": "用于咨询报名材料是否齐全、材料有效期等问题。",
+    "requiredFields": ["name", "phone", "studentType", "question"],
+    "tips": "请说明学生类型，例如本地户籍、随迁子女、集体户等。",
+    "relatedFaqIds": ["faq_010"],
+    "relatedContactIds": ["contact_001"]
+  }
+]
+
+字段说明：
+
+topicId
+- 类型：string
+- 必填：是
+- 说明：留言主题唯一 ID
+
+name
+- 类型：string
+- 必填：是
+- 说明：咨询主题名称
+
+description
+- 类型：string
+- 必填：是
+- 说明：主题说明
+
+requiredFields
+- 类型：string[]
+- 必填：是
+- 说明：该主题建议填写的表单字段
+
+tips
+- 类型：string
+- 必填：否
+- 说明：表单提示文案
+
+relatedFaqIds
+- 类型：string[]
+- 必填：否
+- 说明：关联 FAQ
+
+relatedContactIds
+- 类型：string[]
+- 必填：否
+- 说明：关联联系方式
+
+约束：
+1. 留言内容如果只是前端原型，建议存入 sessionStorage 或 localStorage。
+2. 不要做真实在线提交，除非有后端。
+3. 前端必须提示“留言功能为原型演示，不代表真实政务受理”。
+
+============================================================
+七、C 组建议的前端交互
+============================================================
+
+材料清单：
+1. 按 group 显示 Tab。
+2. 支持勾选材料。
+3. 显示完成进度，例如“已完成 3/6 项”。
+4. 展示 rejectReasons 和 validity。
+5. 有 templateUrl 时显示“下载模板”按钮。
+6. 没有 templateUrl 时不要显示空按钮。
+
+FAQ：
+1. 支持关键词搜索 question / answer / keywords。
+2. 支持 category chip 筛选。
+3. 支持 relatedFaqIds 推荐相关问题。
+4. 高优先级问题按 priority 靠前展示。
+
+联系方式：
+1. 按 type 分组展示。
+2. 教育主管部门优先展示。
+3. 学校联系方式可以从 schools.json 读取，也可以同步到 contacts.json。
+4. 真实电话旁边显示 verifiedDate。
+5. 联系方式底部显示“请以官方最新公告为准”。
+
+留言表单：
+1. 前端原型阶段只做本地保存。
+2. 可用 sessionStorage 保存本次会话留言。
+3. 不要让用户误以为已经提交到教育局。
+4. 提交后提示：“该留言仅为原型演示，未接入真实政务系统。”
+
+============================================================
+八、C 组开发注意事项
+============================================================
+
+1. 所有真实电话、地址、邮箱必须可追溯来源。
+2. FAQ 回答不能与政策文件冲突。
+3. 材料清单建议关联 policyId，便于解释依据。
+4. 留言表单不要收集过多敏感信息。
+5. 如果需要演示家长咨询流程，可以用假留言数据，但必须明确标注原型演示。
