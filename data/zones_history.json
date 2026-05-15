@@ -1,1 +1,137 @@
-[]
+[
+  {
+    "zoneId": "zone_001",
+    "history": [
+      {
+        "year": 2025,
+        "changeType": "范围说明更新",
+        "title": "整理2025年学区四至范围",
+        "description": "根据泰山区2025年义务教育学校地址及四至范围统计表整理该学区边界文字。",
+        "reason": "公开资料整理",
+        "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+        "sourceUrl": "【待补：官方网页链接】",
+        "sourceType": "manual",
+        "verifiedDate": "【待填：YYYY-MM-DD】"
+      },
+      {
+        "year": 2024,
+        "changeType": "待补",
+        "title": "往年调整记录待补",
+        "description": "【待查：2024年该学区是否有调整】",
+        "reason": "待查",
+        "sourceName": "【待补：2024年官方资料】",
+        "sourceUrl": "【待补：官方网页链接】",
+        "sourceType": "manual",
+        "verifiedDate": "【待填：YYYY-MM-DD】"
+      }
+    ]
+  },
+  {
+    "zoneId": "zone_002",
+    "history": [
+      {
+        "year": 2025,
+        "changeType": "范围说明更新",
+        "title": "整理2025年学区四至范围",
+        "description": "根据泰山区2025年义务教育学校地址及四至范围统计表整理该学区边界文字。",
+        "reason": "公开资料整理",
+        "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+        "sourceUrl": "【待补：官方网页链接】",
+        "sourceType": "manual",
+        "verifiedDate": "【待填：YYYY-MM-DD】"
+      },
+      {
+        "year": 2024,
+        "changeType": "待补",
+        "title": "往年调整记录待补",
+        "description": "【待查：2024年该学区是否有调整】",
+        "reason": "待查",
+        "sourceName": "【待补：2024年官方资料】",
+        "sourceUrl": "【待补：官方网页链接】",
+        "sourceType": "manual",
+        "verifiedDate": "【待填：YYYY-MM-DD】"
+      }
+    ]
+  },
+  {
+    "zoneId": "zone_003",
+    "history": [
+      {
+        "year": 2025,
+        "changeType": "范围说明更新",
+        "title": "整理2025年学区四至范围",
+        "description": "根据泰山区2025年义务教育学校地址及四至范围统计表整理该学区边界文字。",
+        "reason": "公开资料整理",
+        "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+        "sourceUrl": "【待补：官方网页链接】",
+        "sourceType": "manual",
+        "verifiedDate": "【待填：YYYY-MM-DD】"
+      },
+      {
+        "year": 2024,
+        "changeType": "待补",
+        "title": "往年调整记录待补",
+        "description": "【待查：2024年该学区是否有调整】",
+        "reason": "待查",
+        "sourceName": "【待补：2024年官方资料】",
+        "sourceUrl": "【待补：官方网页链接】",
+        "sourceType": "manual",
+        "verifiedDate": "【待填：YYYY-MM-DD】"
+      }
+    ]
+  },
+  {
+    "zoneId": "zone_004",
+    "history": [
+      {
+        "year": 2025,
+        "changeType": "范围说明更新",
+        "title": "整理2025年学区四至范围",
+        "description": "根据泰山区2025年义务教育学校地址及四至范围统计表整理该学区边界文字。",
+        "reason": "公开资料整理",
+        "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+        "sourceUrl": "【待补：官方网页链接】",
+        "sourceType": "manual",
+        "verifiedDate": "【待填：YYYY-MM-DD】"
+      },
+      {
+        "year": 2024,
+        "changeType": "待补",
+        "title": "往年调整记录待补",
+        "description": "【待查：2024年该学区是否有调整】",
+        "reason": "待查",
+        "sourceName": "【待补：2024年官方资料】",
+        "sourceUrl": "【待补：官方网页链接】",
+        "sourceType": "manual",
+        "verifiedDate": "【待填：YYYY-MM-DD】"
+      }
+    ]
+  },
+  {
+    "zoneId": "zone_005",
+    "history": [
+      {
+        "year": 2025,
+        "changeType": "范围说明更新",
+        "title": "整理2025年学区四至范围",
+        "description": "根据泰山区2025年义务教育学校地址及四至范围统计表整理该学区边界文字。",
+        "reason": "公开资料整理",
+        "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+        "sourceUrl": "【待补：官方网页链接】",
+        "sourceType": "manual",
+        "verifiedDate": "【待填：YYYY-MM-DD】"
+      },
+      {
+        "year": 2024,
+        "changeType": "待补",
+        "title": "往年调整记录待补",
+        "description": "【待查：2024年该学区是否有调整】",
+        "reason": "待查",
+        "sourceName": "【待补：2024年官方资料】",
+        "sourceUrl": "【待补：官方网页链接】",
+        "sourceType": "manual",
+        "verifiedDate": "【待填：YYYY-MM-DD】"
+      }
+    ]
+  }
+]

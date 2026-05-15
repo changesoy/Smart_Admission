@@ -1,1 +1,152 @@
-[]
+[
+  {
+    "keyword": "泰山学院附属中学",
+    "type": "学校",
+    "matchedZoneIds": ["zone_001"],
+    "displayName": "泰山学院附属中学",
+    "matchMode": "exact",
+    "weight": 100,
+    "aliases": ["泰院附中"],
+    "note": "学校名称精确匹配"
+  },
+  {
+    "keyword": "泰院附中",
+    "type": "学校",
+    "matchedZoneIds": ["zone_001"],
+    "displayName": "泰山学院附属中学",
+    "matchMode": "alias",
+    "weight": 80,
+    "aliases": ["泰山学院附属中学"],
+    "note": "学校简称匹配"
+  },
+  {
+    "keyword": "擂鼓石大街",
+    "type": "道路",
+    "matchedZoneIds": ["zone_001"],
+    "displayName": "擂鼓石大街",
+    "matchMode": "fuzzy",
+    "weight": 50,
+    "aliases": [],
+    "note": "主要道路名匹配"
+  },
+  {
+    "keyword": "泰安望岳中学",
+    "type": "学校",
+    "matchedZoneIds": ["zone_002"],
+    "displayName": "泰安望岳中学",
+    "matchMode": "exact",
+    "weight": 100,
+    "aliases": ["望岳中学"],
+    "note": "学校名称精确匹配"
+  },
+  {
+    "keyword": "望岳中学",
+    "type": "学校",
+    "matchedZoneIds": ["zone_002"],
+    "displayName": "泰安望岳中学",
+    "matchMode": "alias",
+    "weight": 80,
+    "aliases": ["泰安望岳中学"],
+    "note": "学校简称匹配"
+  },
+  {
+    "keyword": "望岳东路",
+    "type": "道路",
+    "matchedZoneIds": ["zone_002"],
+    "displayName": "望岳东路",
+    "matchMode": "fuzzy",
+    "weight": 50,
+    "aliases": [],
+    "note": "主要道路名匹配"
+  },
+  {
+    "keyword": "山东省泰安第六中学",
+    "type": "学校",
+    "matchedZoneIds": ["zone_003"],
+    "displayName": "山东省泰安第六中学",
+    "matchMode": "exact",
+    "weight": 100,
+    "aliases": ["泰安六中"],
+    "note": "学校名称精确匹配"
+  },
+  {
+    "keyword": "泰安六中",
+    "type": "学校",
+    "matchedZoneIds": ["zone_003"],
+    "displayName": "山东省泰安第六中学",
+    "matchMode": "alias",
+    "weight": 80,
+    "aliases": ["山东省泰安第六中学"],
+    "note": "学校简称匹配"
+  },
+  {
+    "keyword": "运粮街",
+    "type": "道路",
+    "matchedZoneIds": ["zone_003"],
+    "displayName": "运粮街",
+    "matchMode": "fuzzy",
+    "weight": 50,
+    "aliases": [],
+    "note": "主要道路名匹配"
+  },
+  {
+    "keyword": "山东省泰安东岳中学",
+    "type": "学校",
+    "matchedZoneIds": ["zone_004"],
+    "displayName": "山东省泰安东岳中学（初中部）",
+    "matchMode": "exact",
+    "weight": 100,
+    "aliases": ["东岳中学"],
+    "note": "学校名称精确匹配"
+  },
+  {
+    "keyword": "东岳中学",
+    "type": "学校",
+    "matchedZoneIds": ["zone_004"],
+    "displayName": "山东省泰安东岳中学（初中部）",
+    "matchMode": "alias",
+    "weight": 80,
+    "aliases": ["山东省泰安东岳中学"],
+    "note": "学校简称匹配"
+  },
+  {
+    "keyword": "岱宗大街",
+    "type": "道路",
+    "matchedZoneIds": ["zone_004"],
+    "displayName": "岱宗大街",
+    "matchMode": "fuzzy",
+    "weight": 50,
+    "aliases": [],
+    "note": "主要道路名匹配"
+  },
+  {
+    "keyword": "泰安泰山实验中学",
+    "type": "学校",
+    "matchedZoneIds": ["zone_005"],
+    "displayName": "泰安泰山实验中学",
+    "matchMode": "exact",
+    "weight": 100,
+    "aliases": ["泰山实验中学"],
+    "note": "学校名称精确匹配"
+  },
+  {
+    "keyword": "泰山实验中学",
+    "type": "学校",
+    "matchedZoneIds": ["zone_005"],
+    "displayName": "泰安泰山实验中学",
+    "matchMode": "alias",
+    "weight": 80,
+    "aliases": ["泰安泰山实验中学"],
+    "note": "学校简称匹配"
+  },
+  {
+    "keyword": "东岳大街",
+    "type": "道路",
+    "matchedZoneIds": ["zone_005"],
+    "displayName": "东岳大街",
+    "matchMode": "fuzzy",
+    "weight": 50,
+    "aliases": [],
+    "note": "主要道路名匹配"
+  }
+]

@@ -1,0 +1,408 @@
+我在做“智慧入学·学区治理一站式可视化门户”项目。
+
+项目技术栈固定：
+- HTML5 / CSS3 / Vanilla JavaScript
+- Leaflet 1.9.4
+- Turf 6.5.0
+- Bootstrap 5.3.2
+- 本地 JSON / GeoJSON
+- 不使用 Vue / React / Node / npm / Vite / TypeScript
+- 不使用 import/export
+- Leaflet 使用全局变量 L
+- Turf 使用全局变量 turf
+
+当前任务：
+完成 A 组地图与查询模块的 W1 脚手架，让后续可以正式分工开发。
+
+请严格按下面要求修改，不要擅自重构整个项目。
+
+========================
+一、先检查，不要乱拆 render.js
+========================
+
+请检查 js/render.js 和 js/mapService.js。
+
+如果地图初始化、Polygon 渲染、地图点击、学区选中这些逻辑已经在 js/mapService.js 中，则不要再移动代码。
+
+如果 js/render.js 中仍然有明显地图逻辑，例如：
+- Leaflet 地图初始化
+- L.map
+- L.geoJSON
+- Polygon 样式
+- 地图点击事件
+- turf.booleanPointInPolygon
+
+才把这些地图逻辑迁移到 js/mapService.js。
+
+注意：
+- 不要迁移普通结果面板渲染逻辑。
+- 不要迁移政策、材料、FAQ 渲染逻辑。
+- 不要大规模重写 render.js。
+- 只做必要迁移。
+- 如果不确定，就不要动 render.js。
+
+========================
+二、补 3 个 A 组数据文件的草稿内容
+========================
+
+我已经新建了这 3 个文件：
+
+1. data/address_points.json
+2. data/keywords_index.json
+3. data/zones_history.json
+
+请不要保持空数组，先填入最小可运行草稿数据。
+
+数据来源参考 docs/zone-school-list.md。
+
+先只选前 5 个 zone 做样例：
+- zone_001
+- zone_002
+- zone_003
+- zone_004
+- zone_005
+
+--------------------------------
+1. data/address_points.json
+--------------------------------
+
+请写成合法 JSON 数组。
+
+每个 zone 至少写 1 条学校地址点。
+
+字段使用：
+
+{
+  "addressId": "addr_001",
+  "name": "学校真实名称",
+  "type": "学校",
+  "fullAddress": "学校地址",
+  "lng": 117.000000,
+  "lat": 36.000000,
+  "matchedZoneId": "zone_001",
+  "confidence": 10,
+  "aliases": ["学校简称"],
+  "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+  "sourceUrl": "【待补：官方网页链接】",
+  "sourceType": "manual",
+  "verifiedDate": "【待填：YYYY-MM-DD】",
+  "dataStatus": "estimated",
+  "note": "【待核：lng/lat 为临时占位坐标，后续需替换为真实坐标】"
+}
+
+要求：
+- lng / lat 必须是 number，不能写字符串。
+- 如果没有真实坐标，先用泰山区附近的临时坐标。
+- 每条 note 必须写清楚“临时占位坐标”。
+- matchedZoneId 必须对应 zone_001 到 zone_005。
+
+--------------------------------
+2. data/keywords_index.json
+--------------------------------
+
+请写成合法 JSON 数组。
+
+每个 zone 至少写 3 条关键词：
+- 学校全称
+- 学校简称或关键词
+- 主要道路名或地标
+
+字段使用新版 schema：
+
+{
+  "keyword": "泰山学院附属中学",
+  "type": "学校",
+  "matchedZoneIds": ["zone_001"],
+  "displayName": "泰山学院附属中学",
+  "matchMode": "exact",
+  "weight": 100,
+  "aliases": ["泰院附中"],
+  "note": "学校名称精确匹配"
+}
+
+注意：
+- 使用 matchedZoneIds，不要使用 matchedZoneId。
+- matchedZoneIds 是数组。
+- 道路类关键词可以匹配多个 zone，但当前草稿阶段可以先只写一个。
+- 不要使用 zone_id、matched_zone_id 这类字段。
+
+--------------------------------
+3. data/zones_history.json
+--------------------------------
+
+请写成合法 JSON 数组。
+
+每个 zone 写 2 条历史记录即可。
+
+字段使用：
+
+{
+  "zoneId": "zone_001",
+  "history": [
+    {
+      "year": 2025,
+      "changeType": "范围说明更新",
+      "title": "整理2025年学区四至范围",
+      "description": "根据泰山区2025年义务教育学校地址及四至范围统计表整理该学区边界文字。",
+      "reason": "公开资料整理",
+      "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+      "sourceUrl": "【待补：官方网页链接】",
+      "sourceType": "manual",
+      "verifiedDate": "【待填：YYYY-MM-DD】"
+    },
+    {
+      "year": 2024,
+      "changeType": "待补",
+      "title": "往年调整记录待补",
+      "description": "【待查：2024年该学区是否有调整】",
+      "reason": "待查",
+      "sourceName": "【待补：2024年官方资料】",
+      "sourceUrl": "【待补：官方网页链接】",
+      "sourceType": "manual",
+      "verifiedDate": "【待填：YYYY-MM-DD】"
+    }
+  ]
+}
+
+要求：
+- 不要编造真实的历史调整。
+- 不确定的地方必须用明显占位，例如【待查】。
+- JSON 必须合法。
+
+========================
+三、新建 js/searchService.js 空壳
+========================
+
+如果项目里还没有 js/searchService.js，请新建。
+
+请创建一个最小可运行版本，不要做复杂功能。
+
+要求：
+
+1. 使用 IIFE 风格：
+window.SearchService = (function () { ... })();
+
+2. 暴露这些方法：
+- init(data)
+- setOnZoneMatched(fn)
+- setOnPointResolved(fn)
+
+3. init(data) 中读取：
+- data.addressPoints
+- data.keywordsIndex
+- data.zones
+
+4. 绑定搜索框：
+- searchInput
+- searchClearBtn
+- searchSuggestions
+
+5. 搜索逻辑先做本地匹配：
+- 先匹配 addressPoints 的 name / aliases / fullAddress
+- 再匹配 keywordsIndex 的 keyword / aliases
+- 不接天地图 geocoder
+- 不做在线请求
+- 不做复杂防抖
+
+6. 点击 address_points 结果时：
+调用 _onPointResolved(lng, lat, item)
+
+7. 点击 keywords_index 结果时：
+如果 matchedZoneIds 只有一个，调用 _onZoneMatched(zoneId, item)
+如果 matchedZoneIds 有多个，先调用第一个即可，并在 console.warn 提示“多个候选学区，当前使用第一个”
+
+8. 回车时使用第一条匹配结果。
+
+9. 无结果时显示“未找到匹配结果”。
+
+10. 不要使用 import/export。
+
+========================
+四、修改 index.html
+========================
+
+请只在 A 组地图查询区域添加搜索框和图层切换占位。
+
+在地图卡片上方增加：
+
+<section id="section-search" class="mb-3">
+  <div class="card section-card">
+    <div class="card-body py-2">
+      <div class="d-flex flex-column flex-lg-row gap-2 align-items-stretch align-items-lg-center">
+        <div class="input-group flex-grow-1">
+          <span class="input-group-text bg-white border-end-0">
+            <i class="bi bi-search"></i>
+          </span>
+          <input type="text" id="searchInput" class="form-control border-start-0"
+                 placeholder="输入学校、小区、道路或完整地址查询学区">
+          <button id="searchClearBtn" class="btn btn-outline-secondary" style="display:none;" type="button">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div class="btn-group map-layer-placeholder" role="group" aria-label="地图图层切换占位">
+          <button type="button" id="layerVectorBtn" class="btn btn-outline-primary btn-sm" disabled>矢量底图</button>
+          <button type="button" id="layerImageBtn" class="btn btn-outline-secondary btn-sm" disabled>影像底图</button>
+        </div>
+      </div>
+
+      <div id="searchSuggestions" class="search-suggestions" style="display:none;"></div>
+      <div class="form-text mt-1">
+        当前先支持本地地址点和关键词匹配，在线地理编码后续接入。
+      </div>
+    </div>
+  </div>
+</section>
+
+注意：
+- 不要删除原有地图区域。
+- 不要改 B/C 区域。
+- 不要重排整个页面。
+
+还要在 script 引用中加入：
+
+<script src="js/searchService.js"></script>
+
+位置要求：
+- 放在 js/mapService.js 后面
+- 放在 js/main.js 前面
+
+========================
+五、修改 js/main.js
+========================
+
+在 DataService.loadAllData().then(function(data) { ... }) 中，地图初始化之后，增加 SearchService 初始化。
+
+要求写成防御式代码，避免 SearchService 不存在时报错：
+
+if (window.SearchService) {
+  window.SearchService.init(data);
+
+  window.SearchService.setOnZoneMatched(function (zoneId, item) {
+    if (window.MapService && typeof window.MapService.flyToZoneById === "function") {
+      window.MapService.flyToZoneById(zoneId);
+    } else {
+      console.warn("MapService.flyToZoneById 尚未实现，匹配到的 zoneId:", zoneId, item);
+    }
+  });
+
+  window.SearchService.setOnPointResolved(function (lng, lat, item) {
+    if (window.MapService && typeof window.MapService.findZoneByPoint === "function") {
+      var zoneId = window.MapService.findZoneByPoint(lng, lat);
+      if (zoneId && typeof window.MapService.flyToZoneById === "function") {
+        window.MapService.flyToZoneById(zoneId);
+      } else {
+        console.warn("未通过坐标匹配到学区:", lng, lat, item);
+      }
+    } else {
+      console.warn("MapService.findZoneByPoint 尚未实现，解析到的坐标:", lng, lat, item);
+    }
+  });
+}
+
+注意：
+- 不要删除原有 MapService.initMap。
+- 不要删除 RenderService 相关逻辑。
+- 不要改 B/C 模块逻辑。
+
+========================
+六、修改 css/style.css
+========================
+
+只追加样式，不要重写原有样式。
+
+追加以下前缀的样式：
+- .search-*
+- .map-layer-placeholder
+
+建议添加：
+
+.search-suggestions {
+  position: relative;
+  margin-top: 0.5rem;
+  background: #fff;
+  border: 1px solid var(--border-light, #dee2e6);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.search-suggestion-item {
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #f1f3f5;
+  font-size: 0.9rem;
+}
+
+.search-suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.search-suggestion-item:hover {
+  background: #f5f7fa;
+}
+
+.search-type-tag {
+  display: inline-block;
+  min-width: 3rem;
+  text-align: center;
+  font-size: 0.75rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  background: rgba(30, 58, 95, 0.08);
+  color: var(--primary-color, #1E3A5F);
+}
+
+.search-keyword {
+  color: var(--text-primary, #2C3E50);
+}
+
+.search-no-result {
+  padding: 0.75rem;
+  color: var(--text-secondary, #6C757D);
+  font-size: 0.9rem;
+}
+
+.map-layer-placeholder .btn[disabled] {
+  opacity: 0.65;
+}
+
+========================
+七、暂时不要改这些
+========================
+
+本次不要实现完整图层切换。
+本次不要接天地图 geocoder。
+本次不要扩展 20–30 个 zones.geojson Polygon。
+本次不要大改 render.js。
+本次不要大改 mapService.js。
+本次不要改 policies/materials/faq。
+本次不要改 B/C 的 service 文件。
+
+========================
+八、自测要求
+========================
+
+修改后请保证：
+
+1. 页面能通过本地 HTTP 服务打开：
+   python -m http.server 5500
+
+2. 浏览器访问：
+   http://localhost:5500
+
+3. 控制台不能出现：
+   - JSON 解析错误
+   - SearchService is not defined
+   - Cannot read properties of undefined
+   - Failed to fetch 新增 JSON 文件
+
+4. 页面上能看到搜索框。
+
+5. 输入已写入 keywords_index.json 或 address_points.json 的关键词时，能出现建议列表。
+
+6. 点击建议项时，即使 MapService.flyToZoneById 暂未实现，也不能报错，只能 console.warn。
