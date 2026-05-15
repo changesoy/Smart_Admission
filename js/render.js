@@ -1,10 +1,23 @@
 /* render.js - 渲染服务(所有 DOM 渲染逻辑集中在此) */
 
+/**
+ * 渲染服务模块
+ * 负责所有页面元素的渲染逻辑
+ * 包括：统计卡片、结果面板、政策列表、材料列表、FAQ等
+ */
 window.RenderService = (function () {
   // 缓存当前 FAQ 全量,供搜索过滤
   var _allFaq = [];
 
   // ========== 数据概览卡片 ==========
+  /**
+   * 渲染数据概览统计卡片
+   * @param {Object} data - 包含各类型数据的对象
+   * @param {Object} data.zones - 学区数据 (GeoJSON)
+   * @param {Array} data.schools - 学校数据数组
+   * @param {Array} data.policies - 政策数据数组
+   * @param {Array} data.faq - FAQ数据数组
+   */
   function renderStats(data) {
     var row = document.getElementById("statsRow");
     if (!row) return;
@@ -54,6 +67,9 @@ window.RenderService = (function () {
   }
 
   // ========== 结果面板:默认提示 ==========
+  /**
+   * 渲染结果面板的默认提示
+   */
   function renderDefaultResultTip() {
     var panel = document.getElementById("resultPanel");
     if (!panel) return;
@@ -67,6 +83,9 @@ window.RenderService = (function () {
   }
 
   // ========== 结果面板:未匹配提示 ==========
+  /**
+   * 渲染结果面板的未匹配提示
+   */
   function renderNoMatch() {
     var panel = document.getElementById("resultPanel");
     if (!panel) return;
@@ -80,7 +99,13 @@ window.RenderService = (function () {
   }
 
   // ========== 结果面板:学区详情 ==========
-  // ctx = { zoneFeature, schools, policies }
+  /**
+   * 渲染结果面板的学区详情
+   * @param {Object} ctx - 上下文对象
+   * @param {Object} ctx.zoneFeature - 选中的学区要素
+   * @param {Array} ctx.schools - 学校数据数组
+   * @param {Array} ctx.policies - 政策数据数组
+   */
   function renderResult(ctx) {
     var panel = document.getElementById("resultPanel");
     if (!panel) return;
@@ -129,15 +154,25 @@ window.RenderService = (function () {
     } else {
       html += '<ul class="small mb-0">';
       relatedPolicies.forEach(function (p) {
-        html += "<li>" + (p.title || "—") + "</li>";
+        var hasValidUrl = p.url && p.url !== "#";
+        if (hasValidUrl) {
+          html += '<li><a href="' + p.url + '" target="_blank" rel="noopener noreferrer" class="policy-link-text">' + (p.title || "—") + '</a></li>';
+        } else {
+          html += "<li>" + (p.title || "—") + "</li>";
+        }
       });
-      html += "</ul>";
+      html += '</ul>';
     }
 
     panel.innerHTML = html;
   }
 
   // 学校信息块(防御性:school 可能为 undefined)
+  /**
+   * 渲染学校信息块
+   * @param {Object} school - 学校对象
+   * @returns {string} 学校信息的HTML字符串
+   */
   function renderSchoolBlock(school) {
     if (!school) {
       return '<div class="result-school-block"><div class="text-muted small">暂无关联数据</div></div>';
@@ -158,6 +193,11 @@ window.RenderService = (function () {
   }
 
   // ========== 政策筛选器(分类 + 年份) ==========
+  /**
+   * 渲染政策筛选器
+   * @param {Array} policies - 政策数据数组
+   * @param {Function} onChange - 筛选条件变更时的回调函数
+   */
   function renderPolicyFilters(policies, onChange) {
     var container = document.getElementById("policyFilters");
     if (!container) return;
@@ -212,6 +252,11 @@ window.RenderService = (function () {
   }
 
   // 数组去重
+  /**
+   * 数组去重
+   * @param {Array} arr - 要去重的数组
+   * @returns {Array} 去重后的新数组
+   */
   function uniq(arr) {
     var out = [];
     arr.forEach(function (v) {
@@ -221,6 +266,10 @@ window.RenderService = (function () {
   }
 
   // ========== 政策列表 ==========
+  /**
+   * 渲染政策列表
+   * @param {Array} policies - 政策数据数组
+   */
   function renderPolicies(policies) {
     var container = document.getElementById("policyList");
     if (!container) return;
@@ -233,6 +282,7 @@ window.RenderService = (function () {
 
     var html = "";
     policies.forEach(function (p) {
+      var hasValidUrl = p.url && p.url !== "#";
       html += '<div class="policy-item">';
       html += '<div class="policy-title">' + (p.title || "—") + "</div>";
       html += '<div class="policy-meta">';
@@ -247,12 +297,26 @@ window.RenderService = (function () {
         "</span>";
       html += "</div>";
       html += '<div class="policy-summary">' + (p.summary || "—") + "</div>";
+      if (hasValidUrl) {
+        html +=
+          '<div class="policy-link">' +
+          '<a href="' +
+          p.url +
+          '" target="_blank" rel="noopener noreferrer" class="policy-link-btn">' +
+          '<i class="bi bi-box-arrow-up-right"></i> 查看原文' +
+          "</a>" +
+          "</div>";
+      }
       html += "</div>";
     });
     container.innerHTML = html;
   }
 
   // ========== 入学材料(Tab + 勾选 + 进度) ==========
+  /**
+   * 渲染入学材料列表
+   * @param {Array} materials - 材料数据数组
+   */
   function renderMaterials(materials) {
     var container = document.getElementById("materialContainer");
     if (!container) return;
@@ -295,26 +359,12 @@ window.RenderService = (function () {
         '" role="tabpanel">';
       contentHtml +=
         '<p class="text-muted small mb-2">' + (m.description || "") + "</p>";
-      contentHtml +=
-        '<div class="material-progress" data-group-index="' +
-        i +
-        '">已完成 0/' +
-        items.length +
-        " 项</div>";
       items.forEach(function (item, j) {
-        var checkboxId = "mat_chk_" + i + "_" + j;
         contentHtml +=
-          '<div class="material-item form-check">' +
-          '<input class="form-check-input material-checkbox" type="checkbox" id="' +
-          checkboxId +
-          '" data-group-index="' +
-          i +
-          '">' +
-          '<label class="form-check-label" for="' +
-          checkboxId +
-          '">' +
+          '<div class="material-item">' +
+          '<span class="material-item-text">' +
           item +
-          "</label>" +
+          "</span>" +
           "</div>";
       });
       contentHtml += "</div>";
@@ -322,41 +372,23 @@ window.RenderService = (function () {
     contentHtml += "</div>";
 
     container.innerHTML = tabsHtml + contentHtml;
-
-    // 绑定勾选事件
-    var checkboxes = container.querySelectorAll(".material-checkbox");
-    checkboxes.forEach(function (cb) {
-      cb.addEventListener("change", function () {
-        updateMaterialProgress(container, cb.getAttribute("data-group-index"));
-      });
-    });
-  }
-
-  // 更新材料勾选进度
-  function updateMaterialProgress(container, groupIndex) {
-    var checkboxes = container.querySelectorAll(
-      '.material-checkbox[data-group-index="' + groupIndex + '"]',
-    );
-    var checked = 0;
-    checkboxes.forEach(function (cb) {
-      if (cb.checked) checked++;
-    });
-    var progressEl = container.querySelector(
-      '.material-progress[data-group-index="' + groupIndex + '"]',
-    );
-    if (progressEl) {
-      progressEl.textContent =
-        "已完成 " + checked + "/" + checkboxes.length + " 项";
-    }
   }
 
   // ========== FAQ ==========
+  /**
+   * 渲染FAQ列表
+   * @param {Array} faqList - FAQ数据数组
+   */
   function renderFaq(faqList) {
     _allFaq = faqList || [];
     renderFaqList(_allFaq);
   }
 
   // 内部:渲染 FAQ 列表
+  /**
+   * 内部方法：渲染FAQ列表
+   * @param {Array} list - FAQ数据数组
+   */
   function renderFaqList(list) {
     var container = document.getElementById("faqList");
     if (!container) return;
@@ -384,6 +416,9 @@ window.RenderService = (function () {
   }
 
   // 绑定 FAQ 搜索框
+  /**
+   * 绑定FAQ搜索框事件
+   */
   function bindFaqSearch() {
     var input = document.getElementById("faqSearch");
     if (!input) return;
@@ -403,6 +438,10 @@ window.RenderService = (function () {
   }
 
   // ========== 全页错误状态 ==========
+  /**
+   * 渲染全页错误状态
+   * @param {string} message - 错误信息
+   */
   function renderError(message) {
     var errEl = document.getElementById("errorState");
     var mainEl = document.getElementById("mainContent");
@@ -421,6 +460,9 @@ window.RenderService = (function () {
   }
 
   // ========== 项目边界说明 ==========
+  /**
+   * 设置项目边界说明
+   */
   function setBoundaryNotice() {
     var container = document.getElementById("boundaryNotice");
     if (!container) return;
@@ -439,6 +481,9 @@ window.RenderService = (function () {
       "</div>";
   }
 
+  /**
+   * 渲染服务暴露的方法
+   */
   return {
     renderStats: renderStats,
     renderResult: renderResult,

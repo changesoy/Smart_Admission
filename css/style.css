@@ -247,6 +247,113 @@ body {
   line-height: 1.6;
 }
 
+.policy-link {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border-light);
+}
+
+.policy-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--primary-color);
+  transition: all 0.2s ease;
+}
+
+.policy-link-btn:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+}
+
+.policy-link-btn i {
+  font-size: 0.75rem;
+}
+
+.policy-link-text {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.policy-link-text:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+  .policy-item {
+    padding: 0.75rem;
+  }
+  
+  .policy-title {
+    font-size: 0.95rem;
+  }
+  
+  .policy-meta {
+    font-size: 0.8rem;
+    gap: 0.3rem;
+  }
+  
+  .policy-summary {
+    font-size: 0.85rem;
+  }
+  
+  .policy-link-btn {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .policy-link-btn i {
+    font-size: 0.7rem;
+  }
+  
+  /* 材料 Tab 响应式 */
+  .material-tabs .nav-link {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  /* 统计卡片响应式 */
+  .stat-card {
+    padding: 1rem 0.75rem;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+  }
+  
+  /* 结果面板响应式 */
+  .result-zone-name {
+    font-size: 1.1rem;
+  }
+  
+  .result-section-title {
+    font-size: 0.9rem;
+  }
+  
+  .result-school-name {
+    font-size: 0.95rem;
+  }
+  
+  .result-school-detail {
+    font-size: 0.8rem;
+  }
+}
+
 /* ========== 材料 ========== */
 .material-tabs .nav-link {
   color: var(--text-primary);
@@ -281,9 +388,10 @@ body {
   border-bottom: none;
 }
 
-.material-item .form-check-input:checked {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+.material-item-text {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 /* ========== FAQ ========== */

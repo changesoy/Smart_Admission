@@ -1,62 +1,53 @@
 [
   {
     "policyId": "policy_2025_001",
-    "title": "2025 年义务教育招生入学工作政策说明(示例)",
+    "title": "泰山区义务教育招生入学工作政策说明",
     "year": 2025,
     "category": "招生政策",
     "source": "示例数据·非官方",
     "publishDate": "2025-04-20",
-    "summary": "说明 2025 年招生对象、招生范围、报名时间与录取规则的总体框架。本政策为示例文本,实际以教育主管部门官方发布为准。",
-    "url": "#"
+    "summary": "说明 2025 年招生对象、招生范围、报名时间与录取规则的总体框架。。",
+    "url": "http://www.sdtaishan.gov.cn/module/download/down.jsp?i_ID=9937540&colID=174812"
   },
   {
     "policyId": "policy_2025_002",
-    "title": "2025 年小学入学网上报名操作指南(示例)",
+    "title": "2025年泰山区民办义务教育学校基本信息",
     "year": 2025,
     "category": "报名流程",
     "source": "示例数据·非官方",
     "publishDate": "2025-05-08",
-    "summary": "梳理小学入学网上报名的入口、时间窗口、操作步骤与常见问题排查思路,适用于一年级新生家长。本政策为示例文本。",
-    "url": "#"
+    "summary": "梳理小学入学网上报名的入口、时间窗口、操作步骤与常见问题排查思路。",
+    "url": "http://www.sdtaishan.gov.cn/art/2025/8/1/art_193038_10372304.html?xxgkhide=1"
   },
   {
     "policyId": "policy_2025_003",
-    "title": "2025 年义务教育报名材料清单(示例)",
+    "title": "义务教育学校名录:2025年泰安市泰山区义务教育学校名录",
     "year": 2025,
     "category": "材料要求",
     "source": "示例数据·非官方",
     "publishDate": "2025-04-25",
-    "summary": "列出本地户籍、随迁子女、集体户、人户分离等不同情形所需提供的材料类型、有效期与办理渠道。本政策为示例文本。",
-    "url": "#"
+    "summary": "泰山区当地义务教育学校的基本信息。",
+    "url": "http://www.sdtaishan.gov.cn/art/2025/8/4/art_193047_10373392.html?xxgkhide=1"
   },
   {
     "policyId": "policy_2025_004",
-    "title": "随迁子女入学申请办法(示例)",
+    "title": "关于印发《山东省中小学收费管理办法》的通知",
     "year": 2025,
     "category": "随迁子女",
     "source": "示例数据·非官方",
     "publishDate": "2025-04-28",
-    "summary": "说明随迁子女申请入学的资格条件、积分计算思路、申请窗口与统筹安排原则。本政策为示例文本,实际以官方为准。",
-    "url": "#"
+    "summary": "山东省中小学收费管理办法",
+    "url": "http://www.sdtaishan.gov.cn/module/download/downfile.jsp?classid=0&filename=bc091a9bcbc440f088a2f35b0c124d47.pdf"
   },
   {
     "policyId": "policy_2025_005",
-    "title": "义务教育招生入学常见误解澄清(示例)",
+    "title": "中小学教辅材料政策明白纸",
     "year": 2025,
     "category": "政策提醒",
     "source": "示例数据·非官方",
     "publishDate": "2025-05-15",
     "summary": "针对家长群、短视频平台流传的不实信息进行澄清,帮助家长建立正确认识,避免因听信谣言耽误报名。本政策为示例文本。",
-    "url": "#"
-  },
-  {
-    "policyId": "policy_2025_006",
-    "title": "2024 年义务教育招生入学工作回顾与对照(示例)",
-    "year": 2024,
-    "category": "招生政策",
-    "source": "示例数据·非官方",
-    "publishDate": "2024-04-20",
-    "summary": "对 2024 年招生工作进行简要回顾,并与 2025 年政策的主要变化点进行对照,便于家长理解政策连续性。本政策为示例文本。",
-    "url": "#"
+    "url": "http://www.sdtaishan.gov.cn/module/download/downfile.jsp?classid=0&filename=88d4838d8b584b9c847877f82fc90b34.pdf"
   }
+
 ]
