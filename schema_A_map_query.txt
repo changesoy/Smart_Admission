@@ -1,0 +1,593 @@
+智慧入学项目数据 Schema（A：地图与查询工程师）
+版本：v1.0-draft
+适用角色：A · 地图与查询工程师
+主要目标：真实学校名 + 一校一区 + 20–30 个学校/学区 + 地址定位查询 + 点面判断
+
+============================================================
+一、A 组负责/主要使用的数据文件
+============================================================
+
+A 组主要维护以下文件：
+
+1. data/zones.geojson
+   用途：学区边界 Polygon，地图渲染和 Turf 点面判断的核心数据。
+
+2. data/schools.json
+   用途：真实学校信息，包括学校名、学段、地址、电话、来源。
+
+3. data/address_points.json
+   用途：常用地址点库，包括学校、小区、地标、道路代表点，用于稳定演示“输入地址 → 坐标 → 点面判断”。
+
+4. data/keywords_index.json
+   用途：关键词兜底匹配，用于模糊搜索，例如道路名、社区名、学校简称。
+
+5. data/zones_history.json
+   用途：学区历年调整记录，用于学区详情面板 timeline。
+
+============================================================
+二、全局数据约定
+============================================================
+
+1. 字段命名统一使用 camelCase。
+   正确示例：
+   - zoneId
+   - zoneName
+   - schoolId
+   - sourceUrl
+   - verifiedDate
+
+   禁止写法：
+   - zone_id
+   - zone_name
+   - school_id
+   - source_url
+   - verified_date
+
+2. 本项目 v1.0 暂按“一校一区”设计。
+   即：
+   - 1 个 zone 对应 1 所 school
+   - 1 所 school 对应 1 个 zone
+   - 小学和初中都可以做，但必须用 schoolStage / stage 区分
+
+3. 学校名称、地址、电话、政策链接尽量使用真实信息。
+   凡是真实信息，必须尽量补充来源字段：
+   - sourceName
+   - sourceUrl
+   - sourceType
+   - verifiedDate
+   - dataStatus
+
+4. 学区 Polygon 如果由团队根据文字四至人工绘制，必须标明：
+   - geometryAccuracy: "manualApproximation"
+   - note: "Polygon 由团队根据官方文字四至人工绘制，仅用于原型展示。"
+
+5. 坐标顺序必须严格区分：
+   - GeoJSON / Turf： [lng, lat]，即 [经度, 纬度]
+   - Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
+
+============================================================
+三、data/zones.geojson
+============================================================
+
+用途：
+存储学校对应的学区 Polygon，用于地图展示、点击查询、地址点面判断。
+
+顶层结构：
+
+{
+  "type": "FeatureCollection",
+  "features": []
+}
+
+Feature 示例：
+
+{
+  "type": "Feature",
+  "properties": {
+    "zoneId": "zone_001",
+    "zoneName": "泰山学院附属中学学区",
+    "stage": "初中",
+    "schoolId": "school_m_001",
+    "description": "东至校场街，西至龙潭路，南至财源街，北至岱宗大街。",
+    "boundaryText": "官方公布的文字四至范围。",
+    "year": 2025,
+    "policyIds": ["policy_2025_001"],
+    "sourceName": "泰山区教育和体育局",
+    "sourceUrl": "https://example.gov.cn/policy.html",
+    "sourceType": "official",
+    "verifiedDate": "2026-05-15",
+    "dataStatus": "verified",
+    "geometryAccuracy": "manualApproximation",
+    "note": "Polygon 由团队根据官方文字四至人工绘制，仅用于原型展示。"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [117.103000, 36.220000],
+        [117.120000, 36.220000],
+        [117.120000, 36.205000],
+        [117.103000, 36.205000],
+        [117.103000, 36.220000]
+      ]
+    ]
+  }
+}
+
+字段说明：
+
+zoneId
+- 类型：string
+- 必填：是
+- 说明：学区唯一 ID
+- 示例：zone_001
+
+zoneName
+- 类型：string
+- 必填：是
+- 说明：学区名称
+- 示例：泰山学院附属中学学区
+
+stage
+- 类型：string
+- 必填：是
+- 可选值：小学 / 初中
+- 说明：该学区对应的学段
+
+schoolId
+- 类型：string
+- 必填：是
+- 说明：一校一区模式下，该学区对应的唯一学校 ID
+- 关联文件：data/schools.json
+
+description
+- 类型：string
+- 必填：是
+- 说明：面向用户展示的学区范围说明
+
+boundaryText
+- 类型：string
+- 必填：建议填写
+- 说明：官方文字四至原文或整理后的四至范围
+
+year
+- 类型：number
+- 必填：是
+- 说明：该学区数据对应年份
+- 示例：2025
+
+policyIds
+- 类型：string[]
+- 必填：是
+- 说明：关联政策 ID
+- 关联文件：data/policies.json
+
+sourceName
+- 类型：string
+- 必填：真实数据建议必填
+- 说明：数据来源名称
+- 示例：泰山区教育和体育局
+
+sourceUrl
+- 类型：string
+- 必填：真实数据建议必填
+- 说明：原始信息来源链接
+
+sourceType
+- 类型：string
+- 必填：真实数据建议必填
+- 可选值：official / school / manual / demo
+- 说明：数据来源类型
+
+verifiedDate
+- 类型：string
+- 必填：真实数据建议必填
+- 格式：YYYY-MM-DD
+- 说明：团队核验日期
+
+dataStatus
+- 类型：string
+- 必填：真实数据建议必填
+- 可选值：verified / estimated / demo / outdated
+- 说明：数据状态
+
+geometryAccuracy
+- 类型：string
+- 必填：建议填写
+- 可选值：officialBoundary / manualApproximation / demoBoundary
+- 说明：Polygon 准确度
+
+note
+- 类型：string
+- 必填：否
+- 说明：额外说明，尤其用于说明人工绘制边界
+
+geometry.type
+- 类型：string
+- 必填：是
+- v1.0 建议固定为：Polygon
+
+coordinates
+- 类型：array
+- 必填：是
+- 说明：GeoJSON 坐标数组，坐标顺序必须是 [lng, lat]
+
+约束：
+1. zoneId 不允许重复。
+2. schoolId 必须能在 schools.json 中找到。
+3. policyIds 中的 policyId 必须能在 policies.json 中找到。
+4. Polygon 首尾坐标必须闭合。
+5. v1.0 阶段建议只使用 Polygon，不使用 MultiPolygon。
+6. 每个学区只绑定一个 schoolId，符合“一校一区”的目标设定。
+7. 如果小学和初中都做，必须用 stage 区分，不能混在一起。
+
+============================================================
+四、data/schools.json
+============================================================
+
+用途：
+存储真实学校信息，供地图结果面板、搜索结果、政策和模拟模块复用。
+
+结构示例：
+
+[
+  {
+    "schoolId": "school_m_001",
+    "name": "泰山学院附属中学",
+    "shortName": "泰院附中",
+    "type": "初中",
+    "schoolStage": ["初中"],
+    "district": "泰山区",
+    "address": "山东省泰安市泰山区擂鼓石大街677号",
+    "phone": "0538-XXXXXXX",
+    "website": "",
+    "tags": ["公办", "初中"],
+    "description": "泰山区义务教育阶段学校。",
+    "sourceName": "泰山区教育和体育局",
+    "sourceUrl": "https://example.gov.cn/school.html",
+    "sourceType": "official",
+    "verifiedDate": "2026-05-15",
+    "dataStatus": "verified"
+  }
+]
+
+字段说明：
+
+schoolId
+- 类型：string
+- 必填：是
+- 说明：学校唯一 ID
+- 建议格式：
+  - 小学：school_p_001
+  - 初中：school_m_001
+  - 九年一贯制：school_9y_001
+
+name
+- 类型：string
+- 必填：是
+- 说明：真实学校名称
+
+shortName
+- 类型：string
+- 必填：否
+- 说明：学校简称，用于搜索
+- 示例：泰院附中
+
+type
+- 类型：string
+- 必填：是
+- 可选值：小学 / 初中 / 九年一贯制学校
+- 说明：学校类型
+
+schoolStage
+- 类型：string[]
+- 必填：是
+- 可选值：小学 / 初中
+- 说明：学校覆盖的学段
+
+district
+- 类型：string
+- 必填：建议填写
+- 示例：泰山区
+
+address
+- 类型：string
+- 必填：是
+- 说明：学校真实地址
+
+phone
+- 类型：string
+- 必填：真实数据建议填写
+- 说明：公开办公电话，不填写个人手机号
+
+website
+- 类型：string
+- 必填：否
+- 说明：学校官网或介绍页，没有则为空字符串
+
+tags
+- 类型：string[]
+- 必填：否
+- 示例：["公办", "小学"]
+
+description
+- 类型：string
+- 必填：否
+- 说明：学校简介
+
+sourceName / sourceUrl / sourceType / verifiedDate / dataStatus
+- 同全局来源字段
+
+约束：
+1. schoolId 不允许重复。
+2. name 使用真实学校名。
+3. phone 只填写公开办公电话。
+4. type 与 schoolStage 必须一致，例如 type 是“初中”，schoolStage 应包含“初中”。
+5. 每个 schoolId 原则上应在 zones.geojson 中被一个 zone 使用。
+
+============================================================
+五、data/address_points.json
+============================================================
+
+用途：
+本地地址点库。用于提高查询稳定性，优先匹配常用学校、小区、道路、地标，再进行 Turf 点面判断。
+
+结构示例：
+
+[
+  {
+    "addressId": "addr_001",
+    "name": "泰山学院附属中学",
+    "type": "学校",
+    "fullAddress": "山东省泰安市泰山区擂鼓石大街677号",
+    "lng": 117.123456,
+    "lat": 36.123456,
+    "matchedZoneId": "zone_001",
+    "confidence": 100,
+    "aliases": ["泰院附中", "泰山学院附中"],
+    "sourceName": "泰山区教育和体育局",
+    "sourceUrl": "https://example.gov.cn/school.html",
+    "sourceType": "official",
+    "verifiedDate": "2026-05-15",
+    "dataStatus": "verified"
+  }
+]
+
+字段说明：
+
+addressId
+- 类型：string
+- 必填：是
+- 说明：地址点唯一 ID
+- 示例：addr_001
+
+name
+- 类型：string
+- 必填：是
+- 说明：地址点名称
+
+type
+- 类型：string
+- 必填：是
+- 可选值：学校 / 小区 / 道路 / 社区 / 地标 / 政府机构
+
+fullAddress
+- 类型：string
+- 必填：建议填写
+- 说明：完整地址
+
+lng
+- 类型：number
+- 必填：是
+- 说明：经度
+
+lat
+- 类型：number
+- 必填：是
+- 说明：纬度
+
+matchedZoneId
+- 类型：string
+- 必填：否
+- 说明：人工确认后可提前标注命中的学区
+- 注意：即使填写了 matchedZoneId，前端仍建议再做一次 Turf 点面判断
+
+confidence
+- 类型：number
+- 必填：否
+- 范围：0–100
+- 说明：地址点可信度或人工确认程度
+
+aliases
+- 类型：string[]
+- 必填：否
+- 说明：别名、简称、常见写法
+
+sourceName / sourceUrl / sourceType / verifiedDate / dataStatus
+- 同全局来源字段
+
+查询建议：
+1. 用户输入后，先在 address_points.json 中查 name。
+2. 再查 aliases。
+3. 找到后取 lng / lat。
+4. 用 Turf 判断该点落在哪个 zone。
+5. 如果点面判断结果与 matchedZoneId 不一致，前端可提示“人工匹配结果与地图边界不一致，请核查”。
+
+============================================================
+六、data/keywords_index.json
+============================================================
+
+用途：
+模糊关键词兜底。主要解决用户只输入道路名、片区名、学校简称时的搜索体验。
+
+结构示例：
+
+[
+  {
+    "keyword": "擂鼓石大街",
+    "type": "道路",
+    "matchedZoneIds": ["zone_001", "zone_003"],
+    "displayName": "擂鼓石大街相关片区",
+    "matchMode": "fuzzy",
+    "weight": 80,
+    "aliases": ["擂鼓石路"],
+    "note": "道路可能跨多个学区，需结合门牌号或附近地标进一步判断。"
+  }
+]
+
+字段说明：
+
+keyword
+- 类型：string
+- 必填：是
+- 说明：主关键词
+
+type
+- 类型：string
+- 必填：是
+- 可选值：小区 / 道路 / 学校 / 地标 / 社区 / 街道
+
+matchedZoneIds
+- 类型：string[]
+- 必填：是
+- 说明：可能匹配的学区 ID 列表
+
+displayName
+- 类型：string
+- 必填：否
+- 说明：前端展示名称
+
+matchMode
+- 类型：string
+- 必填：建议填写
+- 可选值：exact / fuzzy
+- 说明：精确匹配或模糊匹配
+
+weight
+- 类型：number
+- 必填：否
+- 说明：排序权重，数值越高越靠前
+
+aliases
+- 类型：string[]
+- 必填：否
+- 说明：别名、简称、常见写法
+
+note
+- 类型：string
+- 必填：否
+- 说明：补充说明
+
+约束：
+1. matchedZoneIds 中的所有 zoneId 必须能在 zones.geojson 中找到。
+2. 道路类关键词尽量不要只绑定一个学区，因为道路可能跨越多个学区。
+3. keywords_index.json 是兜底，不应该替代 address_points.json 的精确地址点。
+
+============================================================
+七、data/zones_history.json
+============================================================
+
+用途：
+存储学区历年调整记录，用于学区详情面板展示时间线。
+
+结构示例：
+
+[
+  {
+    "zoneId": "zone_001",
+    "history": [
+      {
+        "year": 2024,
+        "changeType": "原始划分",
+        "title": "建立泰山学院附属中学学区",
+        "description": "根据当年公开资料整理形成该学区范围。",
+        "reason": "公开资料整理",
+        "sourceName": "泰山区教育和体育局",
+        "sourceUrl": "https://example.gov.cn/policy.html",
+        "sourceType": "official",
+        "verifiedDate": "2026-05-15"
+      },
+      {
+        "year": 2025,
+        "changeType": "范围说明更新",
+        "title": "学区文字四至说明更新",
+        "description": "根据最新公开资料对文字范围进行补充。",
+        "reason": "政策更新",
+        "sourceName": "泰山区教育和体育局",
+        "sourceUrl": "https://example.gov.cn/policy-2025.html",
+        "sourceType": "official",
+        "verifiedDate": "2026-05-15"
+      }
+    ]
+  }
+]
+
+字段说明：
+
+zoneId
+- 类型：string
+- 必填：是
+- 说明：关联 zones.geojson 的学区 ID
+
+history
+- 类型：array
+- 必填：是
+- 说明：该学区的历史记录
+
+history[].year
+- 类型：number
+- 必填：是
+- 说明：年份
+
+history[].changeType
+- 类型：string
+- 必填：是
+- 可选值：原始划分 / 边界微调 / 新增学校 / 撤销合并 / 范围说明更新
+
+history[].title
+- 类型：string
+- 必填：是
+- 说明：变更标题
+
+history[].description
+- 类型：string
+- 必填：是
+- 说明：变更说明
+
+history[].reason
+- 类型：string
+- 必填：否
+- 说明：变更原因
+
+sourceName / sourceUrl / sourceType / verifiedDate
+- 同全局来源字段
+
+============================================================
+八、A 组建议的前端查询流程
+============================================================
+
+推荐查询顺序：
+
+1. 用户输入地址、学校、小区、道路或地标。
+2. 先查 address_points.json：
+   - 匹配 name
+   - 匹配 aliases
+   - 匹配 fullAddress
+3. 如果找到地址点，取 lng / lat，用 Turf 进行点面判断。
+4. 如果 address_points.json 没找到，再查 keywords_index.json。
+5. 如果 keywords_index.json 只命中一个 zone，显示该学区。
+6. 如果命中多个 zone，显示候选列表，让用户选择或提示输入更完整地址。
+7. 如果仍未命中，可调用天地图地理编码服务。
+8. 天地图返回坐标后，再用 Turf 判断落在哪个 zones.geojson 的 Polygon 内。
+9. 如果没有落入任何 Polygon，提示“暂未匹配到学区，请尝试输入更完整地址”。
+
+============================================================
+九、A 组开发注意事项
+============================================================
+
+1. 不要在 service 文件中硬编码学校名或学区名。
+2. 学校、学区、地址点全部从 data 文件读取。
+3. 地图点击和地址搜索最后都应回到同一套 showZoneDetail(zoneId) 逻辑。
+4. 学区点击必须阻止冒泡，避免触发地图空白点击逻辑。
+5. 一次只允许一个学区处于选中态。
+6. 所有真实数据都必须保留来源，尤其是学校电话和学区范围。
