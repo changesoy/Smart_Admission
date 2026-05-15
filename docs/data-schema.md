@@ -1272,4 +1272,3 @@ data/contacts.json
   "source": "团队整理",
   "disclaimer": "当前缺少可靠往年分数线，暂不提供录取预测。"
 }
-```

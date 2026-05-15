@@ -32,6 +32,9 @@ window.AppConfig = {
     policies: "./data/policies.json",
     materials: "./data/materials.json",
     faq: "./data/faq.json",
+    addressPoints: "./data/address_points.json",
+    keywordsIndex: "./data/keywords_index.json",
+    zonesHistory: "./data/zones_history.json",
   },
 
   zoneStyle: {

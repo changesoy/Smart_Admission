@@ -20,6 +20,9 @@ window.DataService = (function () {
       loadFile(paths.policies),
       loadFile(paths.materials),
       loadFile(paths.faq),
+      loadFile(paths.addressPoints),
+      loadFile(paths.keywordsIndex),
+      loadFile(paths.zonesHistory),
     ]).then(function (results) {
       return {
         zones: results[0],
@@ -27,6 +30,9 @@ window.DataService = (function () {
         policies: results[2],
         materials: results[3],
         faq: results[4],
+        addressPoints: results[5],
+        keywordsIndex: results[6],
+        zonesHistory: results[7],
       };
     });
   }
