@@ -62,7 +62,19 @@
     // 项目边界说明
     window.RenderService.setBoundaryNotice();
 
-    // 地图初始化(放最后,确保容器已可见)
+    // 政策对比、辟谣模块（角色B）
+    window.PolicyService.init({
+      policies: data.policies,
+      policyDiff: data.policyDiff,
+      rumors: data.rumors
+    });
+
+    // 录取建议模拟器（角色B）
+    window.SimulatorService.init({
+      simulatorRules: data.simulatorRules
+    });
+
+    // 地图初始化（放最后，确保容器已可见）
     window.MapService.initMap({
       zones: data.zones,
       schools: data.schools,

@@ -1,0 +1,151 @@
+[
+  {
+    "diffId": "diff_2024_2025",
+    "yearA": 2024,
+    "yearB": 2025,
+    "diffPoints": [
+      {
+        "topic": "招生年龄",
+        "valueA": "截至8月31日满6周岁(示例)",
+        "valueB": "截至8月31日满6周岁(示例)",
+        "isChange": false
+      },
+      {
+        "topic": "报名时间",
+        "valueA": "5月20日—6月5日(示例)",
+        "valueB": "5月15日—6月1日(示例)",
+        "isChange": true,
+        "changeNote": "报名时间整体提前5天，请家长提前准备材料"
+      },
+      {
+        "topic": "随迁子女积分起点",
+        "valueA": "60分(示例)",
+        "valueB": "65分(示例)",
+        "isChange": true,
+        "changeNote": "门槛提高5分，体现学位资源紧张趋势"
+      },
+      {
+        "topic": "材料要求",
+        "valueA": "户口簿、房产证、出生证、防疫证(示例)",
+        "valueB": "户口簿、房产证、出生证、防疫证、监护人社保证明(示例)",
+        "isChange": true,
+        "changeNote": "新增社保证明项，需提供监护人连续缴纳社保满一年证明"
+      },
+      {
+        "topic": "招生方式",
+        "valueA": "划片招生、就近入学(示例)",
+        "valueB": "划片招生、就近入学，全程网上办理(示例)",
+        "isChange": true,
+        "changeNote": "2025年起全面实行网上报名，不再接受现场报名"
+      }
+    ]
+  },
+  {
+    "diffId": "diff_2023_2024",
+    "yearA": 2023,
+    "yearB": 2024,
+    "diffPoints": [
+      {
+        "topic": "招生年龄",
+        "valueA": "截至8月31日满6周岁(示例)",
+        "valueB": "截至8月31日满6周岁(示例)",
+        "isChange": false
+      },
+      {
+        "topic": "报名时间",
+        "valueA": "5月20日—6月5日(示例)",
+        "valueB": "5月20日—6月5日(示例)",
+        "isChange": false
+      },
+      {
+        "topic": "随迁子女积分制",
+        "valueA": "总分100分，55分以上可参与分配(示例)",
+        "valueB": "总分100分，60分以上可参与分配(示例)",
+        "isChange": true,
+        "changeNote": "积分门槛提高5分"
+      },
+      {
+        "topic": "材料要求",
+        "valueA": "户口簿、房产证、出生证、防疫证(示例)",
+        "valueB": "户口簿、房产证（或购房合同）、出生证、防疫证(示例)",
+        "isChange": true,
+        "changeNote": "购房合同可替代房产证作为房产证明材料"
+      },
+      {
+        "topic": "报名渠道",
+        "valueA": "网上报名+现场确认(示例)",
+        "valueB": "全程网上办理(示例)",
+        "isChange": true,
+        "changeNote": "2024年起取消现场确认环节"
+      }
+    ]
+  },
+  {
+    "diffId": "diff_2022_2023",
+    "yearA": 2022,
+    "yearB": 2023,
+    "diffPoints": [
+      {
+        "topic": "招生年龄",
+        "valueA": "截至8月31日满6周岁(示例)",
+        "valueB": "截至8月31日满6周岁(示例)",
+        "isChange": false
+      },
+      {
+        "topic": "报名时间",
+        "valueA": "5月20日—6月5日(示例)",
+        "valueB": "5月20日—6月5日(示例)",
+        "isChange": false
+      },
+      {
+        "topic": "随迁子女政策",
+        "valueA": "基本接收(示例)",
+        "valueB": "积分入学制度(示例)",
+        "isChange": true,
+        "changeNote": "2023年起随迁子女入学实行积分制，不再按简单条件接收"
+      },
+      {
+        "topic": "报名方式",
+        "valueA": "现场报名(示例)",
+        "valueB": "网上报名+现场确认(示例)",
+        "isChange": true,
+        "changeNote": "2023年起逐步推行网上报名试点"
+      }
+    ]
+  },
+  {
+    "diffId": "diff_2022_2025",
+    "yearA": 2022,
+    "yearB": 2025,
+    "diffPoints": [
+      {
+        "topic": "报名方式",
+        "valueA": "现场报名(示例)",
+        "valueB": "全程网上办理(示例)",
+        "isChange": true,
+        "changeNote": "三年内完成从现场到全线上化的转变"
+      },
+      {
+        "topic": "随迁子女积分起点",
+        "valueA": "无积分制，按条件接收(示例)",
+        "valueB": "65分(示例)",
+        "isChange": true,
+        "changeNote": "随迁子女入学从条件接收转为积分制"
+      },
+      {
+        "topic": "报名时间",
+        "valueA": "5月20日—6月5日(示例)",
+        "valueB": "5月15日—6月1日(示例)",
+        "isChange": true,
+        "changeNote": "报名周期整体提前并缩短"
+      },
+      {
+        "topic": "材料要求",
+        "valueA": "户口簿、房产证、出生证(示例)",
+        "valueB": "户口簿、房产证、出生证、防疫证、社保证明(示例)",
+        "isChange": true,
+        "changeNote": "材料要求逐年细化，新增多项证明"
+      }
+    ]
+  }
+]

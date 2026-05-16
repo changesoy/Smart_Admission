@@ -1,0 +1,69 @@
+{
+  "categories": [
+    { "key": "local", "label": "本地户籍" },
+    { "key": "migrant", "label": "随迁子女" },
+    { "key": "collective", "label": "集体户" },
+    { "key": "split", "label": "人户分离" }
+  ],
+  "factors": [
+    {
+      "key": "propertyOwnership",
+      "label": "房产情况",
+      "options": [
+        { "value": "owner", "label": "学区内自有房产", "score": 40 },
+        { "value": "rental", "label": "学区内租房（已备案）", "score": 25 },
+        { "value": "relative", "label": "亲属房产（借住）", "score": 15 },
+        { "value": "none", "label": "无房产证明", "score": 5 }
+      ]
+    },
+    {
+      "key": "residenceYears",
+      "label": "居住年限",
+      "options": [
+        { "value": "5plus", "label": "5年以上", "score": 30 },
+        { "value": "3to5", "label": "3-5年", "score": 20 },
+        { "value": "1to3", "label": "1-3年", "score": 10 },
+        { "value": "lt1", "label": "不足1年", "score": 5 }
+      ]
+    },
+    {
+      "key": "residenceMatch",
+      "label": "户籍与住房一致性",
+      "options": [
+        { "value": "fullMatch", "label": "户籍与住房完全一致", "score": 30 },
+        { "value": "partial", "label": "户籍与住房部分一致", "score": 15 },
+        { "value": "mismatch", "label": "户籍与住房不一致", "score": 5 }
+      ]
+    }
+  ],
+  "scoreToSuggestion": [
+    {
+      "minScore": 85,
+      "level": "高",
+      "color": "success",
+      "suggestion": "极有可能录取至学区内对口学校（示例）",
+      "advice": "按时报名即可，材料齐全是关键。建议提前准备好所有证明材料原件及电子版。"
+    },
+    {
+      "minScore": 65,
+      "level": "中",
+      "color": "warning",
+      "suggestion": "大概率按学区分配，但需关注学校学位情况（示例）",
+      "advice": "提前确认材料齐全，优先选择对口学校。如有顾虑，可同时了解周边学校作为备选。"
+    },
+    {
+      "minScore": 40,
+      "level": "低",
+      "color": "warning",
+      "suggestion": "可能需要进入统筹安排（示例）",
+      "advice": "建议同时准备多所学校的报名材料，关注招生办通知。可咨询教育局了解具体统筹流程。"
+    },
+    {
+      "minScore": 0,
+      "level": "需关注",
+      "color": "danger",
+      "suggestion": "建议尽早咨询教育主管部门（示例）",
+      "advice": "材料不足或情况复杂，建议提前携带相关证件到教育局窗口进行现场咨询。"
+    }
+  ]
+}

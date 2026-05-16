@@ -20,6 +20,9 @@ window.DataService = (function () {
       loadFile(paths.policies),
       loadFile(paths.materials),
       loadFile(paths.faq),
+      loadFile(paths.policyDiff),
+      loadFile(paths.rumors),
+      loadFile(paths.simulatorRules),
       loadFile(paths.addressPoints),
       loadFile(paths.keywordsIndex),
       loadFile(paths.zonesHistory),
@@ -30,9 +33,12 @@ window.DataService = (function () {
         policies: results[2],
         materials: results[3],
         faq: results[4],
-        addressPoints: results[5],
-        keywordsIndex: results[6],
-        zonesHistory: results[7],
+        policyDiff: results[5],
+        rumors: results[6],
+        simulatorRules: results[7],
+        addressPoints: results[8],
+        keywordsIndex: results[9],
+        zonesHistory: results[10],
       };
     });
   }
