@@ -544,3 +544,58 @@ body {
 .map-layer-placeholder .btn[disabled] {
   opacity: 0.65;
 }
+
+.zone-history-timeline {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--border-light, #dee2e6);
+  margin-top: 0.5rem;
+}
+
+.zone-history-item {
+  position: relative;
+  margin-bottom: 0.85rem;
+}
+
+.zone-history-item::before {
+  content: '';
+  position: absolute;
+  left: -1.85rem;
+  top: 0.25rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-color, #F0A04B);
+  box-shadow: 0 0 0 2px #fff;
+}
+
+.zone-history-year {
+  font-weight: 600;
+  color: var(--primary-color, #1E3A5F);
+  font-size: 0.9rem;
+}
+
+.zone-history-change {
+  display: inline-block;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  color: var(--primary-color, #1E3A5F);
+  background: rgba(30, 58, 95, 0.08);
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+}
+
+.zone-history-title {
+  font-size: 0.88rem;
+  color: var(--text-primary, #2C3E50);
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.zone-history-desc,
+.zone-history-reason {
+  font-size: 0.8rem;
+  color: var(--text-secondary, #6C757D);
+  margin-top: 0.15rem;
+  line-height: 1.5;
+}

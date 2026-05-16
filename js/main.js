@@ -68,10 +68,17 @@
       schools: data.schools,
       policies: data.policies,
       onZoneSelected: function (feature) {
+        var zoneId = feature && feature.properties ? feature.properties.zoneId : "";
+
+        var historyEntry = (data.zonesHistory || []).find(function (h) {
+          return h.zoneId === zoneId;
+        });
+
         window.RenderService.renderResult({
           zoneFeature: feature,
           schools: data.schools,
           policies: data.policies,
+          history: historyEntry ? historyEntry.history : []
         });
         // 窄屏下自动滚动到结果面板
         if (window.innerWidth < 992) {

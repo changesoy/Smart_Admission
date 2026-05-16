@@ -169,7 +169,58 @@ window.MapService = (function () {
     }
   }
 
+  function findZoneByPoint(lng, lat) {
+    if (!_zoneLayers || _zoneLayers.length === 0) return null;
+    var pt;
+    try {
+      pt = turf.point([lng, lat]);
+    } catch (err) {
+      console.warn("findZoneByPoint: turf.point 构造失败:", err);
+      return null;
+    }
+    for (var i = 0; i < _zoneLayers.length; i++) {
+      var entry = _zoneLayers[i];
+      try {
+        if (turf.booleanPointInPolygon(pt, entry.feature)) {
+          return entry.feature && entry.feature.properties
+            ? entry.feature.properties.zoneId
+            : null;
+        }
+      } catch (err) {
+        console.warn("findZoneByPoint: booleanPointInPolygon 异常:", err);
+      }
+    }
+    return null;
+  }
+
+  function flyToZoneById(zoneId) {
+    if (!_zoneLayers || _zoneLayers.length === 0) {
+      console.warn("flyToZoneById: 学区图层为空");
+      return;
+    }
+    for (var i = 0; i < _zoneLayers.length; i++) {
+      var entry = _zoneLayers[i];
+      var id =
+        entry.feature && entry.feature.properties
+          ? entry.feature.properties.zoneId
+          : null;
+      if (id === zoneId) {
+        if (_map) {
+          _map.flyToBounds(entry.layer.getBounds(), {
+            padding: [40, 40],
+            duration: 0.8,
+          });
+        }
+        selectLayer(entry.layer, entry.feature);
+        return;
+      }
+    }
+    console.warn("flyToZoneById: 未找到 zoneId:", zoneId);
+  }
+
   return {
     initMap: initMap,
+    flyToZoneById: flyToZoneById,
+    findZoneByPoint: findZoneByPoint,
   };
 })();

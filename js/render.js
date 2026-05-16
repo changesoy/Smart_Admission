@@ -164,6 +164,28 @@ window.RenderService = (function () {
       html += '</ul>';
     }
 
+    html += '<div class="result-section-title">历年调整记录</div>';
+    var history = ctx.history || [];
+    if (history.length === 0) {
+      html += '<div class="text-muted small">暂无调整记录</div>';
+    } else {
+      html += '<div class="zone-history-timeline">';
+      history.forEach(function (h) {
+        html += '<div class="zone-history-item">';
+        html += '<div class="zone-history-year">' + (h.year || "—") + '</div>';
+        html += '<span class="zone-history-change">' + (h.changeType || h.change || "—") + '</span>';
+        html += '<div class="zone-history-title">' + (h.title || "—") + '</div>';
+        if (h.description) {
+          html += '<div class="zone-history-desc">' + h.description + '</div>';
+        }
+        if (h.reason) {
+          html += '<div class="zone-history-reason">原因: ' + h.reason + '</div>';
+        }
+        html += '</div>';
+      });
+      html += '</div>';
+    }
+
     panel.innerHTML = html;
   }
 
