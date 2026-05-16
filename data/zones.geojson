@@ -6,11 +6,19 @@
       "properties": {
         "zoneId": "zone_001",
         "zoneName": "泰山区示范第一小学学区",
-        "primarySchoolId": "school_p_001",
-        "middleSchoolId": "school_m_001",
+        "schoolId": "school_p_001",
+        "stage": "小学",
         "description": "东至示范路,西至原型河,南至阶段街,北至示意大街。覆盖示范路以西、原型河以东的核心居住片区,临近商业中心,通勤便利。",
+        "boundaryText": "东至示范路,西至原型河,南至阶段街,北至示意大街。覆盖示范路以西、原型河以东的核心居住片区,临近商业中心,通勤便利。",
         "year": 2025,
-        "policyIds": ["policy_2025_001", "policy_2025_002"]
+        "policyIds": ["policy_2025_001", "policy_2025_002"],
+        "sourceName": "示例数据·非官方",
+        "sourceUrl": "",
+        "sourceType": "demo",
+        "verifiedDate": "【待填：YYYY-MM-DD】",
+        "dataStatus": "demo",
+        "geometryAccuracy": "demoBoundary",
+        "note": "当前为示例学区边界，用于一校一区展示逻辑测试；后续将替换为根据公开四至范围人工绘制的 Polygon。"
       },
       "geometry": {
         "type": "Polygon",
@@ -31,11 +39,19 @@
       "properties": {
         "zoneId": "zone_002",
         "zoneName": "泰山区原型实验小学学区",
-        "primarySchoolId": "school_p_002",
-        "middleSchoolId": "school_m_001",
+        "schoolId": "school_p_002",
+        "stage": "小学",
         "description": "东至模型路,西至示范路,南至阶段街,北至示意大街。属于老城连片片区,公共服务设施成熟,以多层住宅为主。",
+        "boundaryText": "东至模型路,西至示范路,南至阶段街,北至示意大街。属于老城连片片区,公共服务设施成熟,以多层住宅为主。",
         "year": 2025,
-        "policyIds": ["policy_2025_001", "policy_2025_003"]
+        "policyIds": ["policy_2025_001", "policy_2025_003"],
+        "sourceName": "示例数据·非官方",
+        "sourceUrl": "",
+        "sourceType": "demo",
+        "verifiedDate": "【待填：YYYY-MM-DD】",
+        "dataStatus": "demo",
+        "geometryAccuracy": "demoBoundary",
+        "note": "当前为示例学区边界，用于一校一区展示逻辑测试；后续将替换为根据公开四至范围人工绘制的 Polygon。"
       },
       "geometry": {
         "type": "Polygon",
@@ -56,11 +72,19 @@
       "properties": {
         "zoneId": "zone_003",
         "zoneName": "泰山区阶段路第三小学学区",
-        "primarySchoolId": "school_p_003",
-        "middleSchoolId": "school_m_002",
+        "schoolId": "school_p_003",
+        "stage": "小学",
         "description": "东至示意大街,西至模型路,南至阶段街,北至样例路。涵盖东部新建居住片区,有较多新建商品房小区。",
+        "boundaryText": "东至示意大街,西至模型路,南至阶段街,北至样例路。涵盖东部新建居住片区,有较多新建商品房小区。",
         "year": 2025,
-        "policyIds": ["policy_2025_001", "policy_2025_004"]
+        "policyIds": ["policy_2025_001", "policy_2025_004"],
+        "sourceName": "示例数据·非官方",
+        "sourceUrl": "",
+        "sourceType": "demo",
+        "verifiedDate": "【待填：YYYY-MM-DD】",
+        "dataStatus": "demo",
+        "geometryAccuracy": "demoBoundary",
+        "note": "当前为示例学区边界，用于一校一区展示逻辑测试；后续将替换为根据公开四至范围人工绘制的 Polygon。"
       },
       "geometry": {
         "type": "Polygon",
@@ -81,11 +105,19 @@
       "properties": {
         "zoneId": "zone_004",
         "zoneName": "泰山区原型第四小学学区",
-        "primarySchoolId": "school_p_004",
-        "middleSchoolId": "school_m_002",
+        "schoolId": "school_p_004",
+        "stage": "小学",
         "description": "东至模型路,西至原型河,南至样本街,北至阶段街。位于片区南侧,周边以居住功能为主,毗邻原型河带状公园。",
+        "boundaryText": "东至模型路,西至原型河,南至样本街,北至阶段街。位于片区南侧,周边以居住功能为主,毗邻原型河带状公园。",
         "year": 2025,
-        "policyIds": ["policy_2025_001", "policy_2025_005"]
+        "policyIds": ["policy_2025_001", "policy_2025_005"],
+        "sourceName": "示例数据·非官方",
+        "sourceUrl": "",
+        "sourceType": "demo",
+        "verifiedDate": "【待填：YYYY-MM-DD】",
+        "dataStatus": "demo",
+        "geometryAccuracy": "demoBoundary",
+        "note": "当前为示例学区边界，用于一校一区展示逻辑测试；后续将替换为根据公开四至范围人工绘制的 Polygon。"
       },
       "geometry": {
         "type": "Polygon",
@@ -106,11 +138,19 @@
       "properties": {
         "zoneId": "zone_005",
         "zoneName": "泰山区示意第五小学学区",
-        "primarySchoolId": "school_p_005",
-        "middleSchoolId": "school_m_003",
+        "schoolId": "school_p_005",
+        "stage": "小学",
         "description": "东至示意大街,西至模型路,南至样本街,北至阶段街。片区东南侧,有较多人才公寓与企事业单位职工宿舍。",
+        "boundaryText": "东至示意大街,西至模型路,南至样本街,北至阶段街。片区东南侧,有较多人才公寓与企事业单位职工宿舍。",
         "year": 2025,
-        "policyIds": ["policy_2025_001", "policy_2025_006"]
+        "policyIds": ["policy_2025_001", "policy_2025_006"],
+        "sourceName": "示例数据·非官方",
+        "sourceUrl": "",
+        "sourceType": "demo",
+        "verifiedDate": "【待填：YYYY-MM-DD】",
+        "dataStatus": "demo",
+        "geometryAccuracy": "demoBoundary",
+        "note": "当前为示例学区边界，用于一校一区展示逻辑测试；后续将替换为根据公开四至范围人工绘制的 Polygon。"
       },
       "geometry": {
         "type": "Polygon",

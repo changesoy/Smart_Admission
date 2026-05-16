@@ -10,6 +10,7 @@
 **核心使命**:把"点击地图查询"升级为"多维度查询 + 历史可追溯 + 多视图可切换"的完整 GIS 体验。
 
 **关键产出**(W4 末尾应有):
+
 1. 学区数量从 5 个扩展到 10-15 个,使用泰山区真实道路名称作为边界参考
 2. 关键词检索框,输入小区/路名即可定位学区
 3. 图层切换控件(矢量底图 ↔ 影像底图)
@@ -19,15 +20,16 @@
 
 ## 二、你的专属文件
 
-| 类型 | 文件路径 | 状态 |
-|---|---|---|
-| 数据 | `data/zones.geojson` | 扩展(从 5 个 Feature → 10-15 个) |
-| 数据 | `data/zones_history.json` | **新增** |
-| 数据 | `data/keywords_index.json` | **新增** |
-| 代码 | `js/mapService.js` | 扩展(加图层切换 + 历史 timeline 调用) |
-| 代码 | `js/searchService.js` | **新增** |
+| 类型 | 文件路径                   | 状态                                  |
+| ---- | -------------------------- | ------------------------------------- |
+| 数据 | `data/zones.geojson`       | 扩展(从 5 个 Feature → 10-15 个)      |
+| 数据 | `data/zones_history.json`  | **新增**                              |
+| 数据 | `data/keywords_index.json` | **新增**                              |
+| 代码 | `js/mapService.js`         | 扩展(加图层切换 + 历史 timeline 调用) |
+| 代码 | `js/searchService.js`      | **新增**                              |
 
 **你会动到的共享文件**(改前在群里喊一声):
+
 - `index.html` 的 `<!-- ========== A: 地图查询区 ========== -->` 区块
 - `js/config.js` 加 `searchConfig`、`tianditu.layers` 等
 - `js/dataService.js` 注册新数据文件路径
@@ -40,44 +42,44 @@
 
 ### Week 1(D1-D7)· 准备与脚手架
 
-| 日 | 任务 | 产出 |
-|---|---|---|
-| D1 | (组长职责)创建 GitHub 仓库,push v0.1 代码到 main,配置三人权限 | 仓库就绪 |
-| D1 | 主持 4 小时数据 schema 闭门会议,产出 `docs/data-schema.md` | schema 文档 |
-| D2 | 创建 `feature/A-map` 分支 | 分支就绪 |
-| D2 | 把 `render.js` 中地图相关代码移到 `mapService.js`,其他人对应模块也要做 | 拆分完成 |
-| D3 | 起草 `zones_history.json`(每个学区填 2-3 年假数据,先跑通格式) | 数据文件草稿 |
-| D3 | 起草 `keywords_index.json`(每个学区先填 3-5 个关键词) | 数据文件草稿 |
-| D4 | 创建 `js/searchService.js` 空壳,暴露 `init(data)`,加到 `main.js` | 骨架就绪 |
-| D4-D5 | `index.html` 加入搜索框 + 图层切换控件占位 | UI 区块出现 |
-| D5 | **里程碑 M1**:与 B/C 第一次集成,跑通页面 | 整体可运行 |
-| D6-D7 | M1 集成问题修复,准备 W2 实质开发 | bug 清零 |
+| 日    | 任务                                                                   | 产出         |
+| ----- | ---------------------------------------------------------------------- | ------------ |
+| D1    | (组长职责)创建 GitHub 仓库,push v0.1 代码到 main,配置三人权限          | 仓库就绪     |
+| D1    | 主持 4 小时数据 schema 闭门会议,产出 `docs/data-schema.md`             | schema 文档  |
+| D2    | 创建 `feature/A-map` 分支                                              | 分支就绪     |
+| D2    | 把 `render.js` 中地图相关代码移到 `mapService.js`,其他人对应模块也要做 | 拆分完成     |
+| D3    | 起草 `zones_history.json`(每个学区填 2-3 年假数据,先跑通格式)          | 数据文件草稿 |
+| D3    | 起草 `keywords_index.json`(每个学区先填 3-5 个关键词)                  | 数据文件草稿 |
+| D4    | 创建 `js/searchService.js` 空壳,暴露 `init(data)`,加到 `main.js`       | 骨架就绪     |
+| D4-D5 | `index.html` 加入搜索框 + 图层切换控件占位                             | UI 区块出现  |
+| D5    | **里程碑 M1**:与 B/C 第一次集成,跑通页面                               | 整体可运行   |
+| D6-D7 | M1 集成问题修复,准备 W2 实质开发                                       | bug 清零     |
 
 ### Week 2(D8-D14)· 核心开发 1
 
-| 日 | 任务 | 实现要点 |
-|---|---|---|
-| D8-D10 | **学区扩展**:基于 PDF 里的真实道路名,把 5 个 Polygon 扩到 10-15 个 | 见下文 4.1 |
-| D11-D13 | **关键词检索**:输入框 → 过滤匹配 → 地图飞行 + 高亮 | 见下文 4.2 |
-| D14 | 自测 + push,**里程碑 M2** | 视频/截图存档 |
+| 日      | 任务                                                               | 实现要点      |
+| ------- | ------------------------------------------------------------------ | ------------- |
+| D8-D10  | **学区扩展**:基于 PDF 里的真实道路名,把 5 个 Polygon 扩到 10-15 个 | 见下文 4.1    |
+| D11-D13 | **关键词检索**:输入框 → 过滤匹配 → 地图飞行 + 高亮                 | 见下文 4.2    |
+| D14     | 自测 + push,**里程碑 M2**                                          | 视频/截图存档 |
 
 ### Week 3(D15-D21)· 核心开发 2
 
-| 日 | 任务 | 实现要点 |
-|---|---|---|
-| D15-D17 | **图层切换控件**:矢量 ↔ 影像 | 见下文 4.3 |
+| 日      | 任务                                                   | 实现要点   |
+| ------- | ------------------------------------------------------ | ---------- |
+| D15-D17 | **图层切换控件**:矢量 ↔ 影像                           | 见下文 4.3 |
 | D18-D20 | **学区历年调整 timeline**:点击学区后在结果面板显示历史 | 见下文 4.4 |
-| D21 | 端到端测试 + Bug 列表,**里程碑 M3** | 测试报告 |
+| D21     | 端到端测试 + Bug 列表,**里程碑 M3**                    | 测试报告   |
 
 ### Week 4(D22-D28)· 收尾
 
-| 日 | 任务 |
-|---|---|
+| 日      | 任务                                    |
+| ------- | --------------------------------------- |
 | D22-D24 | Bug 修复 + 性能调优(地图加载、检索响应) |
-| D25 | 协助组长(自己)更新 README.md |
-| D26 | 录屏(地图相关 3 分钟片段) |
-| D27 | 答辩演练 3 次 |
-| D28 | **里程碑 M4** · 答辩就绪 |
+| D25     | 协助组长(自己)更新 README.md            |
+| D26     | 录屏(地图相关 3 分钟片段)               |
+| D27     | 答辩演练 3 次                           |
+| D28     | **里程碑 M4** · 答辩就绪                |
 
 ---
 
@@ -89,20 +91,21 @@
 
 **学校选取建议**(从 PDF 提取的典型学区):
 
-| 序号 | 真实学校(参考) | 在系统中命名为 | 边界关键道路 |
-|---|---|---|---|
-| 1 | 泰安实验学校 | 泰山区示范第一小学 | 渿河东路、金山西街、擂鼓石大街、红门路、环山路、虎山路、岱庙北街 |
-| 2 | 第六中学 | 泰山区原型实验初中 | 虎山路、岱宗大街、梳洗河、环山路、红门路、东岳大街、校场街、通天街 |
-| 3 | 泰山学院附属中学 | 泰山区示范第二初中 | 擂鼓石大街、龙潭路、泰山大桥、岱宗大街 |
-| 4 | 东岳中学(小学部) | 泰山区原型第三小学 | 唐王河、北上高大街、温泉路、东岳大街、岱道庵路、擂鼓石大街 |
-| 5 | 南关中学 | 泰山区阶段路初中 | 泮河大街、泰良路、泰辛铁路、迎春西路、灵山大街、顺河街、财源街 |
-| 6 | 望岳中学 | 泰山区示意第四小学 | 致富路、佳苑路、长城路、灵山大街 |
-| 7 | 迎春学校(小学部) | 泰山区原型第五小学 | 灵山大街、迎春路、辛泰铁路、迎春西路 |
-| 8 | 第二实验学校 | 泰山区上高第六小学 | 博阳路、谢过城大街、天烛峰路、东岳大街东段 |
-| 9 | 凤台学校(小学部) | 泰山区凤台第七小学 | 北上高大街、东湖路、唐王河、天烛峰路 |
-| 10 | 万官路学校(小学部) | 泰山区万官第八小学 | 万官大街、堰东路、长城路、梅山东路 |
+| 序号 | 真实学校(参考)     | 在系统中命名为     | 边界关键道路                                                       |
+| ---- | ------------------ | ------------------ | ------------------------------------------------------------------ |
+| 1    | 泰安实验学校       | 泰山区示范第一小学 | 渿河东路、金山西街、擂鼓石大街、红门路、环山路、虎山路、岱庙北街   |
+| 2    | 第六中学           | 泰山区原型实验初中 | 虎山路、岱宗大街、梳洗河、环山路、红门路、东岳大街、校场街、通天街 |
+| 3    | 泰山学院附属中学   | 泰山区示范第二初中 | 擂鼓石大街、龙潭路、泰山大桥、岱宗大街                             |
+| 4    | 东岳中学(小学部)   | 泰山区原型第三小学 | 唐王河、北上高大街、温泉路、东岳大街、岱道庵路、擂鼓石大街         |
+| 5    | 南关中学           | 泰山区阶段路初中   | 泮河大街、泰良路、泰辛铁路、迎春西路、灵山大街、顺河街、财源街     |
+| 6    | 望岳中学           | 泰山区示意第四小学 | 致富路、佳苑路、长城路、灵山大街                                   |
+| 7    | 迎春学校(小学部)   | 泰山区原型第五小学 | 灵山大街、迎春路、辛泰铁路、迎春西路                               |
+| 8    | 第二实验学校       | 泰山区上高第六小学 | 博阳路、谢过城大街、天烛峰路、东岳大街东段                         |
+| 9    | 凤台学校(小学部)   | 泰山区凤台第七小学 | 北上高大街、东湖路、唐王河、天烛峰路                               |
+| 10   | 万官路学校(小学部) | 泰山区万官第八小学 | 万官大街、堰东路、长城路、梅山东路                                 |
 
 **学校命名规则**(继续遵守 v0.1 约定):
+
 - 仍使用"泰山区示范XX小学/初中"等示例化命名
 - 电话仍使用 `0538-XXXXXXX` 占位格式
 - **但 description 字段可以引用真实道路名**,例如:
@@ -117,6 +120,7 @@
 3. **批量调整**:从 v0.1 的 5 个 Polygon 入手,逐个微调形状 + 复制 5 份重定位
 
 **坐标范围约束**:
+
 - 经度:`117.10—117.20`(泰山区主城区)
 - 纬度:`36.16—36.23`
 - 互不重叠
@@ -131,11 +135,19 @@
   "properties": {
     "zoneId": "zone_001",
     "zoneName": "泰山区示范第一小学学区",
-    "primarySchoolId": "school_p_001",
-    "middleSchoolId": "school_m_001",
+    "schoolId": "school_p_001",
+    "stage": "小学",
     "description": "东至梳洗河,西至虎山路,南至东岳大街,北至环山路。",
+    "boundaryText": "东至梳洗河,西至虎山路,南至东岳大街,北至环山路。",
     "year": 2025,
-    "policyIds": ["policy_2025_001", "policy_2025_002"]
+    "policyIds": ["policy_2025_001", "policy_2025_002"],
+    "sourceName": "示例数据·非官方",
+    "sourceUrl": "",
+    "sourceType": "demo",
+    "verifiedDate": "【待填：YYYY-MM-DD】",
+    "dataStatus": "demo",
+    "geometryAccuracy": "demoBoundary",
+    "note": "当前为示例学区边界，用于一校一区展示逻辑测试。"
   },
   "geometry": {
     "type": "Polygon",
@@ -145,6 +157,7 @@
 ```
 
 **自测清单**:
+
 - [ ] 10-15 个 Polygon 全部渲染,无报错
 - [ ] 点击每个都能高亮 + 显示结果
 - [ ] 在 https://geojson.io 把整个 zones.geojson 粘进去,目测无重叠
@@ -180,13 +193,25 @@
         <span class="input-group-text bg-white border-end-0">
           <i class="bi bi-search"></i>
         </span>
-        <input type="text" id="searchInput" class="form-control border-start-0"
-               placeholder="输入小区、街道、路名查询学区(如:红门路、示范小区)">
-        <button id="searchClearBtn" class="btn btn-outline-secondary" style="display:none;">
+        <input
+          type="text"
+          id="searchInput"
+          class="form-control border-start-0"
+          placeholder="输入小区、街道、路名查询学区(如:红门路、示范小区)"
+        />
+        <button
+          id="searchClearBtn"
+          class="btn btn-outline-secondary"
+          style="display:none;"
+        >
           <i class="bi bi-x-lg"></i>
         </button>
       </div>
-      <div id="searchSuggestions" class="search-suggestions" style="display:none;"></div>
+      <div
+        id="searchSuggestions"
+        class="search-suggestions"
+        style="display:none;"
+      ></div>
     </div>
   </div>
 </section>
@@ -198,7 +223,6 @@
 /* searchService.js - 关键词检索服务 */
 
 window.SearchService = (function () {
-
   var _keywords = [];
   var _zones = null;
   var _onZoneMatched = null;
@@ -217,18 +241,18 @@ window.SearchService = (function () {
   }
 
   function bindEvents() {
-    var input = document.getElementById('searchInput');
-    var clearBtn = document.getElementById('searchClearBtn');
-    var suggestionsEl = document.getElementById('searchSuggestions');
+    var input = document.getElementById("searchInput");
+    var clearBtn = document.getElementById("searchClearBtn");
+    var suggestionsEl = document.getElementById("searchSuggestions");
 
     if (!input) return;
 
-    input.addEventListener('input', function () {
-      var kw = (input.value || '').trim();
-      clearBtn.style.display = kw ? 'block' : 'none';
+    input.addEventListener("input", function () {
+      var kw = (input.value || "").trim();
+      clearBtn.style.display = kw ? "block" : "none";
 
       if (!kw) {
-        suggestionsEl.style.display = 'none';
+        suggestionsEl.style.display = "none";
         return;
       }
 
@@ -236,67 +260,77 @@ window.SearchService = (function () {
       renderSuggestions(matches);
     });
 
-    input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') {
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
         var matches = filterKeywords(input.value.trim());
         if (matches.length > 0) flyToZone(matches[0].matchedZoneId);
       }
     });
 
-    clearBtn.addEventListener('click', function () {
-      input.value = '';
-      clearBtn.style.display = 'none';
-      suggestionsEl.style.display = 'none';
+    clearBtn.addEventListener("click", function () {
+      input.value = "";
+      clearBtn.style.display = "none";
+      suggestionsEl.style.display = "none";
     });
   }
 
   // 按关键词过滤(includes 匹配,不区分大小写)
   function filterKeywords(kw) {
     var lower = kw.toLowerCase();
-    return _keywords.filter(function (k) {
-      return k.keyword.toLowerCase().indexOf(lower) !== -1;
-    }).slice(0, 8); // 最多 8 条建议
+    return _keywords
+      .filter(function (k) {
+        return k.keyword.toLowerCase().indexOf(lower) !== -1;
+      })
+      .slice(0, 8); // 最多 8 条建议
   }
 
   // 渲染建议下拉
   function renderSuggestions(matches) {
-    var el = document.getElementById('searchSuggestions');
+    var el = document.getElementById("searchSuggestions");
     if (!matches || matches.length === 0) {
       el.innerHTML = '<div class="search-no-result">未找到匹配结果</div>';
-      el.style.display = 'block';
+      el.style.display = "block";
       return;
     }
 
-    var html = '';
+    var html = "";
     matches.forEach(function (m) {
-      html += '<div class="search-suggestion-item" data-zone-id="' + m.matchedZoneId + '">' +
-                '<span class="search-type-tag">' + m.type + '</span>' +
-                '<span class="search-keyword">' + m.keyword + '</span>' +
-              '</div>';
+      html +=
+        '<div class="search-suggestion-item" data-zone-id="' +
+        m.matchedZoneId +
+        '">' +
+        '<span class="search-type-tag">' +
+        m.type +
+        "</span>" +
+        '<span class="search-keyword">' +
+        m.keyword +
+        "</span>" +
+        "</div>";
     });
     el.innerHTML = html;
-    el.style.display = 'block';
+    el.style.display = "block";
 
     // 绑定点击
-    el.querySelectorAll('.search-suggestion-item').forEach(function (item) {
-      item.addEventListener('click', function () {
-        flyToZone(item.getAttribute('data-zone-id'));
-        document.getElementById('searchInput').value = item.querySelector('.search-keyword').textContent;
-        el.style.display = 'none';
+    el.querySelectorAll(".search-suggestion-item").forEach(function (item) {
+      item.addEventListener("click", function () {
+        flyToZone(item.getAttribute("data-zone-id"));
+        document.getElementById("searchInput").value =
+          item.querySelector(".search-keyword").textContent;
+        el.style.display = "none";
       });
     });
   }
 
   // 飞到学区(调 MapService 暴露的方法)
   function flyToZone(zoneId) {
-    if (typeof _onZoneMatched === 'function') {
+    if (typeof _onZoneMatched === "function") {
       _onZoneMatched(zoneId);
     }
   }
 
   return {
     init: init,
-    setOnZoneMatched: setOnZoneMatched
+    setOnZoneMatched: setOnZoneMatched,
   };
 })();
 ```
@@ -311,14 +345,17 @@ function flyToZoneById(zoneId) {
   });
   if (!entry) return;
 
-  _map.flyToBounds(entry.layer.getBounds(), { padding: [40, 40], duration: 0.8 });
+  _map.flyToBounds(entry.layer.getBounds(), {
+    padding: [40, 40],
+    duration: 0.8,
+  });
   selectLayer(entry.layer, entry.feature);
 }
 
 // 在 return 的对象里加
 return {
   initMap: initMap,
-  flyToZoneById: flyToZoneById  // 新增
+  flyToZoneById: flyToZoneById, // 新增
 };
 ```
 
@@ -332,6 +369,7 @@ SearchService.setOnZoneMatched(function (zoneId) {
 ```
 
 **自测清单**:
+
 - [ ] 输入"红"应该出现"红门路"等建议
 - [ ] 点击建议项,地图平滑飞到对应学区,学区高亮
 - [ ] 回车键直接定位到第一条匹配
@@ -359,17 +397,17 @@ function setupBaseLayers(map) {
     return L.tileLayer(buildTiandituUrl(urlTemplate, td.token), {
       subdomains: td.subdomains,
       attribution: opts.attribution || td.attribution,
-      maxZoom: 18
+      maxZoom: 18,
     });
   }
 
   // 矢量底图
   var vecLayer = tiandituLayer(td.vecUrl);
-  var cvaLayer = tiandituLayer(td.cvaUrl, { attribution: '' });
+  var cvaLayer = tiandituLayer(td.cvaUrl, { attribution: "" });
 
   // 影像底图
   var imgLayer = tiandituLayer(td.imgUrl);
-  var ciaLayer = tiandituLayer(td.ciaUrl, { attribution: '' });
+  var ciaLayer = tiandituLayer(td.ciaUrl, { attribution: "" });
 
   // 图层组(底图 + 注记一起切换)
   var vecGroup = L.layerGroup([vecLayer, cvaLayer]);
@@ -379,14 +417,16 @@ function setupBaseLayers(map) {
   vecGroup.addTo(map);
 
   // 添加图层切换控件
-  L.control.layers(
-    {
-      '矢量底图': vecGroup,
-      '影像底图': imgGroup
-    },
-    null,
-    { position: 'topright', collapsed: false }
-  ).addTo(map);
+  L.control
+    .layers(
+      {
+        矢量底图: vecGroup,
+        影像底图: imgGroup,
+      },
+      null,
+      { position: "topright", collapsed: false },
+    )
+    .addTo(map);
 }
 ```
 
@@ -396,7 +436,7 @@ function setupBaseLayers(map) {
 .leaflet-control-layers {
   background: #fff;
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   padding: 8px 12px;
   border: 1px solid var(--border-light);
 }
@@ -408,6 +448,7 @@ function setupBaseLayers(map) {
 ```
 
 **自测清单**:
+
 - [ ] 控件出现在右上角
 - [ ] 切换到影像底图,瓦片正常加载
 - [ ] 切换后学区 Polygon 仍正确显示
@@ -468,10 +509,12 @@ MapService.initMap({
       zoneFeature: feature,
       schools: data.schools,
       policies: data.policies,
-      history: historyEntry ? historyEntry.history : []  // 新增
+      history: historyEntry ? historyEntry.history : [], // 新增
     });
   },
-  onNoMatch: function () { RenderService.renderNoMatch(); }
+  onNoMatch: function () {
+    RenderService.renderNoMatch();
+  },
 });
 ```
 
@@ -483,15 +526,22 @@ if (ctx.history && ctx.history.length > 0) {
   html += '<div class="result-section-title">历年调整记录</div>';
   html += '<div class="zone-history-timeline">';
   ctx.history.forEach(function (h) {
-    html += '<div class="zone-history-item">' +
-              '<div class="zone-history-year">' + h.year + '</div>' +
-              '<div class="zone-history-body">' +
-                '<div class="zone-history-change">' + h.change + '</div>' +
-                '<div class="zone-history-desc">' + h.description + '</div>' +
-              '</div>' +
-            '</div>';
+    html +=
+      '<div class="zone-history-item">' +
+      '<div class="zone-history-year">' +
+      h.year +
+      "</div>" +
+      '<div class="zone-history-body">' +
+      '<div class="zone-history-change">' +
+      h.change +
+      "</div>" +
+      '<div class="zone-history-desc">' +
+      h.description +
+      "</div>" +
+      "</div>" +
+      "</div>";
   });
-  html += '</div>';
+  html += "</div>";
 }
 ```
 
@@ -511,7 +561,7 @@ if (ctx.history && ctx.history.length > 0) {
 }
 
 .zone-history-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -1.85rem;
   top: 0.25rem;
@@ -543,6 +593,7 @@ if (ctx.history && ctx.history.length > 0) {
 ```
 
 **自测清单**:
+
 - [ ] 点击学区,timeline 出现在结果面板底部
 - [ ] 年份倒序或正序显示(自己选,但要一致)
 - [ ] 没有历史数据时不显示这个 section
@@ -552,19 +603,20 @@ if (ctx.history && ctx.history.length > 0) {
 
 ## 五、与其他角色的对接接口
 
-| 接口 | 我提供 | 对方使用 | 数据形式 |
-|---|---|---|---|
-| `zone_id → 跳转到该学区` | `MapService.flyToZoneById(zoneId)` | B 的模拟器输出推荐学区时,可以加"在地图上查看"按钮 | 函数 |
-| `keywords 数据` | `data/keywords_index.json` | C 可能在 FAQ 答案里需要引用学区 | JSON |
-| `zones 数据` | `data/zones.geojson` | B 的政策对比可能需要按学区分组 | JSON |
+| 接口                     | 我提供                             | 对方使用                                          | 数据形式 |
+| ------------------------ | ---------------------------------- | ------------------------------------------------- | -------- |
+| `zone_id → 跳转到该学区` | `MapService.flyToZoneById(zoneId)` | B 的模拟器输出推荐学区时,可以加"在地图上查看"按钮 | 函数     |
+| `keywords 数据`          | `data/keywords_index.json`         | C 可能在 FAQ 答案里需要引用学区                   | JSON     |
+| `zones 数据`             | `data/zones.geojson`               | B 的政策对比可能需要按学区分组                    | JSON     |
 
 **给 B 的接口示例**:
+
 ```javascript
 // B 的 simulatorService.js 里
-document.getElementById('viewOnMapBtn').addEventListener('click', function () {
-  window.MapService.flyToZoneById('zone_003');
+document.getElementById("viewOnMapBtn").addEventListener("click", function () {
+  window.MapService.flyToZoneById("zone_003");
   // 滚动到地图区
-  document.getElementById('section-map').scrollIntoView({ behavior: 'smooth' });
+  document.getElementById("section-map").scrollIntoView({ behavior: "smooth" });
 });
 ```
 
@@ -573,22 +625,26 @@ document.getElementById('viewOnMapBtn').addEventListener('click', function () {
 ## 六、自测清单(每周末过一遍)
 
 ### W1 末尾
+
 - [ ] 仓库创建,三人有 push 权限
 - [ ] `docs/data-schema.md` 已 commit
 - [ ] `feature/A-map` 分支已推送
 - [ ] `index.html` 加了搜索框 + 图层切换占位
 
 ### W2 末尾
+
 - [ ] 10-15 个学区 Polygon 全部加载无报错
 - [ ] 每个学区点击都有结果
 - [ ] 搜索框输入"红""示范"等都有建议
 - [ ] 点击建议地图飞到该学区
 
 ### W3 末尾
+
 - [ ] 图层切换按钮工作,矢量/影像都能加载
 - [ ] 任一学区点击都显示 timeline(没数据则隐藏)
 
 ### W4 末尾
+
 - [ ] 所有 Bug 关闭
 - [ ] 演示流程跑通无卡顿
 - [ ] 录屏完成
@@ -614,17 +670,20 @@ document.getElementById('viewOnMapBtn').addEventListener('click', function () {
 ## 八、AI-IDE 使用建议(针对你的工作)
 
 **好用场景**:
+
 1. 让 AI 帮你按"东至 X 路、西至 Y 路"的描述生成 Polygon 坐标点(给它一个泰安市的大致坐标范围作为约束)
 2. 让 AI 帮你写 keywords_index.json 的批量数据(给它学区列表 + 5 个示范关键词,让它续写)
 3. 让 AI 帮你调试 Leaflet 控件样式
 
 **容易翻车的场景**:
+
 1. **AI 容易乱改坐标顺序**:每次让它写 GeoJSON,提醒它"经度在前、纬度在后"
 2. **AI 容易引入 ES Module**:看到 `import L from 'leaflet'` 立刻拒绝,Leaflet 是全局变量 `L`
 3. **AI 容易擅自加防抖/节流**:搜索框 input 事件本来就够快,加防抖反而卡;明确告诉它"不要加 debounce"
 4. **AI 容易把 `var` 改成 `const/let`**:我们项目用 `var` 保持风格统一,改前问一句
 
 **推荐 prompt 模板**:
+
 ```
 我在做智慧入学项目的地图模块,纯前端 Vanilla JS,使用 Leaflet 1.9.4 + Turf 6.5.0。
 当前文件:js/searchService.js

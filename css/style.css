@@ -294,61 +294,61 @@ body {
   .policy-item {
     padding: 0.75rem;
   }
-  
+
   .policy-title {
     font-size: 0.95rem;
   }
-  
+
   .policy-meta {
     font-size: 0.8rem;
     gap: 0.3rem;
   }
-  
+
   .policy-summary {
     font-size: 0.85rem;
   }
-  
+
   .policy-link-btn {
     font-size: 0.8rem;
     padding: 0.3rem 0.6rem;
   }
-  
+
   .policy-link-btn i {
     font-size: 0.7rem;
   }
-  
+
   /* 材料 Tab 响应式 */
   .material-tabs .nav-link {
     font-size: 0.85rem;
     padding: 0.5rem 0.75rem;
   }
-  
+
   /* 统计卡片响应式 */
   .stat-card {
     padding: 1rem 0.75rem;
   }
-  
+
   .stat-number {
     font-size: 1.5rem;
   }
-  
+
   .stat-label {
     font-size: 0.8rem;
   }
-  
+
   /* 结果面板响应式 */
   .result-zone-name {
     font-size: 1.1rem;
   }
-  
+
   .result-section-title {
     font-size: 0.9rem;
   }
-  
+
   .result-school-name {
     font-size: 0.95rem;
   }
-  
+
   .result-school-detail {
     font-size: 0.8rem;
   }
@@ -497,7 +497,7 @@ body {
   background: #fff;
   border: 1px solid var(--border-light, #dee2e6);
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   z-index: 1000;
 }
@@ -528,16 +528,16 @@ body {
   padding: 0.1rem 0.35rem;
   border-radius: 999px;
   background: rgba(30, 58, 95, 0.08);
-  color: var(--primary-color, #1E3A5F);
+  color: var(--primary-color, #1e3a5f);
 }
 
 .search-keyword {
-  color: var(--text-primary, #2C3E50);
+  color: var(--text-primary, #2c3e50);
 }
 
 .search-no-result {
   padding: 0.75rem;
-  color: var(--text-secondary, #6C757D);
+  color: var(--text-secondary, #6c757d);
   font-size: 0.9rem;
 }
 
@@ -558,20 +558,20 @@ body {
 }
 
 .zone-history-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -1.85rem;
   top: 0.25rem;
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--accent-color, #F0A04B);
+  background: var(--accent-color, #f0a04b);
   box-shadow: 0 0 0 2px #fff;
 }
 
 .zone-history-year {
   font-weight: 600;
-  color: var(--primary-color, #1E3A5F);
+  color: var(--primary-color, #1e3a5f);
   font-size: 0.9rem;
 }
 
@@ -579,7 +579,7 @@ body {
   display: inline-block;
   margin-top: 0.15rem;
   font-size: 0.8rem;
-  color: var(--primary-color, #1E3A5F);
+  color: var(--primary-color, #1e3a5f);
   background: rgba(30, 58, 95, 0.08);
   border-radius: 999px;
   padding: 0.1rem 0.45rem;
@@ -587,7 +587,7 @@ body {
 
 .zone-history-title {
   font-size: 0.88rem;
-  color: var(--text-primary, #2C3E50);
+  color: var(--text-primary, #2c3e50);
   margin-top: 0.25rem;
   font-weight: 500;
 }
@@ -595,7 +595,80 @@ body {
 .zone-history-desc,
 .zone-history-reason {
   font-size: 0.8rem;
-  color: var(--text-secondary, #6C757D);
+  color: var(--text-secondary, #6c757d);
   margin-top: 0.15rem;
   line-height: 1.5;
+}
+
+.zone-school-card {
+  background: #fff;
+  border: 1px solid var(--border-light, #dee2e6);
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin-bottom: 0.85rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.zone-school-name {
+  font-weight: 600;
+  color: var(--primary-color, #1e3a5f);
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.zone-school-stage {
+  display: inline-block;
+  font-size: 0.78rem;
+  color: #fff;
+  background: var(--primary-color, #1e3a5f);
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+  margin-bottom: 0.55rem;
+}
+
+.zone-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+}
+
+.zone-meta-grid > div {
+  font-size: 0.85rem;
+  color: var(--text-secondary, #6c757d);
+}
+
+.zone-meta-grid > div span {
+  margin-right: 0.3rem;
+}
+
+.zone-meta-grid > div strong {
+  color: var(--text-primary, #2c3e50);
+  font-weight: 500;
+}
+
+.zone-school-website {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.zone-school-website i {
+  margin-right: 0.25rem;
+  color: var(--accent-color, #f0a04b);
+}
+
+.zone-school-website a {
+  color: var(--primary-color, #1e3a5f);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.zone-school-website a:hover {
+  color: var(--accent-color, #f0a04b);
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .zone-meta-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
