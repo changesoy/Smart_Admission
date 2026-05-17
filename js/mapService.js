@@ -15,17 +15,15 @@ window.MapService = (function () {
   var _zoneLayers = [];
   var _onZoneSelected = null;
   var _onNoMatch = null;
+  var _visibleStages = { "初中": true, "小学": true };
 
-  // 把 URL 模板里的 {token} 替换成实际 token
   function buildTiandituUrl(template, token) {
     return template.replace("{token}", token);
   }
 
-  // 加载天地图(矢量底图 + 注记)
   function loadTiandituBaseLayers(map) {
     var td = window.AppConfig.tianditu;
 
-    // 矢量底图
     L.tileLayer(buildTiandituUrl(td.vecUrl, td.token), {
       subdomains: td.subdomains,
       attribution: td.attribution,
@@ -33,7 +31,6 @@ window.MapService = (function () {
       minZoom: 1,
     }).addTo(map);
 
-    // 矢量注记(地名、路名)叠加在底图上
     L.tileLayer(buildTiandituUrl(td.cvaUrl, td.token), {
       subdomains: td.subdomains,
       maxZoom: 18,
@@ -41,8 +38,12 @@ window.MapService = (function () {
     }).addTo(map);
   }
 
-  // 初始化地图
-  // params = { zones, schools, policies, onZoneSelected, onNoMatch }
+  function getStageStyle(stage, state) {
+    var styles = window.AppConfig.zoneStyle;
+    var group = stage === "小学" ? styles.primary : styles.middle;
+    return group[state] || group.default;
+  }
+
   function initMap(params) {
     var container = document.getElementById("mapContainer");
     if (!container) {
@@ -57,16 +58,13 @@ window.MapService = (function () {
     _onZoneSelected = params && params.onZoneSelected;
     _onNoMatch = params && params.onNoMatch;
 
-    // 创建地图(中心使用 [lat, lng])
     _map = L.map(container).setView(
       window.AppConfig.mapCenter,
       window.AppConfig.mapZoom,
     );
 
-    // 加载天地图底图
     loadTiandituBaseLayers(_map);
 
-    // 渲染学区
     if (_zonesData.features && _zonesData.features.length > 0) {
       _zonesData.features.forEach(function (feature) {
         addZoneLayer(feature);
@@ -86,12 +84,14 @@ window.MapService = (function () {
     });
   }
 
-  // 添加单个学区图层
   function addZoneLayer(feature) {
-    var styles = window.AppConfig.zoneStyle;
+    var stage = (feature.properties && feature.properties.stage) || "初中";
+    var defaultStyle = getStageStyle(stage, "default");
+    var hoverStyle = getStageStyle(stage, "hover");
+
     var geoLayer = L.geoJSON(feature, {
       style: function () {
-        return styles.default;
+        return defaultStyle;
       },
     });
 
@@ -99,10 +99,10 @@ window.MapService = (function () {
       _zoneLayers.push({ layer: l, feature: feature });
 
       l.on("mouseover", function () {
-        if (l !== _selectedLayer) l.setStyle(styles.hover);
+        if (l !== _selectedLayer) l.setStyle(hoverStyle);
       });
       l.on("mouseout", function () {
-        if (l !== _selectedLayer) l.setStyle(styles.default);
+        if (l !== _selectedLayer) l.setStyle(defaultStyle);
       });
 
       l.on("click", function (e) {
@@ -112,17 +112,79 @@ window.MapService = (function () {
     });
 
     geoLayer.addTo(_map);
+
+    applyVisibility(feature);
   }
 
   function selectLayer(layer, feature) {
-    var styles = window.AppConfig.zoneStyle;
+    var stage = (feature.properties && feature.properties.stage) || "初中";
+    var defaultStyle = getStageStyle(stage, "default");
+    var selectedStyle = getStageStyle(stage, "selected");
+
     if (_selectedLayer && _selectedLayer !== layer) {
-      _selectedLayer.setStyle(styles.default);
+      var prevFeature = null;
+      for (var i = 0; i < _zoneLayers.length; i++) {
+        if (_zoneLayers[i].layer === _selectedLayer) {
+          prevFeature = _zoneLayers[i].feature;
+          break;
+        }
+      }
+      if (prevFeature) {
+        var prevStage = (prevFeature.properties && prevFeature.properties.stage) || "初中";
+        _selectedLayer.setStyle(getStageStyle(prevStage, "default"));
+      }
     }
     _selectedLayer = layer;
-    layer.setStyle(styles.selected);
+    layer.setStyle(selectedStyle);
     if (typeof _onZoneSelected === "function") {
       _onZoneSelected(feature);
+    }
+  }
+
+  function applyVisibility(feature) {
+    var stage = (feature.properties && feature.properties.stage) || "初中";
+    var visible = !!_visibleStages[stage];
+    for (var i = 0; i < _zoneLayers.length; i++) {
+      if (_zoneLayers[i].feature === feature) {
+        if (visible) {
+          if (!_map.hasLayer(_zoneLayers[i].layer)) {
+            _zoneLayers[i].layer.addTo(_map);
+          }
+        } else {
+          if (_map.hasLayer(_zoneLayers[i].layer)) {
+            _map.removeLayer(_zoneLayers[i].layer);
+          }
+        }
+      }
+    }
+  }
+
+  function filterByStage(stages) {
+    _visibleStages = {};
+    if (stages && stages.length) {
+      stages.forEach(function (s) {
+        _visibleStages[s] = true;
+      });
+    }
+
+    if (_selectedLayer) {
+      var selVisible = false;
+      for (var i = 0; i < _zoneLayers.length; i++) {
+        if (_zoneLayers[i].layer === _selectedLayer) {
+          var selStage = (_zoneLayers[i].feature.properties && _zoneLayers[i].feature.properties.stage) || "初中";
+          selVisible = !!_visibleStages[selStage];
+          break;
+        }
+      }
+      if (!selVisible) {
+        _selectedLayer = null;
+      }
+    }
+
+    if (_zonesData && _zonesData.features) {
+      _zonesData.features.forEach(function (feature) {
+        applyVisibility(feature);
+      });
     }
   }
 
@@ -148,6 +210,9 @@ window.MapService = (function () {
     var matchedEntry = null;
     for (var i = 0; i < _zoneLayers.length; i++) {
       var entry = _zoneLayers[i];
+      var entryStage = (entry.feature.properties && entry.feature.properties.stage) || "初中";
+      if (!_visibleStages[entryStage]) continue;
+      if (!_map.hasLayer(entry.layer)) continue;
       try {
         if (turf.booleanPointInPolygon(pt, entry.feature)) {
           matchedEntry = entry;
@@ -162,14 +227,82 @@ window.MapService = (function () {
       selectLayer(matchedEntry.layer, matchedEntry.feature);
     } else {
       if (_selectedLayer) {
-        _selectedLayer.setStyle(window.AppConfig.zoneStyle.default);
+        var selStage = "初中";
+        for (var j = 0; j < _zoneLayers.length; j++) {
+          if (_zoneLayers[j].layer === _selectedLayer) {
+            selStage = (_zoneLayers[j].feature.properties && _zoneLayers[j].feature.properties.stage) || "初中";
+            break;
+          }
+        }
+        _selectedLayer.setStyle(getStageStyle(selStage, "default"));
         _selectedLayer = null;
       }
       if (typeof _onNoMatch === "function") _onNoMatch();
     }
   }
 
+  function findZoneByPoint(lng, lat) {
+    if (!_zoneLayers || _zoneLayers.length === 0) return null;
+    var pt;
+    try {
+      pt = turf.point([lng, lat]);
+    } catch (err) {
+      console.warn("findZoneByPoint: turf.point 构造失败:", err);
+      return null;
+    }
+    for (var i = 0; i < _zoneLayers.length; i++) {
+      var entry = _zoneLayers[i];
+      var entryStage = (entry.feature.properties && entry.feature.properties.stage) || "初中";
+      if (!_visibleStages[entryStage]) continue;
+      try {
+        if (turf.booleanPointInPolygon(pt, entry.feature)) {
+          return entry.feature && entry.feature.properties
+            ? entry.feature.properties.zoneId
+            : null;
+        }
+      } catch (err) {
+        console.warn("findZoneByPoint: booleanPointInPolygon 异常:", err);
+      }
+    }
+    return null;
+  }
+
+  function flyToZoneById(zoneId) {
+    if (!_zoneLayers || _zoneLayers.length === 0) {
+      console.warn("flyToZoneById: 学区图层为空");
+      return;
+    }
+    for (var i = 0; i < _zoneLayers.length; i++) {
+      var entry = _zoneLayers[i];
+      var id =
+        entry.feature && entry.feature.properties
+          ? entry.feature.properties.zoneId
+          : null;
+      if (id === zoneId) {
+        var stage = (entry.feature.properties && entry.feature.properties.stage) || "初中";
+        if (!_visibleStages[stage]) {
+          _visibleStages[stage] = true;
+          applyVisibility(entry.feature);
+          var cb = stage === "小学" ? document.getElementById("showPrimaryZone") : document.getElementById("showMiddleZone");
+          if (cb) cb.checked = true;
+        }
+        if (_map) {
+          _map.flyToBounds(entry.layer.getBounds(), {
+            padding: [40, 40],
+            duration: 0.8,
+          });
+        }
+        selectLayer(entry.layer, entry.feature);
+        return;
+      }
+    }
+    console.warn("flyToZoneById: 未找到 zoneId:", zoneId);
+  }
+
   return {
     initMap: initMap,
+    flyToZoneById: flyToZoneById,
+    findZoneByPoint: findZoneByPoint,
+    filterByStage: filterByStage,
   };
 })();
