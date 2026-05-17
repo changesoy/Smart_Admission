@@ -3,18 +3,17 @@
 window.PolicyService = (function () {
   var _policies = [];
   var _diffs = [];
-  var _rumors = [];
   var _currentFilter = { category: null, year: null };
+  var _isExpanded = false;
+  var _MAX_DISPLAY = 6;
 
   function init(data) {
     _policies = data.policies || [];
     _diffs = data.policyDiff || [];
-    _rumors = data.rumors || [];
 
     renderPolicies(_policies);
     renderFilters();
     setupDiffView();
-    renderRumors(_rumors);
   }
 
   function renderPolicies(list) {
@@ -26,26 +25,59 @@ window.PolicyService = (function () {
       return;
     }
 
-    var html = '<div class="row g-3">';
-    list.forEach(function (p) {
+    var sortedList = list.slice().sort(function(a, b) {
+      if (b.year !== a.year) return b.year - a.year;
+      return new Date(b.publishDate) - new Date(a.publishDate);
+    });
+
+    var displayList = _isExpanded ? sortedList : sortedList.slice(0, _MAX_DISPLAY);
+    var hasMore = sortedList.length > _MAX_DISPLAY;
+
+    var html = '<div class="row g-3" id="policyCards">';
+    displayList.forEach(function (p) {
       var categoryClass = getCategoryClass(p.category);
+      var isExternalLink = p.url && p.url !== '#' && p.url.startsWith('http');
+      var linkTarget = isExternalLink ? ' target="_blank" rel="noopener noreferrer"' : '';
+      var linkIcon = isExternalLink ? ' <i class="bi bi-box-arrow-up-right text-primary" style="font-size:0.7em;"></i>' : '';
       html += '<div class="col-md-6 col-lg-4">';
-      html += '<div class="policy-card">';
+      html += '<div class="policy-card" ' + (isExternalLink ? 'style="cursor:pointer;" onclick="window.open(\'' + p.url + '\', \'_blank\')"' : '') + '>';
       html += '<div class="policy-card-header">';
       html += '<span class="policy-year-badge">' + p.year + '年</span>';
       html += '<span class="policy-category-badge ' + categoryClass + '">' + p.category + '</span>';
       html += '</div>';
-      html += '<h6 class="policy-card-title">' + p.title + '</h6>';
+      html += '<h6 class="policy-card-title">' + p.title + linkIcon + '</h6>';
       html += '<p class="policy-card-summary">' + p.summary + '</p>';
       html += '<div class="policy-card-footer">';
       html += '<small class="text-muted"><i class="bi bi-calendar3"></i> ' + p.publishDate + '</small>';
       html += '<small class="text-muted"><i class="bi bi-building"></i> ' + p.source + '</small>';
+      if (isExternalLink) {
+        html += '<a href="' + p.url + '" class="policy-link-btn"' + linkTarget + ' onclick="event.stopPropagation();"><i class="bi bi-link-45deg"></i>查看原文</a>';
+      }
       html += '</div>';
       html += '</div>';
       html += '</div>';
     });
     html += '</div>';
+
+    if (hasMore) {
+      var remainingCount = sortedList.length - _MAX_DISPLAY;
+      html += '<div class="text-center mt-4">';
+      html += '<button id="toggleExpandBtn" class="btn btn-outline-primary">';
+      html += _isExpanded 
+        ? '<i class="bi bi-chevron-up"></i> 收起（共' + sortedList.length + '个）' 
+        : '<i class="bi bi-chevron-down"></i> 展开更多（还有' + remainingCount + '个）';
+      html += '</button>';
+      html += '</div>';
+    }
+
     container.innerHTML = html;
+
+    if (hasMore) {
+      document.getElementById('toggleExpandBtn').addEventListener('click', function() {
+        _isExpanded = !_isExpanded;
+        renderPolicies(list);
+      });
+    }
   }
 
   function getCategoryClass(category) {
@@ -100,6 +132,7 @@ window.PolicyService = (function () {
       return true;
     });
 
+    _isExpanded = false;
     renderPolicies(filtered);
   }
 
@@ -176,34 +209,6 @@ window.PolicyService = (function () {
     });
     html += '</div>';
     resultEl.innerHTML = html;
-  }
-
-  function renderRumors(rumors) {
-    var el = document.getElementById('rumorList');
-    if (!el) return;
-
-    if (!rumors || rumors.length === 0) {
-      el.innerHTML = '<div class="text-muted text-center py-3">暂无辟谣数据</div>';
-      return;
-    }
-
-    var html = '';
-    rumors.forEach(function (r) {
-      html += '<div class="rumor-card">';
-      html += '<div class="rumor-tag-row">';
-      html += '<span class="rumor-category">' + r.category + '</span>';
-      html += '</div>';
-      html += '<div class="rumor-question">';
-      html += '<i class="bi bi-question-circle-fill"></i>';
-      html += '<span>' + r.rumor + '</span>';
-      html += '</div>';
-      html += '<div class="rumor-truth">';
-      html += '<div class="rumor-truth-label"><i class="bi bi-check-circle-fill"></i>官方澄清（示例）</div>';
-      html += '<div class="rumor-truth-text">' + r.truth + '</div>';
-      html += '</div>';
-      html += '</div>';
-    });
-    el.innerHTML = html;
   }
 
   function uniq(arr) {

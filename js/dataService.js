@@ -1,8 +1,11 @@
-/* dataService.js - 数据加载服务(并行加载 5 个本地数据文件) */
+/* dataService.js - 数据加载服务 */
 
 window.DataService = (function () {
-  // 加载单个 JSON / GeoJSON 文件,返回 Promise
   function loadFile(path) {
+    console.log("Loading:", path);
+    if (!path) {
+      return Promise.reject(new Error("Path is undefined"));
+    }
     return fetch(path).then(function (resp) {
       if (!resp.ok) {
         throw new Error("加载失败:" + path + "(HTTP " + resp.status + ")");
@@ -11,9 +14,9 @@ window.DataService = (function () {
     });
   }
 
-  // 并行加载所有数据文件,任一失败则整体 reject
   function loadAllData() {
     var paths = window.AppConfig.dataPaths;
+    console.log("Data paths:", paths);
     return Promise.all([
       loadFile(paths.zones),
       loadFile(paths.schools),
@@ -22,7 +25,6 @@ window.DataService = (function () {
       loadFile(paths.faq),
       loadFile(paths.policyDiff),
       loadFile(paths.rumors),
-      loadFile(paths.simulatorRules),
       loadFile(paths.addressPoints),
       loadFile(paths.keywordsIndex),
       loadFile(paths.zonesHistory),
@@ -35,10 +37,9 @@ window.DataService = (function () {
         faq: results[4],
         policyDiff: results[5],
         rumors: results[6],
-        simulatorRules: results[7],
-        addressPoints: results[8],
-        keywordsIndex: results[9],
-        zonesHistory: results[10],
+        addressPoints: results[7],
+        keywordsIndex: results[8],
+        zonesHistory: results[9],
       };
     });
   }
