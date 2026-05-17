@@ -188,6 +188,34 @@
           </div>
         </section>
 
+        <!-- ========== B: 政策模拟区 ========== -->
+        <!-- 6B. 政策年度对比 -->
+        <section id="section-policy-diff" class="mb-4">
+          <div class="card section-card">
+            <div class="card-header section-header">
+              <i class="bi bi-arrow-left-right"></i>政策年度对比
+            </div>
+            <div class="card-body">
+              <div class="row align-items-center mb-3">
+                <div class="col-md-5">
+                  <label class="form-label small text-muted mb-1">基准年份</label>
+                  <select id="diffYearA" class="form-select"></select>
+                </div>
+                <div class="col-md-2 text-center">
+                  <i class="bi bi-arrow-left-right fs-3 text-warning"></i>
+                </div>
+                <div class="col-md-5">
+                  <label class="form-label small text-muted mb-1">对比年份</label>
+                  <select id="diffYearB" class="form-select"></select>
+                </div>
+              </div>
+              <div id="policyDiffResult"></div>
+            </div>
+          </div>
+        </section>
+
+
+
         <!-- 7. 入学材料清单 -->
         <section class="material-section mb-4">
           <div class="card section-card">
@@ -250,6 +278,8 @@
     <script src="js/config.js"></script>
     <script src="js/dataService.js"></script>
     <script src="js/render.js"></script>
+    <script src="js/policyService.js"></script>
+
     <script src="js/mapService.js"></script>
     <script src="js/searchService.js"></script>
     <script src="js/main.js"></script>
