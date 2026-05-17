@@ -861,6 +861,310 @@ body {
   margin-bottom: 0.6rem;
   padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--border-light);
+/* ========== 政策卡片（扩展） ========== */
+.policy-card {
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 1rem;
+  background: #fff;
+  height: 100%;
+  transition: all 0.2s ease;
+}
+
+.policy-card:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 2px 8px rgba(240, 160, 75, 0.15);
+}
+
+.policy-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.policy-year-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.policy-category-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.policy-category-badge.category-policy {
+  background: rgba(30, 58, 95, 0.1);
+  color: var(--primary-color);
+}
+
+.policy-category-badge.category-flow {
+  background: rgba(0, 123, 255, 0.1);
+  color: #007bff;
+}
+
+.policy-category-badge.category-material {
+  background: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+}
+
+.policy-category-badge.category-migrant {
+  background: rgba(255, 193, 7, 0.15);
+  color: #856404;
+}
+
+.policy-category-badge.category-notice {
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+}
+
+.policy-category-badge.category-default {
+  background: rgba(108, 117, 125, 0.1);
+  color: #6c757d;
+}
+
+.policy-card-title {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.policy-card-summary {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.policy-card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  border-top: 1px dashed var(--border-light);
+  padding-top: 0.6rem;
+}
+
+.policy-card-footer i {
+  margin-right: 0.25rem;
+  color: var(--accent-color);
+}
+
+.policy-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--primary-color);
+  color: #fff !important;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.policy-link-btn:hover {
+  background: var(--primary-hover);
+  color: #fff !important;
+  text-decoration: none;
+}
+
+/* ========== 政策对比视图 ========== */
+.diff-summary-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: linear-gradient(135deg, rgba(240, 160, 75, 0.12), rgba(240, 160, 75, 0.04));
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.diff-summary-icon {
+  color: var(--accent-color);
+  font-size: 1rem;
+}
+
+.diff-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 0.75rem;
+}
+
+.diff-card {
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 0.85rem;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.diff-card:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 2px 8px rgba(240, 160, 75, 0.1);
+}
+
+.diff-card-topic {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--primary-color);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.diff-card-topic i {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.diff-card-body {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.diff-card-side {
+  flex: 1;
+  padding: 0.5rem 0.6rem;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.diff-card-old {
+  background: rgba(108, 117, 125, 0.06);
+}
+
+.diff-card-new {
+  background: rgba(40, 167, 69, 0.06);
+}
+
+.diff-card-year {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted, #6c757d);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.diff-card-new .diff-card-year {
+  color: #28a745;
+}
+
+.diff-card-val {
+  font-size: 0.84rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.diff-card-arrow {
+  display: flex;
+  align-items: center;
+  padding: 0 0.3rem;
+  color: var(--accent-color);
+  font-size: 0.85rem;
+}
+
+.diff-card-note {
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.78rem;
+  color: var(--accent-color);
+  background: rgba(240, 160, 75, 0.06);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.diff-card-note i {
+  font-size: 0.72rem;
+  flex-shrink: 0;
+}
+
+.diff-unchanged-details {
+  margin-top: 1rem;
+}
+
+.diff-unchanged-details summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-muted, #6c757d);
+  padding: 0.4rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  user-select: none;
+}
+
+.diff-unchanged-details summary i {
+  color: #28a745;
+}
+
+.diff-unchanged-list {
+  padding: 0.5rem 0;
+}
+
+.diff-unchanged-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0;
+  font-size: 0.82rem;
+  color: var(--text-muted, #6c757d);
+}
+
+.diff-unchanged-item i {
+  font-size: 0.7rem;
+  opacity: 0.5;
+}
+
+/* ========== 政策对比 响应式 ========== */
+@media (max-width: 768px) {
+  .diff-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .diff-card-body {
+    flex-direction: column;
+  }
+
+  .diff-card-arrow {
+    transform: rotate(90deg);
+    justify-content: center;
+    padding: 0.2rem 0;
+  }
+}
+/* ========== 搜索建议 ========== */
+.search-suggestions {
+  position: relative;
+  margin-top: 0.5rem;
+  background: #fff;
+  border: 1px solid var(--border-light, #dee2e6);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  z-index: 1000;
 }
 
 .contact-section-title i {
