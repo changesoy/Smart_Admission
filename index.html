@@ -83,7 +83,75 @@
           <div class="row g-3" id="statsRow"></div>
         </section>
 
-        <!-- 5. 地图 + 查询结果面板 -->
+        <!-- 5. 搜索 + 图层切换 -->
+        <section id="section-search" class="mb-3">
+          <div class="card section-card">
+            <div class="card-body py-2">
+              <div
+                class="d-flex flex-column flex-lg-row gap-2 align-items-stretch align-items-lg-center"
+              >
+                <div class="input-group flex-grow-1">
+                  <span class="input-group-text bg-white border-end-0">
+                    <i class="bi bi-search"></i>
+                  </span>
+                  <input
+                    type="text"
+                    id="searchInput"
+                    class="form-control border-start-0"
+                    placeholder="输入学校、小区、道路或完整地址查询学区"
+                  />
+                  <button
+                    id="searchClearBtn"
+                    class="btn btn-outline-secondary"
+                    style="display: none"
+                    type="button"
+                  >
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+
+                <div
+                  class="zone-filter-group"
+                  role="group"
+                  aria-label="学区等级筛选"
+                >
+                  <label class="zone-filter-label">学区显示：</label>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input zone-stage-check"
+                      type="checkbox"
+                      id="showMiddleZone"
+                      value="初中"
+                      checked
+                    />
+                    <label class="form-check-label" for="showMiddleZone">初中</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input zone-stage-check"
+                      type="checkbox"
+                      id="showPrimaryZone"
+                      value="小学"
+                      checked
+                    />
+                    <label class="form-check-label" for="showPrimaryZone">小学</label>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                id="searchSuggestions"
+                class="search-suggestions"
+                style="display: none"
+              ></div>
+              <div class="form-text mt-1">
+                当前先支持本地地址点和关键词匹配，在线地理编码后续接入。
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. 地图 + 查询结果面板 -->
         <section class="map-section mb-4">
           <div class="row g-3">
             <div class="col-lg-8">
@@ -183,6 +251,7 @@
     <script src="js/dataService.js"></script>
     <script src="js/render.js"></script>
     <script src="js/mapService.js"></script>
+    <script src="js/searchService.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

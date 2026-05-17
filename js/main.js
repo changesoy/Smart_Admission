@@ -68,10 +68,17 @@
       schools: data.schools,
       policies: data.policies,
       onZoneSelected: function (feature) {
+        var zoneId = feature && feature.properties ? feature.properties.zoneId : "";
+
+        var historyEntry = (data.zonesHistory || []).find(function (h) {
+          return h.zoneId === zoneId;
+        });
+
         window.RenderService.renderResult({
           zoneFeature: feature,
           schools: data.schools,
           policies: data.policies,
+          history: historyEntry ? historyEntry.history : []
         });
         // 窄屏下自动滚动到结果面板
         if (window.innerWidth < 992) {
@@ -83,6 +90,46 @@
       onNoMatch: function () {
         window.RenderService.renderNoMatch();
       },
+    });
+
+    // SearchService 初始化
+    if (window.SearchService) {
+      window.SearchService.init(data);
+
+      window.SearchService.setOnZoneMatched(function (zoneId, item) {
+        if (window.MapService && typeof window.MapService.flyToZoneById === "function") {
+          window.MapService.flyToZoneById(zoneId);
+        } else {
+          console.warn("MapService.flyToZoneById 尚未实现，匹配到的 zoneId:", zoneId, item);
+        }
+      });
+
+      window.SearchService.setOnPointResolved(function (lng, lat, item) {
+        if (window.MapService && typeof window.MapService.findZoneByPoint === "function") {
+          var zoneId = window.MapService.findZoneByPoint(lng, lat);
+          if (zoneId && typeof window.MapService.flyToZoneById === "function") {
+            window.MapService.flyToZoneById(zoneId);
+          } else {
+            console.warn("未通过坐标匹配到学区:", lng, lat, item);
+          }
+        } else {
+          console.warn("MapService.findZoneByPoint 尚未实现，解析到的坐标:", lng, lat, item);
+        }
+      });
+    }
+
+    // 学区等级筛选复选框
+    var checks = document.querySelectorAll(".zone-stage-check");
+    checks.forEach(function (cb) {
+      cb.addEventListener("change", function () {
+        var stages = [];
+        checks.forEach(function (c) {
+          if (c.checked) stages.push(c.value);
+        });
+        if (window.MapService && typeof window.MapService.filterByStage === "function") {
+          window.MapService.filterByStage(stages);
+        }
+      });
     });
   }
 })();

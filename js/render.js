@@ -106,6 +106,16 @@ window.RenderService = (function () {
    * @param {Array} ctx.schools - 学校数据数组
    * @param {Array} ctx.policies - 政策数据数组
    */
+  function safeText(value) {
+    if (value === undefined || value === null || value === "") return "—";
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
   function renderResult(ctx) {
     var panel = document.getElementById("resultPanel");
     if (!panel) return;
@@ -117,11 +127,8 @@ window.RenderService = (function () {
     }
     var props = feature.properties;
 
-    var primary = (ctx.schools || []).find(function (s) {
-      return s.schoolId === props.primarySchoolId;
-    });
-    var middle = (ctx.schools || []).find(function (s) {
-      return s.schoolId === props.middleSchoolId;
+    var school = (ctx.schools || []).find(function (s) {
+      return s.schoolId === props.schoolId;
     });
 
     var policyIds = props.policyIds || [];
@@ -129,24 +136,55 @@ window.RenderService = (function () {
       return policyIds.indexOf(p.policyId) !== -1;
     });
 
+    var displayName = props.zoneName || "";
+    displayName = displayName.replace(/学区$/, "");
+
     var html = "";
     html +=
       '<div class="result-zone-name"><i class="bi bi-bookmark-fill text-warning"></i> ' +
-      (props.zoneName || "—") +
+      safeText(displayName) +
       "</div>";
     html +=
       '<div class="text-muted small mb-2">学区年份:' +
-      (props.year || "—") +
+      safeText(props.year) +
       "</div>";
 
     html += '<div class="result-section-title">招生范围说明</div>';
-    html += '<div class="small">' + (props.description || "—") + "</div>";
+    html += '<div class="small">' + safeText(props.description) + "</div>";
 
-    html += '<div class="result-section-title">对口小学</div>';
-    html += renderSchoolBlock(primary);
-
-    html += '<div class="result-section-title">对口初中</div>';
-    html += renderSchoolBlock(middle);
+    html += '<div class="result-section-title">对应学校</div>';
+    html += '<div class="zone-school-card">';
+    html +=
+      '<div class="zone-school-name">' +
+      safeText(school ? school.name : "未找到关联学校") +
+      "</div>";
+    html +=
+      '<span class="zone-school-stage">' + safeText(props.stage) + "</span>";
+    html += '<div class="zone-meta-grid">';
+    html +=
+      "<div><span>学校地址</span><strong>" +
+      safeText(school ? school.address : "—") +
+      "</strong></div>";
+    html +=
+      "<div><span>联系电话</span><strong>" +
+      safeText(school ? school.phone : "—") +
+      "</strong></div>";
+    html +=
+      "<div><span>所属区县</span><strong>" +
+      safeText(school ? school.district : "—") +
+      "</strong></div>";
+    html +=
+      "<div><span>学校类型</span><strong>" +
+      safeText(school ? school.type : "—") +
+      "</strong></div>";
+    html += "</div>";
+    if (school && school.website) {
+      html +=
+        '<div class="zone-school-website"><i class="bi bi-globe"></i><a href="' +
+        safeText(school.website) +
+        '" target="_blank" rel="noopener noreferrer">学校官网</a></div>';
+    }
+    html += "</div>";
 
     html += '<div class="result-section-title">关联政策</div>';
     if (relatedPolicies.length === 0) {
@@ -156,40 +194,52 @@ window.RenderService = (function () {
       relatedPolicies.forEach(function (p) {
         var hasValidUrl = p.url && p.url !== "#";
         if (hasValidUrl) {
-          html += '<li><a href="' + p.url + '" target="_blank" rel="noopener noreferrer" class="policy-link-text">' + (p.title || "—") + '</a></li>';
+          html +=
+            '<li><a href="' +
+            safeText(p.url) +
+            '" target="_blank" rel="noopener noreferrer" class="policy-link-text">' +
+            safeText(p.title) +
+            "</a></li>";
         } else {
-          html += "<li>" + (p.title || "—") + "</li>";
+          html += "<li>" + safeText(p.title) + "</li>";
         }
       });
-      html += '</ul>';
+      html += "</ul>";
+    }
+
+    html += '<div class="result-section-title">历年调整记录</div>';
+    var history = ctx.history || [];
+    if (history.length === 0) {
+      html += '<div class="text-muted small">暂无调整记录</div>';
+    } else {
+      html += '<div class="zone-history-timeline">';
+      history.forEach(function (h) {
+        html += '<div class="zone-history-item">';
+        html += '<div class="zone-history-year">' + safeText(h.year) + "</div>";
+        html +=
+          '<span class="zone-history-change">' +
+          safeText(h.changeType || h.change) +
+          "</span>";
+        html +=
+          '<div class="zone-history-title">' + safeText(h.title) + "</div>";
+        if (h.description) {
+          html +=
+            '<div class="zone-history-desc">' +
+            safeText(h.description) +
+            "</div>";
+        }
+        if (h.reason) {
+          html +=
+            '<div class="zone-history-reason">原因: ' +
+            safeText(h.reason) +
+            "</div>";
+        }
+        html += "</div>";
+      });
+      html += "</div>";
     }
 
     panel.innerHTML = html;
-  }
-
-  // 学校信息块(防御性:school 可能为 undefined)
-  /**
-   * 渲染学校信息块
-   * @param {Object} school - 学校对象
-   * @returns {string} 学校信息的HTML字符串
-   */
-  function renderSchoolBlock(school) {
-    if (!school) {
-      return '<div class="result-school-block"><div class="text-muted small">暂无关联数据</div></div>';
-    }
-    var html = '<div class="result-school-block">';
-    html +=
-      '<div class="result-school-name">' + (school.name || "—") + "</div>";
-    html +=
-      '<div class="result-school-detail"><i class="bi bi-geo-alt"></i>' +
-      (school.address || "—") +
-      "</div>";
-    html +=
-      '<div class="result-school-detail"><i class="bi bi-telephone"></i>' +
-      (school.phone || "—") +
-      "</div>";
-    html += "</div>";
-    return html;
   }
 
   // ========== 政策筛选器(分类 + 年份) ==========
@@ -471,7 +521,7 @@ window.RenderService = (function () {
       "<ul>" +
       "<li>当前项目为<strong>阶段性本地前端原型</strong>。</li>" +
       "<li>系统不包含后端、数据库、登录注册、真实在线咨询功能。</li>" +
-      "<li>地图底图使用 OpenStreetMap 在线瓦片。</li>" +
+      "<li>地图底图使用天地图在线瓦片(矢量底图 + 矢量注记)。</li>" +
       "<li>业务数据来自本地示例 JSON / GeoJSON 文件。</li>" +
       "<li>学区边界为示例或简化示意数据,<strong>不代表官方学区划分</strong>。</li>" +
       "<li>示例数据仅用于展示技术路线,<strong>不代表真实招生政策</strong>。</li>" +
