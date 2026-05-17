@@ -117,5 +117,19 @@
         }
       });
     }
+
+    // 学区等级筛选复选框
+    var checks = document.querySelectorAll(".zone-stage-check");
+    checks.forEach(function (cb) {
+      cb.addEventListener("change", function () {
+        var stages = [];
+        checks.forEach(function (c) {
+          if (c.checked) stages.push(c.value);
+        });
+        if (window.MapService && typeof window.MapService.filterByStage === "function") {
+          window.MapService.filterByStage(stages);
+        }
+      });
+    });
   }
 })();

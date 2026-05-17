@@ -541,8 +541,32 @@ body {
   font-size: 0.9rem;
 }
 
-.map-layer-placeholder .btn[disabled] {
-  opacity: 0.65;
+.zone-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.zone-filter-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  margin-right: 0.25rem;
+}
+
+.zone-filter-group .form-check-inline {
+  margin-right: 0.5rem;
+}
+
+.zone-filter-group .form-check-label {
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.zone-filter-group .form-check-input:checked + .form-check-label {
+  font-weight: 600;
+  color: var(--primary-color);
 }
 
 .zone-history-timeline {

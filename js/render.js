@@ -136,10 +136,13 @@ window.RenderService = (function () {
       return policyIds.indexOf(p.policyId) !== -1;
     });
 
+    var displayName = props.zoneName || "";
+    displayName = displayName.replace(/学区$/, "");
+
     var html = "";
     html +=
       '<div class="result-zone-name"><i class="bi bi-bookmark-fill text-warning"></i> ' +
-      safeText(props.zoneName) +
+      safeText(displayName) +
       "</div>";
     html +=
       '<div class="text-muted small mb-2">学区年份:' +

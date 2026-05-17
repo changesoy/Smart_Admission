@@ -111,26 +111,31 @@
                 </div>
 
                 <div
-                  class="btn-group map-layer-placeholder"
+                  class="zone-filter-group"
                   role="group"
-                  aria-label="地图图层切换占位"
+                  aria-label="学区等级筛选"
                 >
-                  <button
-                    type="button"
-                    id="layerVectorBtn"
-                    class="btn btn-outline-primary btn-sm"
-                    disabled
-                  >
-                    矢量底图
-                  </button>
-                  <button
-                    type="button"
-                    id="layerImageBtn"
-                    class="btn btn-outline-secondary btn-sm"
-                    disabled
-                  >
-                    影像底图
-                  </button>
+                  <label class="zone-filter-label">学区显示：</label>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input zone-stage-check"
+                      type="checkbox"
+                      id="showMiddleZone"
+                      value="初中"
+                      checked
+                    />
+                    <label class="form-check-label" for="showMiddleZone">初中</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input zone-stage-check"
+                      type="checkbox"
+                      id="showPrimaryZone"
+                      value="小学"
+                      checked
+                    />
+                    <label class="form-check-label" for="showPrimaryZone">小学</label>
+                  </div>
                 </div>
               </div>
 

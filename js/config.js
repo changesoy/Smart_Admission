@@ -38,23 +38,45 @@ window.AppConfig = {
   },
 
   zoneStyle: {
-    default: {
-      color: "#1E3A5F",
-      weight: 2,
-      fillColor: "#3388ff",
-      fillOpacity: 0.2,
+    middle: {
+      default: {
+        color: "#1E3A5F",
+        weight: 2,
+        fillColor: "#3388ff",
+        fillOpacity: 0.2,
+      },
+      hover: {
+        color: "#1E3A5F",
+        weight: 2,
+        fillColor: "#3388ff",
+        fillOpacity: 0.35,
+      },
+      selected: {
+        color: "#F0A04B",
+        weight: 3,
+        fillColor: "#F0A04B",
+        fillOpacity: 0.45,
+      },
     },
-    hover: {
-      color: "#1E3A5F",
-      weight: 2,
-      fillColor: "#3388ff",
-      fillOpacity: 0.35,
-    },
-    selected: {
-      color: "#F0A04B",
-      weight: 3,
-      fillColor: "#F0A04B",
-      fillOpacity: 0.45,
+    primary: {
+      default: {
+        color: "#1B7A43",
+        weight: 2,
+        fillColor: "#2ECC71",
+        fillOpacity: 0.2,
+      },
+      hover: {
+        color: "#1B7A43",
+        weight: 2,
+        fillColor: "#2ECC71",
+        fillOpacity: 0.35,
+      },
+      selected: {
+        color: "#F0A04B",
+        weight: 3,
+        fillColor: "#F0A04B",
+        fillOpacity: 0.45,
+      },
     },
   },
 
