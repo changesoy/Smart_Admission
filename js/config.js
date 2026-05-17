@@ -32,51 +32,30 @@ window.AppConfig = {
     policies: "./data/policies.json",
     materials: "./data/materials.json",
     faq: "./data/faq.json",
+    contacts: "./data/contacts.json",
     addressPoints: "./data/address_points.json",
     keywordsIndex: "./data/keywords_index.json",
     zonesHistory: "./data/zones_history.json",
   },
 
   zoneStyle: {
-    middle: {
-      default: {
-        color: "#1E3A5F",
-        weight: 2,
-        fillColor: "#3388ff",
-        fillOpacity: 0.2,
-      },
-      hover: {
-        color: "#1E3A5F",
-        weight: 2,
-        fillColor: "#3388ff",
-        fillOpacity: 0.35,
-      },
-      selected: {
-        color: "#F0A04B",
-        weight: 3,
-        fillColor: "#F0A04B",
-        fillOpacity: 0.45,
-      },
+    default: {
+      color: "#1E3A5F",
+      weight: 2,
+      fillColor: "#3388ff",
+      fillOpacity: 0.2,
     },
-    primary: {
-      default: {
-        color: "#1B7A43",
-        weight: 2,
-        fillColor: "#2ECC71",
-        fillOpacity: 0.2,
-      },
-      hover: {
-        color: "#1B7A43",
-        weight: 2,
-        fillColor: "#2ECC71",
-        fillOpacity: 0.35,
-      },
-      selected: {
-        color: "#F0A04B",
-        weight: 3,
-        fillColor: "#F0A04B",
-        fillOpacity: 0.45,
-      },
+    hover: {
+      color: "#1E3A5F",
+      weight: 2,
+      fillColor: "#3388ff",
+      fillOpacity: 0.35,
+    },
+    selected: {
+      color: "#F0A04B",
+      weight: 3,
+      fillColor: "#F0A04B",
+      fillOpacity: 0.45,
     },
   },
 

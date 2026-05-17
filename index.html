@@ -29,35 +29,25 @@
       <div class="container-fluid">
         <span class="navbar-brand">
           <i class="bi bi-buildings"></i>
-          智慧入学·学区治理一站式可视化门户
+          泰安市泰山区智慧入学平台
         </span>
-        <span class="badge bg-warning text-dark badge-prototype"
-          >阶段性原型</span
-        >
+        
       </div>
     </nav>
 
     <main class="container-fluid py-4">
       <!-- 2. 标题区 -->
       <section class="title-section mb-3">
-        <h1 class="page-title">智慧入学·学区治理一站式可视化门户</h1>
+        <h1 class="page-title">泰安市泰山区智慧入学平台</h1>
         <p class="page-subtitle">
-          基于学区边界、招生政策与入学材料的本地可视化查询原型
+          一站式义务教育入学信息查询服务
         </p>
         <p class="page-description">
-          整合学区划分、招生政策、入学材料与常见问题,面向家长提供一站式可视化查询体验,验证"前端
-          GIS + 本地 JSON / GeoJSON"的轻量化政务网站技术路线。
+          为泰山区中小学生与家长提供学区查询、学校信息、招生政策、入学材料清单等服务，助力顺利完成入学报名。
         </p>
       </section>
 
-      <!-- 3. 阶段性原型说明 Alert -->
-      <div class="alert alert-warning d-flex align-items-start" role="alert">
-        <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
-        <div>
-          <strong>当前为阶段性本地原型。</strong
-          >学区边界与业务数据仅用于展示技术路线,不代表官方学区划分或真实招生政策。实际入学政策以教育主管部门官方发布为准。
-        </div>
-      </div>
+      
 
       <!-- Loading 状态 -->
       <div id="loadingState" class="text-center py-5">
@@ -83,75 +73,7 @@
           <div class="row g-3" id="statsRow"></div>
         </section>
 
-        <!-- 5. 搜索 + 图层切换 -->
-        <section id="section-search" class="mb-3">
-          <div class="card section-card">
-            <div class="card-body py-2">
-              <div
-                class="d-flex flex-column flex-lg-row gap-2 align-items-stretch align-items-lg-center"
-              >
-                <div class="input-group flex-grow-1">
-                  <span class="input-group-text bg-white border-end-0">
-                    <i class="bi bi-search"></i>
-                  </span>
-                  <input
-                    type="text"
-                    id="searchInput"
-                    class="form-control border-start-0"
-                    placeholder="输入学校、小区、道路或完整地址查询学区"
-                  />
-                  <button
-                    id="searchClearBtn"
-                    class="btn btn-outline-secondary"
-                    style="display: none"
-                    type="button"
-                  >
-                    <i class="bi bi-x-lg"></i>
-                  </button>
-                </div>
-
-                <div
-                  class="zone-filter-group"
-                  role="group"
-                  aria-label="学区等级筛选"
-                >
-                  <label class="zone-filter-label">学区显示：</label>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input zone-stage-check"
-                      type="checkbox"
-                      id="showMiddleZone"
-                      value="初中"
-                      checked
-                    />
-                    <label class="form-check-label" for="showMiddleZone">初中</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input zone-stage-check"
-                      type="checkbox"
-                      id="showPrimaryZone"
-                      value="小学"
-                      checked
-                    />
-                    <label class="form-check-label" for="showPrimaryZone">小学</label>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                id="searchSuggestions"
-                class="search-suggestions"
-                style="display: none"
-              ></div>
-              <div class="form-text mt-1">
-                当前先支持本地地址点和关键词匹配，在线地理编码后续接入。
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- 6. 地图 + 查询结果面板 -->
+        <!-- 5. 地图 + 查询结果面板 -->
         <section class="map-section mb-4">
           <div class="row g-3">
             <div class="col-lg-8">
@@ -194,7 +116,16 @@
             <div class="card-header section-header">
               <i class="bi bi-list-check"></i>入学材料清单
             </div>
-            <div class="card-body" id="materialContainer"></div>
+            <div class="card-body">
+              <div id="material-tabs" class="material-tabs"></div>
+              <div class="mt-3">
+                <h5 id="material-group-title" class="material-group-title"></h5>
+                <p id="material-group-desc" class="material-group-desc"></p>
+                <span id="material-stage" class="material-stage badge bg-info text-white"></span>
+              </div>
+              <div id="material-progress" class="material-progress mt-3"></div>
+              <div id="material-list" class="material-list mt-3"></div>
+            </div>
           </div>
         </section>
 
@@ -212,22 +143,65 @@
                   ></span>
                   <input
                     type="text"
-                    id="faqSearch"
+                    id="faq-search"
                     class="form-control"
                     placeholder="输入关键词搜索问题或答案"
                   />
                 </div>
               </div>
-              <div id="faqList"></div>
+              <div id="faq-categories" class="faq-categories mb-3"></div>
+              <div id="faq-list" class="faq-list"></div>
             </div>
           </div>
         </section>
 
-        <!-- 9. 项目边界说明 -->
+        <!-- 9. 留言建议 -->
+        <section id="section-interaction" class="mb-4">
+          <div class="card section-card">
+            <div class="card-header section-header">
+              <i class="bi bi-chat-square-dots-fill"></i>留言建议
+            </div>
+            <div class="card-body">
+
+              <div class="row g-3">
+                <!-- 留言表单 -->
+                <div class="col-lg-12">
+                  <h6 class="contact-section-title"><i class="bi bi-pencil-square"></i> 在线留言</h6>
+                  <div class="contact-message-form">
+                    <div class="mb-2">
+                      <input type="text" id="msgName" class="form-control form-control-sm" placeholder="您的称呼(可选,匿名留言写'匿名')">
+                    </div>
+                    <div class="mb-2">
+                      <select id="msgCategory" class="form-select form-select-sm">
+                        <option value="入学咨询">入学咨询</option>
+                        <option value="材料问题">材料问题</option>
+                        <option value="政策疑问">政策疑问</option>
+                        <option value="投诉建议">投诉建议</option>
+                      </select>
+                    </div>
+                    <div class="mb-2">
+                      <textarea id="msgContent" class="form-control form-control-sm" rows="3"
+                                placeholder="请描述您的问题或建议" maxlength="200"></textarea>
+                      <div class="contact-message-counter small text-muted text-end">0/200</div>
+                    </div>
+                    <button id="msgSubmitBtn" class="btn btn-primary btn-sm w-100">
+                      <i class="bi bi-send"></i> 提交留言
+                    </button>
+                  </div>
+
+                  <h6 class="contact-section-title mt-3"><i class="bi bi-card-list"></i> 留言列表</h6>
+                  <div id="messageList" class="contact-message-list"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. 网站说明 -->
         <section class="boundary-section mb-4">
           <div class="card section-card">
             <div class="card-header section-header">
-              <i class="bi bi-shield-check"></i>项目边界说明
+              <i class="bi bi-info-circle"></i>网站说明
             </div>
             <div class="card-body" id="boundaryNotice"></div>
           </div>
@@ -238,8 +212,7 @@
     <!-- 10. 页脚 -->
     <footer class="page-footer text-center py-3">
       <small class="text-muted">
-        智慧入学·学区治理一站式可视化门户 · 阶段性原型 · 地图底图 ©
-        OpenStreetMap contributors · 仅供学习与展示
+        泰安市泰山区智慧入学平台 · 地图底图 © OpenStreetMap contributors
       </small>
     </footer>
 
@@ -251,7 +224,9 @@
     <script src="js/dataService.js"></script>
     <script src="js/render.js"></script>
     <script src="js/mapService.js"></script>
-    <script src="js/searchService.js"></script>
+    <script src="js/materialService.js"></script>
+    <script src="js/faqService.js"></script>
+    <script src="js/interactionService.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

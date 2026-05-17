@@ -20,6 +20,7 @@ window.DataService = (function () {
       loadFile(paths.policies),
       loadFile(paths.materials),
       loadFile(paths.faq),
+      loadFile(paths.contacts),
       loadFile(paths.addressPoints),
       loadFile(paths.keywordsIndex),
       loadFile(paths.zonesHistory),
@@ -30,9 +31,10 @@ window.DataService = (function () {
         policies: results[2],
         materials: results[3],
         faq: results[4],
-        addressPoints: results[5],
-        keywordsIndex: results[6],
-        zonesHistory: results[7],
+        contacts: results[5],
+        addressPoints: results[6],
+        keywordsIndex: results[7],
+        zonesHistory: results[8],
       };
     });
   }
