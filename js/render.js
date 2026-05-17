@@ -25,13 +25,13 @@ window.RenderService = (function () {
     var stats = [
       {
         icon: "bi-geo-alt-fill",
-        label: "示例学区",
+        label: "学区",
         number:
           data.zones && data.zones.features ? data.zones.features.length : 0,
       },
       {
         icon: "bi-building",
-        label: "示例学校",
+        label: "学校",
         number: (data.schools || []).length,
       },
       {
@@ -106,16 +106,6 @@ window.RenderService = (function () {
    * @param {Array} ctx.schools - 学校数据数组
    * @param {Array} ctx.policies - 政策数据数组
    */
-  function safeText(value) {
-    if (value === undefined || value === null || value === "") return "—";
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
-  }
-
   function renderResult(ctx) {
     var panel = document.getElementById("resultPanel");
     if (!panel) return;
@@ -127,8 +117,11 @@ window.RenderService = (function () {
     }
     var props = feature.properties;
 
-    var school = (ctx.schools || []).find(function (s) {
-      return s.schoolId === props.schoolId;
+    var primary = (ctx.schools || []).find(function (s) {
+      return s.schoolId === props.primarySchoolId;
+    });
+    var middle = (ctx.schools || []).find(function (s) {
+      return s.schoolId === props.middleSchoolId;
     });
 
     var policyIds = props.policyIds || [];
@@ -136,55 +129,24 @@ window.RenderService = (function () {
       return policyIds.indexOf(p.policyId) !== -1;
     });
 
-    var displayName = props.zoneName || "";
-    displayName = displayName.replace(/学区$/, "");
-
     var html = "";
     html +=
       '<div class="result-zone-name"><i class="bi bi-bookmark-fill text-warning"></i> ' +
-      safeText(displayName) +
+      (props.zoneName || "—") +
       "</div>";
     html +=
       '<div class="text-muted small mb-2">学区年份:' +
-      safeText(props.year) +
+      (props.year || "—") +
       "</div>";
 
     html += '<div class="result-section-title">招生范围说明</div>';
-    html += '<div class="small">' + safeText(props.description) + "</div>";
+    html += '<div class="small">' + (props.description || "—") + "</div>";
 
-    html += '<div class="result-section-title">对应学校</div>';
-    html += '<div class="zone-school-card">';
-    html +=
-      '<div class="zone-school-name">' +
-      safeText(school ? school.name : "未找到关联学校") +
-      "</div>";
-    html +=
-      '<span class="zone-school-stage">' + safeText(props.stage) + "</span>";
-    html += '<div class="zone-meta-grid">';
-    html +=
-      "<div><span>学校地址</span><strong>" +
-      safeText(school ? school.address : "—") +
-      "</strong></div>";
-    html +=
-      "<div><span>联系电话</span><strong>" +
-      safeText(school ? school.phone : "—") +
-      "</strong></div>";
-    html +=
-      "<div><span>所属区县</span><strong>" +
-      safeText(school ? school.district : "—") +
-      "</strong></div>";
-    html +=
-      "<div><span>学校类型</span><strong>" +
-      safeText(school ? school.type : "—") +
-      "</strong></div>";
-    html += "</div>";
-    if (school && school.website) {
-      html +=
-        '<div class="zone-school-website"><i class="bi bi-globe"></i><a href="' +
-        safeText(school.website) +
-        '" target="_blank" rel="noopener noreferrer">学校官网</a></div>';
-    }
-    html += "</div>";
+    html += '<div class="result-section-title">对口小学</div>';
+    html += renderSchoolBlock(primary);
+
+    html += '<div class="result-section-title">对口初中</div>';
+    html += renderSchoolBlock(middle);
 
     html += '<div class="result-section-title">关联政策</div>';
     if (relatedPolicies.length === 0) {
@@ -194,52 +156,40 @@ window.RenderService = (function () {
       relatedPolicies.forEach(function (p) {
         var hasValidUrl = p.url && p.url !== "#";
         if (hasValidUrl) {
-          html +=
-            '<li><a href="' +
-            safeText(p.url) +
-            '" target="_blank" rel="noopener noreferrer" class="policy-link-text">' +
-            safeText(p.title) +
-            "</a></li>";
+          html += '<li><a href="' + p.url + '" target="_blank" rel="noopener noreferrer" class="policy-link-text">' + (p.title || "—") + '</a></li>';
         } else {
-          html += "<li>" + safeText(p.title) + "</li>";
+          html += "<li>" + (p.title || "—") + "</li>";
         }
       });
-      html += "</ul>";
-    }
-
-    html += '<div class="result-section-title">历年调整记录</div>';
-    var history = ctx.history || [];
-    if (history.length === 0) {
-      html += '<div class="text-muted small">暂无调整记录</div>';
-    } else {
-      html += '<div class="zone-history-timeline">';
-      history.forEach(function (h) {
-        html += '<div class="zone-history-item">';
-        html += '<div class="zone-history-year">' + safeText(h.year) + "</div>";
-        html +=
-          '<span class="zone-history-change">' +
-          safeText(h.changeType || h.change) +
-          "</span>";
-        html +=
-          '<div class="zone-history-title">' + safeText(h.title) + "</div>";
-        if (h.description) {
-          html +=
-            '<div class="zone-history-desc">' +
-            safeText(h.description) +
-            "</div>";
-        }
-        if (h.reason) {
-          html +=
-            '<div class="zone-history-reason">原因: ' +
-            safeText(h.reason) +
-            "</div>";
-        }
-        html += "</div>";
-      });
-      html += "</div>";
+      html += '</ul>';
     }
 
     panel.innerHTML = html;
+  }
+
+  // 学校信息块(防御性:school 可能为 undefined)
+  /**
+   * 渲染学校信息块
+   * @param {Object} school - 学校对象
+   * @returns {string} 学校信息的HTML字符串
+   */
+  function renderSchoolBlock(school) {
+    if (!school) {
+      return '<div class="result-school-block"><div class="text-muted small">暂无关联数据</div></div>';
+    }
+    var html = '<div class="result-school-block">';
+    html +=
+      '<div class="result-school-name">' + (school.name || "—") + "</div>";
+    html +=
+      '<div class="result-school-detail"><i class="bi bi-geo-alt"></i>' +
+      (school.address || "—") +
+      "</div>";
+    html +=
+      '<div class="result-school-detail"><i class="bi bi-telephone"></i>' +
+      (school.phone || "—") +
+      "</div>";
+    html += "</div>";
+    return html;
   }
 
   // ========== 政策筛选器(分类 + 年份) ==========
@@ -509,9 +459,9 @@ window.RenderService = (function () {
     }
   }
 
-  // ========== 项目边界说明 ==========
+  // ========== 网站说明 ==========
   /**
-   * 设置项目边界说明
+   * 设置网站说明
    */
   function setBoundaryNotice() {
     var container = document.getElementById("boundaryNotice");
@@ -519,14 +469,13 @@ window.RenderService = (function () {
     container.innerHTML =
       '<div class="boundary-notice">' +
       "<ul>" +
-      "<li>当前项目为<strong>阶段性本地前端原型</strong>。</li>" +
-      "<li>系统不包含后端、数据库、登录注册、真实在线咨询功能。</li>" +
-      "<li>地图底图使用天地图在线瓦片(矢量底图 + 矢量注记)。</li>" +
-      "<li>业务数据来自本地示例 JSON / GeoJSON 文件。</li>" +
-      "<li>学区边界为示例或简化示意数据,<strong>不代表官方学区划分</strong>。</li>" +
-      "<li>示例数据仅用于展示技术路线,<strong>不代表真实招生政策</strong>。</li>" +
-      '<li>学校名采用"泰山区示范第一小学"等明显示例化命名;电话统一为 0538-XXXXXXX 占位格式。</li>' +
-      "<li>实际入学政策以教育主管部门官方发布为准。</li>" +
+      "<li>本网站为泰安市泰山区义务教育入学信息公示平台，旨在为家长提供便捷的入学信息查询服务。</li>" +
+      "<li>网站提供学区查询、学校信息、招生政策、入学材料清单等服务。</li>" +
+      "<li>学区划分信息根据泰山区教育和体育局发布的招生政策编制。</li>" +
+      "<li>入学材料清单根据不同学生类型（本地户籍、随迁子女、集体户等）分类整理。</li>" +
+      "<li>常见问题解答涵盖入学过程中的各类常见疑问，帮助家长顺利完成报名。</li>" +
+      "<li>留言建议功能为家长提供咨询反馈渠道，您的建议将有助于我们改进服务。</li>" +
+      "<li>最终入学政策以教育主管部门官方发布为准。</li>" +
       "</ul>" +
       "</div>";
   }

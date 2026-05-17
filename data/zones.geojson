@@ -4,6 +4,136 @@
     {
       "type": "Feature",
       "properties": {
+        "zoneId": "zone_001",
+        "zoneName": "泰山区示范第一小学学区",
+        "primarySchoolId": "school_p_001",
+        "middleSchoolId": "school_m_001",
+        "description": "东至示范路,西至原型河,南至阶段街,北至示意大街。覆盖示范路以西、原型河以东的核心居住片区,临近商业中心,通勤便利。",
+        "year": 2025,
+        "policyIds": ["policy_2025_001", "policy_2025_002"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [117.105, 36.205],
+            [117.122, 36.205],
+            [117.124, 36.215],
+            [117.115, 36.22],
+            [117.103, 36.216],
+            [117.105, 36.205]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zoneId": "zone_002",
+        "zoneName": "泰山区原型实验小学学区",
+        "primarySchoolId": "school_p_002",
+        "middleSchoolId": "school_m_001",
+        "description": "东至模型路,西至示范路,南至阶段街,北至示意大街。属于老城连片片区,公共服务设施成熟,以多层住宅为主。",
+        "year": 2025,
+        "policyIds": ["policy_2025_001", "policy_2025_003"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [117.124, 36.205],
+            [117.14, 36.205],
+            [117.142, 36.218],
+            [117.13, 36.22],
+            [117.124, 36.215],
+            [117.124, 36.205]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zoneId": "zone_003",
+        "zoneName": "泰山区阶段路第三小学学区",
+        "primarySchoolId": "school_p_003",
+        "middleSchoolId": "school_m_002",
+        "description": "东至示意大街,西至模型路,南至阶段街,北至样例路。涵盖东部新建居住片区,有较多新建商品房小区。",
+        "year": 2025,
+        "policyIds": ["policy_2025_001", "policy_2025_004"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [117.142, 36.205],
+            [117.158, 36.205],
+            [117.158, 36.215],
+            [117.15, 36.22],
+            [117.142, 36.218],
+            [117.142, 36.205]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zoneId": "zone_004",
+        "zoneName": "泰山区原型第四小学学区",
+        "primarySchoolId": "school_p_004",
+        "middleSchoolId": "school_m_002",
+        "description": "东至模型路,西至原型河,南至样本街,北至阶段街。位于片区南侧,周边以居住功能为主,毗邻原型河带状公园。",
+        "year": 2025,
+        "policyIds": ["policy_2025_001", "policy_2025_005"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [117.108, 36.18],
+            [117.128, 36.18],
+            [117.128, 36.193],
+            [117.115, 36.197],
+            [117.106, 36.193],
+            [117.108, 36.18]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zoneId": "zone_005",
+        "zoneName": "泰山区示意第五小学学区",
+        "primarySchoolId": "school_p_005",
+        "middleSchoolId": "school_m_003",
+        "description": "东至示意大街,西至模型路,南至样本街,北至阶段街。片区东南侧,有较多人才公寓与企事业单位职工宿舍。",
+        "year": 2025,
+        "policyIds": ["policy_2025_001", "policy_2025_006"]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [117.13, 36.18],
+            [117.155, 36.18],
+            [117.155, 36.193],
+            [117.142, 36.197],
+            [117.13, 36.193],
+            [117.13, 36.18]
+          ]
+        ]
+      }
+    }
+  ]
+}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
         "zoneId": "zone_002",
         "zoneName": "泰安望岳中学学区",
         "stage": "初中",
