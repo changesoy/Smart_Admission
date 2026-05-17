@@ -24,7 +24,6 @@ window.DataService = (function () {
       loadFile(paths.materials),
       loadFile(paths.faq),
       loadFile(paths.policyDiff),
-      loadFile(paths.rumors),
       loadFile(paths.addressPoints),
       loadFile(paths.keywordsIndex),
       loadFile(paths.zonesHistory),
@@ -36,10 +35,9 @@ window.DataService = (function () {
         materials: results[3],
         faq: results[4],
         policyDiff: results[5],
-        rumors: results[6],
-        addressPoints: results[7],
-        keywordsIndex: results[8],
-        zonesHistory: results[9],
+        addressPoints: results[6],
+        keywordsIndex: results[7],
+        zonesHistory: results[8],
       };
     });
   }
