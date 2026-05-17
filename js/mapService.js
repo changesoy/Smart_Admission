@@ -16,17 +16,34 @@ window.MapService = (function () {
   var _onZoneSelected = null;
   var _onNoMatch = null;
 
-  // 加载 OpenStreetMap 底图
-  function loadOpenStreetMapBaseLayer(map) {
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  function getStageStyle(feature, state) {
+    var styles = window.AppConfig.zoneStyle;
+    var stage =
+      (feature && feature.properties && feature.properties.stage) || "middle";
+    var stageStyles = styles[stage] || styles.middle;
+    return stageStyles[state] || stageStyles.default;
+  }
+
+  function loadBaseLayer(map) {
+    var config = window.AppConfig.tianditu;
+    var vecUrl = config.vecUrl.replace("{token}", config.token);
+    var cvaUrl = config.cvaUrl.replace("{token}", config.token);
+
+    L.tileLayer(vecUrl, {
+      attribution: config.attribution,
       maxZoom: 18,
       minZoom: 1,
+      subdomains: config.subdomains,
+    }).addTo(map);
+
+    L.tileLayer(cvaUrl, {
+      attribution: config.attribution,
+      maxZoom: 18,
+      minZoom: 1,
+      subdomains: config.subdomains,
     }).addTo(map);
   }
 
-  // 初始化地图
-  // params = { zones, schools, policies, onZoneSelected, onNoMatch }
   function initMap(params) {
     var container = document.getElementById("mapContainer");
     if (!container) {
@@ -41,16 +58,13 @@ window.MapService = (function () {
     _onZoneSelected = params && params.onZoneSelected;
     _onNoMatch = params && params.onNoMatch;
 
-    // 创建地图(中心使用 [lat, lng])
     _map = L.map(container).setView(
       window.AppConfig.mapCenter,
       window.AppConfig.mapZoom,
     );
 
-    // 加载 OpenStreetMap 底图
-    loadOpenStreetMapBaseLayer(_map);
+    loadBaseLayer(_map);
 
-    // 渲染学区
     if (_zonesData.features && _zonesData.features.length > 0) {
       _zonesData.features.forEach(function (feature) {
         addZoneLayer(feature);
@@ -70,12 +84,10 @@ window.MapService = (function () {
     });
   }
 
-  // 添加单个学区图层
   function addZoneLayer(feature) {
-    var styles = window.AppConfig.zoneStyle;
     var geoLayer = L.geoJSON(feature, {
       style: function () {
-        return styles.default;
+        return getStageStyle(feature, "default");
       },
     });
 
@@ -83,10 +95,10 @@ window.MapService = (function () {
       _zoneLayers.push({ layer: l, feature: feature });
 
       l.on("mouseover", function () {
-        if (l !== _selectedLayer) l.setStyle(styles.hover);
+        if (l !== _selectedLayer) l.setStyle(getStageStyle(feature, "hover"));
       });
       l.on("mouseout", function () {
-        if (l !== _selectedLayer) l.setStyle(styles.default);
+        if (l !== _selectedLayer) l.setStyle(getStageStyle(feature, "default"));
       });
 
       l.on("click", function (e) {
@@ -99,12 +111,15 @@ window.MapService = (function () {
   }
 
   function selectLayer(layer, feature) {
-    var styles = window.AppConfig.zoneStyle;
     if (_selectedLayer && _selectedLayer !== layer) {
-      _selectedLayer.setStyle(styles.default);
+      var prevEntry = _zoneLayers.find(function (e) {
+        return e.layer === _selectedLayer;
+      });
+      var prevFeature = prevEntry ? prevEntry.feature : null;
+      _selectedLayer.setStyle(getStageStyle(prevFeature, "default"));
     }
     _selectedLayer = layer;
-    layer.setStyle(styles.selected);
+    layer.setStyle(getStageStyle(feature, "selected"));
     if (typeof _onZoneSelected === "function") {
       _onZoneSelected(feature);
     }
@@ -146,14 +161,80 @@ window.MapService = (function () {
       selectLayer(matchedEntry.layer, matchedEntry.feature);
     } else {
       if (_selectedLayer) {
-        _selectedLayer.setStyle(window.AppConfig.zoneStyle.default);
+        var prevEntry = _zoneLayers.find(function (e) {
+          return e.layer === _selectedLayer;
+        });
+        var prevFeature = prevEntry ? prevEntry.feature : null;
+        _selectedLayer.setStyle(getStageStyle(prevFeature, "default"));
         _selectedLayer = null;
       }
       if (typeof _onNoMatch === "function") _onNoMatch();
     }
   }
 
+  function flyToZoneById(zoneId) {
+    var entry = _zoneLayers.find(function (e) {
+      return (
+        e.feature &&
+        e.feature.properties &&
+        e.feature.properties.zoneId === zoneId
+      );
+    });
+    if (entry) {
+      selectLayer(entry.layer, entry.feature);
+      try {
+        var bounds = entry.layer.getBounds();
+        if (bounds) {
+          _map.flyToBounds(bounds, { padding: [40, 40], maxZoom: 15 });
+        }
+      } catch (err) {
+        console.warn("flyToBounds 失败:", err);
+      }
+    }
+  }
+
+  function findZoneByPoint(lng, lat) {
+    var pt;
+    try {
+      pt = turf.point([lng, lat]);
+    } catch (err) {
+      return null;
+    }
+    for (var i = 0; i < _zoneLayers.length; i++) {
+      try {
+        if (turf.booleanPointInPolygon(pt, _zoneLayers[i].feature)) {
+          return _zoneLayers[i].feature.properties.zoneId || null;
+        }
+      } catch (err) {
+        // skip
+      }
+    }
+    return null;
+  }
+
+  function filterByStage(stages) {
+    if (!stages || stages.length === 0) {
+      _zoneLayers.forEach(function (entry) {
+        entry.layer.setStyle(getStageStyle(entry.feature, "default"));
+      });
+      return;
+    }
+    _zoneLayers.forEach(function (entry) {
+      var stage =
+        (entry.feature.properties && entry.feature.properties.stage) ||
+        "middle";
+      if (stages.indexOf(stage) !== -1) {
+        entry.layer.setStyle(getStageStyle(entry.feature, "default"));
+      } else {
+        entry.layer.setStyle({ fillOpacity: 0.05, opacity: 0.2 });
+      }
+    });
+  }
+
   return {
     initMap: initMap,
+    flyToZoneById: flyToZoneById,
+    findZoneByPoint: findZoneByPoint,
+    filterByStage: filterByStage,
   };
 })();
