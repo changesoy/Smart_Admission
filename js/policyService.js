@@ -63,8 +63,8 @@ window.PolicyService = (function () {
       var remainingCount = sortedList.length - _MAX_DISPLAY;
       html += '<div class="text-center mt-4">';
       html += '<button id="toggleExpandBtn" class="btn btn-outline-primary">';
-      html += _isExpanded 
-        ? '<i class="bi bi-chevron-up"></i> 收起（共' + sortedList.length + '个）' 
+      html += _isExpanded
+        ? '<i class="bi bi-chevron-up"></i> 收起（共' + sortedList.length + '个）'
         : '<i class="bi bi-chevron-down"></i> 展开更多（还有' + remainingCount + '个）';
       html += '</button>';
       html += '</div>';
@@ -96,7 +96,7 @@ window.PolicyService = (function () {
     if (!container) return;
 
     var categories = ['招生政策', '报名流程', '材料要求', '随迁子女', '政策提醒'];
-    var years = [2025, 2024, 2023, 2022];
+    var years = [2026, 2025, 2024, 2023, 2022];
 
     var html = '<div class="col-md-6">';
     html += '<label class="form-label small text-muted">按分类筛选</label>';
@@ -187,27 +187,52 @@ window.PolicyService = (function () {
     }
 
     var swap = (diff.yearA !== yA);
-    var html = '<div class="policy-diff-grid">';
-    html += '<div class="policy-diff-row policy-diff-head">';
-    html += '<div class="policy-diff-topic">对比项</div>';
-    html += '<div class="policy-diff-cell">' + yA + '年</div>';
-    html += '<div class="policy-diff-cell">' + yB + '年</div>';
-    html += '</div>';
+    var changes = diff.diffPoints.filter(function (p) { return p.isChange; });
+    var unchanged = diff.diffPoints.filter(function (p) { return !p.isChange; });
 
-    diff.diffPoints.forEach(function (p) {
-      var vA = swap ? p.valueB : p.valueA;
-      var vB = swap ? p.valueA : p.valueB;
-      var changeClass = p.isChange ? 'is-change' : '';
-      html += '<div class="policy-diff-row ' + changeClass + '">';
-      html += '<div class="policy-diff-topic">' + p.topic + '</div>';
-      html += '<div class="policy-diff-cell">' + vA + '</div>';
-      html += '<div class="policy-diff-cell">' + vB + '</div>';
+    var html = '';
+
+    if (changes.length > 0) {
+      html += '<div class="diff-summary-bar">';
+      html += '<span class="diff-summary-icon"><i class="bi bi-lightning-charge-fill"></i></span>';
+      html += '<span>共 <strong>' + changes.length + '</strong> 项政策变化</span>';
       html += '</div>';
-      if (p.isChange && p.changeNote) {
-        html += '<div class="policy-diff-note"><i class="bi bi-exclamation-circle"></i>' + p.changeNote + '</div>';
-      }
-    });
-    html += '</div>';
+      html += '<div class="diff-cards">';
+      changes.forEach(function (p) {
+        var vA = swap ? p.valueB : p.valueA;
+        var vB = swap ? p.valueA : p.valueB;
+        html += '<div class="diff-card">';
+        html += '<div class="diff-card-topic"><i class="bi bi-tag-fill"></i>' + p.topic + '</div>';
+        html += '<div class="diff-card-body">';
+        html += '<div class="diff-card-side diff-card-old">';
+        html += '<span class="diff-card-year">' + yA + '</span>';
+        html += '<span class="diff-card-val">' + vA + '</span>';
+        html += '</div>';
+        html += '<div class="diff-card-arrow"><i class="bi bi-arrow-right"></i></div>';
+        html += '<div class="diff-card-side diff-card-new">';
+        html += '<span class="diff-card-year">' + yB + '</span>';
+        html += '<span class="diff-card-val">' + vB + '</span>';
+        html += '</div>';
+        html += '</div>';
+        if (p.changeNote) {
+          html += '<div class="diff-card-note"><i class="bi bi-info-circle"></i>' + p.changeNote + '</div>';
+        }
+        html += '</div>';
+      });
+      html += '</div>';
+    }
+
+    if (unchanged.length > 0) {
+      html += '<details class="diff-unchanged-details">';
+      html += '<summary><i class="bi bi-check-circle"></i>未变化项（' + unchanged.length + '项）</summary>';
+      html += '<div class="diff-unchanged-list">';
+      unchanged.forEach(function (p) {
+        html += '<div class="diff-unchanged-item"><i class="bi bi-dash-circle"></i><span>' + p.topic + '</span><span class="text-muted">' + (swap ? p.valueB : p.valueA) + '</span></div>';
+      });
+      html += '</div>';
+      html += '</details>';
+    }
+
     resultEl.innerHTML = html;
   }
 
@@ -221,6 +246,6 @@ window.PolicyService = (function () {
     init: init,
     renderPolicies: renderPolicies,
     renderFilters: renderFilters,
-    applyFilters: applyFilters
+    applyFilters: applyFilters,
   };
 })();

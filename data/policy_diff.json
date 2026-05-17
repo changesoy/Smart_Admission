@@ -1,64 +1,288 @@
 [
   {
+    "diffId": "diff_2025_2026",
+    "yearA": 2025,
+    "yearB": 2026,
+    "diffPoints": [
+      {
+        "topic": "中考政策",
+        "valueA": "2025年高中段招生实施意见",
+        "valueB": "2026年初中学业水平考试实施意见",
+        "isChange": true,
+        "changeNote": "中考文件从\"高中段招生\"调整为\"学业水平考试\"，考试组织更规范"
+      },
+      {
+        "topic": "春秋假期",
+        "valueA": "无",
+        "valueB": "正式设立中小学春秋假",
+        "isChange": true,
+        "changeNote": "新增春假（4-5月）和秋假（10-11月），不得组织补课"
+      },
+      {
+        "topic": "艺体特长生",
+        "valueA": "按2025年高中段招生文件执行",
+        "valueB": "专门发布市直高中艺体特长生招生通知",
+        "isChange": true,
+        "changeNote": "独立文件规范特长生招生，专业测试+文化课按比例折算"
+      },
+      {
+        "topic": "入学年龄",
+        "valueA": "年满6周岁（2019年8月31日前出生）",
+        "valueB": "年满6周岁（2020年8月31日前出生）",
+        "isChange": false,
+        "changeNote": "年龄标准不变，年份随时间推移"
+      },
+      {
+        "topic": "报名方式",
+        "valueA": "一网通办+绿色通道+入学\"一件事\"",
+        "valueB": "继续通过\"爱山东\"APP网上报名",
+        "isChange": false,
+        "changeNote": "延续2025年数字化报名模式"
+      },
+      {
+        "topic": "教师资格认定",
+        "valueA": "2025年认定公告",
+        "valueB": "2026年第一批次认定公告（市级+区级）",
+        "isChange": true,
+        "changeNote": "市、区两级分别发布认定公告，流程更清晰"
+      }
+    ]
+  },
+  {
+    "diffId": "diff_2024_2026",
+    "yearA": 2024,
+    "yearB": 2026,
+    "diffPoints": [
+      {
+        "topic": "中考政策",
+        "valueA": "无专门中考文件",
+        "valueB": "发布初中学业水平考试实施意见",
+        "isChange": true,
+        "changeNote": "2026年专门规范中考工作"
+      },
+      {
+        "topic": "春秋假期",
+        "valueA": "无",
+        "valueB": "正式设立中小学春秋假",
+        "isChange": true,
+        "changeNote": "重大变化：新增春秋假期制度"
+      },
+      {
+        "topic": "艺体特长生",
+        "valueA": "无专门文件",
+        "valueB": "专门发布特长生招生通知",
+        "isChange": true,
+        "changeNote": "独立规范特长生招生考试"
+      },
+      {
+        "topic": "报名方式",
+        "valueA": "一网通办，爱山东APP",
+        "valueB": "继续\"爱山东\"APP网上报名",
+        "isChange": false,
+        "changeNote": "延续线上报名模式"
+      },
+      {
+        "topic": "学校管理规范",
+        "valueA": "发布管理基本规范（试行）",
+        "valueB": "继续执行",
+        "isChange": false,
+        "changeNote": "2024年出台的规范持续生效"
+      }
+    ]
+  },
+  {
+    "diffId": "diff_2023_2026",
+    "yearA": 2023,
+    "yearB": 2026,
+    "diffPoints": [
+      {
+        "topic": "中考政策",
+        "valueA": "无专门文件",
+        "valueB": "发布初中学业水平考试实施意见",
+        "isChange": true,
+        "changeNote": "2026年专门规范中考工作"
+      },
+      {
+        "topic": "春秋假期",
+        "valueA": "无",
+        "valueB": "正式设立中小学春秋假",
+        "isChange": true,
+        "changeNote": "重大变化：新增春秋假期制度"
+      },
+      {
+        "topic": "艺体特长生",
+        "valueA": "无专门文件",
+        "valueB": "专门发布特长生招生通知",
+        "isChange": true,
+        "changeNote": "独立规范特长生招生考试"
+      },
+      {
+        "topic": "报名方式",
+        "valueA": "全面网上报名，爱山东APP",
+        "valueB": "继续\"爱山东\"APP网上报名",
+        "isChange": false,
+        "changeNote": "延续线上报名模式"
+      },
+      {
+        "topic": "随迁子女入学",
+        "valueA": "积分制入学",
+        "valueB": "继续执行积分制",
+        "isChange": false,
+        "changeNote": "积分制政策延续"
+      },
+      {
+        "topic": "教师资格认定",
+        "valueA": "2023年认定公告",
+        "valueB": "2026年市、区两级分别发布",
+        "isChange": true,
+        "changeNote": "认定工作更规范，市区分级管理"
+      }
+    ]
+  },
+  {
+    "diffId": "diff_2022_2026",
+    "yearA": 2022,
+    "yearB": 2026,
+    "diffPoints": [
+      {
+        "topic": "报名方式",
+        "valueA": "网上试点+线下渠道",
+        "valueB": "\"爱山东\"APP网上报名",
+        "isChange": true,
+        "changeNote": "从混合模式到全面线上"
+      },
+      {
+        "topic": "随迁子女入学",
+        "valueA": "条件接收制",
+        "valueB": "积分制入学",
+        "isChange": true,
+        "changeNote": "从条件审核到量化评估"
+      },
+      {
+        "topic": "中考政策",
+        "valueA": "无专门文件",
+        "valueB": "发布初中学业水平考试实施意见",
+        "isChange": true,
+        "changeNote": "2026年专门规范中考"
+      },
+      {
+        "topic": "春秋假期",
+        "valueA": "无",
+        "valueB": "正式设立中小学春秋假",
+        "isChange": true,
+        "changeNote": "重大变化：新增春秋假期制度"
+      },
+      {
+        "topic": "艺体特长生",
+        "valueA": "无专门文件",
+        "valueB": "专门发布特长生招生通知",
+        "isChange": true,
+        "changeNote": "独立规范特长生招生"
+      },
+      {
+        "topic": "预防接种证明",
+        "valueA": "报名前置条件",
+        "valueB": "不再作为前置条件",
+        "isChange": true,
+        "changeNote": "减少报名门槛"
+      },
+      {
+        "topic": "材料精简",
+        "valueA": "多项纸质证明",
+        "valueB": "数据共享，部分群体零证明",
+        "isChange": true,
+        "changeNote": "从\"多项证明\"到\"零证明\""
+      }
+    ]
+  },
+  {
     "diffId": "diff_2024_2025",
     "yearA": 2024,
     "yearB": 2025,
     "diffPoints": [
       {
-        "topic": "招生年龄",
-        "valueA": "年满6周岁（2018年8月31日及以前出生）",
-        "valueB": "年满6周岁（2019年8月31日及以前出生）",
-        "isChange": false,
-        "changeNote": "均为满6周岁，仅年份随时间推移变化"
-      },
-      {
         "topic": "报名时间",
-        "valueA": "5月-6月（以当年通知为准）",
+        "valueA": "5月-6月（以通知为准）",
         "valueB": "5月15日至6月1日",
         "isChange": true,
-        "changeNote": "2025年明确了具体时间范围，报名周期提前并缩短"
+        "changeNote": "明确具体时间，周期缩短"
       },
       {
         "topic": "报名方式",
-        "valueA": "一网通办，爱山东APP报名",
-        "valueB": "一网通办，爱山东APP报名，开辟绿色通道",
+        "valueA": "一网通办，爱山东APP",
+        "valueB": "一网通办+绿色通道",
         "isChange": true,
-        "changeNote": "2025年新增对使用平台不便的家长开辟\"绿色通道\"，设置线下报名入学\"一站式\"站点"
+        "changeNote": "新增线下\"一站式\"绿色通道"
       },
       {
-        "topic": "延缓入学申请",
+        "topic": "入学一件事",
+        "valueA": "无",
+        "valueB": "多部门联审联办",
+        "isChange": true,
+        "changeNote": "整合居住证、房产、社保等，实现\"零跑腿\""
+      },
+      {
+        "topic": "延缓入学",
         "valueA": "按规定办理",
-        "valueB": "8月17日至8月18日通过APP提交申请，需提供医院证明",
+        "valueB": "8月17-18日APP申请+医院证明",
         "isChange": true,
-        "changeNote": "2025年明确了延缓入学申请的具体时间和材料要求"
+        "changeNote": "明确申请时间和材料"
       },
       {
-        "topic": "集体产权住宅认定",
+        "topic": "集体产权认定",
         "valueA": "街道、学校、村居共同认定",
-        "valueB": "街道（镇、乡）、招生学校及村居（单位）共同对产权和实际入住情况调查确认",
+        "valueB": "三方调查确认产权和入住",
         "isChange": true,
-        "changeNote": "2025年进一步明确了三方共同认定机制"
+        "changeNote": "认定机制更明确"
       },
       {
-        "topic": "房产年限要求",
-        "valueA": "小学每5年、初中每4年享受一次划片机会",
-        "valueB": "小学每5年、初中每4年享受一次划片机会（多胞胎/多胎除外）",
+        "topic": "房产年限",
+        "valueA": "小学5年/初中4年",
+        "valueB": "小学5年/初中4年（多胎除外）",
         "isChange": true,
-        "changeNote": "2025年新增多胎家庭优惠政策说明"
+        "changeNote": "新增多胎家庭优惠"
       },
       {
-        "topic": "优抚对象入学",
-        "valueA": "按规定落实教育优待政策",
-        "valueB": "专设优抚对象入学网上申请入口，优先协调办理高层次人才子女和现役军人子女入学",
+        "topic": "优抚对象",
+        "valueA": "按规定落实优待",
+        "valueB": "专设网上申请入口",
         "isChange": true,
-        "changeNote": "2025年新增具体优抚措施，开通专门申请渠道"
+        "changeNote": "开通人才、军人子女专门渠道"
       },
       {
-        "topic": "泰安市户籍免居住证",
+        "topic": "市内户籍免居住证",
         "valueA": "无明确说明",
-        "valueB": "泰安市岱岳区、高新区、景区户籍人员无需办理居住证",
+        "valueB": "岱岳区/高新区/景区免办",
         "isChange": true,
-        "changeNote": "2025年明确了泰安市其他区县户籍人员不需办理泰山区分局居住证"
+        "changeNote": "泰安市其他区县户籍免居住证"
+      },
+      {
+        "topic": "高中段招生",
+        "valueA": "无专门文件",
+        "valueB": "发布实施意见",
+        "isChange": true,
+        "changeNote": "明确指标生、特长生、录取批次"
+      },
+      {
+        "topic": "课后服务",
+        "valueA": "无专门文件",
+        "valueB": "发布明白纸",
+        "isChange": true,
+        "changeNote": "不早于17:30，困难家庭免费"
+      },
+      {
+        "topic": "民办收费",
+        "valueA": "无专门文件",
+        "valueB": "核定3所学校标准",
+        "isChange": true,
+        "changeNote": "实行政府指导价管理"
+      },
+      {
+        "topic": "材料精简",
+        "valueA": "大数据比对+补充证明",
+        "valueB": "本区户籍\"零证明提交\"",
+        "isChange": true,
+        "changeNote": "数据共享实现部分群体零证明"
       }
     ]
   },
@@ -68,39 +292,46 @@
     "yearB": 2024,
     "diffPoints": [
       {
-        "topic": "招生年龄",
-        "valueA": "年满6周岁（2017年8月31日前出生）",
-        "valueB": "年满6周岁（2018年8月31日及以前出生）",
-        "isChange": false,
-        "changeNote": "均为满6周岁，仅年份随时间推移变化"
-      },
-      {
         "topic": "居住证发证机关",
-        "valueA": "泰山区公安部门核发",
-        "valueB": "泰安市公安局泰山分局核发",
+        "valueA": "泰山区公安部门",
+        "valueB": "泰安市公安局泰山分局",
         "isChange": true,
-        "changeNote": "2024年明确为市级公安机关（泰山分局）发证"
+        "changeNote": "明确为市级机关发证"
       },
       {
-        "topic": "民办学校录取方式",
+        "topic": "民办录取方式",
         "valueA": "根据报名情况录取",
-        "valueB": "超出计划电脑随机派位，未超计划全员录取",
+        "valueB": "超计划电脑派位，未超全员录取",
         "isChange": true,
-        "changeNote": "2024年明确了民办学校具体的录取方式规则"
+        "changeNote": "明确民办录取规则"
       },
       {
         "topic": "多胞胎登记",
-        "valueA": "无明确说明",
-        "valueB": "多胞胎家庭子女报同一所民办学校需到泰安东岳中学南院小学部登记",
+        "valueA": "无说明",
+        "valueB": "需到指定地点登记",
         "isChange": true,
-        "changeNote": "2024年新增多胞胎家庭报名登记说明"
+        "changeNote": "新增多胞胎报名登记说明"
       },
       {
-        "topic": "材料审核",
-        "valueA": "大数据比对审核或入户考察",
-        "valueB": "继续实行大数据比对审核，部门联网无法确认的需提供证明材料",
-        "isChange": false,
-        "changeNote": "延续大数据比对审核机制"
+        "topic": "学校管理规范",
+        "valueA": "无专门文件",
+        "valueB": "发布管理基本规范（试行）",
+        "isChange": true,
+        "changeNote": "涵盖八大方面，严禁分快慢班"
+      },
+      {
+        "topic": "指标生分配",
+        "valueA": "无专门文件",
+        "valueB": "公布分配计划",
+        "isChange": true,
+        "changeNote": "优质高中名额按比例分配到初中"
+      },
+      {
+        "topic": "班额控制",
+        "valueA": "原则性要求",
+        "valueB": "小学≤45人，初中≤50人",
+        "isChange": true,
+        "changeNote": "明确班额上限标准"
       }
     ]
   },
@@ -110,39 +341,158 @@
     "yearB": 2023,
     "diffPoints": [
       {
-        "topic": "招生年龄",
-        "valueA": "年满6周岁（2016年8月31日以前出生）",
-        "valueB": "年满6周岁（2017年8月31日前出生）",
-        "isChange": false,
-        "changeNote": "均为满6周岁，仅年份随时间推移变化"
-      },
-      {
         "topic": "报名方式",
-        "valueA": "网上报名试点，保留线下渠道",
-        "valueB": "全面推行网上报名，通过爱山东APP办理",
+        "valueA": "网上试点+线下渠道",
+        "valueB": "全面网上报名，爱山东APP",
         "isChange": true,
-        "changeNote": "2023年起全面推行网上报名，逐步取消线下报名"
+        "changeNote": "逐步取消线下报名"
       },
       {
-        "topic": "随迁子女入学方式",
-        "valueA": "条件接收：居住证+务工证明+住所证明+社保",
-        "valueB": "积分制入学：居住年限+社保+纳税等综合积分",
+        "topic": "随迁子女入学",
+        "valueA": "条件接收制",
+        "valueB": "积分制入学",
         "isChange": true,
-        "changeNote": "2023年起随迁子女入学从条件接收转为积分制"
+        "changeNote": "从条件审核转为积分量化评估"
       },
       {
         "topic": "预防接种证明",
-        "valueA": "作为入学报名条件之一",
-        "valueB": "不再作为入学报名前置条件，可开学后提供",
+        "valueA": "报名条件之一",
+        "valueB": "不再作为前置条件",
         "isChange": true,
-        "changeNote": "2023年起取消预防接种证明作为报名条件"
+        "changeNote": "可开学后提供"
       },
       {
         "topic": "社保要求",
-        "valueA": "泰安市或泰山区连续缴纳一年以上",
-        "valueB": "明确以参保缴费情况为依据",
+        "valueA": "连续缴纳一年以上",
+        "valueB": "以参保缴费情况为依据",
         "isChange": true,
-        "changeNote": "2023年起强调社保缴纳作为重要审核依据"
+        "changeNote": "社保作为重要审核依据"
+      },
+      {
+        "topic": "公办民办招生",
+        "valueA": "同招原则",
+        "valueB": "同步招生+明确录取规则",
+        "isChange": true,
+        "changeNote": "细化操作流程"
+      },
+      {
+        "topic": "招生纪律",
+        "valueA": "一般性要求",
+        "valueB": "发布安全提示，警示诈骗",
+        "isChange": true,
+        "changeNote": "提醒警惕中介虚假承诺"
+      }
+    ]
+  },
+  {
+    "diffId": "diff_2022_2024",
+    "yearA": 2022,
+    "yearB": 2024,
+    "diffPoints": [
+      {
+        "topic": "报名方式",
+        "valueA": "网上试点+线下渠道",
+        "valueB": "全面一网通办，爱山东APP",
+        "isChange": true,
+        "changeNote": "从混合模式到全面线上"
+      },
+      {
+        "topic": "随迁子女入学",
+        "valueA": "条件接收制",
+        "valueB": "积分制入学",
+        "isChange": true,
+        "changeNote": "量化评估，按积分和学位统筹"
+      },
+      {
+        "topic": "居住证要求",
+        "valueA": "泰山区公安部门核发",
+        "valueB": "泰安市公安局泰山分局核发",
+        "isChange": true,
+        "changeNote": "发证机关升级为市级"
+      },
+      {
+        "topic": "民办录取",
+        "valueA": "根据报名情况录取",
+        "valueB": "超计划电脑派位",
+        "isChange": true,
+        "changeNote": "引入随机派位保障公平"
+      },
+      {
+        "topic": "学校管理",
+        "valueA": "无专门规范",
+        "valueB": "发布管理基本规范（试行）",
+        "isChange": true,
+        "changeNote": "八大方面规范办学行为"
+      },
+      {
+        "topic": "指标生分配",
+        "valueA": "无专门文件",
+        "valueB": "公布高中指标生分配计划",
+        "isChange": true,
+        "changeNote": "促进义务教育均衡发展"
+      },
+      {
+        "topic": "班额标准",
+        "valueA": "原则性控班额",
+        "valueB": "小学≤45人，初中≤50人",
+        "isChange": true,
+        "changeNote": "明确具体上限"
+      },
+      {
+        "topic": "预防接种证明",
+        "valueA": "报名前置条件",
+        "valueB": "不再作为前置条件",
+        "isChange": true,
+        "changeNote": "减少报名门槛"
+      }
+    ]
+  },
+  {
+    "diffId": "diff_2023_2025",
+    "yearA": 2023,
+    "yearB": 2025,
+    "diffPoints": [
+      {
+        "topic": "报名数字化",
+        "valueA": "全面网上报名，爱山东APP",
+        "valueB": "一网通办+入学\"一件事\"+绿色通道",
+        "isChange": true,
+        "changeNote": "多渠道整合+跨部门联办"
+      },
+      {
+        "topic": "随迁子女政策",
+        "valueA": "积分制入学",
+        "valueB": "积分制+市内户籍免居住证",
+        "isChange": true,
+        "changeNote": "区分户籍类别，部分免办居住证"
+      },
+      {
+        "topic": "材料要求",
+        "valueA": "多项证明材料",
+        "valueB": "本区户籍\"零证明提交\"",
+        "isChange": true,
+        "changeNote": "数据共享大幅精简材料"
+      },
+      {
+        "topic": "课后服务",
+        "valueA": "无专门政策",
+        "valueB": "发布课后服务明白纸",
+        "isChange": true,
+        "changeNote": "不早于17:30，困难家庭免费"
+      },
+      {
+        "topic": "高中段招生",
+        "valueA": "无专门市级文件",
+        "valueB": "发布招生录取实施意见",
+        "isChange": true,
+        "changeNote": "规范指标生、特长生、录取批次"
+      },
+      {
+        "topic": "民办学校管理",
+        "valueA": "一般性要求",
+        "valueB": "政府指导价+管理规范",
+        "isChange": true,
+        "changeNote": "收费和服务双重约束"
       }
     ]
   },
@@ -152,39 +502,46 @@
     "yearB": 2025,
     "diffPoints": [
       {
-        "topic": "报名方式演进",
-        "valueA": "网上报名试点+线下渠道并存",
-        "valueB": "全面一网通办+绿色通道",
+        "topic": "报名方式",
+        "valueA": "网上试点+线下渠道",
+        "valueB": "一网通办+绿色通道+入学\"一件事\"",
         "isChange": true,
-        "changeNote": "三年完成从混合模式到全面线上+特殊通道的转变"
+        "changeNote": "三年完成数字化全面升级"
       },
       {
         "topic": "随迁子女政策",
-        "valueA": "条件接收制：满足基本条件即可申请",
-        "valueB": "积分制：综合评分，择优录取",
+        "valueA": "条件接收制",
+        "valueB": "积分制+户籍分类+材料精简",
         "isChange": true,
-        "changeNote": "随迁子女入学从简单条件审核升级为积分量化评估"
-      },
-      {
-        "topic": "居住证要求",
-        "valueA": "居住证+务工证明+住所+社保缺一不可",
-        "valueB": "泰安市其他区县户籍免居住证，材料要求更精细化",
-        "isChange": true,
-        "changeNote": "政策更精细化，区分不同户籍类别"
-      },
-      {
-        "topic": "服务意识",
-        "valueA": "基本服务模式",
-        "valueB": "集中办公+绿色通道+专设优抚入口+帮办代办",
-        "isChange": true,
-        "changeNote": "2025年推出多项便民服务措施，体现服务型政府理念"
+        "changeNote": "从条件审核到量化评估+精细分类"
       },
       {
         "topic": "材料精简",
-        "valueA": "预防接种证作为报名条件",
-        "valueB": "本区户籍和登记房产居民子女\"零证明提交\"",
+        "valueA": "多项纸质证明",
+        "valueB": "本区户籍\"零证明提交\"",
         "isChange": true,
-        "changeNote": "通过数据共享实现材料精简，减少家长负担"
+        "changeNote": "从\"多项证明\"到\"零证明\""
+      },
+      {
+        "topic": "政策覆盖",
+        "valueA": "仅义务教育招生",
+        "valueB": "义务+高中+课后服务+民办收费",
+        "isChange": true,
+        "changeNote": "从单一招生扩展到教育全链条"
+      },
+      {
+        "topic": "监督机制",
+        "valueA": "一般性纪律要求",
+        "valueB": "十项严禁+举报电话+安全提示",
+        "isChange": true,
+        "changeNote": "多层次监督体系"
+      },
+      {
+        "topic": "便民服务",
+        "valueA": "基本服务模式",
+        "valueB": "绿色通道+优抚入口+帮办代办",
+        "isChange": true,
+        "changeNote": "多项便民措施"
       }
     ]
   }
