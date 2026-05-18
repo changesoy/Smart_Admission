@@ -25,6 +25,7 @@ window.AppConfig = {
     policies: "./data/policies.json",
     materials: "./data/materials.json",
     faq: "./data/faq.json",
+    contacts: "./data/contacts.json",
     policyDiff: "./data/policy_diff.json",
     addressPoints: "./data/address_points.json",
     keywordsIndex: "./data/keywords_index.json",

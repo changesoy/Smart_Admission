@@ -38,9 +38,12 @@
       policyDiff: data.policyDiff,
     });
 
-    window.RenderService.renderMaterials(data.materials);
-    window.RenderService.renderFaq(data.faq);
-    window.RenderService.bindFaqSearch();
+    window.MaterialService.init(data.materials);
+
+    window.FaqService.init(data.faq);
+
+    window.InteractionService.init(data);
+
     window.RenderService.setBoundaryNotice();
 
     window.MapService.initMap({
@@ -74,8 +77,6 @@
       window.SearchService.setOnZoneMatched(function (zoneId, item) {
         if (window.MapService && typeof window.MapService.flyToZoneById === "function") {
           window.MapService.flyToZoneById(zoneId);
-        } else {
-          console.warn("MapService.flyToZoneById 尚未实现，匹配到的 zoneId:", zoneId, item);
         }
       });
       window.SearchService.setOnPointResolved(function (lng, lat, item) {
@@ -83,11 +84,7 @@
           var zoneId = window.MapService.findZoneByPoint(lng, lat);
           if (zoneId && typeof window.MapService.flyToZoneById === "function") {
             window.MapService.flyToZoneById(zoneId);
-          } else {
-            console.warn("未通过坐标匹配到学区:", lng, lat, item);
           }
-        } else {
-          console.warn("MapService.findZoneByPoint 尚未实现，解析到的坐标:", lng, lat, item);
         }
       });
     }

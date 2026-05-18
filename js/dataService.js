@@ -2,7 +2,6 @@
 
 window.DataService = (function () {
   function loadFile(path) {
-    console.log("Loading:", path);
     if (!path) {
       return Promise.reject(new Error("Path is undefined"));
     }
@@ -16,13 +15,13 @@ window.DataService = (function () {
 
   function loadAllData() {
     var paths = window.AppConfig.dataPaths;
-    console.log("Data paths:", paths);
     return Promise.all([
       loadFile(paths.zones),
       loadFile(paths.schools),
       loadFile(paths.policies),
       loadFile(paths.materials),
       loadFile(paths.faq),
+      loadFile(paths.contacts),
       loadFile(paths.policyDiff),
       loadFile(paths.addressPoints),
       loadFile(paths.keywordsIndex),
@@ -34,10 +33,11 @@ window.DataService = (function () {
         policies: results[2],
         materials: results[3],
         faq: results[4],
-        policyDiff: results[5],
-        addressPoints: results[6],
-        keywordsIndex: results[7],
-        zonesHistory: results[8],
+        contacts: results[5],
+        policyDiff: results[6],
+        addressPoints: results[7],
+        keywordsIndex: results[8],
+        zonesHistory: results[9],
       };
     });
   }
