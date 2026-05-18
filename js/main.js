@@ -1,35 +1,34 @@
 /* main.js - 主入口(协调数据加载、渲染、地图初始化) */
 
-(function () {
-  document.addEventListener("DOMContentLoaded", function () {
+(async () => {
+  document.addEventListener("DOMContentLoaded", async () => {
     showLoading(true);
 
-    window.DataService.loadAllData()
-      .then(function (data) {
-        showLoading(false);
-        bootstrapPage(data);
-      })
-      .catch(function (err) {
-        console.error("数据加载失败:", err);
-        showLoading(false);
-        window.RenderService.renderError(
-          err && err.message ? err.message : "未知错误",
-        );
-      });
+    try {
+      const data = await window.DataService.loadAllData();
+      showLoading(false);
+      bootstrapPage(data);
+    } catch (err) {
+      console.error("数据加载失败:", err);
+      showLoading(false);
+      window.RenderService.renderError(
+        err && err.message ? err.message : "未知错误",
+      );
+    }
   });
 
-  function showLoading(visible) {
-    var loadEl = document.getElementById("loadingState");
-    var mainEl = document.getElementById("mainContent");
+  const showLoading = (visible) => {
+    const loadEl = document.getElementById("loadingState");
+    const mainEl = document.getElementById("mainContent");
     if (loadEl) loadEl.style.display = visible ? "block" : "none";
     if (mainEl) mainEl.style.display = visible ? "none" : "block";
     if (visible) {
-      var tip = document.getElementById("loadingTip");
+      const tip = document.getElementById("loadingTip");
       if (tip) tip.textContent = window.AppConfig.texts.loadingTip;
     }
-  }
+  };
 
-  function bootstrapPage(data) {
+  const bootstrapPage = (data) => {
     window.RenderService.renderStats(data);
     window.RenderService.renderDefaultResultTip();
 
@@ -50,11 +49,11 @@
       zones: data.zones,
       schools: data.schools,
       policies: data.policies,
-      onZoneSelected: function (feature) {
-        var zoneId = feature && feature.properties ? feature.properties.zoneId : "";
-        var historyEntry = (data.zonesHistory || []).find(function (h) {
-          return h.zoneId === zoneId;
-        });
+      onZoneSelected: (feature) => {
+        const zoneId = feature && feature.properties ? feature.properties.zoneId : "";
+        const historyEntry = (data.zonesHistory || []).find(
+          (h) => h.zoneId === zoneId,
+        );
         window.RenderService.renderResult({
           zoneFeature: feature,
           schools: data.schools,
@@ -62,26 +61,26 @@
           history: historyEntry ? historyEntry.history : [],
         });
         if (window.innerWidth < 992) {
-          var panel = document.getElementById("resultPanel");
+          const panel = document.getElementById("resultPanel");
           if (panel)
             panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }
       },
-      onNoMatch: function () {
+      onNoMatch: () => {
         window.RenderService.renderNoMatch();
       },
     });
 
     if (window.SearchService) {
       window.SearchService.init(data);
-      window.SearchService.setOnZoneMatched(function (zoneId, item) {
+      window.SearchService.setOnZoneMatched((zoneId, item) => {
         if (window.MapService && typeof window.MapService.flyToZoneById === "function") {
           window.MapService.flyToZoneById(zoneId);
         }
       });
-      window.SearchService.setOnPointResolved(function (lng, lat, item) {
+      window.SearchService.setOnPointResolved((lng, lat, item) => {
         if (window.MapService && typeof window.MapService.findZoneByPoint === "function") {
-          var zoneId = window.MapService.findZoneByPoint(lng, lat);
+          const zoneId = window.MapService.findZoneByPoint(lng, lat);
           if (zoneId && typeof window.MapService.flyToZoneById === "function") {
             window.MapService.flyToZoneById(zoneId);
           }
@@ -89,11 +88,11 @@
       });
     }
 
-    var checks = document.querySelectorAll(".zone-stage-check");
-    checks.forEach(function (cb) {
-      cb.addEventListener("change", function () {
-        var stages = [];
-        checks.forEach(function (c) {
+    const checks = document.querySelectorAll(".zone-stage-check");
+    checks.forEach((cb) => {
+      cb.addEventListener("change", () => {
+        const stages = [];
+        checks.forEach((c) => {
           if (c.checked) stages.push(c.value);
         });
         if (window.MapService && typeof window.MapService.filterByStage === "function") {
@@ -101,5 +100,5 @@
         }
       });
     });
-  }
+  };
 })();

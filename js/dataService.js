@@ -1,21 +1,31 @@
 /* dataService.js - 数据加载服务 */
 
-window.DataService = (function () {
-  function loadFile(path) {
+window.DataService = (() => {
+  const loadFile = async (path) => {
     if (!path) {
       return Promise.reject(new Error("Path is undefined"));
     }
-    return fetch(path).then(function (resp) {
-      if (!resp.ok) {
-        throw new Error("加载失败:" + path + "(HTTP " + resp.status + ")");
-      }
-      return resp.json();
-    });
-  }
+    const resp = await fetch(path);
+    if (!resp.ok) {
+      throw new Error(`加载失败:${path}(HTTP ${resp.status})`);
+    }
+    return resp.json();
+  };
 
-  function loadAllData() {
-    var paths = window.AppConfig.dataPaths;
-    return Promise.all([
+  const loadAllData = async () => {
+    const paths = window.AppConfig.dataPaths;
+    const [
+      zones,
+      schools,
+      policies,
+      materials,
+      faq,
+      contacts,
+      policyDiff,
+      addressPoints,
+      keywordsIndex,
+      zonesHistory,
+    ] = await Promise.all([
       loadFile(paths.zones),
       loadFile(paths.schools),
       loadFile(paths.policies),
@@ -26,23 +36,23 @@ window.DataService = (function () {
       loadFile(paths.addressPoints),
       loadFile(paths.keywordsIndex),
       loadFile(paths.zonesHistory),
-    ]).then(function (results) {
-      return {
-        zones: results[0],
-        schools: results[1],
-        policies: results[2],
-        materials: results[3],
-        faq: results[4],
-        contacts: results[5],
-        policyDiff: results[6],
-        addressPoints: results[7],
-        keywordsIndex: results[8],
-        zonesHistory: results[9],
-      };
-    });
-  }
+    ]);
+
+    return {
+      zones,
+      schools,
+      policies,
+      materials,
+      faq,
+      contacts,
+      policyDiff,
+      addressPoints,
+      keywordsIndex,
+      zonesHistory,
+    };
+  };
 
   return {
-    loadAllData: loadAllData,
+    loadAllData,
   };
 })();
