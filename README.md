@@ -34,7 +34,7 @@
 ## 三、目录结构
 
 ```
-smart-admission-demo/
+Smart_Admission/
 ├── index.html
 ├── css/
 │   └── style.css
@@ -54,6 +54,12 @@ smart-admission-demo/
 │   ├── address_points.json
 │   ├── keywords_index.json
 │   └── zones_history.json
+├── docs/
+│   ├── data-schema.md
+│   ├── zone-school-list.md
+│   ├── address_points.json
+│   ├── keywords_index.json
+│   └── zones_history.json
 └── README.md
 ```
 
@@ -67,7 +73,7 @@ smart-admission-demo/
 
 ```bash
 # 1. 进入项目目录
-cd smart-admission-demo
+cd Smart_Admission
 
 # 2. 启动本地 HTTP 服务(任选一种)
 python -m http.server 5500
@@ -88,10 +94,11 @@ http://localhost:5500
 | 模块         | 描述                                                                               |
 | ------------ | ---------------------------------------------------------------------------------- |
 | 数据概览     | 顶部 4 张卡片,展示学区、学校、政策、FAQ 数量                                       |
-| 学区地图     | Leaflet + 天地图渲染 5 个示例学区 Polygon,悬停高亮、点击选中                       |
-| 搜索查询     | 输入学校、小区、道路或地址关键词,本地匹配地址点与关键词索引,点击建议项飞入对应学区 |
+| 学区地图     | Leaflet + 天地图渲染学区 Polygon,初中学区(蓝色系)与小学学区(绿色系)视觉区分,悬停高亮、点击选中 |
+| 学区等级切换 | 复选框控制初中学区/小学学区的显示与隐藏,支持四种组合(仅初中/仅小学/同时显示/均不显示) |
+| 搜索查询     | 输入学校、小区、道路或地址关键词,本地匹配地址点与关键词索引,点击建议项飞入对应学区;搜索匹配到隐藏学区时自动勾选并显示 |
 | 学区查询     | 点击地图任意位置,使用 Turf 判断点位所属学区,命中即显示详情                         |
-| 查询结果面板 | 学区名 / 对口小学 / 对口初中 / 招生范围 / 学区年份 / 关联政策 / 历年调整记录       |
+| 查询结果面板 | 学校名 / 学区阶段 / 招生范围 / 学区年份 / 关联政策 / 历年调整记录                  |
 | 招生政策     | 政策列表,支持按"分类"和"年份"双向筛选                                              |
 | 入学材料     | 4 类材料(本地户籍 / 随迁子女 / 集体户 / 人户分离),可勾选并显示进度                 |
 | FAQ          | 关键词搜索,对问题与答案做实时过滤                                                  |
@@ -103,16 +110,16 @@ http://localhost:5500
 
 所有业务数据来自本地 `data/` 目录,便于编辑与迁移:
 
-- **`zones.geojson`** — 5 个示例学区 Polygon,Feature 含 `zoneId`、`zoneName`、`schoolId`、`stage`、`description`、`boundaryText`、`year`、`policyIds`、来源字段等(一校一区模式)。
-- **`schools.json`** — 8—10 所示例学校(小学 + 初中),含 `schoolId`、`name`、`shortName`、`type`、`schoolStage`、`district`、`address`、`phone`、`tags`、`description`、来源字段等。
-- **`policies.json`** — 5—6 条示例政策,含 `policyId`、`title`、`year`、`category`、`source`、`publishDate`、`summary`、`url`。
+- **`zones.geojson`** — 10 个学区 Polygon(8 个初中学区 + 2 个小学学区),Feature 含 `zoneId`、`zoneName`、`schoolId`、`stage`、`description`、`boundaryText`、`year`、`policyIds`、来源字段等(一校一区模式)。学区边界依据《泰山区2025年义务教育学校地址及四至范围统计表》中的四至范围文字描述人工绘制。
+- **`schools.json`** — 34 所学校(15 所初中 + 19 所小学),含 `schoolId`、`name`、`shortName`、`type`、`schoolStage`、`district`、`address`、`phone`、`tags`、`description`、来源字段等。
+- **`policies.json`** — 5 条示例政策,含 `policyId`、`title`、`year`、`category`、`source`、`publishDate`、`summary`、`url`。
 - **`materials.json`** — 4 类入学材料分组,每类 4+ 项。
-- **`faq.json`** — 8—10 条常见问题。
-- **`address_points.json`** — 学校地址点数据,每条含 `addressId`、`name`、`type`、`fullAddress`、`lng`、`lat`、`matchedZoneId`、`confidence`、`aliases` 等,用于搜索匹配与坐标定位。
-- **`keywords_index.json`** — 关键词索引,每条含 `keyword`、`type`、`matchedZoneIds`(数组)、`displayName`、`matchMode`、`weight`、`aliases`,用于搜索建议匹配。
-- **`zones_history.json`** — 学区历年调整记录,每条含 `zoneId` 与 `history` 数组(含 `year`、`changeType`、`title`、`description`、`reason`、`sourceName` 等)。
+- **`faq.json`** — 10 条常见问题。
+- **`address_points.json`** — 34 个学校地址点数据,每条含 `addressId`、`name`、`type`、`fullAddress`、`lng`、`lat`、`matchedZoneId`、`confidence`、`aliases` 等,用于搜索匹配与坐标定位。
+- **`keywords_index.json`** — 25 条关键词索引,每条含 `keyword`、`type`、`matchedZoneIds`(数组)、`displayName`、`matchMode`、`weight`、`aliases`,用于搜索建议匹配。
+- **`zones_history.json`** — 5 条学区历年调整记录,每条含 `zoneId` 与 `history` 数组(含 `year`、`changeType`、`title`、`description`、`reason`、`sourceName` 等)。
 
-> 部分边界依据文字描述进行简化示意绘制,仅用于原型展示。
+> 学区边界依据《泰山区2025年义务教育学校地址及四至范围统计表》中的四至范围文字描述人工绘制,仅用于原型展示,不代表官方学区划分。
 
 ---
 
@@ -133,6 +140,15 @@ GeoJSON 与 Leaflet 的坐标顺序不同,**容易混淆**:
 
 地图底图使用天地图(国家地理信息公共服务平台),采用"矢量底图 vec_w + 矢量注记 cva_w"双层叠加方案,token 已在 `js/config.js` 中配置。
 
+### 学区图层样式
+
+| 学区阶段 | 默认填充色 | 默认边框色 | 高亮填充透明度 | 选中填充色 |
+| -------- | ---------- | ---------- | -------------- | ---------- |
+| 初中     | `#3388ff`  | `#1E3A5F`  | 0.35           | `#F0A04B`  |
+| 小学     | `#2ECC71`  | `#1B7A43`  | 0.35           | `#F0A04B`  |
+
+样式配置位于 `js/config.js` 的 `zoneStyle.middle` / `zoneStyle.primary` 对象,可按需调整。
+
 ---
 
 ## 八、项目边界说明
@@ -143,9 +159,9 @@ GeoJSON 与 Leaflet 的坐标顺序不同,**容易混淆**:
 >
 > 地图底图使用天地图(国家地理信息公共服务平台)在线瓦片服务。
 >
-> 业务数据来自本地示例 JSON / GeoJSON 文件。
+> 业务数据来自本地 JSON / GeoJSON 文件。
 >
-> 学区边界为示例或简化示意数据,不代表官方学区划分。
+> 学区边界依据《泰山区2025年义务教育学校地址及四至范围统计表》中的四至范围文字描述人工绘制,仅用于原型展示,不代表官方学区划分。
 >
 > 示例数据仅用于展示技术路线,不代表真实招生政策。
 >
@@ -204,7 +220,11 @@ unpkg / jsdelivr 在某些网络环境下不稳定。可将 Leaflet、Turf、Boo
 
 JSON 不能写注释、不能有尾随逗号、字符串必须用双引号。可用 https://jsonlint.com 校验。
 
+### Q8:学区切换后搜索结果不显示?
+
+搜索匹配到隐藏阶段的学区时,系统会自动勾选对应阶段的复选框并显示该学区。如果仍无法显示,请检查浏览器控制台是否有报错。
+
 ---
 
 **项目维护者**:智慧入学·学区治理课题组
-**版本**:阶段性原型 A.0.2
+**版本**:阶段性原型 A.0.3

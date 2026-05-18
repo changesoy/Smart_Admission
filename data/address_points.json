@@ -8,7 +8,9 @@
     "lat": null,
     "matchedZoneId": "zone_001",
     "confidence": 50,
-    "aliases": ["学院附中"],
+    "aliases": [
+      "学院附中"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -25,7 +27,9 @@
     "lat": 36.18688667929794,
     "matchedZoneId": "zone_002",
     "confidence": 65,
-    "aliases": ["望岳中学"],
+    "aliases": [
+      "望岳中学"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -41,7 +45,9 @@
     "lat": 36.193667780497,
     "matchedZoneId": "zone_003",
     "confidence": 50,
-    "aliases": ["泰安六中"],
+    "aliases": [
+      "泰安六中"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -57,7 +63,9 @@
     "lat": 36.19704140035838,
     "matchedZoneId": "zone_004",
     "confidence": 65,
-    "aliases": ["东岳中学"],
+    "aliases": [
+      "东岳中学"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -73,7 +81,9 @@
     "lat": null,
     "matchedZoneId": "zone_005",
     "confidence": 50,
-    "aliases": ["泰山实验"],
+    "aliases": [
+      "泰山实验"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -90,7 +100,10 @@
     "lat": 36.18626852624842,
     "matchedZoneId": "zone_006",
     "confidence": 50,
-    "aliases": ["泰安六中新校区", "六中新校区"],
+    "aliases": [
+      "泰安六中新校区",
+      "六中新校区"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -107,7 +120,9 @@
     "lat": null,
     "matchedZoneId": "zone_007",
     "confidence": 50,
-    "aliases": ["南关中学"],
+    "aliases": [
+      "南关中学"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -124,7 +139,9 @@
     "lat": null,
     "matchedZoneId": "zone_008",
     "confidence": 50,
-    "aliases": ["迎春学校"],
+    "aliases": [
+      "迎春学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -141,7 +158,9 @@
     "lat": null,
     "matchedZoneId": "zone_009",
     "confidence": 50,
-    "aliases": ["万官路学校"],
+    "aliases": [
+      "万官路学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -158,7 +177,9 @@
     "lat": 36.21,
     "matchedZoneId": "zone_010",
     "confidence": 50,
-    "aliases": ["萃英学校"],
+    "aliases": [
+      "萃英学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -175,7 +196,9 @@
     "lat": null,
     "matchedZoneId": "zone_011",
     "confidence": 50,
-    "aliases": ["梅山路中学"],
+    "aliases": [
+      "梅山路中学"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -192,7 +215,9 @@
     "lat": null,
     "matchedZoneId": "zone_012",
     "confidence": 50,
-    "aliases": ["东岳中学兴隆校区"],
+    "aliases": [
+      "东岳中学兴隆校区"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -209,7 +234,9 @@
     "lat": null,
     "matchedZoneId": "zone_013",
     "confidence": 50,
-    "aliases": ["市实验学校"],
+    "aliases": [
+      "市实验学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -226,7 +253,9 @@
     "lat": null,
     "matchedZoneId": "zone_014",
     "confidence": 50,
-    "aliases": ["泰师附校"],
+    "aliases": [
+      "泰师附校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -243,7 +272,9 @@
     "lat": null,
     "matchedZoneId": "zone_015",
     "confidence": 50,
-    "aliases": ["通天街校区"],
+    "aliases": [
+      "通天街校区"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -260,7 +291,10 @@
     "lat": 36.19145496197826,
     "matchedZoneId": "zone_016",
     "confidence": 50,
-    "aliases": ["花园校区", "一实花园"],
+    "aliases": [
+      "花园校区",
+      "一实花园"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -276,7 +310,9 @@
     "lat": null,
     "matchedZoneId": "zone_017",
     "confidence": 50,
-    "aliases": ["岳麓小学"],
+    "aliases": [
+      "岳麓小学"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -293,7 +329,9 @@
     "lat": null,
     "matchedZoneId": "zone_018",
     "confidence": 50,
-    "aliases": ["温泉路小学"],
+    "aliases": [
+      "温泉路小学"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -310,7 +348,9 @@
     "lat": null,
     "matchedZoneId": "zone_019",
     "confidence": 50,
-    "aliases": ["仓库路学校"],
+    "aliases": [
+      "仓库路学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -327,7 +367,9 @@
     "lat": null,
     "matchedZoneId": "zone_020",
     "confidence": 50,
-    "aliases": ["三里学校"],
+    "aliases": [
+      "三里学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -344,7 +386,9 @@
     "lat": null,
     "matchedZoneId": "zone_021",
     "confidence": 50,
-    "aliases": ["西关学校"],
+    "aliases": [
+      "西关学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -361,7 +405,9 @@
     "lat": null,
     "matchedZoneId": "zone_022",
     "confidence": 50,
-    "aliases": ["财源学校"],
+    "aliases": [
+      "财源学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -378,7 +424,9 @@
     "lat": null,
     "matchedZoneId": "zone_023",
     "confidence": 50,
-    "aliases": ["七里埠学校"],
+    "aliases": [
+      "七里埠学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -395,7 +443,9 @@
     "lat": null,
     "matchedZoneId": "zone_024",
     "confidence": 50,
-    "aliases": ["财源实验学校"],
+    "aliases": [
+      "财源实验学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -412,7 +462,9 @@
     "lat": null,
     "matchedZoneId": "zone_025",
     "confidence": 50,
-    "aliases": ["旧镇小学"],
+    "aliases": [
+      "旧镇小学"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -429,7 +481,9 @@
     "lat": null,
     "matchedZoneId": "zone_026",
     "confidence": 50,
-    "aliases": ["东关小学"],
+    "aliases": [
+      "东关小学"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -446,7 +500,9 @@
     "lat": null,
     "matchedZoneId": "zone_027",
     "confidence": 50,
-    "aliases": ["南关学校"],
+    "aliases": [
+      "南关学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -463,7 +519,9 @@
     "lat": null,
     "matchedZoneId": "zone_028",
     "confidence": 50,
-    "aliases": ["粮食市学校"],
+    "aliases": [
+      "粮食市学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -480,7 +538,9 @@
     "lat": null,
     "matchedZoneId": "zone_029",
     "confidence": 50,
-    "aliases": ["岱庙实验学校"],
+    "aliases": [
+      "岱庙实验学校"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -497,7 +557,9 @@
     "lat": null,
     "matchedZoneId": "zone_030",
     "confidence": 50,
-    "aliases": ["三友小学"],
+    "aliases": [
+      "三友小学"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -514,7 +576,9 @@
     "lat": 36.20457827281476,
     "matchedZoneId": "zone_031",
     "confidence": 50,
-    "aliases": ["凤台中学"],
+    "aliases": [
+      "凤台中学"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
@@ -531,7 +595,48 @@
     "lat": 36.203825902588505,
     "matchedZoneId": "zone_032",
     "confidence": 50,
-    "aliases": ["凤台小学"],
+    "aliases": [
+      "凤台小学"
+    ],
+    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated",
+    "note": "坐标待补。"
+  },
+  {
+    "addressId": "addr_033",
+    "name": "泰安泰山实验中学",
+    "type": "学校",
+    "fullAddress": "泰安泰山实验中学",
+    "lng": 117.07416994589666,
+    "lat": 36.19887221134,
+    "matchedZoneId": "zone_033",
+    "confidence": 50,
+    "aliases": [
+      "泰山实验中学"
+    ],
+    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated",
+    "note": "坐标待补。"
+  },
+  {
+    "addressId": "addr_034",
+    "name": "山东省泰安南关中学",
+    "type": "学校",
+    "fullAddress": "山东省泰安南关中学",
+    "lng": 117.13104112710667,
+    "lat": 36.17399675330895,
+    "matchedZoneId": "zone_034",
+    "confidence": 50,
+    "aliases": [
+      "泰安南关中学",
+      "南关中学"
+    ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
