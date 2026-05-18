@@ -1363,3 +1363,204 @@ body {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+
+/* ============================================================
+   以下选择器来自 feature-A-map，用于搜索建议项 / 学区等级筛选 /
+   学区历年调整时间线 / 学区学校卡片。这些是 B 原本缺失的，
+   渲染 renderResult 与 SearchService 时需要。
+   ============================================================ */
+
+.search-suggestion-item {
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #f1f3f5;
+  font-size: 0.9rem;
+}
+
+.search-suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.search-suggestion-item:hover {
+  background: #f5f7fa;
+}
+
+.search-type-tag {
+  display: inline-block;
+  min-width: 3rem;
+  text-align: center;
+  font-size: 0.78rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  background: rgba(30, 58, 95, 0.08);
+  color: var(--primary-color, #1e3a5f);
+}
+
+.search-keyword {
+  color: var(--text-primary, #2c3e50);
+}
+
+.search-no-result {
+  padding: 0.75rem;
+  color: var(--text-secondary, #6c757d);
+  font-size: 0.9rem;
+}
+
+.zone-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.zone-filter-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  margin-right: 0.25rem;
+}
+
+.zone-filter-group .form-check-inline {
+  margin-right: 0.5rem;
+}
+
+.zone-filter-group .form-check-label {
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.zone-filter-group .form-check-input:checked + .form-check-label {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.zone-history-timeline {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--border-light, #dee2e6);
+  margin-top: 0.5rem;
+}
+
+.zone-history-item {
+  position: relative;
+  margin-bottom: 0.85rem;
+}
+
+.zone-history-item::before {
+  content: "";
+  position: absolute;
+  left: -1.85rem;
+  top: 0.25rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-color, #f0a04b);
+  box-shadow: 0 0 0 2px #fff;
+}
+
+.zone-history-year {
+  font-weight: 600;
+  color: var(--primary-color, #1e3a5f);
+  font-size: 0.9rem;
+}
+
+.zone-history-change {
+  display: inline-block;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  color: var(--primary-color, #1e3a5f);
+  background: rgba(30, 58, 95, 0.08);
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+}
+
+.zone-history-title {
+  font-size: 0.88rem;
+  color: var(--text-primary, #2c3e50);
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.zone-history-desc,
+.zone-history-reason {
+  font-size: 0.8rem;
+  color: var(--text-secondary, #6c757d);
+  margin-top: 0.15rem;
+  line-height: 1.5;
+}
+
+.zone-school-card {
+  background: #fff;
+  border: 1px solid var(--border-light, #dee2e6);
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin-bottom: 0.85rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.zone-school-name {
+  font-weight: 600;
+  color: var(--primary-color, #1e3a5f);
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.zone-school-stage {
+  display: inline-block;
+  font-size: 0.78rem;
+  color: #fff;
+  background: var(--primary-color, #1e3a5f);
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+  margin-bottom: 0.55rem;
+}
+
+.zone-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+}
+
+.zone-meta-grid > div {
+  font-size: 0.85rem;
+  color: var(--text-secondary, #6c757d);
+}
+
+.zone-meta-grid > div span {
+  margin-right: 0.3rem;
+}
+
+.zone-meta-grid > div strong {
+  color: var(--text-primary, #2c3e50);
+  font-weight: 500;
+}
+
+.zone-school-website {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.zone-school-website i {
+  margin-right: 0.25rem;
+  color: var(--accent-color, #f0a04b);
+}
+
+.zone-school-website a {
+  color: var(--primary-color, #1e3a5f);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.zone-school-website a:hover {
+  color: var(--accent-color, #f0a04b);
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .zone-meta-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
