@@ -11,6 +11,10 @@ window.SearchService = (function () {
   var _searchClearBtn = null;
   var _searchSuggestions = null;
 
+  function escapeHtml(str) {
+    return window.RenderService.safeText(str);
+  }
+
   function init(data) {
     _addressPoints = (data && data.addressPoints) || [];
     _keywordsIndex = (data && data.keywordsIndex) || [];
@@ -195,15 +199,6 @@ window.SearchService = (function () {
       _searchSuggestions.style.display = "none";
       _searchSuggestions.innerHTML = "";
     }
-  }
-
-  function escapeHtml(str) {
-    if (!str) return "";
-    return String(str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
   }
 
   return {

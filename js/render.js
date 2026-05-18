@@ -209,25 +209,6 @@ window.RenderService = (function () {
     panel.innerHTML = html;
   }
 
-  function renderSchoolBlock(school) {
-    if (!school) {
-      return '<div class="result-school-block"><div class="text-muted small">暂无关联数据</div></div>';
-    }
-    var html = '<div class="result-school-block">';
-    html +=
-      '<div class="result-school-name">' + (school.name || "—") + "</div>";
-    html +=
-      '<div class="result-school-detail"><i class="bi bi-geo-alt"></i>' +
-      (school.address || "—") +
-      "</div>";
-    html +=
-      '<div class="result-school-detail"><i class="bi bi-telephone"></i>' +
-      (school.phone || "—") +
-      "</div>";
-    html += "</div>";
-    return html;
-  }
-
   function renderError(message) {
     var errEl = document.getElementById("errorState");
     var mainEl = document.getElementById("mainContent");
@@ -269,5 +250,6 @@ window.RenderService = (function () {
     renderDefaultResultTip: renderDefaultResultTip,
     renderError: renderError,
     setBoundaryNotice: setBoundaryNotice,
+    safeText: safeText,
   };
 })();

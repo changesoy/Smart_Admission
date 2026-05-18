@@ -1,158 +1,171 @@
-const FaqService = (function() {
-  let faqData = [];
-  let currentCategory = '全部';
-  let searchQuery = '';
+/* faqService.js - 常见问题服务 */
+
+window.FaqService = (function () {
+  var _faqData = [];
+  var _currentCategory = "全部";
+  var _searchQuery = "";
 
   function init(data) {
-    faqData = data || [];
+    _faqData = data || [];
     renderCategories();
     renderFaqs();
     bindSearch();
   }
 
   function bindSearch() {
-    const searchInput = document.getElementById('faq-search');
+    var searchInput = document.getElementById("faq-search");
     if (searchInput) {
-      searchInput.addEventListener('input', function(e) {
-        searchQuery = e.target.value.trim();
+      searchInput.addEventListener("input", function (e) {
+        _searchQuery = e.target.value.trim();
         renderFaqs();
       });
     }
   }
 
   function getCategories() {
-    const categories = ['全部'];
-    const categorySet = new Set();
-    
-    faqData.forEach(faq => {
+    var categories = ["全部"];
+    var categorySet = {};
+    _faqData.forEach(function (faq) {
       if (faq.category) {
-        categorySet.add(faq.category);
+        categorySet[faq.category] = true;
       }
     });
-    
-    categories.push(...Array.from(categorySet));
+    Object.keys(categorySet).forEach(function (cat) {
+      categories.push(cat);
+    });
     return categories;
   }
 
   function renderCategories() {
-    const container = document.getElementById('faq-categories');
+    var container = document.getElementById("faq-categories");
     if (!container) return;
 
-    const categories = getCategories();
-    container.innerHTML = categories.map(cat => `
-      <button 
-        class="faq-chip ${currentCategory === cat ? 'active' : ''}"
-        onclick="window.FaqService.filterByCategory('${cat}')"
-      >
-        ${cat}
-      </button>
-    `).join('');
+    var categories = getCategories();
+    var html = "";
+    categories.forEach(function (cat) {
+      var activeClass = _currentCategory === cat ? " active" : "";
+      html += '<button class="faq-chip' + activeClass + '"';
+      html += ' onclick="window.FaqService.filterByCategory(\'' + cat + '\')">';
+      html += cat;
+      html += "</button>";
+    });
+    container.innerHTML = html;
   }
 
   function filterByCategory(category) {
-    currentCategory = category;
+    _currentCategory = category;
     renderCategories();
     renderFaqs();
   }
 
   function filterFaqs() {
-    let filtered = [...faqData];
-    
-    if (currentCategory !== '全部') {
-      filtered = filtered.filter(faq => faq.category === currentCategory);
+    var filtered = _faqData.slice();
+
+    if (_currentCategory !== "全部") {
+      filtered = filtered.filter(function (faq) {
+        return faq.category === _currentCategory;
+      });
     }
-    
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(faq => {
-        const questionMatch = faq.question?.toLowerCase().includes(query);
-        const answerMatch = faq.answer?.toLowerCase().includes(query);
-        const keywordMatch = faq.keywords?.some(kw => kw.toLowerCase().includes(query));
+
+    if (_searchQuery) {
+      var query = _searchQuery.toLowerCase();
+      filtered = filtered.filter(function (faq) {
+        var questionMatch = faq.question && faq.question.toLowerCase().indexOf(query) !== -1;
+        var answerMatch = faq.answer && faq.answer.toLowerCase().indexOf(query) !== -1;
+        var keywordMatch = faq.keywords && faq.keywords.some(function (kw) {
+          return kw.toLowerCase().indexOf(query) !== -1;
+        });
         return questionMatch || answerMatch || keywordMatch;
       });
     }
-    
-    filtered.sort((a, b) => (b.priority || 0) - (a.priority || 0));
-    
+
+    filtered.sort(function (a, b) {
+      return (b.priority || 0) - (a.priority || 0);
+    });
+
     return filtered;
   }
 
   function getFaqById(faqId) {
-    return faqData.find(faq => faq.faqId === faqId);
+    return _faqData.find(function (faq) {
+      return faq.faqId === faqId;
+    });
   }
 
   function renderFaqs() {
-    const container = document.getElementById('faq-list');
+    var container = document.getElementById("faq-list");
     if (!container) return;
 
-    const filtered = filterFaqs();
-    
+    var filtered = filterFaqs();
+
     if (filtered.length === 0) {
       container.innerHTML = '<div class="faq-empty">暂无匹配的常见问题</div>';
       return;
     }
 
-    container.innerHTML = filtered.map(faq => `
-      <div class="faq-item" data-faq-id="${faq.faqId}">
-        <div class="faq-question" onclick="window.FaqService.toggleFaq('${faq.faqId}')">
-          <span class="faq-icon">${faq.priority && faq.priority >= 80 ? '★' : '▶'}</span>
-          <span class="faq-text">${faq.question}</span>
-        </div>
-        <div class="faq-answer" id="faq-answer-${faq.faqId}">
-          <p>${faq.answer}</p>
-          ${faq.relatedFaqIds && faq.relatedFaqIds.length > 0 ? renderRelatedFaqs(faq.relatedFaqIds) : ''}
-        </div>
-      </div>
-    `).join('');
+    var html = "";
+    filtered.forEach(function (faq) {
+      var icon = faq.priority && faq.priority >= 80 ? "\u2605" : "\u25B6";
+      html += '<div class="faq-item" data-faq-id="' + faq.faqId + '">';
+      html += '<div class="faq-question" onclick="window.FaqService.toggleFaq(\'' + faq.faqId + '\')">';
+      html += '<span class="faq-icon">' + icon + "</span>";
+      html += "<span class=\"faq-text\">" + faq.question + "</span>";
+      html += "</div>";
+      html += '<div class="faq-answer" id="faq-answer-' + faq.faqId + '">';
+      html += "<p>" + faq.answer + "</p>";
+      if (faq.relatedFaqIds && faq.relatedFaqIds.length > 0) {
+        html += renderRelatedFaqs(faq.relatedFaqIds);
+      }
+      html += "</div>";
+      html += "</div>";
+    });
+    container.innerHTML = html;
   }
 
   function renderRelatedFaqs(relatedIds) {
-    const relatedFaqs = relatedIds
-      .map(id => getFaqById(id))
+    var relatedFaqs = relatedIds
+      .map(function (id) { return getFaqById(id); })
       .filter(Boolean);
-    
-    if (relatedFaqs.length === 0) return '';
 
-    return `
-      <div class="faq-related">
-        <span class="related-title">相关问题：</span>
-        <div class="related-list">
-          ${relatedFaqs.map(rf => `
-            <button class="related-item" onclick="window.FaqService.showFaq('${rf.faqId}')">
-              ${rf.question}
-            </button>
-          `).join('')}
-        </div>
-      </div>
-    `;
+    if (relatedFaqs.length === 0) return "";
+
+    var html = '<div class="faq-related">';
+    html += '<span class="related-title">相关问题：</span>';
+    html += '<div class="related-list">';
+    relatedFaqs.forEach(function (rf) {
+      html += '<button class="related-item" onclick="window.FaqService.showFaq(\'' + rf.faqId + '\')">';
+      html += rf.question;
+      html += "</button>";
+    });
+    html += "</div>";
+    html += "</div>";
+    return html;
   }
 
   function toggleFaq(faqId) {
-    const answer = document.getElementById(`faq-answer-${faqId}`);
-    const question = document.querySelector(`[data-faq-id="${faqId}"] .faq-question`);
-    
+    var answer = document.getElementById("faq-answer-" + faqId);
+    var question = document.querySelector('[data-faq-id="' + faqId + '"] .faq-question');
+
     if (answer) {
-      answer.classList.toggle('show');
+      answer.classList.toggle("show");
     }
     if (question) {
-      question.classList.toggle('expanded');
+      question.classList.toggle("expanded");
     }
   }
 
   function showFaq(faqId) {
     toggleFaq(faqId);
-    const element = document.querySelector(`[data-faq-id="${faqId}"]`);
+    var element = document.querySelector('[data-faq-id="' + faqId + '"]');
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   }
 
   return {
-    init,
-    filterByCategory,
-    toggleFaq,
-    showFaq
+    init: init,
+    filterByCategory: filterByCategory,
+    toggleFaq: toggleFaq,
+    showFaq: showFaq
   };
 })();
-
-window.FaqService = FaqService;
