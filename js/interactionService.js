@@ -1,6 +1,8 @@
 /**
  * interactionService.js - 政民互动服务
  *
+ * ⚠️ 修改前必读: CONTRIBUTING.md
+ *
  * 功能: 渲染联系信息卡片,提供在线留言表单(含字数统计和分类选择),
  *       留言数据持久化到 localStorage,支持 Toast 提示。
  *

@@ -1,6 +1,8 @@
 /**
  * main.js - 应用主入口
  *
+ * ⚠️ 修改前必读: CONTRIBUTING.md
+ *
  * 功能: 协调数据加载、渲染和各模块初始化。使用 async IIFE 在 DOMContentLoaded
  *       时加载数据,成功后依次初始化各业务模块,失败则显示错误状态。
  *

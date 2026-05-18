@@ -1,6 +1,8 @@
 /**
  * render.js - 渲染服务
  *
+ * ⚠️ 修改前必读: CONTRIBUTING.md
+ *
  * 功能: 负责所有 DOM 渲染,包括统计卡片、查询结果面板、错误状态和网站说明。
  *       其他模块通过 window.RenderService 调用渲染方法。
  *

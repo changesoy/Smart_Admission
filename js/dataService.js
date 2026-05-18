@@ -1,6 +1,8 @@
 /**
  * dataService.js - 数据加载服务
  *
+ * ⚠️ 修改前必读: CONTRIBUTING.md
+ *
  * 功能: 通过 fetch + async/await 并行加载项目所有 JSON/GeoJSON 数据文件,
  *       返回统一数据对象供 main.js 分发给各业务模块。
  *
