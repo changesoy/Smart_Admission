@@ -149,17 +149,42 @@ window.PolicyService = (function () {
     }).join('');
 
     selA.innerHTML = options;
-    selB.innerHTML = options;
 
     if (years.length >= 2) {
       selA.value = years[1];
-      selB.value = years[0];
+      updateYearBOptions();
     }
 
-    selA.addEventListener('change', updateDiff);
+    selA.addEventListener('change', function() {
+      updateYearBOptions();
+      updateDiff();
+    });
     selB.addEventListener('change', updateDiff);
 
     updateDiff();
+  }
+
+  function updateYearBOptions() {
+    var selA = document.getElementById('diffYearA');
+    var selB = document.getElementById('diffYearB');
+    if (!selA || !selB) return;
+
+    var selectedYearA = parseInt(selA.value);
+    var years = uniq(_policies.map(function (p) { return p.year; }))
+                  .sort(function (a, b) { return b - a; });
+
+    // 只允许相邻年份：yearA ± 1
+    var adjacentYears = years.filter(function(y) {
+      return Math.abs(y - selectedYearA) === 1;
+    });
+
+    selB.innerHTML = adjacentYears.map(function (y) {
+      return '<option value="' + y + '">' + y + '年</option>';
+    }).join('');
+
+    if (adjacentYears.length > 0) {
+      selB.value = adjacentYears[0];
+    }
   }
 
   function updateDiff() {
@@ -174,6 +199,12 @@ window.PolicyService = (function () {
 
     if (yA === yB) {
       resultEl.innerHTML = '<div class="text-muted text-center py-3">请选择两个不同的年份进行对比</div>';
+      return;
+    }
+
+    // 确保只允许逐年对比（年份差为1）
+    if (Math.abs(yA - yB) !== 1) {
+      resultEl.innerHTML = '<div class="text-muted text-center py-3">请选择相邻年份进行逐年对比</div>';
       return;
     }
 
