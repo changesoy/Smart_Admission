@@ -1,4 +1,19 @@
-/* main.js - 主入口(协调数据加载、渲染、地图初始化) */
+/**
+ * main.js - 应用主入口
+ *
+ * 功能: 协调数据加载、渲染和各模块初始化。使用 async IIFE 在 DOMContentLoaded
+ *       时加载数据,成功后依次初始化各业务模块,失败则显示错误状态。
+ *
+ * 初始化顺序:
+ *   1. DataService.loadAllData()  - 并行加载全部数据
+ *   2. RenderService.renderStats() - 渲染统计卡片
+ *   3. PolicyService.init()       - 初始化政策模块
+ *   4. MaterialService.init()     - 初始化材料模块
+ *   5. FaqService.init()          - 初始化FAQ模块
+ *   6. InteractionService.init()  - 初始化互动模块
+ *   7. MapService.initMap()       - 初始化地图(含 onZoneSelected/onNoMatch 回调)
+ *   8. SearchService.init()       - 初始化搜索(含 onZoneMatched/onPointResolved 回调)
+ */
 
 (async () => {
   document.addEventListener("DOMContentLoaded", async () => {
@@ -17,6 +32,7 @@
     }
   });
 
+  /** 切换加载状态和主内容的显示 */
   const showLoading = (visible) => {
     const loadEl = document.getElementById("loadingState");
     const mainEl = document.getElementById("mainContent");
@@ -28,6 +44,7 @@
     }
   };
 
+  /** 数据加载成功后初始化所有业务模块,绑定地图回调和学段筛选 */
   const bootstrapPage = (data) => {
     window.RenderService.renderStats(data);
     window.RenderService.renderDefaultResultTip();
@@ -50,7 +67,8 @@
       schools: data.schools,
       policies: data.policies,
       onZoneSelected: (feature) => {
-        const zoneId = feature && feature.properties ? feature.properties.zoneId : "";
+        const zoneId =
+          feature && feature.properties ? feature.properties.zoneId : "";
         const historyEntry = (data.zonesHistory || []).find(
           (h) => h.zoneId === zoneId,
         );
@@ -74,12 +92,18 @@
     if (window.SearchService) {
       window.SearchService.init(data);
       window.SearchService.setOnZoneMatched((zoneId, item) => {
-        if (window.MapService && typeof window.MapService.flyToZoneById === "function") {
+        if (
+          window.MapService &&
+          typeof window.MapService.flyToZoneById === "function"
+        ) {
           window.MapService.flyToZoneById(zoneId);
         }
       });
       window.SearchService.setOnPointResolved((lng, lat, item) => {
-        if (window.MapService && typeof window.MapService.findZoneByPoint === "function") {
+        if (
+          window.MapService &&
+          typeof window.MapService.findZoneByPoint === "function"
+        ) {
           const zoneId = window.MapService.findZoneByPoint(lng, lat);
           if (zoneId && typeof window.MapService.flyToZoneById === "function") {
             window.MapService.flyToZoneById(zoneId);
@@ -95,7 +119,10 @@
         checks.forEach((c) => {
           if (c.checked) stages.push(c.value);
         });
-        if (window.MapService && typeof window.MapService.filterByStage === "function") {
+        if (
+          window.MapService &&
+          typeof window.MapService.filterByStage === "function"
+        ) {
           window.MapService.filterByStage(stages);
         }
       });

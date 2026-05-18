@@ -1,6 +1,23 @@
-/* render.js - 渲染服务(统计卡片、结果面板、错误状态、网站说明) */
-
+/**
+ * render.js - 渲染服务
+ *
+ * 功能: 负责所有 DOM 渲染,包括统计卡片、查询结果面板、错误状态和网站说明。
+ *       其他模块通过 window.RenderService 调用渲染方法。
+ *
+ * 关键接口:
+ *   renderStats(data)           - 渲染顶部4张统计卡片(学区/学校/政策/FAQ数量)
+ *   renderResult(ctx)           - 渲染学区查询结果(学区信息+对应学校+关联政策+历年调整)
+ *   renderNoMatch()             - 渲染"未匹配学区"提示
+ *   renderDefaultResultTip()    - 渲染默认引导提示
+ *   renderError(message)        - 渲染加载错误状态
+ *   setBoundaryNotice()         - 渲染网站说明/免责声明
+ *   safeText(value)             - XSS 安全的文本转义工具
+ *
+ * 数据格式:
+ *   ctx = { zoneFeature: GeoJSON Feature, schools: Array, policies: Array, history: Array }
+ */
 window.RenderService = (() => {
+  /** 渲染顶部统计卡片,从 data 中提取学区/学校/政策/FAQ 数量 */
   const renderStats = (data) => {
     const row = document.getElementById("statsRow");
     if (!row) return;
@@ -43,6 +60,7 @@ window.RenderService = (() => {
     row.innerHTML = html;
   };
 
+  /** 渲染默认引导提示(点击地图查询) */
   const renderDefaultResultTip = () => {
     const panel = document.getElementById("resultPanel");
     if (!panel) return;
@@ -53,6 +71,7 @@ window.RenderService = (() => {
       `</div>`;
   };
 
+  /** 渲染"未匹配学区"提示 */
   const renderNoMatch = () => {
     const panel = document.getElementById("resultPanel");
     if (!panel) return;
@@ -63,6 +82,7 @@ window.RenderService = (() => {
       `</div>`;
   };
 
+  /** XSS 安全文本转义:将特殊字符转为 HTML 实体,防止注入 */
   const safeText = (value) => {
     if (value === undefined || value === null || value === "") return "—";
     return String(value)
@@ -73,6 +93,7 @@ window.RenderService = (() => {
       .replace(/'/g, "&#39;");
   };
 
+  /** 渲染学区查询结果面板:学区名+对应学校+关联政策+历年调整记录时间线 */
   const renderResult = (ctx) => {
     const panel = document.getElementById("resultPanel");
     if (!panel) return;
@@ -159,6 +180,7 @@ window.RenderService = (() => {
     panel.innerHTML = html;
   };
 
+  /** 渲染数据加载失败错误状态,隐藏主内容并显示错误提示 */
   const renderError = (message) => {
     const errEl = document.getElementById("errorState");
     const mainEl = document.getElementById("mainContent");
@@ -173,6 +195,7 @@ window.RenderService = (() => {
     }
   };
 
+  /** 渲染网站说明/免责声明区块 */
   const setBoundaryNotice = () => {
     const container = document.getElementById("boundaryNotice");
     if (!container) return;
@@ -190,6 +213,7 @@ window.RenderService = (() => {
       `</div>`;
   };
 
+  /** 公共接口 */
   return {
     renderStats,
     renderResult,

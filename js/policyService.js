@@ -1,5 +1,16 @@
-/* policyService.js - 政策渲染与对比 */
-
+/**
+ * policyService.js - 政策渲染与年度对比服务
+ *
+ * 功能: 渲染招生政策列表(支持分类/年份双向筛选和展开收起),
+ *       提供政策年度对比视图,展示相邻年份间的政策变化点。
+ *
+ * 关键接口:
+ *   init(data) - 初始化,接收 { policies: Array, policyDiff: Array }
+ *
+ * 数据格式:
+ *   policy = { policyId, title, year, category, source, publishDate, summary, url }
+ *   policyDiff = { yearA, yearB, diffPoints: [{ topic, valueA, valueB, isChange, changeNote }] }
+ */
 window.PolicyService = (() => {
   let _policies = [];
   let _diffs = [];
@@ -7,6 +18,7 @@ window.PolicyService = (() => {
   let _isExpanded = false;
   const _MAX_DISPLAY = 6;
 
+  /** 初始化:存储数据并渲染政策列表、筛选器和对比视图 */
   const init = (data) => {
     _policies = data.policies || [];
     _diffs = data.policyDiff || [];
@@ -16,6 +28,7 @@ window.PolicyService = (() => {
     setupDiffView();
   };
 
+  /** 渲染政策卡片列表,按年份和发布日期降序排列,默认显示前6条可展开 */
   const renderPolicies = (list) => {
     const container = document.getElementById("policyList");
     if (!container) return;
@@ -94,6 +107,7 @@ window.PolicyService = (() => {
     }
   };
 
+  /** 获取政策分类对应的 CSS 类名 */
   const getCategoryClass = (category) => {
     const map = {
       招生政策: "category-policy",
@@ -105,6 +119,7 @@ window.PolicyService = (() => {
     return map[category] || "category-default";
   };
 
+  /** 渲染分类和年份筛选下拉框,绑定 change 事件 */
   const renderFilters = () => {
     const container = document.getElementById("policyFilters");
     if (!container) return;
@@ -145,7 +160,9 @@ window.PolicyService = (() => {
       .getElementById("filterYear")
       .addEventListener("change", applyFilters);
   };
+  /** 应用分类和年份筛选,更新政策列表 */
 
+  /** 应用筛选条件并重新渲染政策列表 */
   const applyFilters = () => {
     const category = document.getElementById("filterCategory").value;
     const year = document.getElementById("filterYear").value;
@@ -157,9 +174,11 @@ window.PolicyService = (() => {
     });
 
     _isExpanded = false;
+    /** 初始化对比视图:填充年份选择框,设置事件监听 */
     renderPolicies(filtered);
   };
 
+  /** 初始化政策年度对比视图:填充年份选择器并绑定事件 */
   const setupDiffView = () => {
     const selA = document.getElementById("diffYearA");
     const selB = document.getElementById("diffYearB");
@@ -187,6 +206,7 @@ window.PolicyService = (() => {
     updateDiff();
   };
 
+  /** 根据基准年份A更新对比年份B的选项(仅允许相邻年份) */
   const updateYearBOptions = () => {
     const selA = document.getElementById("diffYearA");
     const selB = document.getElementById("diffYearB");
@@ -208,6 +228,7 @@ window.PolicyService = (() => {
     }
   };
 
+  /** 渲染政策对比结果:展示变化项和未变化项 */
   const updateDiff = () => {
     const yA = parseInt(document.getElementById("diffYearA").value);
     const yB = parseInt(document.getElementById("diffYearB").value);
@@ -289,6 +310,7 @@ window.PolicyService = (() => {
     resultEl.innerHTML = html;
   };
 
+  /** 数组去重工具函数 */
   const uniq = (arr) => {
     const out = [];
     arr.forEach((v) => {
@@ -297,6 +319,7 @@ window.PolicyService = (() => {
     return out;
   };
 
+  /** 公共接口 */
   return {
     init,
   };

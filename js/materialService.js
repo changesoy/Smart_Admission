@@ -1,10 +1,22 @@
-/* materialService.js - 入学材料清单服务 */
-
+/**
+ * materialService.js - 入学材料清单服务
+ *
+ * 功能: 渲染入学材料分组标签页和材料项列表,支持勾选进度追踪和完成提示。
+ *
+ * 关键接口:
+ *   init(data)                    - 初始化,接收材料分组数组
+ *   switchGroup(index)            - 切换到指定分组标签页
+ *   toggleMaterial(materialId)    - 勾选/取消勾选材料项
+ *
+ * 数据格式:
+ *   group = { group, description, applicableStage[], items: [{ materialId, name, required, note, validity, templateUrl, rejectReasons[] }] }
+ */
 window.MaterialService = (() => {
   let _materialsData = [];
   let _currentGroupIndex = 0;
   let _selectedMaterials = {};
 
+  /** 初始化:存储数据,渲染标签页、材料列表和进度条 */
   const init = (data) => {
     _materialsData = data || [];
     renderMaterialTabs();
@@ -12,6 +24,7 @@ window.MaterialService = (() => {
     updateProgress();
   };
 
+  /** 渲染材料分组标签按钮 */
   const renderMaterialTabs = () => {
     const tabsContainer = document.getElementById("material-tabs");
     if (!tabsContainer) return;
@@ -27,6 +40,7 @@ window.MaterialService = (() => {
     tabsContainer.innerHTML = html;
   };
 
+  /** 切换到指定分组索引,重新渲染标签页、列表和进度 */
   const switchGroup = (index) => {
     if (index >= 0 && index < _materialsData.length) {
       _currentGroupIndex = index;
@@ -36,13 +50,15 @@ window.MaterialService = (() => {
     }
   };
 
+  /** 渲染当前分组的材料项列表,含勾选状态、必填标签和被拒原因 */
   const renderCurrentGroup = () => {
     const container = document.getElementById("material-list");
     if (!container || !_materialsData[_currentGroupIndex]) return;
 
     const group = _materialsData[_currentGroupIndex];
     document.getElementById("material-group-title").textContent = group.group;
-    document.getElementById("material-group-desc").textContent = group.description;
+    document.getElementById("material-group-desc").textContent =
+      group.description;
 
     let stageText = "适用学段：";
     if (group.applicableStage && group.applicableStage.length > 0) {
@@ -99,6 +115,7 @@ window.MaterialService = (() => {
     container.innerHTML = html;
   };
 
+  /** 切换材料项的勾选状态,更新进度 */
   const toggleMaterial = (materialId) => {
     _selectedMaterials[materialId] = !_selectedMaterials[materialId];
     const item = document.querySelector(`[data-material-id="${materialId}"]`);
@@ -108,6 +125,7 @@ window.MaterialService = (() => {
     updateProgress();
   };
 
+  /** 更新进度条和完成计数,全部勾选时触发完成提示 */
   const updateProgress = () => {
     const progressContainer = document.getElementById("material-progress");
     if (!progressContainer || !_materialsData[_currentGroupIndex]) return;
@@ -128,6 +146,7 @@ window.MaterialService = (() => {
     checkCompletion(selected === total);
   };
 
+  /** 控制"材料已齐全"完成提示的显示/隐藏 */
   const checkCompletion = (isComplete) => {
     let completionAlert = document.getElementById("material-completion-alert");
     const section = document.querySelector(".material-section");
@@ -151,6 +170,7 @@ window.MaterialService = (() => {
     }
   };
 
+  /** 公共接口 */
   return {
     init,
     switchGroup,

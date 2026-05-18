@@ -1,5 +1,15 @@
-/* style.css - 全局样式 */
-
+/**
+ * style.css - 全局样式
+ *
+ * 功能: 定义智慧入学平台所有组件的视觉样式,包括导航栏、统计卡片、
+ *       地图容器、结果面板、政策卡片、材料清单、FAQ、政民互动、
+ *       搜索建议、政策对比等模块的布局和交互效果。
+ *
+ * 设计规范:
+ *   CSS 变量定义在 :root 中,主色 --primary-color (#1e3a5f),强调色 --accent-color (#f0a04b)
+ *   响应式断点: 992px(中屏), 768px(小屏), 576px(超小屏)
+ *   卡片圆角: --radius-card (8px), 按钮圆角: --radius-btn (6px)
+ */
 :root {
   --primary-color: #1e3a5f;
   --primary-dark: #15294a;

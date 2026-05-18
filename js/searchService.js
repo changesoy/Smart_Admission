@@ -1,5 +1,20 @@
-/* searchService.js - 搜索服务(本地地址点 + 关键词匹配) */
-
+/**
+ * searchService.js - 搜索服务
+ *
+ * 功能: 提供本地地址点和关键词索引的模糊匹配搜索,渲染搜索建议下拉列表,
+ *       选中结果后通过回调触发地图定位(地址点→坐标反查学区,关键词→关联 zoneId)。
+ *
+ * 关键接口:
+ *   init(data)                          - 初始化,接收完整数据对象
+ *   setOnZoneMatched(fn)                - 设置关键词匹配学区后的回调
+ *   setOnPointResolved(fn)              - 设置地址点坐标解析后的回调
+ *
+ * 数据格式:
+ *   addressPoint = { name, fullAddress, lng, lat, aliases[] }
+ *   keywordsIndex = { keyword, aliases[], matchedZoneIds[], type, displayName }
+ *
+ * 搜索算法: 大小写不敏感的 includes 匹配,同时搜索 name/fullAddress/aliases
+ */
 window.SearchService = (() => {
   let _addressPoints = [];
   let _keywordsIndex = [];
@@ -11,8 +26,10 @@ window.SearchService = (() => {
   let _searchClearBtn = null;
   let _searchSuggestions = null;
 
+  /** XSS 安全文本转义,委托给 RenderService.safeText */
   const escapeHtml = (str) => window.RenderService.safeText(str);
 
+  /** 初始化:存储搜索数据,绑定搜索框 input/keydown 事件和清除按钮 */
   const init = (data) => {
     _addressPoints = (data && data.addressPoints) || [];
     _keywordsIndex = (data && data.keywordsIndex) || [];
@@ -50,14 +67,17 @@ window.SearchService = (() => {
     });
   };
 
+  /** 设置关键词匹配学区后的回调函数 */
   const setOnZoneMatched = (fn) => {
     _onZoneMatched = fn;
   };
 
+  /** 设置地址点坐标解析后的回调函数 */
   const setOnPointResolved = (fn) => {
     _onPointResolved = fn;
   };
 
+  /** 搜索框 input 事件处理:实时搜索并渲染建议列表 */
   const handleInput = () => {
     const query = (_searchInput.value || "").trim();
     if (_searchClearBtn) {
@@ -71,6 +91,7 @@ window.SearchService = (() => {
     renderSuggestions(results, query);
   };
 
+  /** 搜索框 keydown 事件处理:Enter 键选中第一个结果 */
   const handleKeydown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -85,6 +106,7 @@ window.SearchService = (() => {
     }
   };
 
+  /** 核心搜索:遍历地址点和关键词索引,返回匹配结果数组 */
   const search = (query) => {
     const q = query.toLowerCase();
     const results = [];
@@ -114,16 +136,19 @@ window.SearchService = (() => {
     return results;
   };
 
+  /** 文本匹配:大小写不敏感 includes */
   const matchText = (text, q) => {
     if (!text) return false;
     return text.toLowerCase().includes(q);
   };
 
+  /** 别名数组匹配:任一别名包含查询词即命中 */
   const matchAliases = (aliases, q) => {
     if (!aliases || !aliases.length) return false;
     return aliases.some((alias) => alias && alias.toLowerCase().includes(q));
   };
 
+  /** 渲染搜索建议下拉列表,绑定点击事件 */
   const renderSuggestions = (results, query) => {
     if (!_searchSuggestions) return;
 
@@ -168,6 +193,7 @@ window.SearchService = (() => {
     }
   };
 
+  /** 选中搜索结果:地址点触发 onPointResolved,关键词触发 onZoneMatched */
   const selectItem = (result) => {
     hideSuggestions();
     if (!result) return;
@@ -194,12 +220,14 @@ window.SearchService = (() => {
     }
   };
 
+  /** 显示"未找到匹配结果"提示 */
   const showNoResult = () => {
     if (!_searchSuggestions) return;
     _searchSuggestions.innerHTML = `<div class="search-no-result">未找到匹配结果</div>`;
     _searchSuggestions.style.display = "block";
   };
 
+  /** 隐藏搜索建议下拉列表 */
   const hideSuggestions = () => {
     if (_searchSuggestions) {
       _searchSuggestions.style.display = "none";
@@ -207,6 +235,7 @@ window.SearchService = (() => {
     }
   };
 
+  /** 公共接口 */
   return {
     init,
     setOnZoneMatched,

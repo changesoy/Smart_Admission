@@ -1,9 +1,22 @@
-/* config.js - 全局配置(供其它脚本引用) */
-
+/**
+ * config.js - 全局配置
+ *
+ * 功能: 为项目所有模块提供集中式配置,包括地图参数、天地图瓦片、数据路径、
+ *       学区样式和提示文案。其他脚本通过 window.AppConfig 读取配置。
+ *
+ * 关键结构:
+ *   mapCenter    - [纬度, 经度], Leaflet setView 格式
+ *   dataPaths    - 各 JSON/GeoJSON 文件的相对路径映射
+ *   zoneStyle    - 按 stage(初中middle/小学primary)和状态(default/hover/selected)分组的 Leaflet Path 选项
+ *   tianditu     - 天地图 WMTS 瓦片模板 URL,需替换 {token} 占位符
+ */
 window.AppConfig = {
+  /** 地图初始中心 [纬度, 经度] (Leaflet 格式) */
   mapCenter: [36.1947, 117.1297],
+  /** 地图初始缩放级别 */
   mapZoom: 14,
 
+  /** 天地图瓦片服务配置,含 vec(矢量)/cva(标注)/img(影像)/cia(影像标注) 四层 */
   tianditu: {
     token: "913914b9096fb242c196babc64950515",
     vecUrl:
@@ -19,6 +32,7 @@ window.AppConfig = {
       '© <a href="https://www.tianditu.gov.cn/" target="_blank">天地图</a> · 国家地理信息公共服务平台',
   },
 
+  /** 数据文件路径映射,键名与 DataService.loadAllData 解构顺序对应 */
   dataPaths: {
     zones: "./data/zones.geojson",
     schools: "./data/schools.json",
@@ -32,6 +46,7 @@ window.AppConfig = {
     zonesHistory: "./data/zones_history.json",
   },
 
+  /** 学区图层样式,按学段(stage)和交互状态分组,值为 Leaflet Path 选项 */
   zoneStyle: {
     middle: {
       default: {
@@ -75,6 +90,7 @@ window.AppConfig = {
     },
   },
 
+  /** 界面提示文案,供 RenderService 等模块引用 */
   texts: {
     defaultResultTip: "请点击地图上的学区或任意点位以查询学区信息。",
     noMatchTip:
