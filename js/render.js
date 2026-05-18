@@ -73,16 +73,6 @@ window.RenderService = (function () {
       "</div>";
   }
 
-  function safeText(value) {
-    if (value === undefined || value === null || value === "") return "—";
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
-  }
-
   function renderResult(ctx) {
     var panel = document.getElementById("resultPanel");
     if (!panel) return;
@@ -94,8 +84,11 @@ window.RenderService = (function () {
     }
     var props = feature.properties;
 
-    var school = (ctx.schools || []).find(function (s) {
-      return s.schoolId === props.schoolId;
+    var primary = (ctx.schools || []).find(function (s) {
+      return s.schoolId === props.primarySchoolId;
+    });
+    var middle = (ctx.schools || []).find(function (s) {
+      return s.schoolId === props.middleSchoolId;
     });
 
     var policyIds = props.policyIds || [];
@@ -103,55 +96,24 @@ window.RenderService = (function () {
       return policyIds.indexOf(p.policyId) !== -1;
     });
 
-    var displayName = props.zoneName || "";
-    displayName = displayName.replace(/学区$/, "");
-
     var html = "";
     html +=
       '<div class="result-zone-name"><i class="bi bi-bookmark-fill text-warning"></i> ' +
-      safeText(displayName) +
+      (props.zoneName || "—") +
       "</div>";
     html +=
       '<div class="text-muted small mb-2">学区年份:' +
-      safeText(props.year) +
+      (props.year || "—") +
       "</div>";
 
     html += '<div class="result-section-title">招生范围说明</div>';
-    html += '<div class="small">' + safeText(props.description) + "</div>";
+    html += '<div class="small">' + (props.description || "—") + "</div>";
 
-    html += '<div class="result-section-title">对应学校</div>';
-    html += '<div class="zone-school-card">';
-    html +=
-      '<div class="zone-school-name">' +
-      safeText(school ? school.name : "未找到关联学校") +
-      "</div>";
-    html +=
-      '<span class="zone-school-stage">' + safeText(props.stage) + "</span>";
-    html += '<div class="zone-meta-grid">';
-    html +=
-      "<div><span>学校地址</span><strong>" +
-      safeText(school ? school.address : "—") +
-      "</strong></div>";
-    html +=
-      "<div><span>联系电话</span><strong>" +
-      safeText(school ? school.phone : "—") +
-      "</strong></div>";
-    html +=
-      "<div><span>所属区县</span><strong>" +
-      safeText(school ? school.district : "—") +
-      "</strong></div>";
-    html +=
-      "<div><span>学校类型</span><strong>" +
-      safeText(school ? school.type : "—") +
-      "</strong></div>";
-    html += "</div>";
-    if (school && school.website) {
-      html +=
-        '<div class="zone-school-website"><i class="bi bi-globe"></i><a href="' +
-        safeText(school.website) +
-        '" target="_blank" rel="noopener noreferrer">学校官网</a></div>';
-    }
-    html += "</div>";
+    html += '<div class="result-section-title">对口小学</div>';
+    html += renderSchoolBlock(primary);
+
+    html += '<div class="result-section-title">对口初中</div>';
+    html += renderSchoolBlock(middle);
 
     html += '<div class="result-section-title">关联政策</div>';
     if (relatedPolicies.length === 0) {
@@ -163,47 +125,15 @@ window.RenderService = (function () {
         if (hasValidUrl) {
           html +=
             '<li><a href="' +
-            safeText(p.url) +
+            p.url +
             '" target="_blank" rel="noopener noreferrer" class="policy-link-text">' +
-            safeText(p.title) +
+            (p.title || "—") +
             "</a></li>";
         } else {
-          html += "<li>" + safeText(p.title) + "</li>";
+          html += "<li>" + (p.title || "—") + "</li>";
         }
       });
       html += "</ul>";
-    }
-
-    html += '<div class="result-section-title">历年调整记录</div>';
-    var history = ctx.history || [];
-    if (history.length === 0) {
-      html += '<div class="text-muted small">暂无调整记录</div>';
-    } else {
-      html += '<div class="zone-history-timeline">';
-      history.forEach(function (h) {
-        html += '<div class="zone-history-item">';
-        html += '<div class="zone-history-year">' + safeText(h.year) + "</div>";
-        html +=
-          '<span class="zone-history-change">' +
-          safeText(h.changeType || h.change) +
-          "</span>";
-        html +=
-          '<div class="zone-history-title">' + safeText(h.title) + "</div>";
-        if (h.description) {
-          html +=
-            '<div class="zone-history-desc">' +
-            safeText(h.description) +
-            "</div>";
-        }
-        if (h.reason) {
-          html +=
-            '<div class="zone-history-reason">原因: ' +
-            safeText(h.reason) +
-            "</div>";
-        }
-        html += "</div>";
-      });
-      html += "</div>";
     }
 
     panel.innerHTML = html;
