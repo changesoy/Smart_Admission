@@ -1,0 +1,13 @@
+{
+  "name": "smart-admission",
+  "version": "1.0.0",
+  "private": true,
+  "description": "智慧入学信息公示平台",
+  "scripts": {
+    "lint": "eslint js/",
+    "lint:fix": "eslint js/ --fix"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  }
+}

@@ -1,158 +1,192 @@
-const FaqService = (function() {
-  let faqData = [];
-  let currentCategory = '全部';
-  let searchQuery = '';
+/**
+ * faqService.js - 常见问题服务
+ *
+ * ⚠️ 修改前必读: CONTRIBUTING.md
+ *
+ * 功能: 渲染 FAQ 列表,支持关键词搜索和分类筛选,问题可展开/收起,
+ *       支持关联问题跳转。
+ *
+ * 关键接口:
+ *   init(data)                    - 初始化,接收 faq 数组
+ *   filterByCategory(category)    - 按分类筛选(供 onclick 调用)
+ *   toggleFaq(faqId)              - 展开/收起指定问题
+ *   showFaq(faqId)                - 展开并滚动到指定问题
+ *
+ * 数据格式:
+ *   faq = { faqId, question, answer, category, priority, keywords[], relatedFaqIds[] }
+ */
+window.FaqService = (() => {
+  let _faqData = [];
+  let _currentCategory = "全部";
+  let _searchQuery = "";
 
-  function init(data) {
-    faqData = data || [];
+  /** 初始化:存储 FAQ 数据,渲染分类标签、列表和搜索框 */
+  const init = (data) => {
+    _faqData = data || [];
     renderCategories();
     renderFaqs();
     bindSearch();
-  }
+  };
 
-  function bindSearch() {
-    const searchInput = document.getElementById('faq-search');
+  /** 绑定搜索框 input 事件,实时过滤 FAQ */
+  const bindSearch = () => {
+    const searchInput = document.getElementById("faq-search");
     if (searchInput) {
-      searchInput.addEventListener('input', function(e) {
-        searchQuery = e.target.value.trim();
+      searchInput.addEventListener("input", (e) => {
+        _searchQuery = e.target.value.trim();
         renderFaqs();
       });
     }
-  }
+  };
 
-  function getCategories() {
-    const categories = ['全部'];
-    const categorySet = new Set();
-    
-    faqData.forEach(faq => {
+  /** 从 FAQ 数据中提取去重后的分类列表,前置"全部" */
+  const getCategories = () => {
+    const categories = ["全部"];
+    const categorySet = {};
+    _faqData.forEach((faq) => {
       if (faq.category) {
-        categorySet.add(faq.category);
+        categorySet[faq.category] = true;
       }
     });
-    
-    categories.push(...Array.from(categorySet));
+    Object.keys(categorySet).forEach((cat) => {
+      categories.push(cat);
+    });
     return categories;
-  }
+  };
 
-  function renderCategories() {
-    const container = document.getElementById('faq-categories');
+  /** 渲染分类标签按钮组 */
+  const renderCategories = () => {
+    const container = document.getElementById("faq-categories");
     if (!container) return;
 
     const categories = getCategories();
-    container.innerHTML = categories.map(cat => `
-      <button 
-        class="faq-chip ${currentCategory === cat ? 'active' : ''}"
-        onclick="window.FaqService.filterByCategory('${cat}')"
-      >
-        ${cat}
-      </button>
-    `).join('');
-  }
+    let html = "";
+    categories.forEach((cat) => {
+      const activeClass = _currentCategory === cat ? " active" : "";
+      html += `<button class="faq-chip${activeClass}"`;
+      html += ` onclick="window.FaqService.filterByCategory('${cat}')">`;
+      html += cat;
+      html += `</button>`;
+    });
+    container.innerHTML = html;
+  };
 
-  function filterByCategory(category) {
-    currentCategory = category;
+  /** 按分类筛选并重新渲染分类标签和 FAQ 列表 */
+  const filterByCategory = (category) => {
+    _currentCategory = category;
     renderCategories();
     renderFaqs();
-  }
+  };
 
-  function filterFaqs() {
-    let filtered = [...faqData];
-    
-    if (currentCategory !== '全部') {
-      filtered = filtered.filter(faq => faq.category === currentCategory);
+  /** 过滤 FAQ:按分类和搜索关键词过滤,结果按 priority 降序排列 */
+  const filterFaqs = () => {
+    let filtered = _faqData.slice();
+
+    if (_currentCategory !== "全部") {
+      filtered = filtered.filter((faq) => faq.category === _currentCategory);
     }
-    
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(faq => {
-        const questionMatch = faq.question?.toLowerCase().includes(query);
-        const answerMatch = faq.answer?.toLowerCase().includes(query);
-        const keywordMatch = faq.keywords?.some(kw => kw.toLowerCase().includes(query));
+
+    if (_searchQuery) {
+      const query = _searchQuery.toLowerCase();
+      filtered = filtered.filter((faq) => {
+        const questionMatch =
+          faq.question && faq.question.toLowerCase().includes(query);
+        const answerMatch =
+          faq.answer && faq.answer.toLowerCase().includes(query);
+        const keywordMatch =
+          faq.keywords &&
+          faq.keywords.some((kw) => kw.toLowerCase().includes(query));
         return questionMatch || answerMatch || keywordMatch;
       });
     }
-    
+
     filtered.sort((a, b) => (b.priority || 0) - (a.priority || 0));
-    
+
     return filtered;
-  }
+  };
 
-  function getFaqById(faqId) {
-    return faqData.find(faq => faq.faqId === faqId);
-  }
+  /** 根据 faqId 查找 FAQ 项 */
+  const getFaqById = (faqId) => _faqData.find((faq) => faq.faqId === faqId);
 
-  function renderFaqs() {
-    const container = document.getElementById('faq-list');
+  /** 渲染 FAQ 列表,高优先级(≥80)显示星标图标 */
+  const renderFaqs = () => {
+    const container = document.getElementById("faq-list");
     if (!container) return;
 
     const filtered = filterFaqs();
-    
+
     if (filtered.length === 0) {
-      container.innerHTML = '<div class="faq-empty">暂无匹配的常见问题</div>';
+      container.innerHTML = `<div class="faq-empty">暂无匹配的常见问题</div>`;
       return;
     }
 
-    container.innerHTML = filtered.map(faq => `
-      <div class="faq-item" data-faq-id="${faq.faqId}">
-        <div class="faq-question" onclick="window.FaqService.toggleFaq('${faq.faqId}')">
-          <span class="faq-icon">${faq.priority && faq.priority >= 80 ? '★' : '▶'}</span>
-          <span class="faq-text">${faq.question}</span>
-        </div>
-        <div class="faq-answer" id="faq-answer-${faq.faqId}">
-          <p>${faq.answer}</p>
-          ${faq.relatedFaqIds && faq.relatedFaqIds.length > 0 ? renderRelatedFaqs(faq.relatedFaqIds) : ''}
-        </div>
-      </div>
-    `).join('');
-  }
+    let html = "";
+    filtered.forEach((faq) => {
+      const icon = faq.priority && faq.priority >= 80 ? "\u2605" : "\u25B6";
+      html += `<div class="faq-item" data-faq-id="${faq.faqId}">`;
+      html += `<div class="faq-question" onclick="window.FaqService.toggleFaq('${faq.faqId}')">`;
+      html += `<span class="faq-icon">${icon}</span>`;
+      html += `<span class="faq-text">${faq.question}</span>`;
+      html += `</div>`;
+      html += `<div class="faq-answer" id="faq-answer-${faq.faqId}">`;
+      html += `<p>${faq.answer}</p>`;
+      if (faq.relatedFaqIds && faq.relatedFaqIds.length > 0) {
+        html += renderRelatedFaqs(faq.relatedFaqIds);
+      }
+      html += `</div>`;
+      html += `</div>`;
+    });
+    container.innerHTML = html;
+  };
 
-  function renderRelatedFaqs(relatedIds) {
-    const relatedFaqs = relatedIds
-      .map(id => getFaqById(id))
-      .filter(Boolean);
-    
-    if (relatedFaqs.length === 0) return '';
+  /** 渲染关联问题按钮列表 */
+  const renderRelatedFaqs = (relatedIds) => {
+    const relatedFaqs = relatedIds.map((id) => getFaqById(id)).filter(Boolean);
 
-    return `
-      <div class="faq-related">
-        <span class="related-title">相关问题：</span>
-        <div class="related-list">
-          ${relatedFaqs.map(rf => `
-            <button class="related-item" onclick="window.FaqService.showFaq('${rf.faqId}')">
-              ${rf.question}
-            </button>
-          `).join('')}
-        </div>
-      </div>
-    `;
-  }
+    if (relatedFaqs.length === 0) return "";
 
-  function toggleFaq(faqId) {
+    let html = `<div class="faq-related">`;
+    html += `<span class="related-title">相关问题：</span>`;
+    html += `<div class="related-list">`;
+    relatedFaqs.forEach((rf) => {
+      html += `<button class="related-item" onclick="window.FaqService.showFaq('${rf.faqId}')">`;
+      html += rf.question;
+      html += `</button>`;
+    });
+    html += `</div>`;
+    html += `</div>`;
+    return html;
+  };
+
+  /** 切换指定 FAQ 的展开/收起状态 */
+  const toggleFaq = (faqId) => {
     const answer = document.getElementById(`faq-answer-${faqId}`);
-    const question = document.querySelector(`[data-faq-id="${faqId}"] .faq-question`);
-    
+    const question = document.querySelector(
+      `[data-faq-id="${faqId}"] .faq-question`,
+    );
+
     if (answer) {
-      answer.classList.toggle('show');
+      answer.classList.toggle("show");
     }
     if (question) {
-      question.classList.toggle('expanded');
+      question.classList.toggle("expanded");
     }
-  }
+  };
 
-  function showFaq(faqId) {
+  /** 展开指定 FAQ 并平滑滚动到该位置 */
+  const showFaq = (faqId) => {
     toggleFaq(faqId);
     const element = document.querySelector(`[data-faq-id="${faqId}"]`);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  }
+  };
 
+  /** 公共接口 */
   return {
     init,
     filterByCategory,
     toggleFaq,
-    showFaq
+    showFaq,
   };
 })();
-
-window.FaqService = FaqService;

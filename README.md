@@ -18,50 +18,60 @@
 
 ## 二、技术栈
 
-| 类别     | 技术                                            |
-| -------- | ----------------------------------------------- |
-| 基础     | HTML5 / CSS3 / Vanilla JavaScript               |
-| UI 框架  | Bootstrap 5.3.2 + Bootstrap Icons 1.11.3        |
-| 地图     | Leaflet 1.9.4 + 天地图在线瓦片                  |
-| 空间计算 | Turf 6.5.0 (`turf.booleanPointInPolygon`)       |
-| 数据     | 本地 JSON / GeoJSON 文件                        |
-| 运行     | Python 内置 HTTP 服务(或任意静态服务器)         |
+| 类别     | 技术                                      |
+| -------- | ----------------------------------------- |
+| 基础     | HTML5 / CSS3 / Vanilla JavaScript (ES6+)  |
+| UI 框架  | Bootstrap 5.3.2 + Bootstrap Icons 1.11.3  |
+| 地图     | Leaflet 1.9.4 + 天地图在线瓦片            |
+| 空间计算 | Turf 6.5.0 (`turf.booleanPointInPolygon`) |
+| 数据     | 本地 JSON / GeoJSON 文件                  |
+| 代码规范 | ESLint 9.x (ES6+ 语法检查)                |
+| 运行     | Python 内置 HTTP 服务(或任意静态服务器)   |
 
-**本项目不使用** Vue / React / Angular / Node 后端 / npm / Vite / TypeScript / 商业地图 API。
+**本项目不使用** Vue / React / Angular / Node 后端 / Vite / TypeScript / 商业地图 API。
 
 ---
 
 ## 三、目录结构
 
 ```
-smart-admission-demo/
-├── index.html
+smart-admission/
+├── index.html              # 主页面
+├── README.md               # 项目说明
+├── package.json            # npm 配置(ESLint 脚本)
+├── eslint.config.js        # ESLint 9.x 扁平配置(ES6+ 规则)
+├── .gitignore              # Git 忽略规则
 ├── css/
-│   └── style.css
+│   └── style.css           # 全局样式
 ├── js/
-│   ├── config.js
-│   ├── dataService.js
-│   ├── render.js
-│   ├── mapService.js
-│   ├── searchService.js
-│   ├── policyService.js
-│   ├── materialService.js
-│   ├── faqService.js
-│   ├── interactionService.js
-│   └── main.js
+│   ├── config.js           # 全局配置(地图参数/数据路径/样式)
+│   ├── dataService.js      # 数据加载服务(fetch + async/await)
+│   ├── render.js           # 渲染服务(统计卡片/结果面板/错误状态)
+│   ├── mapService.js       # 地图服务(Leaflet + Turf 点面判断)
+│   ├── searchService.js    # 搜索服务(地址点 + 关键词匹配)
+│   ├── policyService.js    # 政策渲染与年度对比
+│   ├── materialService.js  # 入学材料清单(勾选/进度)
+│   ├── faqService.js       # 常见问题(搜索/分类/展开)
+│   ├── interactionService.js # 政民互动(留言/联系卡片)
+│   └── main.js             # 主入口(协调初始化)
 ├── data/
-│   ├── zones.geojson
-│   ├── schools.json
-│   ├── zones_history.json
-│   ├── address_points.json
-│   ├── keywords_index.json
-│   ├── policies.json
-│   ├── policy_diff.json
-│   ├── materials.json
-│   ├── faq.json
-│   ├── contacts.json
-│   └── rumors.json
-└── README.md
+│   ├── zones.geojson       # 学区边界
+│   ├── schools.json        # 学校信息
+│   ├── zones_history.json  # 学区历年调整记录
+│   ├── address_points.json # 地址点索引
+│   ├── keywords_index.json # 关键词索引
+│   ├── policies.json       # 招生政策
+│   ├── policy_diff.json    # 政策年度对比
+│   ├── materials.json      # 入学材料分组
+│   ├── faq.json            # 常见问题
+│   ├── contacts.json       # 联系方式
+│   └── rumors.json         # 辟谣信息
+└── docs/                   # 文档与数据说明
+    ├── data-schema.md
+    ├── zone-school-list.md
+    ├── address_points.json
+    ├── keywords_index.json
+    └── zones_history.json
 ```
 
 ---
@@ -92,20 +102,20 @@ http://localhost:5500
 
 ## 五、功能说明
 
-| 模块         | 描述                                                                           |
-| ------------ | ------------------------------------------------------------------------------ |
-| 数据概览     | 顶部 4 张卡片,展示学区、学校、政策、FAQ 数量                                   |
-| 搜索查询     | 输入学校、小区、道路或地址关键词,本地匹配地址点与关键词索引,快速定位学区       |
-| 学区等级筛选 | 初中/小学复选框,控制地图上不同学段学区的显示与隐藏                              |
-| 学区地图     | Leaflet + 天地图底图,渲染 10 个学区 Polygon(初中蓝色/小学绿色),悬停高亮、点击选中 |
-| 学区查询     | 点击地图任意位置,使用 Turf 判断点位所属学区,命中即显示详情                     |
+| 模块         | 描述                                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------- |
+| 数据概览     | 顶部 4 张卡片,展示学区、学校、政策、FAQ 数量                                                      |
+| 搜索查询     | 输入学校、小区、道路或地址关键词,本地匹配地址点与关键词索引,快速定位学区                          |
+| 学区等级筛选 | 初中/小学复选框,控制地图上不同学段学区的显示与隐藏                                                |
+| 学区地图     | Leaflet + 天地图底图,渲染 10 个学区 Polygon(初中蓝色/小学绿色),悬停高亮、点击选中                 |
+| 学区查询     | 点击地图任意位置,使用 Turf 判断点位所属学区,命中即显示详情                                        |
 | 查询结果面板 | 学区名 / 对应学校(地址/电话/区县/类型/官网) / 招生范围 / 学区年份 / 关联政策 / 历年调整记录时间线 |
-| 招生政策     | 政策列表,支持按"分类"和"年份"双向筛选                                          |
-| 政策年度对比 | 选择两个年份,对比政策变化点                                                     |
-| 入学材料     | 4 类材料(本地户籍 / 随迁子女 / 集体户 / 人户分离),可勾选并显示进度             |
-| FAQ          | 关键词搜索 + 分类筛选,对问题与答案做实时过滤                                    |
-| 留言建议     | 在线留言表单 + 留言列表,支持分类选择                                            |
-| 网站说明     | 明示平台范围与数据来源,避免误解                                                 |
+| 招生政策     | 政策列表,支持按"分类"和"年份"双向筛选                                                             |
+| 政策年度对比 | 选择两个年份,对比政策变化点                                                                       |
+| 入学材料     | 4 类材料(本地户籍 / 随迁子女 / 集体户 / 人户分离),可勾选并显示进度                                |
+| FAQ          | 关键词搜索 + 分类筛选,对问题与答案做实时过滤                                                      |
+| 留言建议     | 在线留言表单 + 留言列表,支持分类选择                                                              |
+| 网站说明     | 明示平台范围与数据来源,避免误解                                                                   |
 
 ---
 
@@ -223,4 +233,4 @@ JSON 不能写注释、不能有尾随逗号、字符串必须用双引号。可
 ---
 
 **项目维护者**:智慧入学·学区治理课题组
-**版本**:阶段性原型 v0.2
+**版本**:阶段性原型 v1.0

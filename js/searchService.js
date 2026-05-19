@@ -1,17 +1,38 @@
-/* searchService.js - 搜索服务(本地地址点 + 关键词匹配) */
+/**
+ * searchService.js - 搜索服务
+ *
+ * ⚠️ 修改前必读: CONTRIBUTING.md
+ *
+ * 功能: 提供本地地址点和关键词索引的模糊匹配搜索,渲染搜索建议下拉列表,
+ *       选中结果后通过回调触发地图定位(地址点→坐标反查学区,关键词→关联 zoneId)。
+ *
+ * 关键接口:
+ *   init(data)                          - 初始化,接收完整数据对象
+ *   setOnZoneMatched(fn)                - 设置关键词匹配学区后的回调
+ *   setOnPointResolved(fn)              - 设置地址点坐标解析后的回调
+ *
+ * 数据格式:
+ *   addressPoint = { name, fullAddress, lng, lat, aliases[] }
+ *   keywordsIndex = { keyword, aliases[], matchedZoneIds[], type, displayName }
+ *
+ * 搜索算法: 大小写不敏感的 includes 匹配,同时搜索 name/fullAddress/aliases
+ */
+window.SearchService = (() => {
+  let _addressPoints = [];
+  let _keywordsIndex = [];
+  let _zones = null;
+  let _onZoneMatched = null;
+  let _onPointResolved = null;
 
-window.SearchService = (function () {
-  var _addressPoints = [];
-  var _keywordsIndex = [];
-  var _zones = null;
-  var _onZoneMatched = null;
-  var _onPointResolved = null;
+  let _searchInput = null;
+  let _searchClearBtn = null;
+  let _searchSuggestions = null;
 
-  var _searchInput = null;
-  var _searchClearBtn = null;
-  var _searchSuggestions = null;
+  /** XSS 安全文本转义,委托给 RenderService.safeText */
+  const escapeHtml = (str) => window.RenderService.safeText(str);
 
-  function init(data) {
+  /** 初始化:存储搜索数据,绑定搜索框 input/keydown 事件和清除按钮 */
+  const init = (data) => {
     _addressPoints = (data && data.addressPoints) || [];
     _keywordsIndex = (data && data.keywordsIndex) || [];
     _zones = (data && data.zones) || null;
@@ -29,7 +50,7 @@ window.SearchService = (function () {
     _searchInput.addEventListener("keydown", handleKeydown);
 
     if (_searchClearBtn) {
-      _searchClearBtn.addEventListener("click", function () {
+      _searchClearBtn.addEventListener("click", () => {
         _searchInput.value = "";
         hideSuggestions();
         _searchClearBtn.style.display = "none";
@@ -37,23 +58,30 @@ window.SearchService = (function () {
       });
     }
 
-    document.addEventListener("click", function (e) {
-      if (_searchSuggestions && !_searchSuggestions.contains(e.target) && e.target !== _searchInput) {
+    document.addEventListener("click", (e) => {
+      if (
+        _searchSuggestions &&
+        !_searchSuggestions.contains(e.target) &&
+        e.target !== _searchInput
+      ) {
         hideSuggestions();
       }
     });
-  }
+  };
 
-  function setOnZoneMatched(fn) {
+  /** 设置关键词匹配学区后的回调函数 */
+  const setOnZoneMatched = (fn) => {
     _onZoneMatched = fn;
-  }
+  };
 
-  function setOnPointResolved(fn) {
+  /** 设置地址点坐标解析后的回调函数 */
+  const setOnPointResolved = (fn) => {
     _onPointResolved = fn;
-  }
+  };
 
-  function handleInput() {
-    var query = (_searchInput.value || "").trim();
+  /** 搜索框 input 事件处理:实时搜索并渲染建议列表 */
+  const handleInput = () => {
+    const query = (_searchInput.value || "").trim();
     if (_searchClearBtn) {
       _searchClearBtn.style.display = query ? "inline-block" : "none";
     }
@@ -61,66 +89,69 @@ window.SearchService = (function () {
       hideSuggestions();
       return;
     }
-    var results = search(query);
+    const results = search(query);
     renderSuggestions(results, query);
-  }
+  };
 
-  function handleKeydown(e) {
+  /** 搜索框 keydown 事件处理:Enter 键选中第一个结果 */
+  const handleKeydown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      var query = (_searchInput.value || "").trim();
+      const query = (_searchInput.value || "").trim();
       if (!query) return;
-      var results = search(query);
+      const results = search(query);
       if (results.length > 0) {
         selectItem(results[0]);
       } else {
         showNoResult();
       }
     }
-  }
+  };
 
-  function search(query) {
-    var q = query.toLowerCase();
-    var results = [];
+  /** 核心搜索:遍历地址点和关键词索引,返回匹配结果数组 */
+  const search = (query) => {
+    const q = query.toLowerCase();
+    const results = [];
 
-    var i, item;
-    for (i = 0; i < _addressPoints.length; i++) {
-      item = _addressPoints[i];
-      if (matchText(item.name, q) || matchText(item.fullAddress, q) || matchAliases(item.aliases, q)) {
+    for (const item of _addressPoints) {
+      if (
+        matchText(item.name, q) ||
+        matchText(item.fullAddress, q) ||
+        matchAliases(item.aliases, q)
+      ) {
         results.push({
           source: "addressPoint",
-          data: item
+          data: item,
         });
       }
     }
 
-    for (i = 0; i < _keywordsIndex.length; i++) {
-      item = _keywordsIndex[i];
+    for (const item of _keywordsIndex) {
       if (matchText(item.keyword, q) || matchAliases(item.aliases, q)) {
         results.push({
           source: "keyword",
-          data: item
+          data: item,
         });
       }
     }
 
     return results;
-  }
+  };
 
-  function matchText(text, q) {
+  /** 文本匹配:大小写不敏感 includes */
+  const matchText = (text, q) => {
     if (!text) return false;
-    return text.toLowerCase().indexOf(q) !== -1;
-  }
+    return text.toLowerCase().includes(q);
+  };
 
-  function matchAliases(aliases, q) {
+  /** 别名数组匹配:任一别名包含查询词即命中 */
+  const matchAliases = (aliases, q) => {
     if (!aliases || !aliases.length) return false;
-    for (var i = 0; i < aliases.length; i++) {
-      if (aliases[i] && aliases[i].toLowerCase().indexOf(q) !== -1) return true;
-    }
-    return false;
-  }
+    return aliases.some((alias) => alias && alias.toLowerCase().includes(q));
+  };
 
-  function renderSuggestions(results, query) {
+  /** 渲染搜索建议下拉列表,绑定点击事件 */
+  const renderSuggestions = (results, query) => {
     if (!_searchSuggestions) return;
 
     if (results.length === 0) {
@@ -128,53 +159,60 @@ window.SearchService = (function () {
       return;
     }
 
-    var html = "";
-    for (var i = 0; i < results.length; i++) {
-      var r = results[i];
-      var item = r.data;
-      var typeTag = r.source === "addressPoint" ? "地址" : (item.type || "关键词");
-      var displayName = r.source === "addressPoint" ? item.name : (item.displayName || item.keyword);
-      var subText = r.source === "addressPoint" ? item.fullAddress : "";
+    let html = "";
+    for (let i = 0; i < results.length; i++) {
+      const r = results[i];
+      const item = r.data;
+      const typeTag =
+        r.source === "addressPoint" ? "地址" : item.type || "关键词";
+      const displayName =
+        r.source === "addressPoint"
+          ? item.name
+          : item.displayName || item.keyword;
+      const subText = r.source === "addressPoint" ? item.fullAddress : "";
 
-      html += '<div class="search-suggestion-item" data-index="' + i + '">';
-      html += '<span class="search-type-tag">' + escapeHtml(typeTag) + '</span>';
-      html += '<span class="search-keyword">' + escapeHtml(displayName) + '</span>';
+      html += `<div class="search-suggestion-item" data-index="${i}">`;
+      html += `<span class="search-type-tag">${escapeHtml(typeTag)}</span>`;
+      html += `<span class="search-keyword">${escapeHtml(displayName)}</span>`;
       if (subText) {
-        html += '<small class="text-muted ms-1">' + escapeHtml(subText) + '</small>';
+        html += `<small class="text-muted ms-1">${escapeHtml(subText)}</small>`;
       }
-      html += '</div>';
+      html += `</div>`;
     }
 
     _searchSuggestions.innerHTML = html;
     _searchSuggestions.style.display = "block";
 
-    var items = _searchSuggestions.querySelectorAll(".search-suggestion-item");
-    for (var j = 0; j < items.length; j++) {
-      (function (idx) {
-        items[idx].addEventListener("click", function () {
+    const items = _searchSuggestions.querySelectorAll(
+      ".search-suggestion-item",
+    );
+    for (let j = 0; j < items.length; j++) {
+      ((idx) => {
+        items[idx].addEventListener("click", () => {
           selectItem(results[idx]);
         });
       })(j);
     }
-  }
+  };
 
-  function selectItem(result) {
+  /** 选中搜索结果:地址点触发 onPointResolved,关键词触发 onZoneMatched */
+  const selectItem = (result) => {
     hideSuggestions();
     if (!result) return;
 
     if (result.source === "addressPoint") {
-      var item = result.data;
+      const item = result.data;
       if (typeof _onPointResolved === "function") {
         _onPointResolved(item.lng, item.lat, item);
       }
     } else if (result.source === "keyword") {
-      var kw = result.data;
-      var zoneIds = kw.matchedZoneIds || [];
+      const kw = result.data;
+      const zoneIds = kw.matchedZoneIds || [];
       if (zoneIds.length === 0) {
         console.warn("关键词未关联任何学区:", kw.keyword);
         return;
       }
-      var zoneId = zoneIds[0];
+      const zoneId = zoneIds[0];
       if (zoneIds.length > 1) {
         console.warn("多个候选学区，当前使用第一个:", zoneIds);
       }
@@ -182,33 +220,27 @@ window.SearchService = (function () {
         _onZoneMatched(zoneId, kw);
       }
     }
-  }
+  };
 
-  function showNoResult() {
+  /** 显示"未找到匹配结果"提示 */
+  const showNoResult = () => {
     if (!_searchSuggestions) return;
-    _searchSuggestions.innerHTML = '<div class="search-no-result">未找到匹配结果</div>';
+    _searchSuggestions.innerHTML = `<div class="search-no-result">未找到匹配结果</div>`;
     _searchSuggestions.style.display = "block";
-  }
+  };
 
-  function hideSuggestions() {
+  /** 隐藏搜索建议下拉列表 */
+  const hideSuggestions = () => {
     if (_searchSuggestions) {
       _searchSuggestions.style.display = "none";
       _searchSuggestions.innerHTML = "";
     }
-  }
+  };
 
-  function escapeHtml(str) {
-    if (!str) return "";
-    return String(str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
-  }
-
+  /** 公共接口 */
   return {
-    init: init,
-    setOnZoneMatched: setOnZoneMatched,
-    setOnPointResolved: setOnPointResolved
+    init,
+    setOnZoneMatched,
+    setOnPointResolved,
   };
 })();
