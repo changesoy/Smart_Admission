@@ -95,6 +95,22 @@ window.RenderService = (() => {
       .replace(/'/g, "&#39;");
   };
 
+  /** URL 安全校验:仅允许 http/https/相对路径/锚点,其余返回 # */
+  const safeUrl = (value) => {
+    if (!value) return "";
+    const url = String(value).trim();
+    if (
+      url.startsWith("http://") ||
+      url.startsWith("https://") ||
+      url.startsWith("./") ||
+      url.startsWith("/") ||
+      url.startsWith("#")
+    ) {
+      return url;
+    }
+    return "#";
+  };
+
   /** 渲染学区查询结果面板:学区名+对应学校+关联政策+历年调整记录时间线 */
   const renderResult = (ctx) => {
     const panel = document.getElementById("resultPanel");
@@ -137,7 +153,7 @@ window.RenderService = (() => {
     html += `<div><span>学校类型</span><strong>${safeText(school ? school.type : "—")}</strong></div>`;
     html += `</div>`;
     if (school && school.website) {
-      html += `<div class="zone-school-website"><i class="bi bi-globe"></i><a href="${safeText(school.website)}" target="_blank" rel="noopener noreferrer">学校官网</a></div>`;
+      html += `<div class="zone-school-website"><i class="bi bi-globe"></i><a href="${safeUrl(school.website)}" target="_blank" rel="noopener noreferrer">学校官网</a></div>`;
     }
     html += `</div>`;
 
@@ -149,7 +165,7 @@ window.RenderService = (() => {
       relatedPolicies.forEach((p) => {
         const hasValidUrl = p.url && p.url !== "#";
         if (hasValidUrl) {
-          html += `<li><a href="${safeText(p.url)}" target="_blank" rel="noopener noreferrer" class="policy-link-text">${safeText(p.title)}</a></li>`;
+          html += `<li><a href="${safeUrl(p.url)}" target="_blank" rel="noopener noreferrer" class="policy-link-text">${safeText(p.title)}</a></li>`;
         } else {
           html += `<li>${safeText(p.title)}</li>`;
         }
@@ -224,5 +240,6 @@ window.RenderService = (() => {
     renderError,
     setBoundaryNotice,
     safeText,
+    safeUrl,
   };
 })();

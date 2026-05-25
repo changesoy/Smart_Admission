@@ -63,12 +63,17 @@ window.FaqService = (() => {
     let html = "";
     categories.forEach((cat) => {
       const activeClass = _currentCategory === cat ? " active" : "";
-      html += `<button class="faq-chip${activeClass}"`;
-      html += ` onclick="window.FaqService.filterByCategory('${cat}')">`;
-      html += cat;
+      html += `<button class="faq-chip${activeClass}" data-category="${window.RenderService.safeText(cat)}">`;
+      html += window.RenderService.safeText(cat);
       html += `</button>`;
     });
     container.innerHTML = html;
+
+    container.querySelectorAll(".faq-chip").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filterByCategory(btn.dataset.category);
+      });
+    });
   };
 
   /** 按分类筛选并重新渲染分类标签和 FAQ 列表 */
@@ -114,6 +119,7 @@ window.FaqService = (() => {
     if (!container) return;
 
     const filtered = filterFaqs();
+    const safe = window.RenderService.safeText;
 
     if (filtered.length === 0) {
       container.innerHTML = `<div class="faq-empty">暂无匹配的常见问题</div>`;
@@ -123,13 +129,13 @@ window.FaqService = (() => {
     let html = "";
     filtered.forEach((faq) => {
       const icon = faq.priority && faq.priority >= 80 ? "\u2605" : "\u25B6";
-      html += `<div class="faq-item" data-faq-id="${faq.faqId}">`;
-      html += `<div class="faq-question" onclick="window.FaqService.toggleFaq('${faq.faqId}')">`;
+      html += `<div class="faq-item" data-faq-id="${safe(faq.faqId)}">`;
+      html += `<div class="faq-question">`;
       html += `<span class="faq-icon">${icon}</span>`;
-      html += `<span class="faq-text">${faq.question}</span>`;
+      html += `<span class="faq-text">${safe(faq.question)}</span>`;
       html += `</div>`;
-      html += `<div class="faq-answer" id="faq-answer-${faq.faqId}">`;
-      html += `<p>${faq.answer}</p>`;
+      html += `<div class="faq-answer" id="faq-answer-${safe(faq.faqId)}">`;
+      html += `<p>${safe(faq.answer)}</p>`;
       if (faq.relatedFaqIds && faq.relatedFaqIds.length > 0) {
         html += renderRelatedFaqs(faq.relatedFaqIds);
       }
@@ -137,11 +143,27 @@ window.FaqService = (() => {
       html += `</div>`;
     });
     container.innerHTML = html;
+
+    container.querySelectorAll(".faq-question").forEach((el) => {
+      el.addEventListener("click", () => {
+        const item = el.closest(".faq-item");
+        if (item) {
+          toggleFaq(item.dataset.faqId);
+        }
+      });
+    });
+
+    container.querySelectorAll(".related-item").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        showFaq(btn.dataset.relatedFaqId);
+      });
+    });
   };
 
   /** 渲染关联问题按钮列表 */
   const renderRelatedFaqs = (relatedIds) => {
     const relatedFaqs = relatedIds.map((id) => getFaqById(id)).filter(Boolean);
+    const safe = window.RenderService.safeText;
 
     if (relatedFaqs.length === 0) return "";
 
@@ -149,8 +171,8 @@ window.FaqService = (() => {
     html += `<span class="related-title">相关问题：</span>`;
     html += `<div class="related-list">`;
     relatedFaqs.forEach((rf) => {
-      html += `<button class="related-item" onclick="window.FaqService.showFaq('${rf.faqId}')">`;
-      html += rf.question;
+      html += `<button class="related-item" data-related-faq-id="${safe(rf.faqId)}">`;
+      html += safe(rf.question);
       html += `</button>`;
     });
     html += `</div>`;

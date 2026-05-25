@@ -36,23 +36,24 @@ window.InteractionService = (() => {
     }
 
     let html = "";
+    const safe = window.RenderService.safeText;
     _contacts.forEach((c) => {
       html += `<div class="contact-card">`;
       html +=
         `<div class="contact-card-header">` +
-        `<span class="contact-type-tag">${c.type}</span>` +
-        `<span class="contact-name">${c.name}</span>` +
+        `<span class="contact-type-tag">${safe(c.type)}</span>` +
+        `<span class="contact-name">${safe(c.name)}</span>` +
         `</div>`;
       if (c.phone)
-        html += `<div class="contact-row"><i class="bi bi-telephone"></i>${c.phone}</div>`;
+        html += `<div class="contact-row"><i class="bi bi-telephone"></i>${safe(c.phone)}</div>`;
       if (c.email)
-        html += `<div class="contact-row"><i class="bi bi-envelope"></i>${c.email}</div>`;
+        html += `<div class="contact-row"><i class="bi bi-envelope"></i>${safe(c.email)}</div>`;
       if (c.address)
-        html += `<div class="contact-row"><i class="bi bi-geo-alt"></i>${c.address}</div>`;
+        html += `<div class="contact-row"><i class="bi bi-geo-alt"></i>${safe(c.address)}</div>`;
       if (c.hours)
-        html += `<div class="contact-row"><i class="bi bi-clock"></i>${c.hours}</div>`;
+        html += `<div class="contact-row"><i class="bi bi-clock"></i>${safe(c.hours)}</div>`;
       if (c.note)
-        html += `<div class="contact-note small text-muted">${c.note}</div>`;
+        html += `<div class="contact-note small text-muted">${safe(c.note)}</div>`;
       html += `</div>`;
     });
     el.innerHTML = html;

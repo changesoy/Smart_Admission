@@ -31,15 +31,22 @@ window.MaterialService = (() => {
     const tabsContainer = document.getElementById("material-tabs");
     if (!tabsContainer) return;
 
+    const safe = window.RenderService.safeText;
+
     let html = "";
     _materialsData.forEach((group, index) => {
       const activeClass = index === _currentGroupIndex ? " active" : "";
-      html += `<button class="material-tab${activeClass}"`;
-      html += ` onclick="window.MaterialService.switchGroup(${index})">`;
-      html += group.group;
+      html += `<button class="material-tab${activeClass}" data-group-index="${index}">`;
+      html += safe(group.group);
       html += `</button>`;
     });
     tabsContainer.innerHTML = html;
+
+    tabsContainer.querySelectorAll(".material-tab").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        switchGroup(parseInt(btn.dataset.groupIndex, 10));
+      });
+    });
   };
 
   /** 切换到指定分组索引,重新渲染标签页、列表和进度 */
@@ -56,6 +63,9 @@ window.MaterialService = (() => {
   const renderCurrentGroup = () => {
     const container = document.getElementById("material-list");
     if (!container || !_materialsData[_currentGroupIndex]) return;
+
+    const safe = window.RenderService.safeText;
+    const safeU = window.RenderService.safeUrl;
 
     const group = _materialsData[_currentGroupIndex];
     document.getElementById("material-group-title").textContent = group.group;
@@ -75,13 +85,13 @@ window.MaterialService = (() => {
       const isSelected = _selectedMaterials[item.materialId] || false;
       const selectedClass = isSelected ? " selected" : "";
 
-      html += `<div class="material-item${selectedClass}" data-material-id="${item.materialId}">`;
-      html += `<div class="material-checkbox" onclick="window.MaterialService.toggleMaterial('${item.materialId}')">`;
+      html += `<div class="material-item${selectedClass}" data-material-id="${safe(item.materialId)}">`;
+      html += `<div class="material-checkbox">`;
       html += `<span class="check-icon">${isSelected ? "\u2713" : ""}</span>`;
       html += `</div>`;
       html += `<div class="material-content">`;
       html += `<div class="material-header">`;
-      html += `<span class="material-name">${item.name}</span>`;
+      html += `<span class="material-name">${safe(item.name)}</span>`;
       if (item.required) {
         html += `<span class="material-required">必需</span>`;
       } else {
@@ -89,14 +99,14 @@ window.MaterialService = (() => {
       }
       html += `</div>`;
       if (item.note) {
-        html += `<p class="material-note">${item.note}</p>`;
+        html += `<p class="material-note">${safe(item.note)}</p>`;
       }
       html += `<div class="material-meta">`;
       if (item.validity) {
-        html += `<span class="material-validity">有效期：${item.validity}</span>`;
+        html += `<span class="material-validity">有效期：${safe(item.validity)}</span>`;
       }
       if (item.templateUrl) {
-        html += `<a href="${item.templateUrl}" class="material-download" target="_blank">下载模板</a>`;
+        html += `<a href="${safeU(item.templateUrl)}" class="material-download" target="_blank" rel="noopener noreferrer">下载模板</a>`;
       }
       html += `</div>`;
       if (item.rejectReasons && item.rejectReasons.length > 0) {
@@ -104,7 +114,7 @@ window.MaterialService = (() => {
         html += `<span class="reject-title">常见被拒原因：</span>`;
         html += `<ul class="reject-list">`;
         item.rejectReasons.forEach((reason) => {
-          html += `<li>${reason}</li>`;
+          html += `<li>${safe(reason)}</li>`;
         });
         html += `</ul>`;
         html += `</div>`;
@@ -115,6 +125,15 @@ window.MaterialService = (() => {
     html += `</div>`;
 
     container.innerHTML = html;
+
+    container.querySelectorAll(".material-checkbox").forEach((el) => {
+      el.addEventListener("click", () => {
+        const item = el.closest(".material-item");
+        if (item) {
+          toggleMaterial(item.dataset.materialId);
+        }
+      });
+    });
   };
 
   /** 切换材料项的勾选状态,更新进度 */

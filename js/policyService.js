@@ -40,6 +40,9 @@ window.PolicyService = (() => {
       return;
     }
 
+    const safe = window.RenderService.safeText;
+    const safeU = window.RenderService.safeUrl;
+
     const sortedList = list.slice().sort((a, b) => {
       if (b.year !== a.year) return b.year - a.year;
       return new Date(b.publishDate) - new Date(a.publishDate);
@@ -55,30 +58,22 @@ window.PolicyService = (() => {
       const categoryClass = getCategoryClass(p.category);
       const isExternalLink =
         p.url && p.url !== "#" && p.url.indexOf("http") === 0;
-      const linkTarget = isExternalLink
-        ? ` target="_blank" rel="noopener noreferrer"`
-        : "";
       const linkIcon = isExternalLink
         ? ` <i class="bi bi-box-arrow-up-right text-primary" style="font-size:0.7em;"></i>`
         : "";
       html += `<div class="col-md-6 col-lg-4">`;
-      html +=
-        `<div class="policy-card" ` +
-        (isExternalLink
-          ? `style="cursor:pointer;" onclick="window.open('${p.url}', '_blank')"`
-          : "") +
-        `>`;
+      html += `<div class="policy-card"${isExternalLink ? ` data-policy-url="${safeU(p.url)}" style="cursor:pointer;"` : ""}>`;
       html += `<div class="policy-card-header">`;
-      html += `<span class="policy-year-badge">${p.year}年</span>`;
-      html += `<span class="policy-category-badge ${categoryClass}">${p.category}</span>`;
+      html += `<span class="policy-year-badge">${safe(p.year)}年</span>`;
+      html += `<span class="policy-category-badge ${categoryClass}">${safe(p.category)}</span>`;
       html += `</div>`;
-      html += `<h6 class="policy-card-title">${p.title}${linkIcon}</h6>`;
-      html += `<p class="policy-card-summary">${p.summary}</p>`;
+      html += `<h6 class="policy-card-title">${safe(p.title)}${linkIcon}</h6>`;
+      html += `<p class="policy-card-summary">${safe(p.summary)}</p>`;
       html += `<div class="policy-card-footer">`;
-      html += `<small class="text-muted"><i class="bi bi-calendar3"></i> ${p.publishDate}</small>`;
-      html += `<small class="text-muted"><i class="bi bi-building"></i> ${p.source}</small>`;
+      html += `<small class="text-muted"><i class="bi bi-calendar3"></i> ${safe(p.publishDate)}</small>`;
+      html += `<small class="text-muted"><i class="bi bi-building"></i> ${safe(p.source)}</small>`;
       if (isExternalLink) {
-        html += `<a href="${p.url}" class="policy-link-btn"${linkTarget} onclick="event.stopPropagation();"><i class="bi bi-link-45deg"></i>查看原文</a>`;
+        html += `<a href="${safeU(p.url)}" class="policy-link-btn" target="_blank" rel="noopener noreferrer"><i class="bi bi-link-45deg"></i>查看原文</a>`;
       }
       html += `</div>`;
       html += `</div>`;
@@ -98,6 +93,15 @@ window.PolicyService = (() => {
     }
 
     container.innerHTML = html;
+
+    container
+      .querySelectorAll(".policy-card[data-policy-url]")
+      .forEach((card) => {
+        card.addEventListener("click", (e) => {
+          if (e.target.closest(".policy-link-btn")) return;
+          window.open(card.dataset.policyUrl, "_blank");
+        });
+      });
 
     if (hasMore) {
       document
@@ -264,6 +268,7 @@ window.PolicyService = (() => {
     const swap = diff.yearA !== yA;
     const changes = diff.diffPoints.filter((p) => p.isChange);
     const unchanged = diff.diffPoints.filter((p) => !p.isChange);
+    const safe = window.RenderService.safeText;
 
     let html = "";
 
@@ -277,20 +282,20 @@ window.PolicyService = (() => {
         const vA = swap ? p.valueB : p.valueA;
         const vB = swap ? p.valueA : p.valueB;
         html += `<div class="diff-card">`;
-        html += `<div class="diff-card-topic"><i class="bi bi-tag-fill"></i>${p.topic}</div>`;
+        html += `<div class="diff-card-topic"><i class="bi bi-tag-fill"></i>${safe(p.topic)}</div>`;
         html += `<div class="diff-card-body">`;
         html += `<div class="diff-card-side diff-card-old">`;
         html += `<span class="diff-card-year">${yA}</span>`;
-        html += `<span class="diff-card-val">${vA}</span>`;
+        html += `<span class="diff-card-val">${safe(vA)}</span>`;
         html += `</div>`;
         html += `<div class="diff-card-arrow"><i class="bi bi-arrow-right"></i></div>`;
         html += `<div class="diff-card-side diff-card-new">`;
         html += `<span class="diff-card-year">${yB}</span>`;
-        html += `<span class="diff-card-val">${vB}</span>`;
+        html += `<span class="diff-card-val">${safe(vB)}</span>`;
         html += `</div>`;
         html += `</div>`;
         if (p.changeNote) {
-          html += `<div class="diff-card-note"><i class="bi bi-info-circle"></i>${p.changeNote}</div>`;
+          html += `<div class="diff-card-note"><i class="bi bi-info-circle"></i>${safe(p.changeNote)}</div>`;
         }
         html += `</div>`;
       });
@@ -302,7 +307,7 @@ window.PolicyService = (() => {
       html += `<summary><i class="bi bi-check-circle"></i>未变化项（${unchanged.length}项）</summary>`;
       html += `<div class="diff-unchanged-list">`;
       unchanged.forEach((p) => {
-        html += `<div class="diff-unchanged-item"><i class="bi bi-dash-circle"></i><span>${p.topic}</span><span class="text-muted">${swap ? p.valueB : p.valueA}</span></div>`;
+        html += `<div class="diff-unchanged-item"><i class="bi bi-dash-circle"></i><span>${safe(p.topic)}</span><span class="text-muted">${safe(swap ? p.valueB : p.valueA)}</span></div>`;
       });
       html += `</div>`;
       html += `</details>`;
