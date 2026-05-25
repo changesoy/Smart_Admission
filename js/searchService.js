@@ -20,7 +20,6 @@
 window.SearchService = (() => {
   let _addressPoints = [];
   let _keywordsIndex = [];
-  let _zones = null;
   let _onZoneMatched = null;
   let _onPointResolved = null;
 
@@ -35,7 +34,6 @@ window.SearchService = (() => {
   const init = (data) => {
     _addressPoints = (data && data.addressPoints) || [];
     _keywordsIndex = (data && data.keywordsIndex) || [];
-    _zones = (data && data.zones) || null;
 
     _searchInput = document.getElementById("searchInput");
     _searchClearBtn = document.getElementById("searchClearBtn");

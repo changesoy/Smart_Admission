@@ -94,7 +94,10 @@ window.InteractionService = (() => {
 
         const list = loadMessages();
         list.unshift(msg);
-        saveMessages(list);
+        if (!saveMessages(list)) {
+          showToast("留言保存失败：浏览器可能禁止本地存储");
+          return;
+        }
 
         document.getElementById("msgName").value = "";
         document.getElementById("msgContent").value = "";
@@ -121,16 +124,17 @@ window.InteractionService = (() => {
       return;
     }
 
+    const safe = window.RenderService.safeText;
     let html = "";
     list.forEach((m) => {
       html +=
         `<div class="contact-message-item">` +
         `<div class="contact-message-meta">` +
-        `<span class="contact-message-name">${m.name}</span>` +
-        `<span class="contact-message-cat">${m.category}</span>` +
-        `<span class="contact-message-time">${m.createdAt}</span>` +
+        `<span class="contact-message-name">${safe(m.name)}</span>` +
+        `<span class="contact-message-cat">${safe(m.category)}</span>` +
+        `<span class="contact-message-time">${safe(m.createdAt)}</span>` +
         `</div>` +
-        `<div class="contact-message-content">${m.content}</div>` +
+        `<div class="contact-message-content">${safe(m.content)}</div>` +
         `</div>`;
     });
     el.innerHTML = html;
@@ -146,12 +150,14 @@ window.InteractionService = (() => {
     }
   };
 
-  /** 将留言列表保存到 localStorage */
+  /** 将留言列表保存到 localStorage,成功返回 true,失败返回 false */
   const saveMessages = (list) => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      return true;
     } catch (e) {
-      console.warn("localStorage 保存失败");
+      console.warn("localStorage 保存失败", e);
+      return false;
     }
   };
 

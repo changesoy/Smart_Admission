@@ -133,7 +133,7 @@ window.PolicyService = (() => {
       "随迁子女",
       "政策提醒",
     ];
-    const years = [2026, 2025, 2024, 2023, 2022];
+    const years = uniq(_policies.map((p) => p.year)).sort((a, b) => b - a);
 
     let html = `<div class="col-md-6">`;
     html += `<label class="form-label small text-muted">按分类筛选</label>`;
@@ -176,7 +176,6 @@ window.PolicyService = (() => {
     });
 
     _isExpanded = false;
-    /** 初始化对比视图:填充年份选择框,设置事件监听 */
     renderPolicies(filtered);
   };
 
