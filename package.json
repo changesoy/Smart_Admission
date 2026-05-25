@@ -5,7 +5,9 @@
   "description": "智慧入学信息公示平台",
   "scripts": {
     "lint": "eslint js/",
-    "lint:fix": "eslint js/ --fix"
+    "lint:fix": "eslint js/ --fix",
+    "validate:data": "node scripts/validate-data.mjs",
+    "check": "npm run lint && npm run validate:data"
   },
   "devDependencies": {
     "eslint": "^9.0.0"
