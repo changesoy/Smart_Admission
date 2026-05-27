@@ -46,6 +46,7 @@ window.AppConfig = {
     addressPoints: "./data/address_points.json",
     keywordsIndex: "./data/keywords_index.json",
     zonesHistory: "./data/zones_history.json",
+    rumors: "./data/rumors.json",
   },
 
   /** 学区图层样式,按学段(stage)和交互状态分组,值为 Leaflet Path 选项 */
