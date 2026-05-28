@@ -4,7 +4,7 @@
  * ⚠️ 修改前必读: CONTRIBUTING.md
  *
  * 功能: 提供本地地址点和关键词索引的模糊匹配搜索,渲染搜索建议下拉列表,
- *       选中结果后通过回调触发地图定位(地址点→坐标反查学区,关键词→关联 zoneId)。
+ *       支持上下键导航和 Enter 选中。选中结果后通过回调触发地图定位。
  *
  * 关键接口:
  *   init(data)                          - 初始化,接收完整数据对象
@@ -16,6 +16,7 @@
  *   keywordsIndex = { keyword, aliases[], matchedZoneIds[], type, displayName }
  *
  * 搜索算法: 大小写不敏感的 includes 匹配,同时搜索 name/fullAddress/aliases
+ *           关键词命中多个 matchedZoneIds 时展开为多个候选项
  */
 window.SearchService = (() => {
   let _addressPoints = [];
@@ -27,7 +28,9 @@ window.SearchService = (() => {
   let _searchClearBtn = null;
   let _searchSuggestions = null;
 
-  /** XSS 安全文本转义,委托给 RenderService.safeText */
+  let _lastResults = [];
+  let _activeIndex = -1;
+
   const escapeHtml = (str) => window.RenderService.safeText(str);
 
   /** 初始化:存储搜索数据,绑定搜索框 input/keydown 事件和清除按钮 */
@@ -50,6 +53,8 @@ window.SearchService = (() => {
     if (_searchClearBtn) {
       _searchClearBtn.addEventListener("click", () => {
         _searchInput.value = "";
+        _lastResults = [];
+        _activeIndex = -1;
         hideSuggestions();
         _searchClearBtn.style.display = "none";
         _searchInput.focus();
@@ -67,46 +72,79 @@ window.SearchService = (() => {
     });
   };
 
-  /** 设置关键词匹配学区后的回调函数 */
   const setOnZoneMatched = (fn) => {
     _onZoneMatched = fn;
   };
 
-  /** 设置地址点坐标解析后的回调函数 */
   const setOnPointResolved = (fn) => {
     _onPointResolved = fn;
   };
 
-  /** 搜索框 input 事件处理:实时搜索并渲染建议列表 */
+  /** 搜索框 input 事件处理:实时搜索并渲染建议列表,维护 _lastResults 和 _activeIndex */
   const handleInput = () => {
     const query = (_searchInput.value || "").trim();
     if (_searchClearBtn) {
       _searchClearBtn.style.display = query ? "inline-block" : "none";
     }
     if (!query) {
+      _lastResults = [];
+      _activeIndex = -1;
       hideSuggestions();
       return;
     }
-    const results = search(query);
-    renderSuggestions(results, query);
+    _lastResults = search(query).slice(0, 10);
+    _activeIndex = _lastResults.length > 0 ? 0 : -1;
+    renderSuggestions(_lastResults, query);
   };
 
-  /** 搜索框 keydown 事件处理:Enter 键选中第一个结果 */
+  /** 搜索框 keydown 事件处理:↑↓ 切换高亮,Enter 选中,Esc 关闭 */
   const handleKeydown = (e) => {
+    if (!_lastResults.length && e.key !== "Enter") return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      _activeIndex = (_activeIndex + 1) % _lastResults.length;
+      updateActiveSuggestion();
+      return;
+    }
+
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      _activeIndex =
+        (_activeIndex - 1 + _lastResults.length) % _lastResults.length;
+      updateActiveSuggestion();
+      return;
+    }
+
     if (e.key === "Enter") {
       e.preventDefault();
       const query = (_searchInput.value || "").trim();
       if (!query) return;
-      const results = search(query);
-      if (results.length > 0) {
-        selectItem(results[0]);
+      if (_lastResults.length > 0) {
+        const index = _activeIndex >= 0 ? _activeIndex : 0;
+        selectItem(_lastResults[index]);
       } else {
         showNoResult();
       }
     }
+
+    if (e.key === "Escape") {
+      hideSuggestions();
+    }
   };
 
-  /** 核心搜索:遍历地址点和关键词索引,返回匹配结果数组 */
+  /** 更新建议列表中高亮项的 CSS 类 */
+  const updateActiveSuggestion = () => {
+    if (!_searchSuggestions) return;
+    const items = _searchSuggestions.querySelectorAll(
+      ".search-suggestion-item",
+    );
+    items.forEach((item, index) => {
+      item.classList.toggle("active", index === _activeIndex);
+    });
+  };
+
+  /** 核心搜索:遍历地址点和关键词索引,关键词命中多学区时展开为多个候选项 */
   const search = (query) => {
     const q = query.toLowerCase();
     const results = [];
@@ -126,29 +164,41 @@ window.SearchService = (() => {
 
     for (const item of _keywordsIndex) {
       if (matchText(item.keyword, q) || matchAliases(item.aliases, q)) {
-        results.push({
-          source: "keyword",
-          data: item,
-        });
+        const zoneIds = item.matchedZoneIds || [];
+        if (zoneIds.length > 1) {
+          zoneIds.forEach((zoneId) => {
+            results.push({
+              source: "keywordZone",
+              data: {
+                ...item,
+                zoneId,
+                displayName: `${item.displayName || item.keyword} - ${zoneId}`,
+              },
+            });
+          });
+        } else {
+          results.push({
+            source: "keyword",
+            data: item,
+          });
+        }
       }
     }
 
     return results;
   };
 
-  /** 文本匹配:大小写不敏感 includes */
   const matchText = (text, q) => {
     if (!text) return false;
     return text.toLowerCase().includes(q);
   };
 
-  /** 别名数组匹配:任一别名包含查询词即命中 */
   const matchAliases = (aliases, q) => {
     if (!aliases || !aliases.length) return false;
     return aliases.some((alias) => alias && alias.toLowerCase().includes(q));
   };
 
-  /** 渲染搜索建议下拉列表,绑定点击事件 */
+  /** 渲染搜索建议下拉列表,当前高亮项添加 active 类,绑定点击事件 */
   const renderSuggestions = (results, query) => {
     if (!_searchSuggestions) return;
 
@@ -162,14 +212,19 @@ window.SearchService = (() => {
       const r = results[i];
       const item = r.data;
       const typeTag =
-        r.source === "addressPoint" ? "地址" : item.type || "关键词";
+        r.source === "addressPoint"
+          ? "地址"
+          : r.source === "keywordZone"
+            ? "学区"
+            : item.type || "关键词";
       const displayName =
         r.source === "addressPoint"
           ? item.name
           : item.displayName || item.keyword;
       const subText = r.source === "addressPoint" ? item.fullAddress : "";
+      const activeClass = i === _activeIndex ? " active" : "";
 
-      html += `<div class="search-suggestion-item" data-index="${i}">`;
+      html += `<div class="search-suggestion-item${activeClass}" data-index="${i}">`;
       html += `<span class="search-type-tag">${escapeHtml(typeTag)}</span>`;
       html += `<span class="search-keyword">${escapeHtml(displayName)}</span>`;
       if (subText) {
@@ -193,7 +248,7 @@ window.SearchService = (() => {
     }
   };
 
-  /** 选中搜索结果:地址点触发 onPointResolved,关键词触发 onZoneMatched */
+  /** 选中搜索结果:地址点触发 onPointResolved,关键词/关键词学区触发 onZoneMatched */
   const selectItem = (result) => {
     hideSuggestions();
     if (!result) return;
@@ -203,6 +258,11 @@ window.SearchService = (() => {
       if (typeof _onPointResolved === "function") {
         _onPointResolved(item.lng, item.lat, item);
       }
+    } else if (result.source === "keywordZone") {
+      const kw = result.data;
+      if (typeof _onZoneMatched === "function") {
+        _onZoneMatched(kw.zoneId, kw);
+      }
     } else if (result.source === "keyword") {
       const kw = result.data;
       const zoneIds = kw.matchedZoneIds || [];
@@ -210,24 +270,18 @@ window.SearchService = (() => {
         console.warn("关键词未关联任何学区:", kw.keyword);
         return;
       }
-      const zoneId = zoneIds[0];
-      if (zoneIds.length > 1) {
-        console.warn("多个候选学区，当前使用第一个:", zoneIds);
-      }
       if (typeof _onZoneMatched === "function") {
-        _onZoneMatched(zoneId, kw);
+        _onZoneMatched(zoneIds[0], kw);
       }
     }
   };
 
-  /** 显示"未找到匹配结果"提示 */
   const showNoResult = () => {
     if (!_searchSuggestions) return;
     _searchSuggestions.innerHTML = `<div class="search-no-result">未找到匹配结果</div>`;
     _searchSuggestions.style.display = "block";
   };
 
-  /** 隐藏搜索建议下拉列表 */
   const hideSuggestions = () => {
     if (_searchSuggestions) {
       _searchSuggestions.style.display = "none";
@@ -235,7 +289,6 @@ window.SearchService = (() => {
     }
   };
 
-  /** 公共接口 */
   return {
     init,
     setOnZoneMatched,

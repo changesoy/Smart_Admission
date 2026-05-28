@@ -1408,6 +1408,10 @@ body {
   background: #f5f7fa;
 }
 
+.search-suggestion-item.active {
+  background: rgba(13, 110, 253, 0.08);
+}
+
 .search-type-tag {
   display: inline-block;
   min-width: 3rem;
