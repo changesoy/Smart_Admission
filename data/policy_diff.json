@@ -45,6 +45,20 @@
         "valueB": "2026年第一批次认定公告（市级+区级）",
         "isChange": true,
         "changeNote": "市、区两级分别发布认定公告，流程更清晰"
+      },
+      {
+        "topic": "学生资助",
+        "valueA": "各校陆续发布资助指南",
+        "valueB": "实验学校、温泉路小学等发布细化资助指南",
+        "isChange": true,
+        "changeNote": "资助政策透明度提高，各校主动公开申请流程和标准"
+      },
+      {
+        "topic": "教育发展报告",
+        "valueA": "无",
+        "valueB": "发布2025年度教育事业发展主要情况",
+        "isChange": true,
+        "changeNote": "新增年度教育工作总结报告，向社会公开教育发展成效"
       }
     ]
   },
@@ -87,6 +101,20 @@
         "valueB": "继续执行",
         "isChange": false,
         "changeNote": "2024年出台的规范持续生效"
+      },
+      {
+        "topic": "学生资助",
+        "valueA": "市级春季资助通报+资金管理办法+岳麓小学资助政策",
+        "valueB": "实验学校、温泉路小学等多校细化资助指南",
+        "isChange": true,
+        "changeNote": "资助政策从市级通报扩展到各校主动公开，覆盖面更广"
+      },
+      {
+        "topic": "教育发展报告",
+        "valueA": "无",
+        "valueB": "发布年度教育发展情况报告",
+        "isChange": true,
+        "changeNote": "新增年度教育发展公开报告制度"
       }
     ]
   },
@@ -136,6 +164,41 @@
         "valueB": "2026年市、区两级分别发布",
         "isChange": true,
         "changeNote": "认定工作更规范，市区分级管理"
+      },
+      {
+        "topic": "学生资助",
+        "valueA": "发布资助政策+年度通报（市级首次）",
+        "valueB": "资助政策细化到各校，多校发布申请指南",
+        "isChange": true,
+        "changeNote": "从市级宏观通报到各校微观落实，精准度大幅提升"
+      },
+      {
+        "topic": "乡村教育振兴",
+        "valueA": "市、区两级分别发布振兴工作方案+政策解读",
+        "valueB": "持续推进先行区建设",
+        "isChange": false,
+        "changeNote": "2023年框架方案持续实施，进入常态化推进阶段"
+      },
+      {
+        "topic": "作业管理",
+        "valueA": "发布作业规范明白纸",
+        "valueB": "规范持续执行+减负回应",
+        "isChange": false,
+        "changeNote": "2023年规范奠定基础，后续持续优化"
+      },
+      {
+        "topic": "招生政策文件",
+        "valueA": "泰山区招生入学工作意见（PDF）",
+        "valueB": "市级学业水平考试实施意见",
+        "isChange": true,
+        "changeNote": "从区级招生文件到市级考试规范，管理层次提升"
+      },
+      {
+        "topic": "教育发展报告",
+        "valueA": "无",
+        "valueB": "发布年度教育发展情况报告",
+        "isChange": true,
+        "changeNote": "新增年度教育发展公开报告"
       }
     ]
   },
@@ -192,6 +255,27 @@
         "valueB": "数据共享，部分群体零证明",
         "isChange": true,
         "changeNote": "从\"多项证明\"到\"零证明\""
+      },
+      {
+        "topic": "学生资助",
+        "valueA": "无专门文件",
+        "valueB": "多级资助政策体系+各校细化指南",
+        "isChange": true,
+        "changeNote": "四年建立完整的学生资助政策公开体系"
+      },
+      {
+        "topic": "乡村教育振兴",
+        "valueA": "无",
+        "valueB": "持续推进先行区建设",
+        "isChange": true,
+        "changeNote": "从无到有，2023年启动后持续推进"
+      },
+      {
+        "topic": "作业管理",
+        "valueA": "无专门文件",
+        "valueB": "发布作业规范+减负回应",
+        "isChange": true,
+        "changeNote": "建立作业管理制度，并针对性回应家长关切"
       }
     ]
   },
@@ -283,6 +367,27 @@
         "valueB": "本区户籍\"零证明提交\"",
         "isChange": true,
         "changeNote": "数据共享实现部分群体零证明"
+      },
+      {
+        "topic": "学生资助",
+        "valueA": "市级春季资助通报+岳麓小学资助政策",
+        "valueB": "多校推广资助指南公开",
+        "isChange": true,
+        "changeNote": "资助公开从试点到多校推广"
+      },
+      {
+        "topic": "招生信息公开",
+        "valueA": "常规发布",
+        "valueB": "召开义务教育招生入学保障新闻发布会",
+        "isChange": true,
+        "changeNote": "信息公开形式升级，主动回应社会关切"
+      },
+      {
+        "topic": "作业减负",
+        "valueA": "无",
+        "valueB": "发布视频作业任务对家长建议的答复",
+        "isChange": true,
+        "changeNote": "针对性回应家长关于作业形式的关切"
       }
     ]
   },
@@ -332,6 +437,27 @@
         "valueB": "小学≤45人，初中≤50人",
         "isChange": true,
         "changeNote": "明确班额上限标准"
+      },
+      {
+        "topic": "学生资助",
+        "valueA": "发布资助政策+年度通报",
+        "valueB": "春季资助通报+资金管理办法+岳麓小学指南",
+        "isChange": true,
+        "changeNote": "从政策框架到财务管理+学校落地，资助体系更完善"
+      },
+      {
+        "topic": "作业管理",
+        "valueA": "发布作业规范明白纸",
+        "valueB": "继续执行规范",
+        "isChange": false,
+        "changeNote": "作业规范持续执行"
+      },
+      {
+        "topic": "乡村教育振兴",
+        "valueA": "发布工作方案+政策解读",
+        "valueB": "持续推进实施",
+        "isChange": false,
+        "changeNote": "2023年方案进入执行阶段"
       }
     ]
   },
@@ -381,6 +507,27 @@
         "valueB": "发布安全提示，警示诈骗",
         "isChange": true,
         "changeNote": "提醒警惕中介虚假承诺"
+      },
+      {
+        "topic": "乡村教育振兴",
+        "valueA": "无专门文件",
+        "valueB": "市、区两级分别发布工作方案+政策解读",
+        "isChange": true,
+        "changeNote": "重大政策创新，系统推进城乡教育一体化"
+      },
+      {
+        "topic": "学生资助",
+        "valueA": "无专门文件",
+        "valueB": "发布资助政策+年度资助通报",
+        "isChange": true,
+        "changeNote": "首次系统公开学生资助政策和实施情况"
+      },
+      {
+        "topic": "作业管理",
+        "valueA": "无专门文件",
+        "valueB": "发布作业规范明白纸",
+        "isChange": true,
+        "changeNote": "首次明确作业总量和批改规范"
       }
     ]
   },
@@ -444,6 +591,27 @@
         "valueB": "不再作为前置条件",
         "isChange": true,
         "changeNote": "减少报名门槛"
+      },
+      {
+        "topic": "学生资助",
+        "valueA": "无专门文件",
+        "valueB": "多级资助政策体系建立",
+        "isChange": true,
+        "changeNote": "从无到有，建立资助政策公开、通报、管理办法全链条"
+      },
+      {
+        "topic": "乡村教育振兴",
+        "valueA": "无",
+        "valueB": "已启动先行区建设",
+        "isChange": true,
+        "changeNote": "2023年启动，2024年持续推进"
+      },
+      {
+        "topic": "作业管理",
+        "valueA": "无",
+        "valueB": "执行作业规范",
+        "isChange": true,
+        "changeNote": "2023年规范落地，2024年持续执行"
       }
     ]
   },
@@ -493,6 +661,34 @@
         "valueB": "政府指导价+管理规范",
         "isChange": true,
         "changeNote": "收费和服务双重约束"
+      },
+      {
+        "topic": "学生资助",
+        "valueA": "市级资助政策+通报",
+        "valueB": "多校发布到校资助指南",
+        "isChange": true,
+        "changeNote": "从市级统一发布到各校主动公开，信息公开更精准"
+      },
+      {
+        "topic": "作业管理",
+        "valueA": "发布作业规范明白纸",
+        "valueB": "规范执行+视频作业答复",
+        "isChange": true,
+        "changeNote": "从出台规范到回应具体问题，管理更精细化"
+      },
+      {
+        "topic": "乡村教育振兴",
+        "valueA": "市、区工作方案",
+        "valueB": "持续推进",
+        "isChange": false,
+        "changeNote": "振兴方案持续实施"
+      },
+      {
+        "topic": "招生信息公开",
+        "valueA": "常规发布",
+        "valueB": "召开新闻发布会",
+        "isChange": true,
+        "changeNote": "信息公开形式升级，增强社会透明度"
       }
     ]
   },
@@ -542,6 +738,34 @@
         "valueB": "绿色通道+优抚入口+帮办代办",
         "isChange": true,
         "changeNote": "多项便民措施"
+      },
+      {
+        "topic": "学生资助",
+        "valueA": "无专门文件",
+        "valueB": "多级资助体系+到校指南公开",
+        "isChange": true,
+        "changeNote": "三年建成完整的学生资助政策公开体系"
+      },
+      {
+        "topic": "乡村教育振兴",
+        "valueA": "无",
+        "valueB": "持续推进先行区建设",
+        "isChange": true,
+        "changeNote": "从零启动，系统推进城乡教育一体化"
+      },
+      {
+        "topic": "作业管理",
+        "valueA": "无",
+        "valueB": "规范+减负双管齐下",
+        "isChange": true,
+        "changeNote": "建立作业管理制度，并回应家长关切"
+      },
+      {
+        "topic": "招生信息公开",
+        "valueA": "常规发布",
+        "valueB": "新闻发布会+多渠道公开",
+        "isChange": true,
+        "changeNote": "信息公开从被动到主动，形式更加多元"
       }
     ]
   }
