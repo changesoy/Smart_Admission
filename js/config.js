@@ -53,15 +53,15 @@ window.AppConfig = {
   zoneStyle: {
     middle: {
       default: {
-        color: "#8B0000",
+        color: "#0066CC",
         weight: 2,
-        fillColor: "#8B0000",
+        fillColor: "#0066CC",
         fillOpacity: 0.2,
       },
       hover: {
-        color: "#8B0000",
+        color: "#0066CC",
         weight: 2,
-        fillColor: "#8B0000",
+        fillColor: "#0066CC",
         fillOpacity: 0.35,
       },
       selected: {

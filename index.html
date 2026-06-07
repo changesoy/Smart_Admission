@@ -184,6 +184,20 @@
               <i class="bi bi-file-earmark-text-fill"></i>招生政策总览
             </div>
             <div class="card-body">
+              <!-- 政策统计概览 -->
+              <div id="policyStats" class="mb-3"></div>
+              <!-- 政策搜索 -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                    <input type="text" id="policySearchInput" class="form-control" placeholder="搜索政策标题或摘要..." />
+                    <button id="policySearchClearBtn" class="btn btn-outline-secondary" style="display:none" type="button">
+                      <i class="bi bi-x-lg"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
               <div class="row" id="policyFilters"></div>
               <div id="policyList"></div>
             </div>
@@ -200,18 +214,14 @@
             <div class="card-body">
               <div class="row align-items-center mb-3">
                 <div class="col-md-5">
-                  <label class="form-label small text-muted mb-1"
-                    >基准年份</label
-                  >
+                  <label class="form-label small text-muted mb-1">基准年份</label>
                   <select id="diffYearA" class="form-select"></select>
                 </div>
                 <div class="col-md-2 text-center">
                   <i class="bi bi-arrow-left-right fs-3 text-warning"></i>
                 </div>
                 <div class="col-md-5">
-                  <label class="form-label small text-muted mb-1"
-                    >对比年份</label
-                  >
+                  <label class="form-label small text-muted mb-1">下一年</label>
                   <select id="diffYearB" class="form-select"></select>
                 </div>
               </div>

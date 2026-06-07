@@ -272,19 +272,7 @@ body {
   position: relative;
 }
 
-#mapContainer::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 24px;
-  height: 24px;
-  background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
-  border-radius: 50%;
-  z-index: 1000;
-  opacity: 0.9;
-  box-shadow: 0 2px 8px rgba(201, 162, 39, 0.4);
-}
+
 
 /* ========== 结果面板 ========== */
 .result-card {
@@ -1278,6 +1266,18 @@ body {
 }
 
 /* ========== 政策对比视图 ========== */
+.auto-generated-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  background: #e8f4fd;
+  color: #0d6efd;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+
 .diff-summary-bar {
   display: flex;
   align-items: center;
@@ -1485,6 +1485,177 @@ body {
 .rumor-badge.fake {
   background: rgba(139, 0, 0, 0.1);
   color: #8B0000;
+}
+
+/* ========== 政策统计概览 ========== */
+.policy-stats-bar {
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.04) 0%, rgba(201, 162, 39, 0.04) 100%);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+}
+
+.policy-stats-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.policy-stats-title i {
+  color: var(--accent-color);
+  margin-right: 0.3rem;
+}
+
+.policy-stats-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.policy-stats-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.policy-stats-label {
+  min-width: 70px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.policy-stats-bar-track {
+  flex: 1;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.policy-stats-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.policy-stats-count {
+  min-width: 24px;
+  text-align: right;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.policy-stats-year-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border-light);
+}
+
+.policy-stats-year-chip {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.6rem;
+  background: rgba(139, 0, 0, 0.06);
+  border-radius: 4px;
+  color: var(--text-secondary);
+}
+
+.policy-stats-year-chip strong {
+  color: var(--primary-color);
+}
+
+/* ========== 政策对比增强 ========== */
+.diff-card-body {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.diff-card-side {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.diff-card-old {
+  background: rgba(139, 0, 0, 0.04);
+}
+
+.diff-card-new {
+  background: rgba(40, 167, 69, 0.04);
+}
+
+.diff-card-year {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 0.2rem;
+}
+
+.diff-card-val {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.diff-card-arrow {
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.diff-card-note {
+  font-size: 0.8rem;
+  color: var(--accent-color);
+  padding: 0.4rem 0.6rem;
+  background: rgba(201, 162, 39, 0.06);
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.diff-card-note i {
+  margin-right: 0.3rem;
+}
+
+.diff-unchanged-details {
+  margin-top: 1rem;
+}
+
+.diff-unchanged-details summary {
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding: 0.5rem 0;
+  user-select: none;
+}
+
+.diff-unchanged-details summary:hover {
+  color: var(--text-primary);
+}
+
+.diff-unchanged-list {
+  padding: 0.5rem 0;
+}
+
+.diff-unchanged-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  padding: 0.3rem 0;
+  color: var(--text-secondary);
+}
+
+.diff-unchanged-item i {
+  color: #28a745;
+  font-size: 0.8rem;
 }
 
 /* ========== 留言列表 ========== */

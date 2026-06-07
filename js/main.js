@@ -85,6 +85,7 @@
       window.PolicyService.init({
         policies: data.policies,
         policyDiff: data.policyDiff,
+        rumors: data.rumors,
       });
     });
 

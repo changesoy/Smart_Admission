@@ -137,20 +137,18 @@ window.RenderService = (() => {
 
     let html = "";
     html += `<div class="result-zone-name"><i class="bi bi-bookmark-fill text-warning"></i> ${safeText(displayName)}</div>`;
-    html += `<div class="text-muted small mb-2">学区年份:${safeText(props.year)}</div>`;
+    html += `<div class="text-muted small mb-2">信息来源年份:${safeText(props.year)}</div>`;
 
     html += `<div class="result-section-title">招生范围说明</div>`;
     html += `<div class="small">${safeText(props.description)}</div>`;
 
     html += `<div class="result-section-title">对应学校</div>`;
     html += `<div class="zone-school-card">`;
-    html += `<div class="zone-school-name">${safeText(school ? school.name : "未找到关联学校")}</div>`;
-    html += `<span class="zone-school-stage">${safeText(props.stage)}</span>`;
     html += `<div class="zone-meta-grid">`;
-    html += `<div><span>学校地址</span><strong>${safeText(school ? school.address : "—")}</strong></div>`;
-    html += `<div><span>联系电话</span><strong>${safeText(school ? school.phone : "—")}</strong></div>`;
-    html += `<div><span>所属区县</span><strong>${safeText(school ? school.district : "—")}</strong></div>`;
-    html += `<div><span>学校类型</span><strong>${safeText(school ? school.type : "—")}</strong></div>`;
+    html += `<div><span>学校地址：</span><strong>${safeText(school ? school.address : "—")}</strong></div>`;
+    html += `<div><span>联系电话：</span><strong>${safeText(school ? school.phone : "—")}</strong></div>`;
+    html += `<div><span>所属区县：</span><strong>${safeText(school ? school.district : "—")}</strong></div>`;
+    html += `<div><span>学校类型：</span><strong>${safeText(school ? school.type : "—")}</strong></div>`;
     html += `</div>`;
     if (school && school.website) {
       html += `<div class="zone-school-website"><i class="bi bi-globe"></i><a href="${safeUrl(school.website)}" target="_blank" rel="noopener noreferrer">学校官网</a></div>`;
