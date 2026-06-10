@@ -77,12 +77,13 @@
     "name": "泰安泰山实验中学",
     "type": "学校",
     "fullAddress": "山东省泰安市泰山区东岳大街451号",
-    "lng": null,
-    "lat": null,
-    "matchedZoneId": "zone_005",
+    "lng": 117.07416994589666,
+    "lat": 36.19887221134,
+    "matchedZoneId": "zone_033",
     "confidence": 50,
     "aliases": [
-      "泰山实验"
+      "泰山实验",
+      "泰山实验中学"
     ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
@@ -95,7 +96,7 @@
     "addressId": "addr_006",
     "name": "山东省泰安第六中学新校区",
     "type": "学校",
-    "fullAddress": "山东省泰安市泰山区花园路266号",
+    "fullAddress": "山东省泰安市运粮街39号",
     "lng": 117.15210798433704,
     "lat": 36.18626852624842,
     "matchedZoneId": "zone_006",
@@ -116,12 +117,13 @@
     "name": "山东省泰安南关中学",
     "type": "学校",
     "fullAddress": "泰安市泰山区迎春西路152号",
-    "lng": null,
-    "lat": null,
-    "matchedZoneId": "zone_007",
+    "lng": 117.13104112710667,
+    "lat": 36.17399675330895,
+    "matchedZoneId": "zone_034",
     "confidence": 50,
     "aliases": [
-      "南关中学"
+      "南关中学",
+      "泰安南关中学"
     ],
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
@@ -210,7 +212,7 @@
     "addressId": "addr_012",
     "name": "山东省泰安东岳中学兴隆校区",
     "type": "学校",
-    "fullAddress": "泰安科技中路北首与复兴大街十字路口南100米",
+    "fullAddress": "岱宗大街378号",
     "lng": null,
     "lat": null,
     "matchedZoneId": "zone_012",
@@ -607,17 +609,17 @@
   },
   {
     "addressId": "addr_033",
-    "name": "泰安泰山实验中学",
+    "name": "泰安市泰山区上高学校",
     "type": "学校",
-    "fullAddress": "泰安泰山实验中学",
-    "lng": 117.07416994589666,
-    "lat": 36.19887221134,
-    "matchedZoneId": "zone_033",
+    "fullAddress": "泰安市泰山区南上高村",
+    "lng": null,
+    "lat": null,
+    "matchedZoneId": "zone_041",
     "confidence": 50,
     "aliases": [
-      "泰山实验中学"
+      "上高学校"
     ],
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -626,18 +628,93 @@
   },
   {
     "addressId": "addr_034",
-    "name": "山东省泰安南关中学",
+    "name": "泰安市泰山区徐家楼街道办事处泮河中学",
     "type": "学校",
-    "fullAddress": "山东省泰安南关中学",
-    "lng": 117.13104112710667,
-    "lat": 36.17399675330895,
-    "matchedZoneId": "zone_034",
+    "fullAddress": "万官大街231号",
+    "lng": null,
+    "lat": null,
+    "matchedZoneId": "zone_042",
     "confidence": 50,
     "aliases": [
-      "泰安南关中学",
-      "南关中学"
+      "徐家楼街道办事处泮河中学"
     ],
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated",
+    "note": "坐标待补。"
+  },
+  {
+    "addressId": "addr_035",
+    "name": "泰安市泰山区省庄镇第一中学",
+    "type": "学校",
+    "fullAddress": "泰安市泰山区博阳路166号",
+    "lng": null,
+    "lat": null,
+    "matchedZoneId": "zone_043",
+    "confidence": 50,
+    "aliases": [
+      "省庄镇第一中学"
+    ],
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated",
+    "note": "坐标待补。"
+  },
+  {
+    "addressId": "addr_036",
+    "name": "泰安市泰山区省庄镇苑庄学校",
+    "type": "学校",
+    "fullAddress": "泰山区省庄镇东苑庄村",
+    "lng": null,
+    "lat": null,
+    "matchedZoneId": "zone_044",
+    "confidence": 50,
+    "aliases": [
+      "省庄镇苑庄学校"
+    ],
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated",
+    "note": "坐标待补。"
+  },
+  {
+    "addressId": "addr_037",
+    "name": "山东省泰安第十三中学",
+    "type": "学校",
+    "fullAddress": "泰安市泰山区邱家店镇崇文路",
+    "lng": null,
+    "lat": null,
+    "matchedZoneId": "zone_045",
+    "confidence": 50,
+    "aliases": [
+      "泰安第十三中学"
+    ],
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated",
+    "note": "坐标待补。"
+  },
+  {
+    "addressId": "addr_038",
+    "name": "泰安市泰山区邱家店镇实验中学",
+    "type": "学校",
+    "fullAddress": "泰安市泰山区邱家店镇徐家庄村",
+    "lng": null,
+    "lat": null,
+    "matchedZoneId": "zone_046",
+    "confidence": 50,
+    "aliases": [
+      "邱家店镇实验中学"
+    ],
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",

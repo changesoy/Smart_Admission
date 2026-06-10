@@ -4,15 +4,20 @@
     "name": "泰山学院附属中学",
     "shortName": "学院附中",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
     "address": "山东省泰安市泰山区擂鼓石大街677号",
     "phone": "0538-8487128",
     "website": "https://www.tsxyfz.com.cn/",
-    "tags": ["公办", "初中"],
-    "description": "校场街以西，财源街以北，龙潭路以东，泰山大桥以西；含泰疗、老卫校、煤气公司至优山美地等。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "https://www.tsxyfz.com.cn/",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "校场街以西,财源街以北,龙潭路以东,泰山大桥以西,沿岱宗大街向北,沿渿河西路向北到大众桥,沿环山路向西,泰疗、老卫校、煤气公司至优山美地,科山路南沿擂鼓石大街以北东西两边；从擂鼓石大街以南,科山路以东； 从文化路以北,文化路以南只有老师专家属院和试验设备厂属于；至傲徕峰路以东至东岳大街以北至龙潭路齐鲁银座南与财源北街汇合到校场街处。另含老人口学校宿舍、老迎胜小区1-12号楼、宋家庄老回迁楼。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
     "dataStatus": "estimated"
@@ -22,14 +27,19 @@
     "name": "泰安望岳中学",
     "shortName": "望岳中学",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
     "address": "泰安市望岳东路36号",
     "phone": "0538-8330688",
     "website": "http://www.sdtaishan.gov.cn/art/2026/4/25/art_366643_10380631.html",
-    "tags": ["公办", "初中"],
-    "description": "泰山区义务教育阶段学校。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "东界：致富路，荣军医院东路，西界：佳苑路，长城路，南界：灵山大街，北界：铁路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -40,14 +50,19 @@
     "name": "山东省泰安第六中学",
     "shortName": "泰安六中",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
     "address": "山东省泰安市运粮街39号",
     "phone": "【待查：公开办公电话】",
     "website": "",
-    "tags": ["公办", "初中"],
-    "description": "中心城区重点学区。东界虎山路至岱宗大街沿梳洗河到环山路，西界红门路下行至岱宗大街。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "东界：虎山路（东湖公园西门）往北沿虎山路，经过岱宗大街与虎山路路口，沿梳洗河到环山路，梳洗河以西。北界：红门路与梳洗河之间。西界：红门路（下行至岱宗大街，向西至校场街北头），南界：自东岳大街与校场街十字路口向东至岱庙南门（双龙池），向南至通天街到财源街交叉路口，再向东达东湖公园西门路口。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -58,14 +73,19 @@
     "name": "山东省泰安东岳中学",
     "shortName": "东岳中学",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
-    "address": "岱宗大街378号",
+    "address": "初中部：岱宗大街378号",
     "phone": "0538-8666109",
     "website": "http://www.sdtaishan.gov.cn/art/2026/4/23/art_366651_10380628.html",
-    "tags": ["公办", "初中"],
-    "description": "同校另有小学部，已按一校一区拆分为独立记录。包括东关村和三合村。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "自东岳大街与唐王河交界处起，沿唐王河向北接北上高大街，沿北上高大街向西，接温泉路向北；自东岳大街与唐王河交界处起，沿东岳大街向西至温泉路向南接东湖路向西接迎春路向北接东岳大街向西至虎山路；沿虎山路向北过岱宗大街，擂鼓石大街接虎山路，沿梳洗河东岸向北。包括东关村和三合村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -76,14 +96,19 @@
     "name": "泰安泰山实验中学",
     "shortName": "泰山实验",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
     "address": "山东省泰安市泰山区东岳大街451号",
     "phone": "【待查：公开办公电话】",
     "website": "",
-    "tags": ["公办", "初中"],
-    "description": "边界折线较多，Polygon建议先做示意。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "西界：王家庄社区接长城路以东（长城路以西圣山帝景属于）；东界：龙潭路；南界：长城路南接泰山大街，东接15号路，北接铁路，东接荣疗东路，南接泰山大街，东接龙潭路；北界：北环山路东接优山美地西邻路，南接迎胜路，东接擂鼓石路，南接科山路，东接文化路，南接傲徕峰路，东接东岳大街，东接龙潭路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -94,14 +119,19 @@
     "name": "山东省泰安第六中学新校区",
     "shortName": "泰安六中新校区",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
     "address": "山东省泰安市泰山区花园路266号",
     "phone": "【待查：公开办公电话】",
     "website": "",
-    "tags": ["公办", "初中"],
-    "description": "东至双龙河，西至迎春路，北至东岳大街，南至灵山大街；除东湖路以北、温泉路以西区域。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "东至双龙河，西至迎春路，北至东岳大街，南至灵山大街（除东湖路以北，温泉路以西区域）。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -112,14 +142,19 @@
     "name": "山东省泰安南关中学",
     "shortName": "南关中学",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
     "address": "泰安市泰山区迎春西路152号",
     "phone": "【待查：公开办公电话】",
     "website": "",
-    "tags": ["公办", "初中"],
-    "description": "边界较长，建议先用简化Polygon。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "东界：自泮河大街与泰良路交界处起，沿泰良路向北至泰辛铁路、沿泰辛铁路向东至南关中学东临，自南关中学东界至迎春西路、沿迎春西路向北至与灵山大街交汇处，沿灵山大街向西至顺河街，沿顺河街向北至与财源街交汇处，沿财源街向东至于通天街交汇处，沿通天街向北至与东岳大街交汇处止。北界：自通天街与东岳大街交汇处向西至与校场街交汇处，沿校场街向南至与财源街交汇处，沿财源北街向西至与龙潭路交汇处止。西界：自财源大街与龙潭路交界处起，沿龙潭路向南至与泮河大街交界处止。南界：自泮河大街与龙潭路交界处起，沿泮河大街向东、至与泰良路交界处止。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -127,17 +162,22 @@
   },
   {
     "schoolId": "school_m_008",
-    "name": "山东省泰安迎春学校（初中部）",
+    "name": "山东省泰安迎春学校",
     "shortName": "迎春学校",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
     "address": "泰安市泰山区南湖大街129号",
     "phone": "【待查：公开办公电话】",
     "website": "",
-    "tags": ["公办", "初中"],
-    "description": "同校另有小学部，首批只列初中部；小学部可后续追加。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "自迎春学校往西至南湖大街与迎春西路交界，沿迎春西路向北到灵山大街交界处，沿灵山大街向西，到渿河东路交界处。沿渿河东路向北到财源大街交界处。沿财源大街向东到虎山路交界处。沿虎山路向北到东岳大街。沿东岳大街向东直至迎春路交界处。沿迎春路向南直至灵山大街。沿灵山大街向东直至唐訾路，沿唐訾路向南直至南湖大街，沿南湖大街向西至温泉路，沿温泉路向北到韩家结庄新村北墙，再向西到韩家结庄西墙，沿西墙向南至南湖大街，沿南湖大街向西至韩家结庄村委西路，沿西路往南到铁路，沿辛泰铁路向西直至东岳小区西墙，沿路向北到南湖大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -145,17 +185,22 @@
   },
   {
     "schoolId": "school_m_009",
-    "name": "泰安市泰山区万官路学校（初中部）",
+    "name": "泰安市泰山区万官路学校",
     "shortName": "万官路学校",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
     "address": "泰山区万官大街西段堰东路17号",
     "phone": "【待查：公开办公电话】",
     "website": "",
-    "tags": ["公办", "初中"],
-    "description": "同校另有小学部，首批只列初中部；小学部可后续追加。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "北界、南界分别至徐家楼办事处与岱岳区、高新区交界处；东界至长城路，西界自堰东路沿万官路学校边界至万官大街，沿万官大街向西至梅山东路。另外包含惠普家园东区的适龄儿童。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -166,14 +211,19 @@
     "name": "泰安一中萃英学校",
     "shortName": "萃英学校",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
     "address": "泰安市青年路117号",
     "phone": "【待查：公开办公电话】",
     "website": "",
-    "tags": ["公办", "初中"],
-    "description": "东至红门路，西至渿河，南至岱宗大街；含青年路以西小片区域。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "东至红门路，西至渿河，南至岱宗大街（含青年路以西，北新东街以北，北新街以东，岱宗大街以南的小片区域）。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -184,14 +234,19 @@
     "name": "泰安市泰山区梅山路中学",
     "shortName": "梅山路中学",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
     "address": "泰安市泰山区万官大街南大官庄街9号",
     "phone": "【待查：公开办公电话】",
     "website": "",
-    "tags": ["公办", "初中"],
-    "description": "南部片区，边界较明确。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "自堰东路与万官大街交汇处起，沿堰东路向南至大官庄街，沿大官庄街向西至盛和路，沿盛和路向北至堰岭环路，沿堰岭向东至梅山东路，沿梅山东路向南至万官大街，沿万官大街向东至堰东路(万官路学校除外)。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -202,338 +257,19 @@
     "name": "山东省泰安东岳中学兴隆校区",
     "shortName": "东岳中学兴隆校区",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
     "address": "泰安科技中路北首与复兴大街十字路口南100米",
     "phone": "【待查：公开办公电话】",
     "website": "",
-    "tags": ["公办", "初中"],
-    "description": "东界博阳路，西界明堂路，北界环山东路，南界谢过城街。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_001",
-    "name": "山东省泰安市实验学校",
-    "shortName": "市实验学校",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市泰山区青年路119号",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "学段待确认；暂按小学录入，后续核对后可改为九年一贯制或拆分。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_002",
-    "name": "山东省泰安师范学校附属学校",
-    "shortName": "泰师附校",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市永福东街15号",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "边界较完整，可作为核心城区小学样例。包括东关村一、二队村民和88医院。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_003",
-    "name": "泰安市第一实验学校通天街校区",
-    "shortName": "通天街校区",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市通天街50号",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "核心城区小学，适合答辩演示。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_004",
-    "name": "泰安市第一实验学校花园校区",
-    "shortName": "花园校区",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市花园小区",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "四至清晰，适合优先绘制。含东湖路以南花园小区南区48号、49号楼。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_005",
-    "name": "泰山岳麓小学",
-    "shortName": "岳麓小学",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市泰山区博阳路5001号",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "岳麓社区。边界为社区范围，需后续补社区边界或用代表性示意Polygon。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_006",
-    "name": "泰安市泰山区温泉路小学",
-    "shortName": "温泉路小学",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市温泉路866号",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "有两个片区，v1.0可先绘制主要片区；如要严格表达可后续考虑MultiPolygon。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_007",
-    "name": "泰安市财源办事处仓库路学校",
-    "shortName": "仓库路学校",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "东岳大街402号",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "含附加小区（乐园小区、海关宿舍、锦绣园小区），后续绘制时可先做主范围。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_008",
-    "name": "泰安市财源办事处三里学校",
-    "shortName": "三里学校",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "三里北街3号",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "四至清晰，适合优先绘制。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_009",
-    "name": "泰安市财源办事处西关学校",
-    "shortName": "西关学校",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "财西社区大车档巷",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "四至清晰，适合优先绘制。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_010",
-    "name": "泰安市财源办事处财源学校",
-    "shortName": "财源学校",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "越山路北首",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "四至清晰，适合优先绘制。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_011",
-    "name": "泰安市财源办事处七里埠学校",
-    "shortName": "七里埠学校",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰山大街迎胜路360号",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "四至清晰，适合优先绘制。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_012",
-    "name": "泰安市泰山区财源实验学校",
-    "shortName": "财源实验学校",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市泰山区灵山大街东首",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "四至清晰，适合优先绘制。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_013",
-    "name": "泰安市财源办事处旧镇小学",
-    "shortName": "旧镇小学",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市泰山区旧镇路",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "四至清晰，适合优先绘制。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_014",
-    "name": "泰安市岱庙办事处东关小学",
-    "shortName": "东关小学",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市泰山区东关社区",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "四至清晰，适合优先绘制。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_015",
-    "name": "泰安市岱庙办事处南关学校",
-    "shortName": "南关学校",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市南关大街210号",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "四至清晰，适合优先绘制。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_016",
-    "name": "泰安市岱庙办事处粮食市学校",
-    "shortName": "粮食市学校",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市财源大街70号",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "四至清晰，适合优先绘制。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_017",
-    "name": "泰安市泰山区岱庙实验学校",
-    "shortName": "岱庙实验学校",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰山区青年路268号",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "四至清晰，适合优先绘制。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_018",
-    "name": "泰安市岱庙办事处三友小学",
-    "shortName": "三友小学",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市泰山区岱庙街道三友社区",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "四至清晰，适合优先绘制。上高教师公寓除外。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "东界：博阳路；西界：明堂路；北界：环山东路；南界：谢过城街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -541,71 +277,22 @@
   },
   {
     "schoolId": "school_m_013",
-    "name": "泰安市泰山区凤台中学",
-    "shortName": "凤台中学",
+    "name": "泰安市泰山区凤台学校",
+    "shortName": "凤台学校",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
-    "address": "泰安市泰山区凤台学校",
+    "address": "泰安市泰山区上高街道凤台村",
     "phone": "【待查：公开办公电话】",
     "website": "",
-    "tags": ["公办", "初中"],
-    "description": "后续扩展学校，已按一校一区拆分为中学部和小学部。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_p_019",
-    "name": "泰安市泰山区凤台小学",
-    "shortName": "凤台小学",
-    "type": "小学",
-    "schoolStage": ["小学"],
-    "district": "泰山区",
-    "address": "泰安市泰山区凤台小学",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "小学"],
-    "description": "后续扩展学校，已按一校一区拆分为凤台中学和凤台小学。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_m_014",
-    "name": "泰安泰山实验中学",
-    "shortName": "泰山实验中学",
-    "type": "初中",
-    "schoolStage": ["初中"],
-    "district": "泰山区",
-    "address": "泰安泰山实验中学",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "初中"],
-    "description": "泰山区义务教育阶段学校。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
-    "sourceUrl": "【待补：官方网页链接】",
-    "sourceType": "manual",
-    "verifiedDate": "2025-08-29",
-    "dataStatus": "estimated"
-  },
-  {
-    "schoolId": "school_m_015",
-    "name": "山东省泰安南关中学",
-    "shortName": "南关中学",
-    "type": "初中",
-    "schoolStage": ["初中"],
-    "district": "泰山区",
-    "address": "山东省泰安南关中学",
-    "phone": "【待查：公开办公电话】",
-    "website": "",
-    "tags": ["公办", "初中"],
-    "description": "泰山区义务教育阶段学校。",
-    "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "东至芝田河、西至双龙河、南至五马街、北至谢过城街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
@@ -616,17 +303,1380 @@
     "name": "泰安市泰山区泰前中学",
     "shortName": "泰前中学",
     "type": "初中",
-    "schoolStage": ["初中"],
+    "schoolStage": [
+      "初中"
+    ],
     "district": "泰山区",
-    "address": "紫欣园街 57 号",
+    "address": "泰山区紫欣园街57号",
     "phone": "【待查：公开办公电话】",
     "website": "",
-    "tags": ["公办", "初中"],
-    "description": "泰山区义务教育阶段学校。",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "北至艾洼小区，南至北上高大街，东至明堂路，西至温泉路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated"
+  },
+  {
+    "schoolId": "school_m_020",
+    "name": "泰安市泰山区上高学校",
+    "shortName": "上高学校",
+    "type": "初中",
+    "schoolStage": [
+      "初中"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区南上高村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "东至灵山大街，西至博城路，北至东湖路、灵山大街，南至泮河大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated"
+  },
+  {
+    "schoolId": "school_m_021",
+    "name": "泰安市泰山区徐家楼街道办事处泮河中学",
+    "shortName": "徐家楼街道办事处泮河中学",
+    "type": "初中",
+    "schoolStage": [
+      "初中"
+    ],
+    "district": "泰山区",
+    "address": "万官大街231号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "东至温泉路，西至长城路，南至万官大街，北至岱阳大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated"
+  },
+  {
+    "schoolId": "school_m_022",
+    "name": "泰安市泰山区省庄镇第一中学",
+    "shortName": "省庄镇第一中学",
+    "type": "初中",
+    "schoolStage": [
+      "初中"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区博阳路166号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "小津口 亓家滩 刘家庄 大河峪 安家庄 北孙 贝家庄 蚕子峪 叶家庄 张家庄 付家庄 兴隆 海洼 宦家峪 岳庄 孛家店 柳行 岗上 东孙 芝田 二十里埠 于辛 指挥庄 宋疃 后省庄 前省庄 北河西 北河东村、倾城居社区、岱岳职专宿舍、红旗花园宿舍、春雨社区、省庄镇政府驻地居民及商户。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated"
+  },
+  {
+    "schoolId": "school_m_023",
+    "name": "泰安市泰山区省庄镇苑庄学校",
+    "shortName": "省庄镇苑庄学校",
+    "type": "初中",
+    "schoolStage": [
+      "初中"
+    ],
+    "district": "泰山区",
+    "address": "泰山区省庄镇东苑庄村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "西至西苑庄村，南至许家埠村，东至东羊楼村，北至红庙村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated"
+  },
+  {
+    "schoolId": "school_m_024",
+    "name": "山东省泰安第十三中学",
+    "shortName": "泰安第十三中学",
+    "type": "初中",
+    "schoolStage": [
+      "初中"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区邱家店镇崇文路",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "邱家店镇刘家庄村、梨园村、李家庄村、官庄村、邱家店村、吴家庄村、居岭庄村、孙家庄村、逯家庄村、埠阳庄村、北颜张村、西颜张村、东颜张村、桂林村、后旧县村、中旧县村、前旧县村、东旧县村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated"
+  },
+  {
+    "schoolId": "school_m_025",
+    "name": "泰安市泰山区邱家店镇实验中学",
+    "shortName": "邱家店镇实验中学",
+    "type": "初中",
+    "schoolStage": [
+      "初中"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区邱家店镇徐家庄村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "初中"
+    ],
+    "description": "栗林村、迓庄村、崔家庄村、郝家庄村、徐家庄村、前店村、后店村、侯家店村、后燕村、前燕村、东燕村、北王庄村、姚家坡村、中王庄村、南王庄村、温辛庄村、石碑村、王林坡村、宋官村、五里井村、黄沟港村、刘家疃村、渐汶河村、东郭庄村、西郭庄村、中郭庄村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2025-08-29",
+    "dataStatus": "estimated"
+  },
+  {
+    "schoolId": "school_p_001",
+    "name": "山东省泰安市实验学校",
+    "shortName": "市实验学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区青年路119",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "西至:渿河东路，北至:金山西街沿线-金山西街-擂鼓石大街-金山东巷（路东）-金山东街-红门路,东至:环山路-虎山路，南至:岱庙北街-仰胜街（路西）-东岳大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_002",
+    "name": "山东省泰安师范学校附属学校",
+    "shortName": "泰师附校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市永福东街15号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "西界:自虎山路与迎暄大街交界处起，沿虎山路向北，过岱宗大街、擂鼓石大街，至环山路交界处止。（含虎山路西、法院街北、仰圣街东、岱庙北街南区域。）南界:自虎山路与迎暄大街交界处起，沿迎暄大街向东至梳洗河西岸交界处止。东界:自梳洗河西岸与迎暄大街交界处起，沿梳洗河西岸向北至优抚医院，接迎春路向西北、到虎山东路交界处，沿虎山东路向北至与环山路交界处止。北界:自梳洗河东岸与环山路交界处起，沿环山路向东，至与虎山东路交界处止。包括东关村一、二队的村民和88医院。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_003",
+    "name": "泰安市第一实验学校通天街校区",
+    "shortName": "通天街校区",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市通天街50号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东界：自虎山路与财源大街交界处起，沿虎山路向北至虎山路与法院街交界处。南界：自虎山路与财源大街交界处起，沿财源大街向西至青年路。西界：自财源大街与青年路交界处起，沿青年路向北至青年路与白玉堂街交界处。北界：自虎山路与法院街交界处起，向西沿法院街—文化街至仰圣街；沿岱庙南墙向西经白玉堂街至青年路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_004",
+    "name": "泰安市第一实验学校花园校区",
+    "shortName": "花园校区",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市花园小区",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "北界：东岳大街以南自东岳大街与温泉路交界处起，沿东岳大街向东、至与唐王河交界处止；西界：温泉路以东自温泉路与东岳大街交界处起，沿温泉路向南、至与东湖路交界处止；南界：东湖路以北自东湖路与温泉路交界处起，沿东湖路向东、至与唐王河交界处止；东界：唐王河以西自东湖路与唐王河交界处起，沿唐王河向北、至与东岳大街交界处止；该学区含东湖路以南的花园小区南区48号、49号楼。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_005",
+    "name": "泰山岳麓小学",
+    "shortName": "岳麓小学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区博阳路5001号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "岳麓社区。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_006",
+    "name": "泰安市泰山区温泉路小学",
+    "shortName": "温泉路小学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市温泉路866号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "梳洗河以西，灵山大街以南，温泉路以东，南湖大街以北区域；南湖大街以南，梳洗河以西，惠丰园西小路以东，辛泰线铁路以北区域。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_007",
+    "name": "泰安市财源办事处仓库路学校",
+    "shortName": "仓库路学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "东岳大街402号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至龙潭路，北至东岳大街，南至铁路，后七里社区，西至望岳东路，加西边乐园小区、海关宿舍、锦绣园小区。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_008",
+    "name": "泰安市财源办事处三里学校",
+    "shortName": "三里学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "三里北街3号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "三里北街以北，三里派出所以西，三里新小区以东，泰山家电市场以南。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_009",
+    "name": "泰安市财源办事处西关学校",
+    "shortName": "西关学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "财西社区大车档巷",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "财源街以北，渿河以西，岱宗大街以南，傲来峰路以东。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_010",
+    "name": "泰安市财源办事处财源学校",
+    "shortName": "财源学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "越山路北首",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "财源街以南，龙潭路以西，下河桥以东，灵山大街以北。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_011",
+    "name": "泰安市财源办事处七里埠学校",
+    "shortName": "七里埠学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山大街迎胜路360号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至荣疗东路，西至长城路，北至东岳大街南侧铁路，南至泰山大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_012",
+    "name": "泰安市泰山区财源实验学校",
+    "shortName": "财源实验学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "财源街道办事处王庄社区",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至龙潭路，南至泮河大街，西至迎胜路，北至灵山大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_013",
+    "name": "泰安市财源办事处旧镇小学",
+    "shortName": "旧镇小学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市旧镇路19号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至渿河,南至泮河大街,西至京沪线,北至灵山大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_014",
+    "name": "泰安市岱庙办事处东关小学",
+    "shortName": "东关小学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区虎山路22号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至温泉路，南至东湖路，西至虎山路，北至东岳大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_015",
+    "name": "泰安市岱庙办事处南关学校",
+    "shortName": "南关学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市南关大街210号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "青年路以东，财源大街、东湖路以南，铁路以北，梳洗河、温泉路以西。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_016",
+    "name": "泰安市岱庙办事处粮食市学校",
+    "shortName": "粮食市学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市财源大街70号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "青年路以西，东岳大街以南，南湖大街以北，渿河以东。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_017",
+    "name": "泰安市泰山区岱庙实验学校",
+    "shortName": "岱庙实验学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山区青年路268号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "南关辛泰铁路线以南、渿河以东、博城路（原泰良路）以西、泮河以北。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_018",
+    "name": "泰安市岱庙办事处三友小学",
+    "shortName": "三友小学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区岱庙街道三友社区",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东湖路以南，迎春路以东（梳洗河以东），灵山大街以北，唐王河以西（上高教师公寓除外)。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_019",
+    "name": "泰安市泰山区凤台小学",
+    "shortName": "凤台小学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区凤台小学",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "后续扩展学校，已按一校一区拆分为凤台中学和凤台小学。",
     "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
     "sourceUrl": "【待补：官方网页链接】",
     "sourceType": "manual",
     "verifiedDate": "2025-08-29",
     "dataStatus": "estimated"
+  },
+  {
+    "schoolId": "school_p_020",
+    "name": "山东省泰安东岳中学",
+    "shortName": "泰安东岳中学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "小学部：唐王街377号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东界：自迎暄大街与唐王河交界处起，沿唐王河向北、接岱宗大街、沿岱宗大街向西、至岱道庵路向北、与擂鼓石大街交界处止。西界：自擂鼓石大街与虎山东路交界处起，沿虎山东路向南、过岱宗大街、经三角花园岱东市场、接迎春路、接复退军人精神病院至梳洗河东岸，并沿梳洗河东岸向南至与迎暄大街交界处止。南界：自迎暄大街与梳洗河东岸交界处起，沿迎暄大街向东、至与唐王河交界处止。北界：自岱道庵路与擂鼓石大街交界处起，沿擂鼓石大街向西至与虎山东路交界处止。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_021",
+    "name": "山东省泰安迎春学校",
+    "shortName": "泰安迎春学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区南湖大街129号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "北至灵山大街，东至迎春路，南至辛泰铁路，西至迎春西路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_022",
+    "name": "泰安市泰山区万官路学校",
+    "shortName": "万官路学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山区万官大街西段堰东路17号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "北界自万官大街与岱岳区交界处向东至堰东路，沿堰东路向南至万官大街，沿万官大街向东至长城路；东界自万官大街与长城路交界处向南至高新区界；南界和西界，分别至徐家楼办事处与高新区、岱岳岳区交界；另外包含惠普家园东区、惠普家园西区的适龄儿童。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_023",
+    "name": "泰安市泰山区泰前中学",
+    "shortName": "泰前中学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山区紫欣园街57号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "北至艾洼小区，南至北上高大街，东至明堂路，西至岱道庵路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_024",
+    "name": "泰山冯玉祥小学",
+    "shortName": "泰山冯玉祥小",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "普照寺路63号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "西至龙潭路，南至文化路-渿何西路（以西）-擂鼓石路-金山东巷沿线，东至红门路-罗汉崖路沿线。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_025",
+    "name": "泰安市泰山区文化路小学",
+    "shortName": "文化路小学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "傲徕峰路与校园路交汇处路东",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "科山路以东；擂鼓石路以南；龙潭路以西，南行至文化路，东行至渿河西路以南，南行至岱宗大街，西行至康复路以北，接傲徕峰路，至东岳大街，接科山路以北。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_026",
+    "name": "泰安市泰前办事处迎胜小学",
+    "shortName": "泰前迎胜小学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "迎胜东路5号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至龙潭路，南至擂鼓石大街，西至迎胜路，北至环山路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_027",
+    "name": "泰安市泰山区泰前街道办事处御碑楼小学",
+    "shortName": "泰前御碑楼小",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "东岳大街423号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至科山路西侧，南至东岳大街以北，西至御碑楼路以东，北至环山路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_028",
+    "name": "泰安市泰山区泰前办事处岱道庵小学",
+    "shortName": "泰前岱道庵小",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "温泉路35号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "自王母池南行至环山路向东至虎山路十字路口，沿虎山东路向南到擂鼓石大街十字路口向东，至岱道庵路十字路口向南，自岱道庵路与岱宗大街十字路口向东至花园路，沿花园路向北至花园路与擂鼓石大街十字路口，沿擂鼓石大街向西至唐王河，沿唐王河向北到北上高大街，沿北上高大街西行至岱道庵路，沿岱道庵路向北至环山路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_029",
+    "name": "泰安市泰山区上高街道办事处中心小学",
+    "shortName": "上高中心小学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区上高街道办事处北上高新家园333号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至明堂路，西至双龙河，北至谢过城大街，南至繁荣大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_030",
+    "name": "泰安市泰山区上高学校",
+    "shortName": "上高学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区南上高村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "北至灵山大街，东至上高东路，西至梳洗河，南至泮河大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_031",
+    "name": "泰安市泰山区第二实验学校",
+    "shortName": "第二实验学校",
+    "type": "九年一贯制",
+    "schoolStage": [
+      "小学",
+      "初中"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区上高街道唐王街218号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "九年一贯制"
+    ],
+    "description": "东至博阳路（含博阳路东西张庄村、西张店村），北至谢过城大街，西至天烛峰路，南至东岳大街东段。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_032",
+    "name": "泰安市泰山区上高街道办事处结庄小学",
+    "shortName": "上高结庄小学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区上高街道韩家结庄村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至梳洗河，西至博城路，南至宁家结庄南界，北至韩家结庄北界。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_033",
+    "name": "泰安市泰山区凤台学校",
+    "shortName": "凤台学校",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区上高街道凤台村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "北至北上高大街，南至东湖路，西至唐王河，东至天烛峰路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_034",
+    "name": "泰安市泰山区上高街道办事处小井小学",
+    "shortName": "上高小井小学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区上高街道办事处小井村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "以小井小学为中心向北至东岳大街，沿东岳大街向西至双龙河，沿双龙河向南至东湖路，沿东湖路向西至西至唐王河，沿唐王河向南至灵山大街，沿灵山大街向东到魏家庄村东界和小井村村东界，沿魏家庄村东界和小井村东界向北至东岳大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_035",
+    "name": "泰安市泰山区徐家楼街道办事处大白峪小学",
+    "shortName": "徐家楼大白峪",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山区徐家楼街道办事处大白峪社区",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至迎胜路、西至堰东路、南至大白峪社区南界、北至岱阳大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_036",
+    "name": "泰安市泰山区徐家楼街道办事处栗家庄小学",
+    "shortName": "徐家楼栗家庄",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山区徐家楼街道办事处栗家庄村L",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至南关大街,南至万官大街,西至龙潭路,北至泮河大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_037",
+    "name": "泰安市泰山区徐家楼街道办事处宅子小学",
+    "shortName": "徐家楼宅子小",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山区徐家楼街道办事处宅子村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至温泉路，西至泮河，南至万家庄村，北至宅子村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_038",
+    "name": "泰山区徐家楼街道办事处王家店小学",
+    "shortName": "泰山区徐家楼",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山区徐家楼街道办事处王家店村3号",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至夏家庄村，西至南关大街，北至王家店村，南至万官大街。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_039",
+    "name": "泰安市泰山区徐家楼街道办事处白峪店子小学",
+    "shortName": "徐家楼白峪店",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山区徐家楼街道办事处白峪店子村（傲徕峰路268号）",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "自万官大街和龙潭路的交界处起，沿龙潭路北上至老啤酒厂；沿老啤酒厂与财源新村交界处向西至泮河，沿泮河向西至迎胜路；沿迎胜路向南至万官大街（包含汉和十园）；沿万官大街向东至龙潭路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_040",
+    "name": "泰安市泰山区省庄镇苑庄学校",
+    "shortName": "省庄镇苑庄学",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山区省庄镇东苑庄村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至羊西村，南至许家埠村，西至西苑庄村，北至南河东村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_041",
+    "name": "泰安市泰山区省庄镇中心小学",
+    "shortName": "省庄镇中心小",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山区省庄镇后省庄村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "后省庄村，前省庄村，北河东村，北河西村，指挥庄，宋疃村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_042",
+    "name": "泰安市泰山区省庄镇羊楼小学",
+    "shortName": "省庄镇羊楼小",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "省庄镇东羊楼村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至东羊楼村，西至南河西村，北至红庙村，南至羊南村（包括羊西村、羊南村、羊东村、东羊楼村，南河东村、南河西村、红庙村）。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_043",
+    "name": "泰安市泰山区省庄镇德慧希望小学",
+    "shortName": "省庄镇德慧希",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区省庄镇岗上村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "芝田村、岗上村、岳庄村、柳杭村、廿里埠村、于辛村、东孙村、孛家店村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_044",
+    "name": "泰安市泰山区省庄镇宦家峪学校",
+    "shortName": "省庄镇宦家峪",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山区省庄镇宦家峪村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至宦家峪村，西至芝田河，南至谢过城大街，北至环山路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_045",
+    "name": "泰安市泰山区省庄镇刘家庄学校",
+    "shortName": "省庄镇刘家庄",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰山区省庄镇蚕子峪村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "东至小河峪村东、北至小津口村北、西至方特东边、南至环山路。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_046",
+    "name": "泰安市泰山区邱家店镇实验中学",
+    "shortName": "邱家店镇实验",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区邱家店镇徐家庄村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "栗林村、迓庄村、崔家庄村、郝家庄村、徐家庄村、前店村、后店村、南王庄村、温辛庄村 。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_047",
+    "name": "泰安市泰山区邱家店镇中心小学",
+    "shortName": "邱家店镇中心",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区邱家店镇邱家店村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "刘家庄村、梨园村、李家庄村、官庄村、邱家店村、吴家庄村、居岭庄村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_048",
+    "name": "泰安市泰山区邱家店镇石碑小学",
+    "shortName": "邱家店镇石碑",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区邱家店镇石碑村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "刘家疃村、石碑村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_049",
+    "name": "泰安市泰山区邱家店镇逯家庄小学",
+    "shortName": "邱家店镇逯家",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区邱家店镇逯家庄村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "逯家庄村、孙家庄村、埠阳庄村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_050",
+    "name": "泰安市泰山区邱家店镇渐汶河小学",
+    "shortName": "邱家店镇渐汶",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区邱家店镇渐汶河村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "渐汶河，东郭庄，西郭庄，中郭庄。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_051",
+    "name": "泰安市泰山区邱家店镇前燕村光彩小学",
+    "shortName": "邱家店镇前燕",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区邱家店镇前燕村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "侯家店村、后燕村、前燕村、东燕村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_052",
+    "name": "泰安市泰山区邱家店镇北王庄小学",
+    "shortName": "邱家店镇北王",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区邱家店镇北王庄村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "北王庄村、姚家坡村、中王庄村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
+  },
+  {
+    "schoolId": "school_p_053",
+    "name": "泰安市泰山区邱家店镇王林坡小学",
+    "shortName": "邱家店镇王林",
+    "type": "小学",
+    "schoolStage": [
+      "小学"
+    ],
+    "district": "泰山区",
+    "address": "泰安市泰山区邱家店镇王林坡村",
+    "phone": "【待查：公开办公电话】",
+    "website": "",
+    "tags": [
+      "公办",
+      "小学"
+    ],
+    "description": "王林坡村、宋官村、五里井村、黄沟港村。",
+    "sourceName": "泰山区2025年义务教育学校学区范围（官方xlsx）",
+    "sourceUrl": "【待补：官方网页链接】",
+    "sourceType": "manual",
+    "verifiedDate": "2026-06-10",
+    "dataStatus": "official"
   }
 ]
