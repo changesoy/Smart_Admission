@@ -93,6 +93,14 @@ window.AppConfig = {
     },
   },
 
+  /** 联网查询坐标范围限制（泰山区 + 岱岳区 + 泰山景区） */
+  searchBounds: {
+    minLng: 116.85,
+    maxLng: 117.3,
+    minLat: 35.85,
+    maxLat: 36.35,
+  },
+
   /** 界面提示文案,供 RenderService 等模块引用 */
   texts: {
     defaultResultTip: "请点击地图上的学区或任意点位以查询学区信息。",

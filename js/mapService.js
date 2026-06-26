@@ -268,17 +268,31 @@ window.MapService = (() => {
       console.warn("findZoneByPoint: turf.point 构造失败:", err);
       return null;
     }
+    console.log(
+      "[Map] findZoneByPoint 坐标:",
+      lng,
+      lat,
+      "可见学区数:",
+      _zoneLayers.length,
+    );
     for (const entry of _zoneLayers) {
       const entryStage = getFeatureStage(entry.feature);
       if (!_visibleStages[entryStage]) continue;
       try {
         if (turf.booleanPointInPolygon(pt, entry.feature)) {
+          console.log("[Map] 命中学区:", getFeatureZoneId(entry.feature));
           return getFeatureZoneId(entry.feature);
         }
       } catch (err) {
-        console.warn("findZoneByPoint: booleanPointInPolygon 异常:", err);
+        console.warn(
+          "findZoneByPoint: booleanPointInPolygon 异常:",
+          err,
+          "zoneId:",
+          getFeatureZoneId(entry.feature),
+        );
       }
     }
+    console.warn("[Map] 坐标未命中任何学区:", lng, lat);
     return null;
   };
 
@@ -314,10 +328,20 @@ window.MapService = (() => {
     console.warn("flyToZoneById: 未找到 zoneId:", zoneId);
   };
 
+  /** 飞行到指定经纬度坐标点 */
+  const flyToPoint = (lng, lat) => {
+    if (!_map) {
+      console.warn("flyToPoint: 地图未初始化");
+      return;
+    }
+    _map.flyTo([lat, lng], 16, { duration: 0.8 });
+  };
+
   /** 公共接口 */
   return {
     initMap,
     flyToZoneById,
+    flyToPoint,
     findZoneByPoint,
     filterByStage,
   };

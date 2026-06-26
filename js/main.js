@@ -66,7 +66,10 @@
         checks.forEach((c) => {
           if (c.checked) stages.push(c.value);
         });
-        if (window.MapService && typeof window.MapService.filterByStage === "function") {
+        if (
+          window.MapService &&
+          typeof window.MapService.filterByStage === "function"
+        ) {
           window.MapService.filterByStage(stages);
         }
       });
@@ -134,15 +137,28 @@
       if (!window.SearchService) return;
       window.SearchService.init(data);
       window.SearchService.setOnZoneMatched((zoneId) => {
-        if (window.MapService && typeof window.MapService.flyToZoneById === "function") {
+        if (
+          window.MapService &&
+          typeof window.MapService.flyToZoneById === "function"
+        ) {
           window.MapService.flyToZoneById(zoneId);
         }
       });
       window.SearchService.setOnPointResolved((lng, lat) => {
-        if (!window.MapService || typeof window.MapService.findZoneByPoint !== "function") return;
+        if (
+          !window.MapService ||
+          typeof window.MapService.findZoneByPoint !== "function"
+        )
+          return;
         const zoneId = window.MapService.findZoneByPoint(lng, lat);
         if (zoneId && typeof window.MapService.flyToZoneById === "function") {
           window.MapService.flyToZoneById(zoneId);
+        } else {
+          // 坐标未命中任何学区，飞行到该点并提示用户
+          if (typeof window.MapService.flyToPoint === "function") {
+            window.MapService.flyToPoint(lng, lat);
+          }
+          window.RenderService.renderNoMatch();
         }
       });
     });

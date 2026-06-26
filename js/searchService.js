@@ -19,17 +19,21 @@
  *           关键词命中多个 matchedZoneIds 时展开为多个候选项
  */
 window.SearchService = (() => {
-  let _addressPoints = [];
-  let _keywordsIndex = [];
-  let _onZoneMatched = null;
-  let _onPointResolved = null;
+  var _addressPoints = [];
+  var _keywordsIndex = [];
+  var _onZoneMatched = null;
+  var _onPointResolved = null;
 
-  let _searchInput = null;
-  let _searchClearBtn = null;
-  let _searchSuggestions = null;
+  var _searchInput = null;
+  var _searchClearBtn = null;
+  var _searchSuggestions = null;
 
-  let _lastResults = [];
-  let _activeIndex = -1;
+  var _lastResults = [];
+  var _activeIndex = -1;
+
+  /** 在线查询状态: 防止并发重复请求 */
+  var _onlinePending = false;
+  var _onlineAbort = null;
 
   const escapeHtml = (str) => window.RenderService.safeText(str);
 
@@ -94,6 +98,7 @@ window.SearchService = (() => {
     }
     _lastResults = search(query).slice(0, 10);
     _activeIndex = _lastResults.length > 0 ? 0 : -1;
+    console.log("[Search] 输入:", query, "本地结果数:", _lastResults.length);
     renderSuggestions(_lastResults, query);
   };
 
@@ -121,10 +126,16 @@ window.SearchService = (() => {
       const query = (_searchInput.value || "").trim();
       if (!query) return;
       if (_lastResults.length > 0) {
+        console.log(
+          "[Search] Enter - 走本地匹配，选中第",
+          _activeIndex >= 0 ? _activeIndex : 0,
+          "项",
+        );
         const index = _activeIndex >= 0 ? _activeIndex : 0;
         selectItem(_lastResults[index]);
       } else {
-        showNoResult();
+        console.log("[Search] Enter - 本地无结果，走联网查询:", query);
+        queryOnline(query);
       }
     }
 
@@ -196,6 +207,97 @@ window.SearchService = (() => {
   const matchAliases = (aliases, q) => {
     if (!aliases || !aliases.length) return false;
     return aliases.some((alias) => alias && alias.toLowerCase().includes(q));
+  };
+
+  /** 联网查询: 调用天地图地理编码 API，返回坐标后走 Turf 点面判断 */
+  var queryOnline = function (query) {
+    if (!_searchSuggestions) return;
+    console.log("[Search] queryOnline 被调用，query:", query);
+
+    // 取消上一轮尚未完成的请求
+    if (_onlineAbort) {
+      _onlineAbort.abort();
+      _onlineAbort = null;
+    }
+
+    _onlinePending = true;
+    _searchSuggestions.innerHTML =
+      '<div class="search-no-result">正在联网查询"' +
+      escapeHtml(query) +
+      '"...</div>';
+    _searchSuggestions.style.display = "block";
+
+    // 加上"泰安市"前缀，避免天地图匹配到其他城市同名地址
+    var ds = JSON.stringify({ keyWord: "泰安市" + query });
+    var token =
+      window.AppConfig && window.AppConfig.tianditu
+        ? window.AppConfig.tianditu.token
+        : "";
+    var url =
+      "https://api.tianditu.gov.cn/geocoder?ds=" +
+      encodeURIComponent(ds) +
+      "&tk=" +
+      token;
+
+    _onlineAbort = new AbortController();
+    var signal = _onlineAbort.signal;
+
+    fetch(url, { signal: signal })
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        _onlinePending = false;
+        _onlineAbort = null;
+        console.log(
+          "[Search] API 返回:",
+          data && data.status,
+          data && data.location,
+        );
+        if (data && data.status === "0" && data.location) {
+          var lng = parseFloat(data.location.lon);
+          var lat = parseFloat(data.location.lat);
+          if (
+            !isNaN(lng) &&
+            !isNaN(lat) &&
+            typeof _onPointResolved === "function"
+          ) {
+            // 校验坐标是否在泰山区/岱岳区/泰山景区范围内
+            var bounds = window.AppConfig && window.AppConfig.searchBounds;
+            if (bounds) {
+              if (
+                lng < bounds.minLng ||
+                lng > bounds.maxLng ||
+                lat < bounds.minLat ||
+                lat > bounds.maxLat
+              ) {
+                console.log(
+                  "[Search] 坐标超出范围:",
+                  lng,
+                  lat,
+                  "允许:",
+                  bounds,
+                );
+                showNoResult(
+                  "查询结果不在泰山区/岱岳区/泰山景区范围内，请尝试更完整的地址",
+                );
+                return;
+              }
+            }
+            hideSuggestions();
+            _onPointResolved(lng, lat);
+            return;
+          }
+        }
+        // 在线查询也无结果，区分于本地无结果
+        showNoResult("联网查询也无结果，请尝试更完整的地址");
+      })
+      .catch(function (err) {
+        _onlinePending = false;
+        _onlineAbort = null;
+        if (err && err.name === "AbortError") return;
+        showNoResult("联网查询失败，请稍后重试");
+      });
   };
 
   /** 渲染搜索建议下拉列表,当前高亮项添加 active 类,绑定点击事件 */
@@ -276,13 +378,14 @@ window.SearchService = (() => {
     }
   };
 
-  const showNoResult = () => {
+  var showNoResult = function (msg) {
     if (!_searchSuggestions) return;
-    _searchSuggestions.innerHTML = `<div class="search-no-result">未找到匹配结果</div>`;
+    _searchSuggestions.innerHTML =
+      '<div class="search-no-result">' + (msg || "未找到匹配结果") + "</div>";
     _searchSuggestions.style.display = "block";
   };
 
-  const hideSuggestions = () => {
+  var hideSuggestions = function () {
     if (_searchSuggestions) {
       _searchSuggestions.style.display = "none";
       _searchSuggestions.innerHTML = "";
