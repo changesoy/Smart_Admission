@@ -126,13 +126,19 @@ window.SearchService = (() => {
       const query = (_searchInput.value || "").trim();
       if (!query) return;
       if (_lastResults.length > 0) {
-        console.log(
-          "[Search] Enter - 走本地匹配，选中第",
-          _activeIndex >= 0 ? _activeIndex : 0,
-          "项",
-        );
-        const index = _activeIndex >= 0 ? _activeIndex : 0;
-        selectItem(_lastResults[index]);
+        var index = _activeIndex >= 0 ? _activeIndex : 0;
+        var result = _lastResults[index];
+        // 本地地址点坐标无效时，走联网查询
+        if (
+          result.source === "addressPoint" &&
+          (result.data.lng == null || result.data.lat == null)
+        ) {
+          console.log("[Search] Enter - 本地匹配坐标为空，走联网查询:", query);
+          queryOnline(query);
+          return;
+        }
+        console.log("[Search] Enter - 走本地匹配，选中第", index, "项");
+        selectItem(result);
       } else {
         console.log("[Search] Enter - 本地无结果，走联网查询:", query);
         queryOnline(query);
@@ -209,12 +215,20 @@ window.SearchService = (() => {
     return aliases.some((alias) => alias && alias.toLowerCase().includes(q));
   };
 
-  /** 联网查询: 调用天地图地理编码 API，返回坐标后走 Turf 点面判断 */
+  /** 从 POI 对象提取经纬度（兼容 V1 lon/lat 和 V2 lonlat 格式） */
+  var poiLngLat = function (poi) {
+    if (poi.lonlat && typeof poi.lonlat === "string") {
+      var parts = poi.lonlat.split(",");
+      return { lng: parseFloat(parts[0]), lat: parseFloat(parts[1]) };
+    }
+    return { lng: parseFloat(poi.lon), lat: parseFloat(poi.lat) };
+  };
+
+  /** 联网查询: 调用天地图 POI 搜索 API（多结果），按范围过滤后展示给用户选择 */
   var queryOnline = function (query) {
     if (!_searchSuggestions) return;
     console.log("[Search] queryOnline 被调用，query:", query);
 
-    // 取消上一轮尚未完成的请求
     if (_onlineAbort) {
       _onlineAbort.abort();
       _onlineAbort = null;
@@ -227,16 +241,32 @@ window.SearchService = (() => {
       '"...</div>';
     _searchSuggestions.style.display = "block";
 
-    // 加上"泰安市"前缀，避免天地图匹配到其他城市同名地址
-    var ds = JSON.stringify({ keyWord: "泰安市" + query });
     var token =
       window.AppConfig && window.AppConfig.tianditu
         ? window.AppConfig.tianditu.token
         : "";
+    var bounds = window.AppConfig && window.AppConfig.searchBounds;
+    var mapBoundStr = bounds
+      ? bounds.minLng +
+        "," +
+        bounds.minLat +
+        "," +
+        bounds.maxLng +
+        "," +
+        bounds.maxLat
+      : "";
+    var postStr = JSON.stringify({
+      keyWord: "泰安市" + query,
+      level: "12",
+      mapBound: mapBoundStr,
+      queryType: "1",
+      start: "0",
+      count: "10",
+    });
     var url =
-      "https://api.tianditu.gov.cn/geocoder?ds=" +
-      encodeURIComponent(ds) +
-      "&tk=" +
+      "https://api.tianditu.gov.cn/v2/search?postStr=" +
+      encodeURIComponent(postStr) +
+      "&type=query&tk=" +
       token;
 
     _onlineAbort = new AbortController();
@@ -249,48 +279,61 @@ window.SearchService = (() => {
       .then(function (data) {
         _onlinePending = false;
         _onlineAbort = null;
-        console.log(
-          "[Search] API 返回:",
-          data && data.status,
-          data && data.location,
-        );
-        if (data && data.status === "0" && data.location) {
-          var lng = parseFloat(data.location.lon);
-          var lat = parseFloat(data.location.lat);
-          if (
-            !isNaN(lng) &&
-            !isNaN(lat) &&
-            typeof _onPointResolved === "function"
-          ) {
-            // 校验坐标是否在泰山区/岱岳区/泰山景区范围内
-            var bounds = window.AppConfig && window.AppConfig.searchBounds;
-            if (bounds) {
-              if (
-                lng < bounds.minLng ||
-                lng > bounds.maxLng ||
-                lat < bounds.minLat ||
-                lat > bounds.maxLat
-              ) {
-                console.log(
-                  "[Search] 坐标超出范围:",
-                  lng,
-                  lat,
-                  "允许:",
-                  bounds,
-                );
-                showNoResult(
-                  "查询结果不在泰山区/岱岳区/泰山景区范围内，请尝试更完整的地址",
-                );
-                return;
-              }
-            }
-            hideSuggestions();
-            _onPointResolved(lng, lat);
-            return;
-          }
+        console.log("[Search] POI 搜索返回:", data);
+
+        // V2: {count, pois, ...}; V1: {result: {count, pois}}
+        var pois = [];
+        if (data && data.pois) {
+          pois = data.pois;
+        } else if (data && data.result && data.result.pois) {
+          pois = data.result.pois;
         }
-        // 在线查询也无结果，区分于本地无结果
-        showNoResult("联网查询也无结果，请尝试更完整的地址");
+        var inBounds = [];
+        var cbounds = window.AppConfig && window.AppConfig.searchBounds;
+
+        for (var i = 0; i < pois.length; i++) {
+          var poi = pois[i];
+          var ll = poiLngLat(poi);
+          if (isNaN(ll.lng) || isNaN(ll.lat)) continue;
+          var inside = true;
+          if (cbounds) {
+            inside =
+              ll.lng >= cbounds.minLng &&
+              ll.lng <= cbounds.maxLng &&
+              ll.lat >= cbounds.minLat &&
+              ll.lat <= cbounds.maxLat;
+          }
+          if (inside) inBounds.push(poi);
+        }
+
+        console.log("[Search] 范围内:", inBounds.length, "个结果");
+
+        if (inBounds.length === 0) {
+          showNoResult(
+            "查询结果不在泰山区/岱岳区/泰山景区范围内，请尝试更完整的地址",
+          );
+          return;
+        }
+
+        if (inBounds.length === 1) {
+          hideSuggestions();
+          if (typeof _onPointResolved === "function") {
+            var ll1 = poiLngLat(inBounds[0]);
+            _onPointResolved(ll1.lng, ll1.lat);
+          }
+          return;
+        }
+
+        // 多个范围内结果：展示建议列表让用户选择
+        _lastResults = [];
+        for (var j = 0; j < inBounds.length; j++) {
+          _lastResults.push({
+            source: "onlinePoi",
+            data: inBounds[j],
+          });
+        }
+        _activeIndex = 0;
+        renderSuggestions(_lastResults, query);
       })
       .catch(function (err) {
         _onlinePending = false;
@@ -316,14 +359,23 @@ window.SearchService = (() => {
       const typeTag =
         r.source === "addressPoint"
           ? "地址"
-          : r.source === "keywordZone"
-            ? "学区"
-            : item.type || "关键词";
+          : r.source === "onlinePoi"
+            ? "联网"
+            : r.source === "keywordZone"
+              ? "学区"
+              : item.type || "关键词";
       const displayName =
         r.source === "addressPoint"
           ? item.name
-          : item.displayName || item.keyword;
-      const subText = r.source === "addressPoint" ? item.fullAddress : "";
+          : r.source === "onlinePoi"
+            ? item.name
+            : item.displayName || item.keyword;
+      const subText =
+        r.source === "addressPoint"
+          ? item.fullAddress
+          : r.source === "onlinePoi"
+            ? item.address
+            : "";
       const activeClass = i === _activeIndex ? " active" : "";
 
       html += `<div class="search-suggestion-item${activeClass}" data-index="${i}">`;
@@ -350,15 +402,26 @@ window.SearchService = (() => {
     }
   };
 
-  /** 选中搜索结果:地址点触发 onPointResolved,关键词/关键词学区触发 onZoneMatched */
+  /** 选中搜索结果:地址点/在线POI触发 onPointResolved,关键词/关键词学区触发 onZoneMatched */
   const selectItem = (result) => {
     hideSuggestions();
     if (!result) return;
 
     if (result.source === "addressPoint") {
       const item = result.data;
+      if (item.lng == null || item.lat == null) {
+        console.warn("selectItem: 地址点坐标为空，走联网查询:", item.name);
+        queryOnline(item.name || item.fullAddress || "");
+        return;
+      }
       if (typeof _onPointResolved === "function") {
         _onPointResolved(item.lng, item.lat, item);
+      }
+    } else if (result.source === "onlinePoi") {
+      const poi = result.data;
+      if (typeof _onPointResolved === "function") {
+        var oll = poiLngLat(poi);
+        _onPointResolved(oll.lng, oll.lat);
       }
     } else if (result.source === "keywordZone") {
       const kw = result.data;
