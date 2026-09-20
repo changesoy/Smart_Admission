@@ -37,15 +37,15 @@
 
 | 类别     | 技术                                     | 版本           |
 | -------- | ---------------------------------------- | -------------- |
-| 基础     | HTML5 / CSS3 / Vanilla JavaScript (ES6+) | —              |
+| 基础     | HTML5 / CSS3 / Vanilla JavaScript (ES Modules) | —        |
+| 构建工具 | Vite (dev / build / preview)             | 8.x            |
 | UI 框架  | Bootstrap 5 + Bootstrap Icons            | 5.3.2 / 1.11.3 |
 | 地图     | Leaflet + 天地图在线瓦片 (WMTS)          | 1.9.4          |
 | 空间计算 | Turf.js (`booleanPointInPolygon`)        | 6.5.0          |
 | 数据     | 本地 JSON / GeoJSON 文件                 | —              |
-| 代码规范 | ESLint 扁平配置 (ES6+ 语法检查)          | 9.x            |
-| 运行     | Python 内置 HTTP Server 或同类静态服务器 | —              |
+| 代码规范 | ESLint 扁平配置 (ES Modules 语法检查)    | 9.x            |
 
-**本项目不使用** Vue / React / Angular / Node 后端 / Vite / TypeScript / 商业地图 API。
+**本项目不使用** Vue / React / Angular / Node 后端 / TypeScript / 商业地图 API。
 
 ---
 
@@ -53,25 +53,27 @@
 
 ```
 smart-admission/
-├── index.html                  # 主页面（脚本加载顺序不可变）
+├── index.html                  # 主页面（Vite 入口 HTML）
+├── vite.config.js              # Vite 配置（构建时复制 data/ 到 dist/）
 ├── README.md                   # 项目说明
 ├── CONTRIBUTING.md             # 贡献指南（修改前必读）
-├── package.json                # npm 配置（ESLint 脚本）
+├── package.json                # npm 配置（dev/build/preview/lint 脚本）
 ├── eslint.config.js            # ESLint 9.x 扁平配置
-├── .gitignore                  # Git 忽略规则
+├── .gitignore                  # Git 忽略规则（node_modules/ dist/）
+├── dist/                       # 构建产物（不提交，由 npm run build 生成）
 ├── css/
-│   └── style.css               # 全局样式（1586 行，含所有模块样式）
-├── js/
+│   └── style.css               # 全局样式（含所有模块样式）
+├── js/                         # 全部为 ES Modules（import/export 显式依赖）
 │   ├── config.js               # 全局配置（地图/数据路径/学区样式/提示文案）
 │   ├── dataService.js          # 数据加载服务（fetch + async/await 并行加载）
 │   ├── render.js               # 渲染服务（统计卡片/结果面板/错误状态/网站说明）
 │   ├── mapService.js           # 地图服务（Leaflet 渲染 + Turf 点面判断）
-│   ├── searchService.js        # 搜索服务（地址点 + 关键词模糊匹配）
+│   ├── searchService.js        # 搜索服务（地址点 + 关键词 + 天地图联网查询）
 │   ├── policyService.js        # 政策渲染与年度对比服务
 │   ├── materialService.js      # 入学材料清单（分组标签 + 勾选进度）
 │   ├── faqService.js           # 常见问题（搜索 + 分类筛选 + 展开/收起）
 │   ├── interactionService.js   # 政民互动（联系卡片 + 留言表单 + 本地存储）
-│   └── main.js                 # 主入口（协调初始化顺序 + 错误处理）
+│   └── main.js                 # 主入口（import 所有模块，协调初始化顺序）
 ├── data/
 │   ├── zones.geojson           # 学区边界多边形 (85KB)
 │   ├── schools.json            # 学校信息 (25KB)
@@ -96,38 +98,45 @@ smart-admission/
 
 ## 四、本地运行方式
 
-> ⚠️ **不要直接双击 `index.html` 运行。** 浏览器对 `file://` 协议下的 `fetch()` 有跨域限制，会导致数据加载失败。
-
 ### 前置要求
 
-- Python 3.x（推荐）或 Node.js
+- Node.js 18+（含 npm）
 - 现代浏览器（Chrome / Edge / Firefox 最新版）
 
-### 启动步骤
+### 开发模式
 
 ```bash
 # 1. 进入项目目录
 cd smart-admission
 
-# 2. （可选）安装 ESLint 开发依赖
+# 2. 安装开发依赖（Vite + ESLint）
 npm install
 
-# 3. 启动本地 HTTP 服务（任选一种）
-python -m http.server 5500
-# 或: npx serve -l 5500
-# 或: VSCode "Live Server" 插件
+# 3. 启动 Vite 开发服务器（默认 http://localhost:5173）
+npm run dev
 
 # 4. 浏览器访问
-http://localhost:5500
+http://localhost:5173
 ```
 
-页面打开后会自动并行加载 `data/` 下的 11 个 JSON / GeoJSON 文件，完成后初始化地图。
+页面打开后会自动并行加载 `data/` 下的 JSON / GeoJSON 文件，完成后初始化地图。
+
+### 生产构建与预览
+
+```bash
+npm run build      # 构建产物输出到 dist/（含 data/ 静态数据）
+npm run preview    # 本地预览 dist/ 构建产物
+```
+
+`dist/` 已加入 `.gitignore`，不提交到仓库；正式部署时发布 `dist/` 内容。
 
 ### 代码检查
 
 ```bash
-npm run lint        # ESLint 语法检查
-npm run lint:fix    # 自动修复可修复问题
+npm run lint           # ESLint 语法检查
+npm run lint:fix       # 自动修复可修复问题
+npm run validate:data  # 数据完整性校验
+npm run check          # lint + validate:data 一键检查
 ```
 
 ---
@@ -138,10 +147,10 @@ npm run lint:fix    # 自动修复可修复问题
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | **数据概览**     | 顶部 4 张统计卡片，实时展示学区、学校、政策、FAQ 数量                                                                                         |
 | **搜索查询**     | 输入学校、小区、道路或地址关键词，本地匹配地址点与关键词索引；未命中本地索引时自动调用天地图搜索 API 联网查询地址所属学区，支持多结果下拉选择 |
-| **学区等级筛选** | 初中/小学复选框，控制地图上不同学段学区的显示与隐藏                                                                                           |
+| **学区等级筛选** | 初中/小学复选框，只控制地图上不同学段学区的显示与隐藏；不影响业务查询结果（隐藏后查询仍返回完整归属）                                        |
 | **学区地图**     | Leaflet + 天地图底图，渲染学区 Polygon（初中蓝色/小学绿色），悬停高亮、点击选中，自动适配视野                                                 |
-| **学区查询**     | 点击地图任意位置，使用 Turf 判断点位所属学区，命中即显示详情                                                                                  |
-| **查询结果面板** | 按"小学学区 / 初中学区"分组展示：学区名 / 招生范围 / 对应学校（地址/电话/区县/类型/官网）/ 关联政策 / 历年调整记录时间线                      |
+| **学区查询**     | 点击地图任意位置或搜索地址，使用 Turf 对全部学区数据做点面判断，同一坐标可同时返回小学+初中归属；地图点击与地址搜索共用同一查询入口           |
+| **查询结果面板** | 按"小学学区 / 初中学区"分组展示：学区名 / 招生范围 / 对应学校（地址/电话/区县/类型/官网）/ 关联政策 / 历年调整记录时间线；无匹配时显示明确空状态 |
 | **招生政策**     | 政策卡片列表，支持按"分类"和"年份"双向筛选，默认显示 6 条可展开                                                                               |
 | **政策年度对比** | 选择相邻年份，对比政策变化项与未变化项，含变化说明                                                                                            |
 | **入学材料**     | 按学生类型分组的材料清单，支持勾选、进度追踪，全部勾选时显示完成动画                                                                          |
@@ -153,43 +162,34 @@ npm run lint:fix    # 自动修复可修复问题
 
 ## 六、模块架构
 
-```
-index.html ─────────────────────────── 主页面（脚本加载顺序不可变）
-  │
-  ├── config.js ────────────────────── 全局配置（所有模块的单一数据源）
-  │
-  ├── dataService.js ──────────────── 数据加载（fetch + async/await 并行加载）
-  │
-  ├── render.js ──────────────────── DOM 渲染（统计卡片/结果面板/错误状态）
-  │
-  ├── policyService.js ───────────── 政策渲染与年度对比
-  │
-  ├── mapService.js ──────────────── 地图服务（Leaflet + Turf 点面判断）
-  │
-  ├── materialService.js ─────────── 入学材料清单（勾选/进度）
-  │
-  ├── faqService.js ──────────────── 常见问题（搜索/分类/展开）
-  │
-  ├── interactionService.js ──────── 政民互动（留言/联系卡片）
-  │
-  ├── searchService.js ───────────── 搜索服务（地址点 + 关键词匹配）
-  │
-  └── main.js ────────────────────── 主入口（协调初始化顺序，错误处理）
-```
-
-**模块间依赖关系：**
+项目代码组织为 **ES Modules**：`index.html` 只引入一个 `<script type="module" src="/js/main.js">`，
+模块依赖全部通过 `import` 显式声明，不存在 `window.XxxService` 全局依赖和 `<script>` 加载顺序约束。
 
 ```
-config.js ← dataService.js ← main.js → render.js
-                                   ├→ policyService.js
-                                   ├→ materialService.js
-                                   ├→ faqService.js
-                                   ├→ interactionService.js
-                                   ├→ mapService.js ←→ searchService.js
-                                   └→ searchService.js
+index.html ─────────────────────────── 主页面（仅引入 main.js module 脚本）
+  │
+  └── main.js ────────────────────── 主入口（import 全部模块，协调初始化顺序）
+        │
+        ├── config.js ────────────── 全局配置（所有模块的单一数据源）
+        │
+        ├── dataService.js ──────── 数据加载（fetch + async/await 并行加载）
+        │
+        ├── render.js ──────────── DOM 渲染（统计卡片/结果面板/错误状态）
+        │
+        ├── policyService.js ───── 政策渲染与年度对比
+        │
+        ├── mapService.js ──────── 地图服务（Leaflet + Turf 点面判断）
+        │
+        ├── materialService.js ─── 入学材料清单（勾选/进度）
+        │
+        ├── faqService.js ──────── 常见问题（搜索/分类/展开）
+        │
+        ├── interactionService.js  政民互动（留言/联系卡片）
+        │
+        └── searchService.js ───── 搜索服务（地址点 + 关键词 + 联网查询）
 ```
 
-**初始化顺序（8 步，不可调换）：**
+**初始化顺序（main.js 中按序调用，各模块用 safeInit 隔离异常）：**
 
 1. `DataService.loadAllData()` — 并行加载全部数据文件
 2. `RenderService.renderStats()` — 渲染统计卡片
@@ -199,6 +199,7 @@ config.js ← dataService.js ← main.js → render.js
 6. `FaqService.init()` — 初始化 FAQ 模块
 7. `InteractionService.init()` — 初始化互动模块
 8. `MapService.initMap()` + `SearchService.init()` — 初始化地图和搜索（含回调绑定）
+9. `StageFilter` — 绑定学段筛选复选框（只影响地图显示）
 
 ---
 
@@ -250,10 +251,10 @@ GeoJSON 与 Leaflet 的坐标顺序不同，**容易混淆**：
 所有开发规范详见 [CONTRIBUTING.md](CONTRIBUTING.md)，关键要点：
 
 - 所有源文件头部均包含 `⚠️ 修改前必读: CONTRIBUTING.md`
-- 使用 IIFE + `window.XxxService` 模块模式
+- 使用 ES Modules（`import`/`export default`）组织模块，禁止新增 `window.XxxService` 全局依赖
 - 私有变量 `_underScorePrefix`，公共方法 `camelCase`
 - XSS 防护：所有用户可见文本必须通过 `RenderService.safeText()` 转义
-- 提交前运行 `npm run lint` 确保无报错
+- 提交前运行 `npm run check` 确保无报错
 
 ### ESLint 规则
 
@@ -292,9 +293,7 @@ GeoJSON 与 Leaflet 的坐标顺序不同，**容易混淆**：
 > - 业务数据来自本地示例 JSON / GeoJSON 文件。
 > - 学区边界依据公开数据绘制。
 > - 示例数据仅用于展示技术路线，不代表真实招生政策。
-> - ⚠️ 不要直接双击 index.html 运行，须通过 HTTP 服务访问。
->
-> 请在项目目录下执行 `python -m http.server 5500`，然后访问 `http://localhost:5500`。
+> - 使用 `npm run dev` 启动开发服务器，或 `npm run build && npm run preview` 构建并预览生产版本。
 
 ---
 
@@ -317,7 +316,7 @@ GeoJSON 与 Leaflet 的坐标顺序不同，**容易混淆**：
 
 ### Q1: 页面提示"加载失败"？
 
-极有可能是直接双击了 `index.html`，导致 `fetch()` 无法读取本地 JSON。请按"四、本地运行方式"启动 HTTP 服务后访问 `http://localhost:5500`。
+请确认通过 `npm run dev`（开发）或 `npm run preview`（生产预览）访问，而不是直接双击 `index.html`。若数据文件缺失或路径变更，也会导致加载失败，可查看 Network 面板确认。
 
 ### Q2: CDN 加载失败？
 
@@ -333,7 +332,7 @@ unpkg / jsdelivr 在某些网络环境下不稳定。可将 Leaflet、Turf、Boo
 
 ### Q4: 点击地图后没反应？
 
-1. 检查 JS 文件加载顺序（参见"六、模块架构"）；
+1. 打开控制台检查报错，确认各模块初始化成功（main.js 中 safeInit 会隔离并打印失败模块）；
 2. 检查 `data/zones.geojson` 是否加载成功（Network 面板）、格式是否合法（可在 https://geojson.io 校验）；
 3. 检查 Polygon 是否闭合（首尾点相同）。
 

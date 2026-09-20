@@ -6,7 +6,7 @@ export default [
   {
     languageOptions: {
       ecmaVersion: 2022,
-      sourceType: "script",
+      sourceType: "module",
       globals: {
         ...globals.browser,
         ...globals.es2021,
@@ -28,6 +28,6 @@ export default [
     },
   },
   {
-    ignores: ["node_modules/", "data/", "docs/"],
+    ignores: ["node_modules/", "dist/", "data/", "docs/"],
   },
 ];

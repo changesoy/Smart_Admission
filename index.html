@@ -4,7 +4,8 @@
   ⚠️ 修改前必读: CONTRIBUTING.md
   主页面:集成学区地图查询、招生政策、入学材料、FAQ、政民互动等模块
   依赖: Leaflet 1.9.4, Turf 6.5.0, Bootstrap 5.3.2, Bootstrap Icons 1.11.3
-  脚本加载顺序不可颠倒: config → dataService → render → policyService → searchService → mapService → materialService → faqService → interactionService → main
+  项目代码以 ES Modules 组织: js/main.js 通过 import 显式声明依赖,
+  由 Vite 负责开发服务器与构建;业务模块不再依赖 <script> 加载顺序。
 -->
 <html lang="zh-CN">
   <head>
@@ -375,20 +376,10 @@
       </small>
     </footer>
 
-    <!-- 第三方库: Leaflet + Turf.js -->
+    <!-- 第三方库: Leaflet + Turf.js (全局变量 L / turf,供地图与空间计算模块使用) -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
-    <!-- 项目脚本(顺序不可颠倒) -->
-    <script src="js/config.js"></script>
-    <script src="js/dataService.js"></script>
-    <script src="js/render.js"></script>
-    <script src="js/policyService.js"></script>
-    <script src="js/searchService.js"></script>
-
-    <script src="js/mapService.js"></script>
-    <script src="js/materialService.js"></script>
-    <script src="js/faqService.js"></script>
-    <script src="js/interactionService.js"></script>
-    <script src="js/main.js"></script>
+    <!-- 项目入口 (ES Module,依赖由 import 显式声明) -->
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>

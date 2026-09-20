@@ -14,11 +14,16 @@
  *   filterByStage(stages)        - 按学段(初中/小学)筛选可见图层
  *
  * 核心算法:
- *   handleMapClick → turf.point + turf.booleanPointInPolygon 遍历可见图层,
- *   收集全部命中学区(同一坐标可同时命中小学/初中学区),不做提前返回
+ *   handleMapClick → queryZonesAt → turf.booleanPointInPolygon 遍历全部学区要素,
+ *   收集全部命中学区(同一坐标可同时命中小学/初中学段),不做提前返回
+ *
+ * 查询与显示分离(重要设计约束):
+ *   queryZonesAt 始终基于完整学区数据计算业务归属,不受图层可见状态影响;
+ *   图层开关(_visibleStages)只控制地图显示与选中高亮,不参与业务查询。
  *
  * 选中状态:
- *   _selectedLayers 为数组,支持同时选中多个学区(地图点击命中多学段时全部高亮)
+ *   _selectedLayers 为数组,支持同时选中多个学区(地图点击命中多学段时全部高亮,
+ *   但仅限当前可见图层;被隐藏学区的业务结果仍正常返回)
  *
  * 坐标顺序提醒(关键!容易混淆):
  *   GeoJSON coordinates:[经度, 纬度] (lng, lat)
@@ -27,7 +32,11 @@
  *   Leaflet e.latlng → 传给 Turf 时必须转为 [e.latlng.lng, e.latlng.lat]
  */
 
-window.MapService = (() => {
+import AppConfig from "./config.js";
+
+/* Leaflet(L) 与 Turf(turf) 由 index.html 的 CDN script 提供,已在 eslint.config.js 声明为全局只读变量 */
+
+const MapService = (() => {
   let _map = null;
   const _selectedLayers = [];
   let _zonesData = null;
@@ -80,7 +89,7 @@ window.MapService = (() => {
 
   /** 加载天地图矢量底图+标注层 */
   const loadTiandituBaseLayers = (map) => {
-    const td = window.AppConfig.tianditu;
+    const td = AppConfig.tianditu;
 
     L.tileLayer(buildTiandituUrl(td.vecUrl, td.token), {
       subdomains: td.subdomains,
@@ -98,7 +107,7 @@ window.MapService = (() => {
 
   /** 根据学段和交互状态获取对应的 Leaflet Path 样式 */
   const getStageStyle = (stage, state) => {
-    const styles = window.AppConfig.zoneStyle;
+    const styles = AppConfig.zoneStyle;
     const group = stage === "小学" ? styles.primary : styles.middle;
     return group[state] || group.default;
   };
@@ -119,8 +128,8 @@ window.MapService = (() => {
     _onNoMatch = params && params.onNoMatch;
 
     _map = L.map(container).setView(
-      window.AppConfig.mapCenter,
-      window.AppConfig.mapZoom,
+      AppConfig.mapCenter,
+      AppConfig.mapZoom,
     );
 
     loadTiandituBaseLayers(_map);
@@ -219,7 +228,7 @@ window.MapService = (() => {
     }
   };
 
-  /** 地图点击处理:使用 Turf booleanPointInPolygon 遍历可见图层,收集全部命中学区 */
+  /** 地图点击处理:业务查询与显示分离,点击回调返回完整业务结果(不受图层可见性影响) */
   const handleMapClick = (e) => {
     if (
       !_zonesData ||
@@ -230,22 +239,26 @@ window.MapService = (() => {
       return;
     }
 
-    let pt;
+    let lng;
+    let lat;
     try {
-      pt = turf.point([e.latlng.lng, e.latlng.lat]);
+      ({ lng, lat } = e.latlng);
     } catch (err) {
-      console.error("turf.point 构造失败:", err);
+      console.error("读取点击坐标失败:", err);
       if (typeof _onNoMatch === "function") _onNoMatch();
       return;
     }
 
-    const matchedEntries = collectMatchedEntries(pt);
+    const query = queryZonesAt(lng, lat);
 
-    if (matchedEntries.length > 0) {
+    if (query.matchedEntries.length > 0) {
       clearSelection();
-      matchedEntries.forEach((entry) => addToSelection(entry));
+      // 选中高亮只应用于当前可见图层;业务结果仍包含被隐藏学段的学区
+      query.matchedEntries.forEach((entry) => {
+        if (_map.hasLayer(entry.layer)) addToSelection(entry);
+      });
       if (typeof _onZoneSelected === "function") {
-        _onZoneSelected(matchedEntries.map((entry) => entry.feature));
+        _onZoneSelected(query.matchedEntries.map((entry) => entry.feature));
       }
     } else {
       clearSelection();
@@ -253,92 +266,63 @@ window.MapService = (() => {
     }
   };
 
-  /** 用 Turf 判断点位命中的全部可见图层条目(不做提前返回) */
-  const collectMatchedEntries = (pt) => {
-    const matched = [];
-    for (const entry of _zoneLayers) {
-      const entryStage = getFeatureStage(entry.feature);
-      if (!_visibleStages[entryStage]) continue;
-      if (!_map.hasLayer(entry.layer)) continue;
-      try {
-        if (turf.booleanPointInPolygon(pt, entry.feature)) {
-          matched.push(entry);
-        }
-      } catch (err) {
-        console.warn("booleanPointInPolygon 异常:", err);
-      }
+  /**
+   * 统一业务查询入口:根据经纬度查找命中的全部学区(按学段分组)。
+   * 基于 _zoneLayers 全量要素计算,不受 _visibleStages / 图层显隐影响。
+   * 返回 { grouped: {primary:[Feature], middle:[Feature]}, matchedEntries: [{layer, feature}] }
+   */
+  const queryZonesAt = (lng, lat) => {
+    const grouped = { primary: [], middle: [] };
+    const matchedEntries = [];
+    if (!_zoneLayers || _zoneLayers.length === 0) {
+      return { grouped, matchedEntries };
     }
-    return matched;
-  };
-
-  /** 根据经纬度查找命中的全部学区,按学段分组返回,供 SearchService/RenderService 使用 */
-  const findZonesByPoint = (lng, lat) => {
-    const empty = { primary: [], middle: [] };
-    if (!_zoneLayers || _zoneLayers.length === 0) return empty;
     let pt;
     try {
       pt = turf.point([lng, lat]);
     } catch (err) {
-      console.warn("findZonesByPoint: turf.point 构造失败:", err);
-      return empty;
+      console.warn("queryZonesAt: turf.point 构造失败:", err);
+      return { grouped, matchedEntries };
     }
-    const grouped = { primary: [], middle: [] };
     for (const entry of _zoneLayers) {
-      const entryStage = getFeatureStage(entry.feature);
-      if (!_visibleStages[entryStage]) continue;
       try {
         if (turf.booleanPointInPolygon(pt, entry.feature)) {
-          const key = entryStage === "小学" ? "primary" : "middle";
+          matchedEntries.push(entry);
+          const key = getFeatureStage(entry.feature) === "小学" ? "primary" : "middle";
           grouped[key].push(entry.feature);
-          console.log(
-            "[Map] 命中学区:",
-            getFeatureZoneId(entry.feature),
-            `(${entryStage})`,
-          );
         }
       } catch (err) {
         console.warn(
-          "findZonesByPoint: booleanPointInPolygon 异常:",
+          "queryZonesAt: booleanPointInPolygon 异常:",
           err,
           "zoneId:",
           getFeatureZoneId(entry.feature),
         );
       }
     }
-    if (!grouped.primary.length && !grouped.middle.length) {
-      console.warn("[Map] 坐标未命中任何学区:", lng, lat);
-    }
-    return grouped;
+    return { grouped, matchedEntries };
   };
 
-  /** 选中点位命中的全部学区(按学段)并飞行到该点,返回分组结果;未命中返回 null */
+  /** 根据经纬度查找命中的全部学区,按学段分组返回(纯业务查询,不含显示逻辑) */
+  const findZonesByPoint = (lng, lat) => queryZonesAt(lng, lat).grouped;
+
+  /** 选中点位命中的全部学区并飞行到该点,返回分组业务结果;未命中返回 null。
+   *  与地图点击共用 queryZonesAt 业务查询入口;选中高亮只应用于当前可见图层。 */
   const selectZonesAt = (lng, lat) => {
     if (!_zoneLayers || _zoneLayers.length === 0) return null;
-    let pt;
-    try {
-      pt = turf.point([lng, lat]);
-    } catch (err) {
-      console.warn("selectZonesAt: turf.point 构造失败:", err);
-      return null;
-    }
-    const matchedEntries = collectMatchedEntries(pt);
-    if (matchedEntries.length === 0) return null;
+    const query = queryZonesAt(lng, lat);
+    if (query.matchedEntries.length === 0) return null;
 
     clearSelection();
-    matchedEntries.forEach((entry) => addToSelection(entry));
+    query.matchedEntries.forEach((entry) => {
+      if (_map.hasLayer(entry.layer)) addToSelection(entry);
+    });
 
     if (_map) {
       _map.flyTo([lat, lng], 16, { duration: 0.8 });
     }
 
-    return {
-      primary: matchedEntries
-        .filter((entry) => getFeatureStage(entry.feature) === "小学")
-        .map((entry) => entry.feature),
-      middle: matchedEntries
-        .filter((entry) => getFeatureStage(entry.feature) !== "小学")
-        .map((entry) => entry.feature),
-    };
+    return query.grouped;
   };
 
   /** 飞行到指定 zoneId 的学区并选中,若该学段被隐藏则自动勾选显示 */
@@ -392,3 +376,5 @@ window.MapService = (() => {
     filterByStage,
   };
 })();
+
+export default MapService;

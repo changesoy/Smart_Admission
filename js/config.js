@@ -4,7 +4,7 @@
  * ⚠️ 修改前必读: CONTRIBUTING.md
  *
  * 功能: 为项目所有模块提供集中式配置,包括地图参数、天地图瓦片、数据路径、
- *       学区样式和提示文案。其他脚本通过 window.AppConfig 读取配置。
+ *       学区样式和提示文案。其他模块通过 `import AppConfig from "./config.js"` 读取配置。
  *
  * 关键结构:
  *   mapCenter    - [纬度, 经度], Leaflet setView 格式
@@ -12,7 +12,7 @@
  *   zoneStyle    - 按 stage(初中middle/小学primary)和状态(default/hover/selected)分组的 Leaflet Path 选项
  *   tianditu     - 天地图 WMTS 瓦片模板 URL,需替换 {token} 占位符
  */
-window.AppConfig = {
+const AppConfig = {
   /** 地图初始中心 [纬度, 经度] (Leaflet 格式) */
   mapCenter: [36.1947, 117.1297],
   /** 地图初始缩放级别 */
@@ -105,9 +105,11 @@ window.AppConfig = {
   texts: {
     defaultResultTip: "请点击地图上的学区或任意点位以查询学区信息。",
     noMatchTip:
-      "该位置暂未匹配到示例学区,请尝试点击地图中彩色边界范围内的位置。",
+      "未匹配到当前数据范围内学区。请尝试点击地图中彩色边界范围内的位置,或查询泰山区范围内的地址。",
     loadingTip: "数据加载中…",
     loadErrorTip:
-      "数据加载失败。请确认通过 HTTP 服务运行(如 python -m http.server 5500),而不是直接双击 HTML。",
+      "数据加载失败。请确认通过 HTTP 服务运行(如 npm run dev),而不是直接双击 HTML。",
   },
 };
+
+export default AppConfig;

@@ -13,10 +13,12 @@
  * 数据格式:
  *   group = { group, description, applicableStage[], items: [{ materialId, name, required, note, validity, templateUrl, rejectReasons[] }] }
  */
-window.MaterialService = (() => {
+import RenderService from "./render.js";
+
+const MaterialService = (() => {
   let _materialsData = [];
   let _currentGroupIndex = 0;
-  let _selectedMaterials = {};
+  const _selectedMaterials = {};
 
   /** 初始化:存储数据,渲染标签页、材料列表和进度条 */
   const init = (data) => {
@@ -31,7 +33,7 @@ window.MaterialService = (() => {
     const tabsContainer = document.getElementById("material-tabs");
     if (!tabsContainer) return;
 
-    const safe = window.RenderService.safeText;
+    const safe = RenderService.safeText;
 
     let html = "";
     _materialsData.forEach((group, index) => {
@@ -64,8 +66,8 @@ window.MaterialService = (() => {
     const container = document.getElementById("material-list");
     if (!container || !_materialsData[_currentGroupIndex]) return;
 
-    const safe = window.RenderService.safeText;
-    const safeU = window.RenderService.safeUrl;
+    const safe = RenderService.safeText;
+    const safeU = RenderService.safeUrl;
 
     const group = _materialsData[_currentGroupIndex];
     document.getElementById("material-group-title").textContent = group.group;
@@ -198,3 +200,5 @@ window.MaterialService = (() => {
     toggleMaterial,
   };
 })();
+
+export default MaterialService;

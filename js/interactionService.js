@@ -13,7 +13,9 @@
  *   contact = { type, name, phone, email, address, hours, note }
  *   message = { id, name, category, content, createdAt }
  */
-window.InteractionService = (() => {
+import RenderService from "./render.js";
+
+const InteractionService = (() => {
   const STORAGE_KEY = "sa_messages_v1";
   let _contacts = [];
 
@@ -36,7 +38,7 @@ window.InteractionService = (() => {
     }
 
     let html = "";
-    const safe = window.RenderService.safeText;
+    const safe = RenderService.safeText;
     _contacts.forEach((c) => {
       html += `<div class="contact-card">`;
       html +=
@@ -125,7 +127,7 @@ window.InteractionService = (() => {
       return;
     }
 
-    const safe = window.RenderService.safeText;
+    const safe = RenderService.safeText;
     let html = "";
     list.forEach((m) => {
       html +=
@@ -182,3 +184,5 @@ window.InteractionService = (() => {
   /** 公共接口 */
   return { init };
 })();
+
+export default InteractionService;

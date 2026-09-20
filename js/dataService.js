@@ -13,9 +13,11 @@
  *     - zones: GeoJSON FeatureCollection (学区多边形)
  *     - 其余: 普通 JSON 数组或对象
  *
- * 依赖: window.AppConfig.dataPaths 提供文件路径
+ * 依赖: ./config.js 导出的 AppConfig.dataPaths 提供文件路径
  */
-window.DataService = (() => {
+import AppConfig from "./config.js";
+
+const DataService = (() => {
   /** 核心数据键名与路径键的映射,加载失败将阻断整个页面 */
   const requiredKeys = ["zones", "schools", "policies"];
 
@@ -45,7 +47,7 @@ window.DataService = (() => {
 
   /** 加载全部数据:核心数据并行加载(任一失败即抛出),可选数据并行加载(失败降级) */
   const loadAllData = async () => {
-    const paths = window.AppConfig.dataPaths;
+    const paths = AppConfig.dataPaths;
     const data = {};
 
     const requiredResults = await Promise.all(
@@ -87,3 +89,5 @@ window.DataService = (() => {
     loadAllData,
   };
 })();
+
+export default DataService;

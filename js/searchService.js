@@ -20,7 +20,10 @@
  * 搜索算法: 大小写不敏感的 includes 匹配,同时搜索 name/fullAddress/aliases
  *           关键词命中多个 matchedZoneIds 时展开为多个候选项
  */
-window.SearchService = (() => {
+import AppConfig from "./config.js";
+import RenderService from "./render.js";
+
+const SearchService = (() => {
   let _addressPoints = [];
   let _keywordsIndex = [];
   let _onZoneMatched = null;
@@ -36,7 +39,7 @@ window.SearchService = (() => {
   /** 在线查询状态: AbortController,发起新请求前取消前一次 */
   let _onlineAbort = null;
 
-  const escapeHtml = (str) => window.RenderService.safeText(str);
+  const escapeHtml = (str) => RenderService.safeText(str);
 
   /** 初始化:存储搜索数据,绑定搜索框 input/keydown 事件和清除按钮 */
   const init = (data) => {
@@ -238,11 +241,8 @@ window.SearchService = (() => {
     _searchSuggestions.innerHTML = `<div class="search-no-result">正在联网查询"${escapeHtml(query)}"...</div>`;
     _searchSuggestions.style.display = "block";
 
-    const token =
-      window.AppConfig && window.AppConfig.tianditu
-        ? window.AppConfig.tianditu.token
-        : "";
-    const bounds = window.AppConfig && window.AppConfig.searchBounds;
+    const token = AppConfig.tianditu ? AppConfig.tianditu.token : "";
+    const bounds = AppConfig.searchBounds;
     const mapBoundStr = bounds
       ? `${bounds.minLng},${bounds.minLat},${bounds.maxLng},${bounds.maxLat}`
       : "";
@@ -273,7 +273,7 @@ window.SearchService = (() => {
           ({ pois } = data.result);
         }
         const inBounds = [];
-        const cbounds = window.AppConfig && window.AppConfig.searchBounds;
+        const cbounds = AppConfig.searchBounds;
 
         for (const poi of pois) {
           const { lng, lat } = poiLngLat(poi);
@@ -439,3 +439,5 @@ window.SearchService = (() => {
     setOnPointResolved,
   };
 })();
+
+export default SearchService;

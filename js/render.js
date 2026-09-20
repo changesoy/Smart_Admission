@@ -4,7 +4,7 @@
  * ⚠️ 修改前必读: CONTRIBUTING.md
  *
  * 功能: 负责所有 DOM 渲染,包括统计卡片、查询结果面板、错误状态和网站说明。
- *       其他模块通过 window.RenderService 调用渲染方法。
+ *       其他模块通过 `import RenderService from "./render.js"` 调用渲染方法。
  *
  * 关键接口:
  *   renderStats(data)           - 渲染顶部4张统计卡片(学区/学校/政策/FAQ数量)
@@ -20,7 +20,9 @@
  *           policies: Array, zonesHistory: Array }
  *   zonesByStage 中的 Feature 为 GeoJSON Feature(含 stage/schoolId/policyIds 等属性)
  */
-window.RenderService = (() => {
+import AppConfig from "./config.js";
+
+const RenderService = (() => {
   /** 渲染顶部统计卡片,从 data 中提取学区/学校/政策/FAQ 数量 */
   const renderStats = (data) => {
     const row = document.getElementById("statsRow");
@@ -71,7 +73,7 @@ window.RenderService = (() => {
     panel.innerHTML =
       `<div class="result-tip">` +
       `<i class="bi bi-cursor-fill"></i>` +
-      `<div>${window.AppConfig.texts.defaultResultTip}</div>` +
+      `<div>${AppConfig.texts.defaultResultTip}</div>` +
       `</div>`;
   };
 
@@ -82,7 +84,7 @@ window.RenderService = (() => {
     panel.innerHTML =
       `<div class="result-tip">` +
       `<i class="bi bi-question-diamond-fill"></i>` +
-      `<div>${window.AppConfig.texts.noMatchTip}</div>` +
+      `<div>${AppConfig.texts.noMatchTip}</div>` +
       `</div>`;
   };
 
@@ -239,7 +241,7 @@ window.RenderService = (() => {
       errEl.style.display = "block";
       errEl.innerHTML =
         `<strong><i class="bi bi-exclamation-octagon-fill"></i> 加载失败:</strong> ${message || "未知错误"}` +
-        `<hr><div class="small">${window.AppConfig.texts.loadErrorTip}</div>`;
+        `<hr><div class="small">${AppConfig.texts.loadErrorTip}</div>`;
     }
   };
 
@@ -273,3 +275,5 @@ window.RenderService = (() => {
     safeUrl,
   };
 })();
+
+export default RenderService;

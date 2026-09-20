@@ -15,7 +15,9 @@
  * 数据格式:
  *   faq = { faqId, question, answer, category, priority, keywords[], relatedFaqIds[] }
  */
-window.FaqService = (() => {
+import RenderService from "./render.js";
+
+const FaqService = (() => {
   let _faqData = [];
   let _currentCategory = "全部";
   let _searchQuery = "";
@@ -63,8 +65,8 @@ window.FaqService = (() => {
     let html = "";
     categories.forEach((cat) => {
       const activeClass = _currentCategory === cat ? " active" : "";
-      html += `<button class="faq-chip${activeClass}" data-category="${window.RenderService.safeText(cat)}">`;
-      html += window.RenderService.safeText(cat);
+      html += `<button class="faq-chip${activeClass}" data-category="${RenderService.safeText(cat)}">`;
+      html += RenderService.safeText(cat);
       html += `</button>`;
     });
     container.innerHTML = html;
@@ -119,7 +121,7 @@ window.FaqService = (() => {
     if (!container) return;
 
     const filtered = filterFaqs();
-    const safe = window.RenderService.safeText;
+    const safe = RenderService.safeText;
 
     if (filtered.length === 0) {
       container.innerHTML = `<div class="faq-empty">暂无匹配的常见问题</div>`;
@@ -163,7 +165,7 @@ window.FaqService = (() => {
   /** 渲染关联问题按钮列表 */
   const renderRelatedFaqs = (relatedIds) => {
     const relatedFaqs = relatedIds.map((id) => getFaqById(id)).filter(Boolean);
-    const safe = window.RenderService.safeText;
+    const safe = RenderService.safeText;
 
     if (relatedFaqs.length === 0) return "";
 
@@ -212,3 +214,5 @@ window.FaqService = (() => {
     showFaq,
   };
 })();
+
+export default FaqService;

@@ -2,14 +2,19 @@
   "name": "smart-admission",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "智慧入学信息公示平台",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint js/",
     "lint:fix": "eslint js/ --fix",
     "validate:data": "node scripts/validate-data.mjs",
     "check": "npm run lint && npm run validate:data"
   },
   "devDependencies": {
-    "eslint": "^9.0.0"
+    "eslint": "^9.0.0",
+    "vite": "^8.3.0"
   }
 }

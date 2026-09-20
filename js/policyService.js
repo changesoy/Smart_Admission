@@ -15,10 +15,12 @@
  *   policyDiff = { yearA, yearB, diffPoints: [{ topic, valueA, valueB, isChange, changeNote }] }
  *   rumor = { rumorId, rumor, truth, category, source }
  */
-window.PolicyService = (() => {
+import RenderService from "./render.js";
+
+const PolicyService = (() => {
   let _policies = [];
   let _diffs = [];
-  let _currentFilter = { category: null, year: null, keyword: null };
+  const _currentFilter = { category: null, year: null, keyword: null };
   let _isExpanded = false;
   const _MAX_DISPLAY = 6;
 
@@ -121,8 +123,8 @@ window.PolicyService = (() => {
       return;
     }
 
-    const safe = window.RenderService.safeText;
-    const safeU = window.RenderService.safeUrl;
+    const safe = RenderService.safeText;
+    const safeU = RenderService.safeUrl;
 
     const sortedList = list.slice().sort((a, b) => {
       if (b.year !== a.year) return b.year - a.year;
@@ -252,9 +254,9 @@ window.PolicyService = (() => {
 
   /** 应用筛选条件并重新渲染政策列表 */
   const applyFilters = () => {
-    const category = document.getElementById("filterCategory").value;
-    const year = document.getElementById("filterYear").value;
-    const keyword = _currentFilter.keyword;
+    const { value: category } = document.getElementById("filterCategory");
+    const { value: year } = document.getElementById("filterYear");
+    const { keyword } = _currentFilter;
 
     const filtered = _policies.filter((p) => {
       if (category && p.category !== category) return false;
@@ -430,7 +432,7 @@ window.PolicyService = (() => {
       return;
     }
 
-    let diff = _diffs.find(
+    const diff = _diffs.find(
       (d) =>
         (d.yearA === yA && d.yearB === yB) ||
         (d.yearA === yB && d.yearB === yA),
@@ -441,12 +443,12 @@ window.PolicyService = (() => {
     if (!diff) {
       diffPoints = generateDiffFromPolicies(yA, yB);
     } else {
-      diffPoints = diff.diffPoints;
+      ({ diffPoints } = diff);
     }
 
     const changes = diffPoints.filter((p) => p.isChange);
     const unchanged = diffPoints.filter((p) => !p.isChange);
-    const safe = window.RenderService.safeText;
+    const safe = RenderService.safeText;
 
     let html = "";
 
@@ -517,3 +519,5 @@ window.PolicyService = (() => {
     init,
   };
 })();
+
+export default PolicyService;
