@@ -6,7 +6,6 @@
     "fullAddress": "山东省泰安市泰山区擂鼓石大街677号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_001",
     "confidence": 50,
     "aliases": [
       "学院附中"
@@ -139,7 +138,6 @@
     "fullAddress": "泰安市泰山区南湖大街129号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_008",
     "confidence": 50,
     "aliases": [
       "迎春学校"
@@ -158,7 +156,6 @@
     "fullAddress": "泰山区万官大街西段堰东路17号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_009",
     "confidence": 50,
     "aliases": [
       "万官路学校"
@@ -196,7 +193,6 @@
     "fullAddress": "泰安市泰山区万官大街南大官庄街9号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_011",
     "confidence": 50,
     "aliases": [
       "梅山路中学"
@@ -215,7 +211,6 @@
     "fullAddress": "岱宗大街378号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_012",
     "confidence": 50,
     "aliases": [
       "东岳中学兴隆校区"
@@ -234,7 +229,6 @@
     "fullAddress": "泰安市泰山区青年路119号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_013",
     "confidence": 50,
     "aliases": [
       "市实验学校"
@@ -253,7 +247,6 @@
     "fullAddress": "泰安市永福东街15号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_014",
     "confidence": 50,
     "aliases": [
       "泰师附校"
@@ -272,7 +265,6 @@
     "fullAddress": "泰安市通天街50号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_015",
     "confidence": 50,
     "aliases": [
       "通天街校区"
@@ -310,7 +302,6 @@
     "fullAddress": "泰安市泰山区博阳路5001号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_017",
     "confidence": 50,
     "aliases": [
       "岳麓小学"
@@ -329,7 +320,6 @@
     "fullAddress": "泰安市温泉路866号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_018",
     "confidence": 50,
     "aliases": [
       "温泉路小学"
@@ -348,7 +338,6 @@
     "fullAddress": "东岳大街402号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_019",
     "confidence": 50,
     "aliases": [
       "仓库路学校"
@@ -367,7 +356,6 @@
     "fullAddress": "三里北街3号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_020",
     "confidence": 50,
     "aliases": [
       "三里学校"
@@ -386,7 +374,6 @@
     "fullAddress": "财西社区大车档巷",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_021",
     "confidence": 50,
     "aliases": [
       "西关学校"
@@ -405,7 +392,6 @@
     "fullAddress": "越山路北首",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_022",
     "confidence": 50,
     "aliases": [
       "财源学校"
@@ -424,7 +410,6 @@
     "fullAddress": "泰山大街迎胜路360号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_023",
     "confidence": 50,
     "aliases": [
       "七里埠学校"
@@ -443,7 +428,6 @@
     "fullAddress": "泰安市泰山区灵山大街东首",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_024",
     "confidence": 50,
     "aliases": [
       "财源实验学校"
@@ -462,7 +446,6 @@
     "fullAddress": "泰安市泰山区旧镇路",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_025",
     "confidence": 50,
     "aliases": [
       "旧镇小学"
@@ -481,7 +464,6 @@
     "fullAddress": "泰安市泰山区东关社区",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_026",
     "confidence": 50,
     "aliases": [
       "东关小学"
@@ -500,7 +482,6 @@
     "fullAddress": "泰安市南关大街210号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_027",
     "confidence": 50,
     "aliases": [
       "南关学校"
@@ -519,7 +500,6 @@
     "fullAddress": "泰安市财源大街70号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_028",
     "confidence": 50,
     "aliases": [
       "粮食市学校"
@@ -538,7 +518,6 @@
     "fullAddress": "泰山区青年路268号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_029",
     "confidence": 50,
     "aliases": [
       "岱庙实验学校"
@@ -557,7 +536,6 @@
     "fullAddress": "泰安市泰山区岱庙街道三友社区",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_030",
     "confidence": 50,
     "aliases": [
       "三友小学"
@@ -614,7 +592,6 @@
     "fullAddress": "泰安市泰山区南上高村",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_041",
     "confidence": 50,
     "aliases": [
       "上高学校"
@@ -633,7 +610,6 @@
     "fullAddress": "万官大街231号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_042",
     "confidence": 50,
     "aliases": [
       "徐家楼街道办事处泮河中学"
@@ -652,7 +628,6 @@
     "fullAddress": "泰安市泰山区博阳路166号",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_043",
     "confidence": 50,
     "aliases": [
       "省庄镇第一中学"
@@ -671,7 +646,6 @@
     "fullAddress": "泰山区省庄镇东苑庄村",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_044",
     "confidence": 50,
     "aliases": [
       "省庄镇苑庄学校"
@@ -690,7 +664,6 @@
     "fullAddress": "泰安市泰山区邱家店镇崇文路",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_045",
     "confidence": 50,
     "aliases": [
       "泰安第十三中学"
@@ -709,7 +682,6 @@
     "fullAddress": "泰安市泰山区邱家店镇徐家庄村",
     "lng": null,
     "lat": null,
-    "matchedZoneId": "zone_046",
     "confidence": 50,
     "aliases": [
       "邱家店镇实验中学"
