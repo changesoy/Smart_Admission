@@ -18,7 +18,9 @@
  * 数据格式 (data/simulator_rules.json):
  *   meta      = { title, effectiveYear, dataStatus, ruleBase, disclaimer }
  *   materials = { materialId: { name, required, note } }  材料字典,供规则按 id 引用
- *   form      = [{ field, label, showWhen: {field,value}|null, options: [{value,label}] }]
+ *   form      = [{ field, label, showWhen: {field,value} | [{field,value}] | null,
+ *                  options: [{value,label}] }]
+ *               showWhen 为条件数组时,任一条件命中即显示该字段
  *   rules     = [{ ruleId, effectiveYear, stage: "any"|stage|Array, resultType, resultClass,
  *                  resultTitle, resultSummary, conditions: [{field,op,value}],
  *                  requiredMaterialIds[], warnings[], manualCheckNotes[], policyIds[],
@@ -143,23 +145,27 @@ const SimulatorService = (() => {
     const selects = container.querySelectorAll(".simulator-select");
     if (selects.length === 0) return;
 
-    const valueOf = (field) => {
-      const sel = container.querySelector(
-        `.simulator-select[data-field="${field}"]`,
-      );
-      return sel ? sel.value : "";
-    };
-
+    // 按 form 顺序解析:被隐藏字段的取值不参与其他字段的显示判断
+    const resolved = {};
     _form.forEach((field) => {
       const wrap = container.querySelector(
         `.simulator-field[data-field="${field.field}"]`,
       );
-      if (!wrap) return;
+      const sel = container.querySelector(
+        `.simulator-select[data-field="${field.field}"]`,
+      );
+
       let show = true;
-      if (field.showWhen && field.showWhen.field) {
-        show = valueOf(field.showWhen.field) === field.showWhen.value;
+      if (field.showWhen) {
+        // showWhen 支持单个条件 {field,value} 或条件数组(任一命中即显示)
+        const conds = Array.isArray(field.showWhen)
+          ? field.showWhen
+          : [field.showWhen];
+        show = conds.some((c) => c && c.field && resolved[c.field] === c.value);
       }
-      wrap.style.display = show ? "" : "none";
+
+      if (wrap) wrap.style.display = show ? "" : "none";
+      resolved[field.field] = show && sel ? sel.value : "";
     });
   };
 
