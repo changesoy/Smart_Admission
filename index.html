@@ -247,8 +247,32 @@
           </div>
         </section>
 
-        <!-- 7. 入学材料清单 -->
-        <section class="material-section mb-4">
+        <!-- 7. 入学条件自查 / 情形判断助手（P0-3） -->
+        <section id="section-simulator" class="simulator-section mb-4">
+          <div class="card section-card">
+            <div class="card-header section-header">
+              <i class="bi bi-clipboard2-pulse-fill"></i>入学条件自查
+            </div>
+            <div class="card-body">
+              <div class="simulator-meta small text-muted mb-3">
+                <span id="simulatorMeta"></span>
+              </div>
+              <div class="row g-3">
+                <!-- 左侧：情形表单 -->
+                <div class="col-lg-4">
+                  <div id="simulatorForm" class="simulator-form"></div>
+                </div>
+                <!-- 右侧：自查结果 -->
+                <div class="col-lg-8">
+                  <div id="simulatorResult" class="simulator-result"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. 入学材料清单 -->
+        <section id="section-material" class="material-section mb-4">
           <div class="card section-card">
             <div class="card-header section-header">
               <i class="bi bi-list-check"></i>入学材料清单

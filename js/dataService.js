@@ -31,6 +31,7 @@ const DataService = (() => {
     keywordsIndex: [],
     zonesHistory: [],
     rumors: [],
+    simulatorRules: { meta: {}, form: [], rules: [] },
   };
 
   /** 加载单个 JSON/GeoJSON 文件,失败时抛出含 HTTP 状态的 Error */

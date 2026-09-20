@@ -2152,3 +2152,187 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-color);
 }
+
+/* ========== 入学条件自查 / 情形判断助手（P0-3） ========== */
+.simulator-field {
+  margin-bottom: 1rem;
+}
+
+.simulator-select {
+  border-radius: var(--radius-btn);
+  border-color: var(--border-light);
+}
+
+.simulator-form {
+  padding: 0.25rem 0;
+}
+
+.simulator-empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 0, 0, 0.05) 0%,
+    rgba(201, 162, 39, 0.05) 100%
+  );
+  border-radius: var(--radius-lg);
+}
+
+.simulator-empty i {
+  font-size: 2.2rem;
+  color: var(--accent-color);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.simulator-result-card {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  background: var(--card-gradient);
+  padding: 1.25rem;
+}
+
+.simulator-result-head {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed var(--border-light);
+}
+
+.simulator-result-type {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-btn);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+}
+
+.simulator-result-category-a {
+  background: rgba(40, 167, 69, 0.12);
+  color: #1e7e34;
+}
+
+.simulator-result-category-b {
+  background: rgba(201, 162, 39, 0.14);
+  color: #a68a1c;
+}
+
+.simulator-result-category-c {
+  background: rgba(139, 0, 0, 0.1);
+  color: #8b0000;
+}
+
+.simulator-result-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.simulator-result-stage {
+  margin-bottom: 0.5rem;
+}
+
+.simulator-result-summary {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.simulator-section-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 1rem 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.simulator-section-title i {
+  color: var(--accent-color);
+  margin-right: 0.35rem;
+}
+
+.simulator-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0.25rem;
+}
+
+.simulator-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.35rem;
+}
+
+.simulator-list li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0.35rem;
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.simulator-material-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.simulator-material-note {
+  font-size: 0.85rem;
+  color: var(--text-muted, #6c757d);
+}
+
+.simulator-tag {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  vertical-align: middle;
+}
+
+.simulator-tag-required {
+  background: rgba(139, 0, 0, 0.1);
+  color: #8b0000;
+}
+
+.simulator-tag-optional {
+  background: rgba(108, 117, 125, 0.12);
+  color: #6c757d;
+}
+
+.simulator-source {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border-light);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.simulator-source-label {
+  color: var(--text-muted, #6c757d);
+}
+
+.simulator-source-divider {
+  margin: 0 0.5rem;
+  color: var(--border-light);
+}
+
+.simulator-disclaimer {
+  margin-top: 1rem;
+  padding: 0.6rem 0.75rem;
+  background: rgba(139, 0, 0, 0.06);
+  border-left: 3px solid var(--accent-color);
+  border-radius: 4px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.simulator-disclaimer i {
+  color: var(--accent-color);
+  margin-right: 0.3rem;
+}

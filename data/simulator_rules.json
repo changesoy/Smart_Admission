@@ -1,0 +1,335 @@
+{
+  "meta": {
+    "title": "入学条件自查",
+    "effectiveYear": 2025,
+    "dataStatus": "verified",
+    "ruleBase": "依据2025年泰山区义务教育段学校阳光招生工作方案及随迁子女入学实施意见编制；2026年招生政策以教育主管部门正式发布为准。",
+    "disclaimer": "自查结果仅供入学准备参考，不构成录取承诺；最终入学政策、学位安排以教育主管部门及学校正式发布为准。本工具不预测录取概率。"
+  },
+  "form": [
+    {
+      "field": "stage",
+      "label": "申请学段",
+      "showWhen": null,
+      "options": [
+        { "value": "小学", "label": "小学" },
+        { "value": "初中", "label": "初中" }
+      ]
+    },
+    {
+      "field": "hukou",
+      "label": "户籍情况",
+      "showWhen": null,
+      "options": [
+        { "value": "local", "label": "本地户籍（泰山区）" },
+        { "value": "migrant", "label": "非本地户籍（随迁）" },
+        { "value": "collective", "label": "集体户" },
+        { "value": "separated", "label": "人户分离" }
+      ]
+    },
+    {
+      "field": "housing",
+      "label": "住房情况",
+      "showWhen": { "field": "hukou", "value": "local" },
+      "options": [
+        { "value": "owned", "label": "自有产权住房" },
+        { "value": "rental", "label": "租赁住房" },
+        { "value": "none", "label": "无独立住房" }
+      ]
+    },
+    {
+      "field": "consistency",
+      "label": "户籍与住房地址是否一致",
+      "showWhen": { "field": "hukou", "value": "local" },
+      "options": [
+        { "value": "consistent", "label": "一致" },
+        { "value": "inconsistent", "label": "不一致" }
+      ]
+    },
+    {
+      "field": "reside",
+      "label": "是否实际居住",
+      "showWhen": { "field": "hukou", "value": "local" },
+      "options": [
+        { "value": "yes", "label": "是" },
+        { "value": "no", "label": "否" }
+      ]
+    },
+    {
+      "field": "permit",
+      "label": "是否持有有效居住证",
+      "showWhen": { "field": "hukou", "value": "migrant" },
+      "options": [
+        { "value": "yes", "label": "是" },
+        { "value": "no", "label": "否" }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "ruleId": "sim_rule_2025_001",
+      "effectiveYear": 2025,
+      "stage": "any",
+      "resultType": "常住居民子女（户籍一致）",
+      "resultClass": "category-a",
+      "resultTitle": "本地户籍 + 自有产权住房，人户一致并实际居住",
+      "resultSummary": "符合泰山区义务教育常住居民子女入学的基本情形。实行划片招生、免试入学，通过\"爱山东\"APP网上报名。本区户籍和登记房产居民子女报名可\"零证明提交\"，教育部门联合公安、自然资源等部门在线核验户籍与房产信息。",
+      "conditions": [
+        { "field": "hukou", "op": "eq", "value": "local" },
+        { "field": "housing", "op": "eq", "value": "owned" },
+        { "field": "consistency", "op": "eq", "value": "consistent" },
+        { "field": "reside", "op": "eq", "value": "yes" }
+      ],
+      "requiredMaterialIds": [
+        "material_001",
+        "material_002",
+        "material_003",
+        "material_004",
+        "material_005"
+      ],
+      "warnings": [
+        "小学入学需年满6周岁，入学当年出生日期需符合政策规定",
+        "报名期间户籍、房产信息需真实有效，将接受公安、自然资源等部门核验",
+        "入学当年具体报名时间、报名方式以教育部门正式通知为准"
+      ],
+      "manualCheckNotes": [],
+      "policyIds": ["policy_2025_001", "policy_2025_002"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2025/8/12/art_181325_19023.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2025_002",
+      "effectiveYear": 2025,
+      "stage": "any",
+      "resultType": "人户分离（按实际居住统筹安排）",
+      "resultClass": "category-b",
+      "resultTitle": "本地户籍 + 自有产权住房，但户籍与住房地址不一致",
+      "resultSummary": "属于\"人户分离\"情形。户籍地址与实际居住地不一致时，一般按实际居住地统筹安排学位。建议优先准备实际居住地房产证明或租赁备案材料，并按教育部门要求提供书面情况说明。",
+      "conditions": [
+        { "field": "hukou", "op": "eq", "value": "local" },
+        { "field": "housing", "op": "eq", "value": "owned" },
+        { "field": "consistency", "op": "eq", "value": "inconsistent" },
+        { "field": "reside", "op": "eq", "value": "yes" }
+      ],
+      "requiredMaterialIds": [
+        "material_017",
+        "material_018",
+        "material_019",
+        "material_020",
+        "material_021",
+        "material_022"
+      ],
+      "warnings": [
+        "人户分离家庭通常需按实际居住地统筹安排，无法保证入读户籍地或居住地对口学校",
+        "书面情况说明需监护人亲笔签字"
+      ],
+      "manualCheckNotes": [
+        "户籍地址与实际居住地不一致的具体认定与统筹办法，建议咨询泰山区教育和体育局"
+      ],
+      "policyIds": ["policy_2025_001", "policy_2025_002"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2025/8/12/art_181325_19023.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2025_003",
+      "effectiveYear": 2025,
+      "stage": "any",
+      "resultType": "本地户籍租房（需核验实际居住）",
+      "resultClass": "category-b",
+      "resultTitle": "本地户籍 + 租赁住房并实际居住",
+      "resultSummary": "本地户籍家庭租住房屋入学，一般需提供租赁备案证明并按实际居住认定。因各校学位情况不同，实际居住认定标准与学位安排需结合当年政策核验。",
+      "conditions": [
+        { "field": "hukou", "op": "eq", "value": "local" },
+        { "field": "housing", "op": "eq", "value": "rental" },
+        { "field": "reside", "op": "eq", "value": "yes" }
+      ],
+      "requiredMaterialIds": [
+        "material_001",
+        "material_015",
+        "material_018",
+        "material_021"
+      ],
+      "warnings": [
+        "租赁住房入学一般要求提供房屋租赁备案材料",
+        "部分学校学位紧张时，租房家庭学位安排可能顺延或统筹"
+      ],
+      "manualCheckNotes": [
+        "本地户籍家庭租住房屋的实际居住认定标准因学校学位情况而异，建议提前咨询对口学校或教育部门"
+      ],
+      "policyIds": ["policy_2025_001"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2025/8/12/art_181325_19023.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2025_004",
+      "effectiveYear": 2025,
+      "stage": "any",
+      "resultType": "户籍一致但未实际居住（需重点核验）",
+      "resultClass": "category-c",
+      "resultTitle": "本地户籍 + 自有产权住房、人户一致但未实际居住",
+      "resultSummary": "入学报名通常要求户籍与实际居住情况一致。未实际居住可能影响学位认定，甚至被视为\"空挂户\"处理，建议尽快按政策要求实际居住并准备好相关证明。",
+      "conditions": [
+        { "field": "hukou", "op": "eq", "value": "local" },
+        { "field": "housing", "op": "eq", "value": "owned" },
+        { "field": "consistency", "op": "eq", "value": "consistent" },
+        { "field": "reside", "op": "eq", "value": "no" }
+      ],
+      "requiredMaterialIds": [
+        "material_001",
+        "material_002",
+        "material_003",
+        "material_004",
+        "material_005"
+      ],
+      "warnings": [
+        "未实际居住可能影响学位认定，教育部门会核验实际居住情况",
+        "人户一致但长期未实际居住的家庭可能需补充情况说明"
+      ],
+      "manualCheckNotes": [
+        "建议向教育部门确认\"空挂户/未实际居住\"情形的认定标准及对学位的影响"
+      ],
+      "policyIds": ["policy_2025_001", "policy_2025_002"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2025/8/12/art_181325_19023.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2025_005",
+      "effectiveYear": 2025,
+      "stage": "any",
+      "resultType": "本地户籍无自有住房（需人工核验）",
+      "resultClass": "category-c",
+      "resultTitle": "本地户籍但无独立住房",
+      "resultSummary": "本地户籍但无自有住房的家庭，学位安排需结合实际居住、户籍所在地空余学位等情况，由教育部门核验后统筹认定。",
+      "conditions": [
+        { "field": "hukou", "op": "eq", "value": "local" },
+        { "field": "housing", "op": "eq", "value": "none" }
+      ],
+      "requiredMaterialIds": ["material_001", "material_015", "material_018", "material_021"],
+      "warnings": [
+        "无自有住房家庭需提供实际居住证明（租赁备案等）"
+      ],
+      "manualCheckNotes": [
+        "本地户籍但无自有住房的具体学位认定办法，建议携带材料到泰山区教育和体育局咨询"
+      ],
+      "policyIds": ["policy_2025_001"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2025/8/12/art_181325_19023.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2025_006",
+      "effectiveYear": 2025,
+      "stage": "any",
+      "resultType": "随迁子女入学",
+      "resultClass": "category-b",
+      "resultTitle": "非本地户籍 + 持有效居住证",
+      "resultSummary": "符合随迁子女入学基本条件。需父母至少一方持有泰安市公安局泰山分局核发的居住证（原则上期满一年以上）、在泰山区务工或经商、有稳定住所。录取依据居住证、社保、经商纳税时间长短及空余学位情况统筹安排。",
+      "conditions": [
+        { "field": "hukou", "op": "eq", "value": "migrant" },
+        { "field": "permit", "op": "eq", "value": "yes" }
+      ],
+      "requiredMaterialIds": [
+        "material_006",
+        "material_007",
+        "material_008",
+        "material_009",
+        "material_010",
+        "material_011"
+      ],
+      "warnings": [
+        "居住证原则上需期满一年以上，报名时居住证须在有效期内",
+        "社保缴纳单位、劳动合同或营业执照需真实有效，且与实际务工经商情况一致",
+        "统筹安排受空余学位影响，不能保证入读指定学校"
+      ],
+      "manualCheckNotes": [
+        "居住证持有时长、社保/经商连续时长需向教育部门确认具体计算方式",
+        "居住证、社保、纳税等材料需在报名期间持续有效"
+      ],
+      "policyIds": ["policy_2025_004", "policy_2025_002"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2025/8/12/art_193048_10374114.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2025_007",
+      "effectiveYear": 2025,
+      "stage": "any",
+      "resultType": "暂不符合随迁子女入学基本条件（需人工咨询）",
+      "resultClass": "category-c",
+      "resultTitle": "非本地户籍且未持有有效居住证",
+      "resultSummary": "未持有有效居住证的随迁家庭，暂不符合泰山区随迁子女入学的基本条件。请尽快向公安部门咨询居住证申领事宜，并向教育部门确认当年随迁子女入学政策要求。",
+      "conditions": [
+        { "field": "hukou", "op": "eq", "value": "migrant" },
+        { "field": "permit", "op": "eq", "value": "no" }
+      ],
+      "requiredMaterialIds": ["material_006", "material_007"],
+      "warnings": [
+        "随迁子女入学需父母至少一方持有有效居住证，未持证无法按随迁子女政策报名"
+      ],
+      "manualCheckNotes": [
+        "请尽快到居住地派出所咨询居住证申领条件与流程",
+        "居住证未满一年的家庭，建议向教育部门确认当年是否仍可申请或需回户籍地就读"
+      ],
+      "policyIds": ["policy_2025_004"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2025/8/12/art_193048_10374114.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2025_008",
+      "effectiveYear": 2025,
+      "stage": "any",
+      "resultType": "集体户入学",
+      "resultClass": "category-b",
+      "resultTitle": "户籍登记在集体户",
+      "resultSummary": "集体户家庭按集体户类型准备材料。需提供加盖单位公章的集体户口首页复印件、儿童本人户口页等，并结合实际居住情况由教育部门统筹安排学位。",
+      "conditions": [
+        { "field": "hukou", "op": "eq", "value": "collective" }
+      ],
+      "requiredMaterialIds": [
+        "material_012",
+        "material_013",
+        "material_014",
+        "material_015",
+        "material_016"
+      ],
+      "warnings": [
+        "集体户口首页复印件需加盖单位公章",
+        "集体户入学需结合实际居住情况认定"
+      ],
+      "manualCheckNotes": [
+        "集体户学生的具体学位安排与所需补充材料，建议向教育部门确认"
+      ],
+      "policyIds": ["policy_2025_001"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2025/8/12/art_181325_19023.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2025_009",
+      "effectiveYear": 2025,
+      "stage": "any",
+      "resultType": "人户分离（按实际居住统筹安排）",
+      "resultClass": "category-b",
+      "resultTitle": "户籍与居住地分离（人户分离）",
+      "resultSummary": "您选择了\"人户分离\"情形：儿童户籍地址与实际居住地址不一致。一般按实际居住地统筹安排学位，建议优先准备实际居住地房产证明或租赁备案材料，并按教育部门要求提供书面情况说明。",
+      "conditions": [
+        { "field": "hukou", "op": "eq", "value": "separated" }
+      ],
+      "requiredMaterialIds": [
+        "material_017",
+        "material_018",
+        "material_019",
+        "material_020",
+        "material_021",
+        "material_022"
+      ],
+      "warnings": [
+        "人户分离家庭通常需按实际居住地统筹安排，无法保证入读户籍地或居住地对口学校",
+        "书面情况说明需监护人亲笔签字"
+      ],
+      "manualCheckNotes": [
+        "人户分离的具体认定与统筹办法，建议携带材料到泰山区教育和体育局咨询"
+      ],
+      "policyIds": ["policy_2025_001", "policy_2025_002"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2025/8/12/art_181325_19023.html",
+      "dataStatus": "verified"
+    }
+  ]
+}

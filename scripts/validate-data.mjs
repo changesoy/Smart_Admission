@@ -11,8 +11,10 @@ const readJson = (relPath) =>
 const zones = readJson("data/zones.geojson");
 const schools = readJson("data/schools.json");
 const policies = readJson("data/policies.json");
+const materials = readJson("data/materials.json");
 const addressPoints = readJson("data/address_points.json");
 const keywordsIndex = readJson("data/keywords_index.json");
+const simulatorRules = readJson("data/simulator_rules.json");
 
 let hasError = false;
 let warnCount = 0;
@@ -71,6 +73,13 @@ const policyIds = assertUnique(
   policies,
   (p) => p.policyId,
   "policies.json"
+);
+
+const allMaterials = materials.flatMap((g) => g.items || []);
+const materialIds = assertUnique(
+  allMaterials,
+  (m) => m.materialId,
+  "materials.json"
 );
 
 const addressIds = assertUnique(
@@ -183,6 +192,61 @@ keywordsIndex.forEach((item) => {
   (item.matchedZoneIds || []).forEach((zoneId) => {
     if (!zoneIds.has(zoneId)) {
       error(`关键词 ${label} 关联了不存在的 zoneId: ${zoneId}`);
+    }
+  });
+});
+
+console.log("\n--- simulator_rules.json 校验 ---");
+
+const simRules = simulatorRules.rules || [];
+const ruleIds = assertUnique(
+  simRules,
+  (r) => r.ruleId,
+  "simulator_rules.json rules"
+);
+
+const simForm = simulatorRules.form || [];
+simForm.forEach((field) => {
+  if (!field.field) {
+    error("simulator_rules.json form 存在缺少 field 的项");
+  }
+  if (!field.label) {
+    error(`表单字段 ${field.field || "?"} 缺少 label`);
+  }
+  if (!field.options || field.options.length === 0) {
+    error(`表单字段 ${field.field || "?"} 缺少 options`);
+  }
+});
+
+simRules.forEach((rule) => {
+  const id = rule.ruleId || "未知规则";
+
+  if (!rule.resultType) {
+    error(`规则 ${id} 缺少 resultType`);
+  }
+  if (!rule.resultSummary) {
+    error(`规则 ${id} 缺少 resultSummary`);
+  }
+  if (!rule.conditions || rule.conditions.length === 0) {
+    error(`规则 ${id} 缺少 conditions`);
+  }
+
+  const knownFields = new Set(simForm.map((f) => f.field));
+  (rule.conditions || []).forEach((cond, i) => {
+    if (!knownFields.has(cond.field)) {
+      error(`规则 ${id} conditions[${i}] 引用了未知字段: ${cond.field}`);
+    }
+  });
+
+  (rule.requiredMaterialIds || []).forEach((mid) => {
+    if (!materialIds.has(mid)) {
+      error(`规则 ${id} requiredMaterialIds 引用了不存在的材料: ${mid}`);
+    }
+  });
+
+  (rule.policyIds || []).forEach((pid) => {
+    if (!policyIds.has(pid)) {
+      error(`规则 ${id} policyIds 引用了不存在的政策: ${pid}`);
     }
   });
 });

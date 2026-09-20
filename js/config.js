@@ -47,6 +47,7 @@ const AppConfig = {
     keywordsIndex: "./data/keywords_index.json",
     zonesHistory: "./data/zones_history.json",
     rumors: "./data/rumors.json",
+    simulatorRules: "./data/simulator_rules.json",
   },
 
   /** 学区图层样式,按学段(stage)和交互状态分组,值为 Leaflet Path 选项 */

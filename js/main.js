@@ -31,6 +31,7 @@ import FaqService from "./faqService.js";
 import InteractionService from "./interactionService.js";
 import MapService from "./mapService.js";
 import SearchService from "./searchService.js";
+import SimulatorService from "./simulatorService.js";
 
 /** 模块初始化隔离:捕获异常并 console.error,防止一个模块拖垮后续模块 */
 const safeInit = (name, fn) => {
@@ -85,6 +86,14 @@ const bootstrapPage = (data) => {
 
   safeInit("MaterialService", () => {
     MaterialService.init(data.materials);
+  });
+
+  safeInit("SimulatorService", () => {
+    SimulatorService.init({
+      simulatorRules: data.simulatorRules,
+      policies: data.policies,
+      materials: data.materials,
+    });
   });
 
   safeInit("FaqService", () => {
