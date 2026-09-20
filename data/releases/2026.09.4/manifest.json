@@ -1,0 +1,62 @@
+{
+  "version": "2026.09.4",
+  "generatedAt": "2026-09-20T17:48:38.090Z",
+  "effectiveYear": 2026,
+  "files": [
+    {
+      "name": "zones.geojson",
+      "bytes": 151613,
+      "sha256": "57794f2384461ea272dda028716f5472dbd9c37e80aa0b7381d17443d89ae8e6"
+    },
+    {
+      "name": "schools.json",
+      "bytes": 74901,
+      "sha256": "3d209bc5145603feabdfc1be6417ccc3e96dbaae3f25f5bd5785c2a52edd16f4"
+    },
+    {
+      "name": "policies.json",
+      "bytes": 32633,
+      "sha256": "5bc23b6cabef180e5fcd39a008b1da8beb6dc8f686a1924be8acac7ce780527d"
+    },
+    {
+      "name": "faq.json",
+      "bytes": 9080,
+      "sha256": "38691625ef9d3cd0922e725a54442c6bdadc0efab44e3335acb3abea2dfad48e"
+    },
+    {
+      "name": "contacts.json",
+      "bytes": 1340,
+      "sha256": "ae2669d6f20558cbbf95bd008a735cb31e89ec3ac999ec0f6795ab1c5a601663"
+    },
+    {
+      "name": "policy_diff.json",
+      "bytes": 25705,
+      "sha256": "39a53c15aa87bff5fa029b8e34981a57e0be09bc52d95884bea36ad263a7ebbf"
+    },
+    {
+      "name": "address_points.json",
+      "bytes": 6413,
+      "sha256": "c9df82db5e7170b19ad75f81bce9f248205a8ce5927340b06272a6a22fad6b74"
+    },
+    {
+      "name": "keywords_index.json",
+      "bytes": 6610,
+      "sha256": "103b681902b9028a351b4aba558df461d288f4f9a12ec82aa777682eedc48660"
+    },
+    {
+      "name": "zones_history.json",
+      "bytes": 5461,
+      "sha256": "73198187a614a2a3910883f2347150ddd5f132686620da2e6cf4a1472c71a559"
+    },
+    {
+      "name": "rumors.json",
+      "bytes": 3818,
+      "sha256": "c0fbacfa1d53bbb30a8c2a4f6c9855543340daca5e9a41ffdcbe9cdf6bbeec63"
+    },
+    {
+      "name": "simulator_rules.json",
+      "bytes": 25289,
+      "sha256": "bda32d01a33b8b0572652636fc5bf86fd34db17d20ec721f8809b7ca14682697"
+    }
+  ]
+}
