@@ -3,23 +3,38 @@
 Backend Lite 的职责严格限制为: health / version / 第三方搜索代理。
 明确不负责 Turf 点面判断、学区查询、返回学校与政策数据、用户账号、管理后台。
 
-本地启动（端口需与 vite.config.js 的 API_TARGET 一致）::
+运行模式:
 
-    .venv\\Scripts\\python.exe -m uvicorn server.app:app --port 8010 --reload
+- 开发: Vite dev server 提供前端并把 /api 代理到本进程(端口见 vite.config.js)::
 
-生产环境由反向代理把 /api 转发到本进程。
+      .venv\\Scripts\\python.exe -m uvicorn server.app:app --port 8010 --reload
+
+- 生产(单进程): 本进程同时提供 /api/* 与 dist/ 静态文件,无需 Nginx::
+
+      .venv\\Scripts\\python.exe -m uvicorn server.app:app --host 0.0.0.0 --port 8000
+
+  dist/ 以 html=True 挂载在 /, 使 / 返回 dist/index.html。挂载必须在所有
+  API 路由注册之后: Starlette 按注册顺序匹配, 先注册的 /api/* 路由优先级
+  高于后挂载的 / 静态。dist/ 不存在(尚未 npm run build)时仅提供 /api/*,
+  不影响启动。
 """
 
 from __future__ import annotations
 
+import logging
+from pathlib import Path
+
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from .config import APP_VERSION
+from .config import APP_VERSION, ROOT_DIR
 from .errors import ApiError
 from .routes import health, search, version
+
+logger = logging.getLogger("server.app")
 
 # 非业务异常（路由不存在、方法不允许等）同样要收敛成统一结构
 _HTTP_ERRORS = {
@@ -82,3 +97,24 @@ async def handle_unexpected_error(_: Request, exc: Exception) -> JSONResponse:
 app.include_router(health.router, prefix="/api", tags=["health"])
 app.include_router(version.router, prefix="/api", tags=["version"])
 app.include_router(search.router, prefix="/api", tags=["search"])
+
+
+# ---- 静态文件（生产单进程模式）----
+# dist 目录基于 server/ 上级（仓库根）计算，不依赖启动时的当前工作目录。
+_DIST_DIR = ROOT_DIR / "dist"
+
+
+def _mount_static(target: FastAPI, dist_dir: Path) -> None:
+    """dist/ 存在时把它挂载到 /（html=True 使 / 返回 dist/index.html）。
+
+    必须在所有 API 路由注册之后调用：Starlette 按注册顺序匹配，先注册的
+    /api/* 路由优先级高于后挂载的 / 静态，因此 /api 行为不受影响。
+    dist/ 不存在（开发环境尚未 npm run build）时跳过，仅提供 /api/*。
+    """
+    if not dist_dir.is_dir():
+        logger.warning("未找到 dist/（%s），跳过静态挂载，仅提供 /api/*", dist_dir)
+        return
+    target.mount("/", StaticFiles(directory=dist_dir, html=True), name="static")
+
+
+_mount_static(app, _DIST_DIR)

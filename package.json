@@ -12,6 +12,7 @@
     "lint:fix": "eslint . --fix",
     "validate:data": "node scripts/validate-data.mjs",
     "check:release": "node scripts/check-release.mjs",
+    "test:server": "python -m server.test_app",
     "check": "npm run lint && npm run validate:data"
   },
   "devDependencies": {
