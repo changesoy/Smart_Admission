@@ -8,7 +8,7 @@
  *
  * 关键接口:
  *   loadAllData() → Promise<Object>
- *     返回结构: { zones, schools, policies, materials, faq, contacts,
+ *     返回结构: { zones, schools, policies, faq, contacts,
  *                 policyDiff, addressPoints, keywordsIndex, zonesHistory, rumors }
  *     - zones: GeoJSON FeatureCollection (学区多边形)
  *     - 其余: 普通 JSON 数组或对象
@@ -23,7 +23,6 @@ const DataService = (() => {
 
   /** 可选数据键名及其降级默认值,加载失败仅 console.warn 并使用默认值 */
   const optionalDefaults = {
-    materials: [],
     faq: [],
     contacts: [],
     policyDiff: [],
@@ -52,7 +51,7 @@ const DataService = (() => {
     const data = {};
 
     const requiredResults = await Promise.all(
-      requiredKeys.map((key) => loadFile(paths[key]))
+      requiredKeys.map((key) => loadFile(paths[key])),
     );
     requiredKeys.forEach((key, index) => {
       data[key] = requiredResults[index];
@@ -63,7 +62,7 @@ const DataService = (() => {
       .map((key) => [key, paths[key]]);
 
     const optionalResults = await Promise.allSettled(
-      optionalEntries.map(([, path]) => loadFile(path))
+      optionalEntries.map(([, path]) => loadFile(path)),
     );
 
     optionalResults.forEach((result, index) => {

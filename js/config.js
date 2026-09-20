@@ -39,7 +39,6 @@ const AppConfig = {
     zones: "./data/zones.geojson",
     schools: "./data/schools.json",
     policies: "./data/policies.json",
-    materials: "./data/materials.json",
     faq: "./data/faq.json",
     contacts: "./data/contacts.json",
     policyDiff: "./data/policy_diff.json",

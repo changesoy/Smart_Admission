@@ -6,6 +6,30 @@
     "ruleBase": "依据2025年泰山区义务教育段学校阳光招生工作方案及随迁子女入学实施意见编制；2026年招生政策以教育主管部门正式发布为准。",
     "disclaimer": "自查结果仅供入学准备参考，不构成录取承诺；最终入学政策、学位安排以教育主管部门及学校正式发布为准。本工具不预测录取概率。"
   },
+  "materials": {
+    "material_001": { "name": "户口簿", "required": true, "note": "需提供首页、户主页、儿童本人页。" },
+    "material_002": { "name": "适龄儿童监护人房产证明", "required": true, "note": "房产证、不动产登记证或购房合同均可。" },
+    "material_003": { "name": "儿童出生医学证明", "required": true, "note": "需提供原件或清晰复印件。" },
+    "material_004": { "name": "预防接种证明", "required": true, "note": "需携带儿童预防接种证原件。" },
+    "material_005": { "name": "监护人身份证", "required": true, "note": "父母双方身份证均需提供。" },
+    "material_006": { "name": "原籍户口簿", "required": true, "note": "需提供首页、户主页、儿童本人页。" },
+    "material_007": { "name": "本地居住证", "required": true, "note": "父母至少一方持有本地有效居住证。" },
+    "material_008": { "name": "监护人劳动合同或营业执照", "required": true, "note": "提供劳动合同或营业执照副本均可。" },
+    "material_009": { "name": "社保缴纳证明", "required": true, "note": "需提供近一年社保缴纳记录。" },
+    "material_010": { "name": "儿童出生医学证明", "required": true, "note": "需提供原件或清晰复印件。" },
+    "material_011": { "name": "预防接种证明", "required": true, "note": "需携带儿童预防接种证原件。" },
+    "material_012": { "name": "集体户口首页复印件", "required": true, "note": "需加盖单位公章。" },
+    "material_013": { "name": "儿童本人户口页", "required": true, "note": "需提供原件或清晰复印件。" },
+    "material_014": { "name": "监护人身份证", "required": true, "note": "父母双方身份证均需提供。" },
+    "material_015": { "name": "实际居住证明", "required": true, "note": "房产证、不动产登记证或租赁备案证明均可。" },
+    "material_016": { "name": "儿童出生医学证明", "required": true, "note": "需提供原件或清晰复印件。" },
+    "material_017": { "name": "儿童户口簿", "required": true, "note": "需提供首页、户主页、儿童本人页。" },
+    "material_018": { "name": "实际居住地房产证明或租赁备案", "required": true, "note": "房产证或租赁备案证明均可。" },
+    "material_019": { "name": "监护人身份证", "required": true, "note": "父母双方身份证均需提供。" },
+    "material_020": { "name": "情况说明", "required": true, "note": "由监护人手写并签字。" },
+    "material_021": { "name": "儿童出生医学证明", "required": true, "note": "需提供原件或清晰复印件。" },
+    "material_022": { "name": "预防接种证明", "required": true, "note": "需携带儿童预防接种证原件。" }
+  },
   "form": [
     {
       "field": "stage",

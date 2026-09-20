@@ -14,7 +14,7 @@
  *   1. DataService.loadAllData()  - 分级加载数据(核心阻断,可选降级)
  *   2. RenderService              - 渲染统计卡片/默认提示/免责声明
  *   3. PolicyService.init()       - 初始化政策模块
- *   4. MaterialService.init()     - 初始化材料模块
+ *   4. SimulatorService.init()    - 初始化入学条件自查助手
  *   5. FaqService.init()          - 初始化FAQ模块
  *   6. InteractionService.init()  - 初始化互动模块
  *   7. MapService.initMap()       - 初始化地图(含 onZoneSelected/onNoMatch 回调)
@@ -26,7 +26,6 @@ import AppConfig from "./config.js";
 import DataService from "./dataService.js";
 import RenderService from "./render.js";
 import PolicyService from "./policyService.js";
-import MaterialService from "./materialService.js";
 import FaqService from "./faqService.js";
 import InteractionService from "./interactionService.js";
 import MapService from "./mapService.js";
@@ -84,15 +83,10 @@ const bootstrapPage = (data) => {
     });
   });
 
-  safeInit("MaterialService", () => {
-    MaterialService.init(data.materials);
-  });
-
   safeInit("SimulatorService", () => {
     SimulatorService.init({
       simulatorRules: data.simulatorRules,
       policies: data.policies,
-      materials: data.materials,
     });
   });
 
@@ -176,8 +170,6 @@ const bootstrapPage = (data) => {
   } catch (err) {
     console.error("数据加载失败:", err);
     showLoading(false);
-    RenderService.renderError(
-      err && err.message ? err.message : "未知错误",
-    );
+    RenderService.renderError(err && err.message ? err.message : "未知错误");
   }
 })();

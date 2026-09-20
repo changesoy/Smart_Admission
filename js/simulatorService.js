@@ -13,15 +13,16 @@
  *   - 未命中规则时明确提示"需要人工确认",不强行给出结论。
  *
  * 关键接口:
- *   init(data) - 初始化,接收 { simulatorRules, policies, materials }
+ *   init(data) - 初始化,接收 { simulatorRules, policies }
  *
  * 数据格式 (data/simulator_rules.json):
- *   meta  = { title, effectiveYear, dataStatus, ruleBase, disclaimer }
- *   form  = [{ field, label, showWhen: {field,value}|null, options: [{value,label}] }]
- *   rules = [{ ruleId, effectiveYear, stage: "any"|stage|Array, resultType, resultClass,
- *              resultTitle, resultSummary, conditions: [{field,op,value}],
- *              requiredMaterialIds[], warnings[], manualCheckNotes[], policyIds[],
- *              sourceUrl, dataStatus }]
+ *   meta      = { title, effectiveYear, dataStatus, ruleBase, disclaimer }
+ *   materials = { materialId: { name, required, note } }  材料字典,供规则按 id 引用
+ *   form      = [{ field, label, showWhen: {field,value}|null, options: [{value,label}] }]
+ *   rules     = [{ ruleId, effectiveYear, stage: "any"|stage|Array, resultType, resultClass,
+ *                  resultTitle, resultSummary, conditions: [{field,op,value}],
+ *                  requiredMaterialIds[], warnings[], manualCheckNotes[], policyIds[],
+ *                  sourceUrl, dataStatus }]
  */
 import RenderService from "./render.js";
 
@@ -30,7 +31,7 @@ const SimulatorService = (() => {
   let _form = [];
   let _rules = [];
   let _policies = [];
-  let _materialsData = [];
+  let _materialsMap = {};
 
   /** 未命中规则时的兜底结果 */
   const FALLBACK = {
@@ -55,7 +56,7 @@ const SimulatorService = (() => {
     _form = rulesData.form || [];
     _rules = rulesData.rules || [];
     _policies = data.policies || [];
-    _materialsData = data.materials || [];
+    _materialsMap = rulesData.materials || {};
 
     renderForm();
     renderMeta();
@@ -219,16 +220,10 @@ const SimulatorService = (() => {
 
   // ==================== 结果渲染 ====================
 
-  /** 在材料分组中查找指定 materialId 的材料项 */
+  /** 按 materialId 从材料字典中取出材料项 */
   const findMaterials = (ids) => {
-    const out = [];
-    if (!ids || ids.length === 0) return out;
-    _materialsData.forEach((group) => {
-      (group.items || []).forEach((item) => {
-        if (ids.includes(item.materialId)) out.push(item);
-      });
-    });
-    return out;
+    if (!ids || ids.length === 0) return [];
+    return ids.map((id) => _materialsMap[id]).filter(Boolean);
   };
 
   /** 根据 policyIds 查找政策条目 */
@@ -249,8 +244,7 @@ const SimulatorService = (() => {
       );
     }
 
-    let html =
-      `<div class="simulator-section-title"><i class="bi bi-list-check"></i>建议准备材料</div>`;
+    let html = `<div class="simulator-section-title"><i class="bi bi-list-check"></i>建议准备材料</div>`;
     html += `<ul class="simulator-list">`;
     materials.forEach((m) => {
       html += `<li>`;
@@ -264,9 +258,6 @@ const SimulatorService = (() => {
       html += `</li>`;
     });
     html += `</ul>`;
-    html += `<a class="btn btn-outline-primary btn-sm" href="#section-material">`;
-    html += `<i class="bi bi-arrow-down-circle"></i> 前往材料清单勾选进度`;
-    html += `</a>`;
     return html;
   };
 
@@ -287,8 +278,7 @@ const SimulatorService = (() => {
     const policies = findPolicies(rule.policyIds);
     if (policies.length === 0) return "";
 
-    let html =
-      `<div class="simulator-section-title"><i class="bi bi-file-earmark-text"></i>相关政策依据</div>`;
+    let html = `<div class="simulator-section-title"><i class="bi bi-file-earmark-text"></i>相关政策依据</div>`;
     html += `<ul class="simulator-list">`;
     policies.forEach((p) => {
       const hasUrl = p.url && p.url !== "#";

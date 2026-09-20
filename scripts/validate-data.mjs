@@ -11,7 +11,6 @@ const readJson = (relPath) =>
 const zones = readJson("data/zones.geojson");
 const schools = readJson("data/schools.json");
 const policies = readJson("data/policies.json");
-const materials = readJson("data/materials.json");
 const addressPoints = readJson("data/address_points.json");
 const keywordsIndex = readJson("data/keywords_index.json");
 const simulatorRules = readJson("data/simulator_rules.json");
@@ -64,28 +63,17 @@ const zoneFeatures = zones.features || [];
 const zoneIds = assertUnique(
   zoneFeatures,
   (f) => f.properties && f.properties.zoneId,
-  "zones.geojson"
+  "zones.geojson",
 );
 
 const schoolIds = assertUnique(schools, (s) => s.schoolId, "schools.json");
 
-const policyIds = assertUnique(
-  policies,
-  (p) => p.policyId,
-  "policies.json"
-);
-
-const allMaterials = materials.flatMap((g) => g.items || []);
-const materialIds = assertUnique(
-  allMaterials,
-  (m) => m.materialId,
-  "materials.json"
-);
+const policyIds = assertUnique(policies, (p) => p.policyId, "policies.json");
 
 const addressIds = assertUnique(
   addressPoints,
   (a) => a.addressId,
-  "address_points.json"
+  "address_points.json",
 );
 
 console.log("\n--- zones.geojson 校验 ---");
@@ -122,10 +110,7 @@ zoneFeatures.forEach((feature) => {
     if (ring && ring.length > 0) {
       const first = ring[0];
       const last = ring[ring.length - 1];
-      if (
-        first[0] !== last[0] ||
-        first[1] !== last[1]
-      ) {
+      if (first[0] !== last[0] || first[1] !== last[1]) {
         warn(`${zoneId} Polygon 首尾点未闭合`);
       }
       checkCoordinate(first[0], first[1], `${zoneId} 首点`);
@@ -137,7 +122,11 @@ zoneFeatures.forEach((feature) => {
       const ring = polygon[0];
       if (ring && ring.length > 0) {
         const first = ring[0];
-        checkCoordinate(first[0], first[1], `${zoneId} MultiPolygon[${i}] 首点`);
+        checkCoordinate(
+          first[0],
+          first[1],
+          `${zoneId} MultiPolygon[${i}] 首点`,
+        );
       }
     });
   }
@@ -202,8 +191,17 @@ const simRules = simulatorRules.rules || [];
 const ruleIds = assertUnique(
   simRules,
   (r) => r.ruleId,
-  "simulator_rules.json rules"
+  "simulator_rules.json rules",
 );
+
+const simMaterials = simulatorRules.materials || {};
+const materialIds = new Set(Object.keys(simMaterials));
+materialIds.forEach((mid) => {
+  const item = simMaterials[mid] || {};
+  if (!item.name) {
+    error(`simulator_rules.json materials.${mid} 缺少 name`);
+  }
+});
 
 const simForm = simulatorRules.form || [];
 simForm.forEach((field) => {
@@ -240,7 +238,9 @@ simRules.forEach((rule) => {
 
   (rule.requiredMaterialIds || []).forEach((mid) => {
     if (!materialIds.has(mid)) {
-      error(`规则 ${id} requiredMaterialIds 引用了不存在的材料: ${mid}`);
+      error(
+        `规则 ${id} requiredMaterialIds 引用了 materials 字典中不存在的材料: ${mid}`,
+      );
     }
   });
 

@@ -73,13 +73,13 @@ v1.0 暂按“一校一区”设计：
 
 ### 1.5 来源字段说明
 
-| 字段 | 类型 | 必填建议 | 说明 |
-|---|---|---:|---|
-| `sourceName` | string | 真实数据建议必填 | 数据来源名称 |
-| `sourceUrl` | string | 真实数据建议必填 | 原始来源链接 |
-| `sourceType` | string | 真实数据建议必填 | 来源类型 |
+| 字段           | 类型   |         必填建议 | 说明                            |
+| -------------- | ------ | ---------------: | ------------------------------- |
+| `sourceName`   | string | 真实数据建议必填 | 数据来源名称                    |
+| `sourceUrl`    | string | 真实数据建议必填 | 原始来源链接                    |
+| `sourceType`   | string | 真实数据建议必填 | 来源类型                        |
 | `verifiedDate` | string | 真实数据建议必填 | 团队核验日期，格式 `YYYY-MM-DD` |
-| `dataStatus` | string | 真实数据建议必填 | 数据状态 |
+| `dataStatus`   | string | 真实数据建议必填 | 数据状态                        |
 
 `sourceType` 建议值：
 
@@ -124,22 +124,21 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 
 ## 2. 数据文件总览
 
-| 文件 | 负责人 | 是否必须 | 用途 |
-|---|---|---:|---|
-| `data/zones.geojson` | A | 是 | 学区 Polygon，地图渲染和 Turf 点面判断 |
-| `data/schools.json` | A / 共享 | 是 | 真实学校信息 |
-| `data/address_points.json` | A | 是 | 学校、小区、地标、道路代表点坐标 |
-| `data/keywords_index.json` | A | 是 | 模糊关键词兜底搜索 |
-| `data/zones_history.json` | A | 是 | 学区历年调整 timeline |
-| `data/policies.json` | B | 是 | 真实招生政策、流程、材料、学区调整等 |
-| `data/policy_diff.json` | B | 建议 | 不同年份政策对比 |
-| `data/rumors.json` | B | 建议 | 政策辟谣、误区澄清 |
-| `data/simulator_rules.json` | B | 可选 | 模拟器规则，当前不作为核心 |
-| `data/admission_scores.json` | B | 可选 | 往年分数线；没有可靠来源时不启用 |
-| `data/materials.json` | C | 是 | 入学材料清单 |
-| `data/faq.json` | C | 是 | FAQ、分类、相关推荐 |
-| `data/contacts.json` | C | 是 | 真实公开联系方式 |
-| `data/interaction_topics.json` | C | 可选 | 留言表单主题配置 |
+| 文件                           | 负责人   | 是否必须 | 用途                                   |
+| ------------------------------ | -------- | -------: | -------------------------------------- |
+| `data/zones.geojson`           | A        |       是 | 学区 Polygon，地图渲染和 Turf 点面判断 |
+| `data/schools.json`            | A / 共享 |       是 | 真实学校信息                           |
+| `data/address_points.json`     | A        |       是 | 学校、小区、地标、道路代表点坐标       |
+| `data/keywords_index.json`     | A        |       是 | 模糊关键词兜底搜索                     |
+| `data/zones_history.json`      | A        |       是 | 学区历年调整 timeline                  |
+| `data/policies.json`           | B        |       是 | 真实招生政策、流程、材料、学区调整等   |
+| `data/policy_diff.json`        | B        |     建议 | 不同年份政策对比                       |
+| `data/rumors.json`             | B        |     建议 | 政策辟谣、误区澄清                     |
+| `data/simulator_rules.json`    | B        |     可选 | 自查规则与材料字典，当前不作为核心     |
+| `data/admission_scores.json`   | B        |     可选 | 往年分数线；没有可靠来源时不启用       |
+| `data/faq.json`                | C        |       是 | FAQ、分类、相关推荐                    |
+| `data/contacts.json`           | C        |       是 | 真实公开联系方式                       |
+| `data/interaction_topics.json` | C        |     可选 | 留言表单主题配置                       |
 
 ---
 
@@ -191,11 +190,11 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
     "type": "Polygon",
     "coordinates": [
       [
-        [117.103000, 36.220000],
-        [117.120000, 36.220000],
-        [117.120000, 36.205000],
-        [117.103000, 36.205000],
-        [117.103000, 36.220000]
+        [117.103, 36.22],
+        [117.12, 36.22],
+        [117.12, 36.205],
+        [117.103, 36.205],
+        [117.103, 36.22]
       ]
     ]
   }
@@ -204,25 +203,25 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 
 ### 3.4 字段说明
 
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---:|---|
-| `zoneId` | string | 是 | 学区唯一 ID，例如 `zone_001` |
-| `zoneName` | string | 是 | 学区名称 |
-| `stage` | string | 是 | `小学` / `初中` |
-| `schoolId` | string | 是 | 一校一区模式下对应的唯一学校 ID |
-| `description` | string | 是 | 面向用户展示的学区范围说明 |
-| `boundaryText` | string | 建议 | 官方文字四至原文或整理后的范围 |
-| `year` | number | 是 | 学区数据年份 |
-| `policyIds` | string[] | 是 | 关联政策 ID |
-| `sourceName` | string | 建议 | 数据来源名称 |
-| `sourceUrl` | string | 建议 | 来源链接 |
-| `sourceType` | string | 建议 | `official` / `school` / `manual` / `demo` |
-| `verifiedDate` | string | 建议 | 核验日期 |
-| `dataStatus` | string | 建议 | `verified` / `estimated` / `demo` / `outdated` |
-| `geometryAccuracy` | string | 建议 | `officialBoundary` / `manualApproximation` / `demoBoundary` |
-| `note` | string | 否 | 额外说明 |
-| `geometry.type` | string | 是 | v1.0 建议固定为 `Polygon` |
-| `coordinates` | array | 是 | GeoJSON 坐标，必须是 `[lng, lat]` |
+| 字段               | 类型     | 必填 | 说明                                                        |
+| ------------------ | -------- | ---: | ----------------------------------------------------------- |
+| `zoneId`           | string   |   是 | 学区唯一 ID，例如 `zone_001`                                |
+| `zoneName`         | string   |   是 | 学区名称                                                    |
+| `stage`            | string   |   是 | `小学` / `初中`                                             |
+| `schoolId`         | string   |   是 | 一校一区模式下对应的唯一学校 ID                             |
+| `description`      | string   |   是 | 面向用户展示的学区范围说明                                  |
+| `boundaryText`     | string   | 建议 | 官方文字四至原文或整理后的范围                              |
+| `year`             | number   |   是 | 学区数据年份                                                |
+| `policyIds`        | string[] |   是 | 关联政策 ID                                                 |
+| `sourceName`       | string   | 建议 | 数据来源名称                                                |
+| `sourceUrl`        | string   | 建议 | 来源链接                                                    |
+| `sourceType`       | string   | 建议 | `official` / `school` / `manual` / `demo`                   |
+| `verifiedDate`     | string   | 建议 | 核验日期                                                    |
+| `dataStatus`       | string   | 建议 | `verified` / `estimated` / `demo` / `outdated`              |
+| `geometryAccuracy` | string   | 建议 | `officialBoundary` / `manualApproximation` / `demoBoundary` |
+| `note`             | string   |   否 | 额外说明                                                    |
+| `geometry.type`    | string   |   是 | v1.0 建议固定为 `Polygon`                                   |
+| `coordinates`      | array    |   是 | GeoJSON 坐标，必须是 `[lng, lat]`                           |
 
 ### 3.5 约束
 
@@ -269,24 +268,24 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 
 ### 4.3 字段说明
 
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---:|---|
-| `schoolId` | string | 是 | 学校唯一 ID |
-| `name` | string | 是 | 真实学校名称 |
-| `shortName` | string | 否 | 学校简称，用于搜索 |
-| `type` | string | 是 | `小学` / `初中` / `九年一贯制学校` |
-| `schoolStage` | string[] | 是 | 学校覆盖学段，值为 `小学` / `初中` |
-| `district` | string | 建议 | 区县，例如 `泰山区` |
-| `address` | string | 是 | 学校真实地址 |
-| `phone` | string | 建议 | 公开办公电话，不填写个人手机号 |
-| `website` | string | 否 | 学校官网或介绍页，没有则为空字符串 |
-| `tags` | string[] | 否 | 例如 `公办`、`小学`、`初中` |
-| `description` | string | 否 | 学校简介 |
-| `sourceName` | string | 建议 | 来源名称 |
-| `sourceUrl` | string | 建议 | 来源链接 |
-| `sourceType` | string | 建议 | 来源类型 |
-| `verifiedDate` | string | 建议 | 核验日期 |
-| `dataStatus` | string | 建议 | 数据状态 |
+| 字段           | 类型     | 必填 | 说明                               |
+| -------------- | -------- | ---: | ---------------------------------- |
+| `schoolId`     | string   |   是 | 学校唯一 ID                        |
+| `name`         | string   |   是 | 真实学校名称                       |
+| `shortName`    | string   |   否 | 学校简称，用于搜索                 |
+| `type`         | string   |   是 | `小学` / `初中` / `九年一贯制学校` |
+| `schoolStage`  | string[] |   是 | 学校覆盖学段，值为 `小学` / `初中` |
+| `district`     | string   | 建议 | 区县，例如 `泰山区`                |
+| `address`      | string   |   是 | 学校真实地址                       |
+| `phone`        | string   | 建议 | 公开办公电话，不填写个人手机号     |
+| `website`      | string   |   否 | 学校官网或介绍页，没有则为空字符串 |
+| `tags`         | string[] |   否 | 例如 `公办`、`小学`、`初中`        |
+| `description`  | string   |   否 | 学校简介                           |
+| `sourceName`   | string   | 建议 | 来源名称                           |
+| `sourceUrl`    | string   | 建议 | 来源链接                           |
+| `sourceType`   | string   | 建议 | 来源类型                           |
+| `verifiedDate` | string   | 建议 | 核验日期                           |
+| `dataStatus`   | string   | 建议 | 数据状态                           |
 
 ### 4.4 ID 规则
 
@@ -337,22 +336,22 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 
 ### 5.3 字段说明
 
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---:|---|
-| `addressId` | string | 是 | 地址点唯一 ID |
-| `name` | string | 是 | 地址点名称 |
-| `type` | string | 是 | `学校` / `小区` / `道路` / `社区` / `地标` / `政府机构` |
-| `fullAddress` | string | 建议 | 完整地址 |
-| `lng` | number | 是 | 经度 |
-| `lat` | number | 是 | 纬度 |
-| `matchedZoneId` | string | 否 | 人工确认的命中学区 |
-| `confidence` | number | 否 | 可信度，范围 0–100 |
-| `aliases` | string[] | 否 | 别名、简称、常见写法 |
-| `sourceName` | string | 建议 | 来源名称 |
-| `sourceUrl` | string | 建议 | 来源链接 |
-| `sourceType` | string | 建议 | 来源类型 |
-| `verifiedDate` | string | 建议 | 核验日期 |
-| `dataStatus` | string | 建议 | 数据状态 |
+| 字段            | 类型     | 必填 | 说明                                                    |
+| --------------- | -------- | ---: | ------------------------------------------------------- |
+| `addressId`     | string   |   是 | 地址点唯一 ID                                           |
+| `name`          | string   |   是 | 地址点名称                                              |
+| `type`          | string   |   是 | `学校` / `小区` / `道路` / `社区` / `地标` / `政府机构` |
+| `fullAddress`   | string   | 建议 | 完整地址                                                |
+| `lng`           | number   |   是 | 经度                                                    |
+| `lat`           | number   |   是 | 纬度                                                    |
+| `matchedZoneId` | string   |   否 | 人工确认的命中学区                                      |
+| `confidence`    | number   |   否 | 可信度，范围 0–100                                      |
+| `aliases`       | string[] |   否 | 别名、简称、常见写法                                    |
+| `sourceName`    | string   | 建议 | 来源名称                                                |
+| `sourceUrl`     | string   | 建议 | 来源链接                                                |
+| `sourceType`    | string   | 建议 | 来源类型                                                |
+| `verifiedDate`  | string   | 建议 | 核验日期                                                |
+| `dataStatus`    | string   | 建议 | 数据状态                                                |
 
 ### 5.4 查询建议
 
@@ -390,16 +389,16 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 
 ### 6.3 字段说明
 
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---:|---|
-| `keyword` | string | 是 | 主关键词 |
-| `type` | string | 是 | `小区` / `道路` / `学校` / `地标` / `社区` / `街道` |
-| `matchedZoneIds` | string[] | 是 | 可能匹配的学区 ID 列表 |
-| `displayName` | string | 否 | 前端展示名称 |
-| `matchMode` | string | 建议 | `exact` / `fuzzy` |
-| `weight` | number | 否 | 排序权重 |
-| `aliases` | string[] | 否 | 别名、简称、常见写法 |
-| `note` | string | 否 | 补充说明 |
+| 字段             | 类型     | 必填 | 说明                                                |
+| ---------------- | -------- | ---: | --------------------------------------------------- |
+| `keyword`        | string   |   是 | 主关键词                                            |
+| `type`           | string   |   是 | `小区` / `道路` / `学校` / `地标` / `社区` / `街道` |
+| `matchedZoneIds` | string[] |   是 | 可能匹配的学区 ID 列表                              |
+| `displayName`    | string   |   否 | 前端展示名称                                        |
+| `matchMode`      | string   | 建议 | `exact` / `fuzzy`                                   |
+| `weight`         | number   |   否 | 排序权重                                            |
+| `aliases`        | string[] |   否 | 别名、简称、常见写法                                |
+| `note`           | string   |   否 | 补充说明                                            |
 
 ### 6.4 约束
 
@@ -440,19 +439,19 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 
 ### 7.3 字段说明
 
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---:|---|
-| `zoneId` | string | 是 | 关联 `zones.geojson` 的学区 ID |
-| `history` | array | 是 | 该学区的历史记录 |
-| `history[].year` | number | 是 | 年份 |
-| `history[].changeType` | string | 是 | 变更类型 |
-| `history[].title` | string | 是 | 变更标题 |
-| `history[].description` | string | 是 | 变更说明 |
-| `history[].reason` | string | 否 | 变更原因 |
-| `history[].sourceName` | string | 建议 | 来源名称 |
-| `history[].sourceUrl` | string | 建议 | 来源链接 |
-| `history[].sourceType` | string | 建议 | 来源类型 |
-| `history[].verifiedDate` | string | 建议 | 核验日期 |
+| 字段                     | 类型   | 必填 | 说明                           |
+| ------------------------ | ------ | ---: | ------------------------------ |
+| `zoneId`                 | string |   是 | 关联 `zones.geojson` 的学区 ID |
+| `history`                | array  |   是 | 该学区的历史记录               |
+| `history[].year`         | number |   是 | 年份                           |
+| `history[].changeType`   | string |   是 | 变更类型                       |
+| `history[].title`        | string |   是 | 变更标题                       |
+| `history[].description`  | string |   是 | 变更说明                       |
+| `history[].reason`       | string |   否 | 变更原因                       |
+| `history[].sourceName`   | string | 建议 | 来源名称                       |
+| `history[].sourceUrl`    | string | 建议 | 来源链接                       |
+| `history[].sourceType`   | string | 建议 | 来源类型                       |
+| `history[].verifiedDate` | string | 建议 | 核验日期                       |
 
 `changeType` 建议值：
 
@@ -509,26 +508,26 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 
 ### 8.3 字段说明
 
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---:|---|
-| `policyId` | string | 是 | 政策唯一 ID |
-| `title` | string | 是 | 政策标题 |
-| `year` | number | 是 | 政策年份 |
-| `category` | string | 是 | 政策分类 |
-| `source` | string | 是 | 兼容旧字段，可与 `sourceName` 相同 |
-| `sourceName` | string | 建议 | 来源名称 |
-| `sourceUrl` | string | 建议 | 来源链接 |
-| `sourceType` | string | 建议 | `official` / `school` / `media` / `manual` / `demo` |
-| `publishDate` | string | 建议 | 发布日期，格式 `YYYY-MM-DD` |
-| `effectiveDate` | string | 否 | 生效日期 |
-| `documentNo` | string | 否 | 文件文号 |
-| `summary` | string | 是 | 政策摘要 |
-| `url` | string | 建议 | 前端“查看原文”链接 |
-| `relatedZoneIds` | string[] | 否 | 关联学区 ID |
-| `relatedSchoolIds` | string[] | 否 | 关联学校 ID |
-| `attachments` | array | 否 | 附件列表 |
-| `verifiedDate` | string | 建议 | 核验日期 |
-| `dataStatus` | string | 建议 | 数据状态 |
+| 字段               | 类型     | 必填 | 说明                                                |
+| ------------------ | -------- | ---: | --------------------------------------------------- |
+| `policyId`         | string   |   是 | 政策唯一 ID                                         |
+| `title`            | string   |   是 | 政策标题                                            |
+| `year`             | number   |   是 | 政策年份                                            |
+| `category`         | string   |   是 | 政策分类                                            |
+| `source`           | string   |   是 | 兼容旧字段，可与 `sourceName` 相同                  |
+| `sourceName`       | string   | 建议 | 来源名称                                            |
+| `sourceUrl`        | string   | 建议 | 来源链接                                            |
+| `sourceType`       | string   | 建议 | `official` / `school` / `media` / `manual` / `demo` |
+| `publishDate`      | string   | 建议 | 发布日期，格式 `YYYY-MM-DD`                         |
+| `effectiveDate`    | string   |   否 | 生效日期                                            |
+| `documentNo`       | string   |   否 | 文件文号                                            |
+| `summary`          | string   |   是 | 政策摘要                                            |
+| `url`              | string   | 建议 | 前端“查看原文”链接                                  |
+| `relatedZoneIds`   | string[] |   否 | 关联学区 ID                                         |
+| `relatedSchoolIds` | string[] |   否 | 关联学校 ID                                         |
+| `attachments`      | array    |   否 | 附件列表                                            |
+| `verifiedDate`     | string   | 建议 | 核验日期                                            |
+| `dataStatus`       | string   | 建议 | 数据状态                                            |
 
 ### 8.4 分类建议
 
@@ -590,26 +589,26 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 
 ### 9.3 字段说明
 
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---:|---|
-| `diffId` | string | 是 | 对比记录唯一 ID |
-| `yearA` | number | 是 | 左侧年份 |
-| `yearB` | number | 是 | 右侧年份 |
-| `title` | string | 是 | 对比标题 |
-| `summary` | string | 否 | 对比摘要 |
-| `sourcePolicyIds` | string[] | 建议 | 对比依据政策 ID |
-| `diffPoints` | array | 是 | 差异点列表 |
-| `diffPoints[].topic` | string | 是 | 对比主题 |
-| `diffPoints[].valueA` | string | 是 | 年份 A 的内容 |
-| `diffPoints[].valueB` | string | 是 | 年份 B 的内容 |
-| `diffPoints[].isChange` | boolean | 是 | 是否变化 |
-| `diffPoints[].changeLevel` | string | 建议 | `none` / `normal` / `important` / `major` |
-| `diffPoints[].explanation` | string | 否 | 通俗解释 |
-| `sourceName` | string | 建议 | 来源名称 |
-| `sourceUrl` | string | 否 | 来源链接 |
-| `sourceType` | string | 建议 | 来源类型 |
-| `verifiedDate` | string | 建议 | 核验日期 |
-| `dataStatus` | string | 建议 | 数据状态 |
+| 字段                       | 类型     | 必填 | 说明                                      |
+| -------------------------- | -------- | ---: | ----------------------------------------- |
+| `diffId`                   | string   |   是 | 对比记录唯一 ID                           |
+| `yearA`                    | number   |   是 | 左侧年份                                  |
+| `yearB`                    | number   |   是 | 右侧年份                                  |
+| `title`                    | string   |   是 | 对比标题                                  |
+| `summary`                  | string   |   否 | 对比摘要                                  |
+| `sourcePolicyIds`          | string[] | 建议 | 对比依据政策 ID                           |
+| `diffPoints`               | array    |   是 | 差异点列表                                |
+| `diffPoints[].topic`       | string   |   是 | 对比主题                                  |
+| `diffPoints[].valueA`      | string   |   是 | 年份 A 的内容                             |
+| `diffPoints[].valueB`      | string   |   是 | 年份 B 的内容                             |
+| `diffPoints[].isChange`    | boolean  |   是 | 是否变化                                  |
+| `diffPoints[].changeLevel` | string   | 建议 | `none` / `normal` / `important` / `major` |
+| `diffPoints[].explanation` | string   |   否 | 通俗解释                                  |
+| `sourceName`               | string   | 建议 | 来源名称                                  |
+| `sourceUrl`                | string   |   否 | 来源链接                                  |
+| `sourceType`               | string   | 建议 | 来源类型                                  |
+| `verifiedDate`             | string   | 建议 | 核验日期                                  |
+| `dataStatus`               | string   | 建议 | 数据状态                                  |
 
 ### 9.4 约束
 
@@ -648,20 +647,20 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 
 ### 10.3 字段说明
 
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---:|---|
-| `rumorId` | string | 是 | 辟谣卡片唯一 ID |
-| `rumor` | string | 是 | 谣言、误区或常见误解 |
-| `truth` | string | 是 | 澄清内容 |
-| `category` | string | 是 | 分类 |
-| `sourceName` | string | 建议 | 澄清依据来源 |
-| `sourceUrl` | string | 建议 | 澄清依据链接 |
-| `sourceType` | string | 建议 | 来源类型 |
-| `publishDate` | string | 否 | 发布日期 |
-| `relatedPolicyIds` | string[] | 否 | 关联政策 |
-| `severity` | string | 否 | `low` / `medium` / `high` |
-| `verifiedDate` | string | 建议 | 核验日期 |
-| `dataStatus` | string | 建议 | 数据状态 |
+| 字段               | 类型     | 必填 | 说明                      |
+| ------------------ | -------- | ---: | ------------------------- |
+| `rumorId`          | string   |   是 | 辟谣卡片唯一 ID           |
+| `rumor`            | string   |   是 | 谣言、误区或常见误解      |
+| `truth`            | string   |   是 | 澄清内容                  |
+| `category`         | string   |   是 | 分类                      |
+| `sourceName`       | string   | 建议 | 澄清依据来源              |
+| `sourceUrl`        | string   | 建议 | 澄清依据链接              |
+| `sourceType`       | string   | 建议 | 来源类型                  |
+| `publishDate`      | string   |   否 | 发布日期                  |
+| `relatedPolicyIds` | string[] |   否 | 关联政策                  |
+| `severity`         | string   |   否 | `low` / `medium` / `high` |
+| `verifiedDate`     | string   | 建议 | 核验日期                  |
+| `dataStatus`       | string   | 建议 | 数据状态                  |
 
 ---
 
@@ -779,95 +778,42 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 }
 ```
 
+### 12.3 材料字典（`materials`）
+
+自查助手所需的材料信息统一放在本文件的 `materials` 字段中，规则通过 `requiredMaterialIds` 按 id 引用，不再使用独立的 `materials.json`。
+
+```json
+{
+  "materials": {
+    "material_001": {
+      "name": "户口簿",
+      "required": true,
+      "note": "需提供首页、户主页、儿童本人页。"
+    }
+  }
+}
+```
+
+| 字段                   | 类型    | 必填 | 说明                        |
+| ---------------------- | ------- | ---: | --------------------------- |
+| `materials`            | object  |   否 | 材料字典，键为 `materialId` |
+| `materials[].name`     | string  |   是 | 材料名称                    |
+| `materials[].required` | boolean |   是 | 是否必需                    |
+| `materials[].note`     | string  |   否 | 材料说明                    |
+
+约束：`required` 必须是 boolean，不能写成 `"是"` 或 `"否"`；规则中 `requiredMaterialIds` 引用的 id 必须在本字典中存在（由 `npm run validate:data` 校验）。
+
 ---
 
 # C 组：互动与内容数据
 
-## 13. `data/materials.json`
+## 13. `data/faq.json`
 
 ### 13.1 用途
 
-存储不同入学类型所需材料，用于入学材料清单模块。
-
-### 13.2 结构示例
-
-```json
-[
-  {
-    "groupId": "material_group_001",
-    "group": "本地户籍",
-    "description": "适用于适龄儿童少年户籍在本区的家庭。",
-    "applicableStage": ["小学", "初中"],
-    "relatedPolicyIds": ["policy_2025_001"],
-    "items": [
-      {
-        "materialId": "material_001",
-        "name": "户口簿",
-        "required": true,
-        "note": "需提供首页、户主页、儿童本人页。",
-        "templateUrl": "",
-        "rejectReasons": ["户籍信息与报名信息不一致", "页面缺失或照片模糊"],
-        "validity": "以最新户籍信息为准",
-        "sourceName": "泰山区教育和体育局",
-        "sourceUrl": "https://example.gov.cn/policy-2025.html",
-        "sourceType": "official",
-        "verifiedDate": "2026-05-15",
-        "dataStatus": "verified"
-      }
-    ]
-  }
-]
-```
-
-### 13.3 字段说明
-
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---:|---|
-| `groupId` | string | 建议 | 材料分组唯一 ID |
-| `group` | string | 是 | 材料分组 |
-| `description` | string | 是 | 分组说明 |
-| `applicableStage` | string[] | 建议 | 适用学段 |
-| `relatedPolicyIds` | string[] | 否 | 关联政策 ID |
-| `items` | array | 是 | 材料项列表 |
-| `items[].materialId` | string | 建议 | 材料项唯一 ID |
-| `items[].name` | string | 是 | 材料名称 |
-| `items[].required` | boolean | 是 | 是否必需 |
-| `items[].note` | string | 否 | 材料说明 |
-| `items[].templateUrl` | string | 否 | 模板下载链接 |
-| `items[].rejectReasons` | string[] | 否 | 常见被拒原因 |
-| `items[].validity` | string | 否 | 有效期说明 |
-| `items[].sourceName` | string | 建议 | 来源名称 |
-| `items[].sourceUrl` | string | 建议 | 来源链接 |
-| `items[].sourceType` | string | 建议 | 来源类型 |
-| `items[].verifiedDate` | string | 建议 | 核验日期 |
-| `items[].dataStatus` | string | 建议 | 数据状态 |
-
-### 13.4 分组建议
-
-```text
-本地户籍
-随迁子女
-集体户
-人户分离
-人才子女
-```
-
-### 13.5 约束
-
-1. `required` 必须是 boolean，不能写成 `"是"` 或 `"否"`。
-2. `relatedPolicyIds` 中的 ID 必须能在 `policies.json` 中找到。
-3. 如果 `templateUrl` 不确定，先写空字符串，不要编造。
-4. 材料勾选状态由前端控制，不写入 `materials.json`。
-
----
-
-## 14. `data/faq.json`
-
-### 14.1 用途
-
 存储常见问题，用于 FAQ 搜索、分类筛选、相关推荐。
 
-### 14.2 结构示例
+### 13.2 结构示例
 
 ```json
 [
@@ -889,25 +835,25 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 ]
 ```
 
-### 14.3 字段说明
+### 13.3 字段说明
 
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---:|---|
-| `faqId` | string | 是 | FAQ 唯一 ID |
-| `question` | string | 是 | 问题 |
-| `answer` | string | 是 | 回答 |
-| `category` | string | 是 | 分类 |
-| `keywords` | string[] | 否 | 搜索关键词 |
-| `relatedFaqIds` | string[] | 否 | 相关问题 ID |
-| `relatedPolicyIds` | string[] | 否 | 关联政策 ID |
-| `priority` | number | 否 | 排序优先级 |
-| `sourceName` | string | 建议 | 来源名称 |
-| `sourceUrl` | string | 否 | 来源链接 |
-| `sourceType` | string | 建议 | 来源类型 |
-| `verifiedDate` | string | 建议 | 核验日期 |
-| `dataStatus` | string | 建议 | 数据状态 |
+| 字段               | 类型     | 必填 | 说明        |
+| ------------------ | -------- | ---: | ----------- |
+| `faqId`            | string   |   是 | FAQ 唯一 ID |
+| `question`         | string   |   是 | 问题        |
+| `answer`           | string   |   是 | 回答        |
+| `category`         | string   |   是 | 分类        |
+| `keywords`         | string[] |   否 | 搜索关键词  |
+| `relatedFaqIds`    | string[] |   否 | 相关问题 ID |
+| `relatedPolicyIds` | string[] |   否 | 关联政策 ID |
+| `priority`         | number   |   否 | 排序优先级  |
+| `sourceName`       | string   | 建议 | 来源名称    |
+| `sourceUrl`        | string   |   否 | 来源链接    |
+| `sourceType`       | string   | 建议 | 来源类型    |
+| `verifiedDate`     | string   | 建议 | 核验日期    |
+| `dataStatus`       | string   | 建议 | 数据状态    |
 
-### 14.4 分类建议
+### 13.4 分类建议
 
 ```text
 学区查询
@@ -922,7 +868,7 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 录取规则
 ```
 
-### 14.5 约束
+### 13.5 约束
 
 1. `faqId` 不允许重复。
 2. `relatedFaqIds` 中的 ID 必须能在 `faq.json` 中找到。
@@ -932,13 +878,13 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 
 ---
 
-## 15. `data/contacts.json`
+## 14. `data/contacts.json`
 
-### 15.1 用途
+### 14.1 用途
 
 存储教育主管部门、学校、社区、线上咨询入口等联系方式。
 
-### 15.2 结构示例
+### 14.2 结构示例
 
 ```json
 [
@@ -974,30 +920,30 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 ]
 ```
 
-### 15.3 字段说明
+### 14.3 字段说明
 
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---:|---|
-| `contactId` | string | 是 | 联系方式唯一 ID |
-| `name` | string | 是 | 单位或机构名称 |
-| `type` | string | 是 | 联系方式类型 |
-| `district` | string | 建议 | 区县 |
-| `phone` | string | 建议 | 公开办公电话 |
-| `email` | string | 否 | 公开邮箱 |
-| `address` | string | 否 | 办公地址或学校地址 |
-| `hours` | string | 否 | 服务时间 |
-| `serviceScope` | string[] | 否 | 服务范围 |
-| `note` | string | 否 | 补充说明 |
-| `channels` | array | 否 | 咨询渠道列表 |
-| `relatedSchoolIds` | string[] | 否 | 关联学校 ID |
-| `relatedPolicyIds` | string[] | 否 | 关联政策 ID |
-| `sourceName` | string | 建议 | 来源名称 |
-| `sourceUrl` | string | 建议 | 来源链接 |
-| `sourceType` | string | 建议 | 来源类型 |
-| `verifiedDate` | string | 建议 | 核验日期 |
-| `dataStatus` | string | 建议 | 数据状态 |
+| 字段               | 类型     | 必填 | 说明               |
+| ------------------ | -------- | ---: | ------------------ |
+| `contactId`        | string   |   是 | 联系方式唯一 ID    |
+| `name`             | string   |   是 | 单位或机构名称     |
+| `type`             | string   |   是 | 联系方式类型       |
+| `district`         | string   | 建议 | 区县               |
+| `phone`            | string   | 建议 | 公开办公电话       |
+| `email`            | string   |   否 | 公开邮箱           |
+| `address`          | string   |   否 | 办公地址或学校地址 |
+| `hours`            | string   |   否 | 服务时间           |
+| `serviceScope`     | string[] |   否 | 服务范围           |
+| `note`             | string   |   否 | 补充说明           |
+| `channels`         | array    |   否 | 咨询渠道列表       |
+| `relatedSchoolIds` | string[] |   否 | 关联学校 ID        |
+| `relatedPolicyIds` | string[] |   否 | 关联政策 ID        |
+| `sourceName`       | string   | 建议 | 来源名称           |
+| `sourceUrl`        | string   | 建议 | 来源链接           |
+| `sourceType`       | string   | 建议 | 来源类型           |
+| `verifiedDate`     | string   | 建议 | 核验日期           |
+| `dataStatus`       | string   | 建议 | 数据状态           |
 
-### 15.4 `type` 建议值
+### 14.4 `type` 建议值
 
 ```text
 教育主管部门
@@ -1008,7 +954,7 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 线上咨询
 ```
 
-### 15.5 约束
+### 14.5 约束
 
 1. `contactId` 不允许重复。
 2. `phone` 只填写公开电话，不填写私人手机号。
@@ -1018,13 +964,13 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 
 ---
 
-## 16. `data/interaction_topics.json`（可选）
+## 15. `data/interaction_topics.json`（可选）
 
-### 16.1 用途
+### 15.1 用途
 
 如果 C 组要做留言表单，可以用此文件维护咨询类型、表单提示、处理说明。
 
-### 16.2 结构示例
+### 15.2 结构示例
 
 ```json
 [
@@ -1040,19 +986,19 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 ]
 ```
 
-### 16.3 字段说明
+### 15.3 字段说明
 
-| 字段 | 类型 | 必填 | 说明 |
-|---|---|---:|---|
-| `topicId` | string | 是 | 留言主题唯一 ID |
-| `name` | string | 是 | 咨询主题名称 |
-| `description` | string | 是 | 主题说明 |
-| `requiredFields` | string[] | 是 | 该主题建议填写的表单字段 |
-| `tips` | string | 否 | 表单提示文案 |
-| `relatedFaqIds` | string[] | 否 | 关联 FAQ |
-| `relatedContactIds` | string[] | 否 | 关联联系方式 |
+| 字段                | 类型     | 必填 | 说明                     |
+| ------------------- | -------- | ---: | ------------------------ |
+| `topicId`           | string   |   是 | 留言主题唯一 ID          |
+| `name`              | string   |   是 | 咨询主题名称             |
+| `description`       | string   |   是 | 主题说明                 |
+| `requiredFields`    | string[] |   是 | 该主题建议填写的表单字段 |
+| `tips`              | string   |   否 | 表单提示文案             |
+| `relatedFaqIds`     | string[] |   否 | 关联 FAQ                 |
+| `relatedContactIds` | string[] |   否 | 关联联系方式             |
 
-### 16.4 约束
+### 15.4 约束
 
 1. 留言内容如果只是前端原型，建议存入 `sessionStorage` 或 `localStorage`。
 2. 不要做真实在线提交，除非有后端。
@@ -1066,23 +1012,22 @@ Leaflet setView / marker： [lat, lng]，即 [纬度, 经度]
 
 ```javascript
 var DATA_PATHS = {
-  zones: 'data/zones.geojson',
-  schools: 'data/schools.json',
-  policies: 'data/policies.json',
-  materials: 'data/materials.json',
-  faq: 'data/faq.json',
+  zones: "data/zones.geojson",
+  schools: "data/schools.json",
+  policies: "data/policies.json",
+  faq: "data/faq.json",
 
-  addressPoints: 'data/address_points.json',
-  keywordsIndex: 'data/keywords_index.json',
-  zonesHistory: 'data/zones_history.json',
+  addressPoints: "data/address_points.json",
+  keywordsIndex: "data/keywords_index.json",
+  zonesHistory: "data/zones_history.json",
 
-  policyDiff: 'data/policy_diff.json',
-  rumors: 'data/rumors.json',
-  simulatorRules: 'data/simulator_rules.json',
-  admissionScores: 'data/admission_scores.json',
+  policyDiff: "data/policy_diff.json",
+  rumors: "data/rumors.json",
+  simulatorRules: "data/simulator_rules.json",
+  admissionScores: "data/admission_scores.json",
 
-  contacts: 'data/contacts.json',
-  interactionTopics: 'data/interaction_topics.json'
+  contacts: "data/contacts.json",
+  interactionTopics: "data/interaction_topics.json",
 };
 ```
 
@@ -1093,7 +1038,6 @@ var DATA_PATHS = {
   zones: {},
   schools: [],
   policies: [],
-  materials: [],
   faq: [],
 
   addressPoints: [],
@@ -1170,7 +1114,6 @@ simulator_rules.json
 admission_scores.json
 zones.geojson
 schools.json
-materials.json
 ```
 
 输出能力：
@@ -1188,7 +1131,6 @@ materials.json
 主要使用：
 
 ```text
-materials.json
 faq.json
 contacts.json
 interaction_topics.json
@@ -1199,7 +1141,6 @@ schools.json
 输出能力：
 
 ```text
-材料清单
 FAQ 筛选
 相关问题推荐
 联系卡片
@@ -1232,9 +1173,8 @@ FAQ 筛选
 
 1. 所有真实电话、地址、邮箱必须可追溯来源。
 2. FAQ 回答不能与政策文件冲突。
-3. 材料清单建议关联 `policyId`，便于解释依据。
-4. 留言表单不要收集过多敏感信息。
-5. 前端原型阶段的留言功能必须提示“未接入真实政务系统”。
+3. 留言表单不要收集过多敏感信息。
+4. 前端原型阶段的留言功能必须提示“未接入真实政务系统”。
 
 ---
 
@@ -1272,3 +1212,4 @@ data/contacts.json
   "source": "团队整理",
   "disclaimer": "当前缺少可靠往年分数线，暂不提供录取预测。"
 }
+```

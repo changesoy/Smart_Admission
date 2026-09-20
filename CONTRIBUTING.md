@@ -25,7 +25,7 @@ index.html ───────────────────────
   │
   ├── searchService.js ───────────── 地址搜索（与地图点击共用统一查询入口）
   │
-  ├── materialService.js ─────────── 入学材料清单（勾选/进度）
+  ├── simulatorService.js ────────── 入学条件自查 / 情形判断助手
   │
   ├── faqService.js ──────────────── 常见问题（搜索/分类/展开）
   │
@@ -50,7 +50,7 @@ config.js ← dataService.js
            ← main.js
 
 render.js  ← policyService.js
-           ← materialService.js
+           ← simulatorService.js
            ← faqService.js
            ← interactionService.js
            ← searchService.js
@@ -63,10 +63,10 @@ dataService.js ← main.js
 
 `index.html` 仅包含两类 `<script>`，**不要**新增业务模块脚本标签：
 
-| 标签                                       | 说明                                                    |
-| ------------------------------------------ | ------------------------------------------------------- |
-| Leaflet / Turf.js CDN                      | 第三方库，作为全局变量 `L` / `turf` 暴露给所有模块使用  |
-| `<script type="module" src="/js/main.js">` | 唯一项目入口；其余模块由 `main.js` 通过 `import` 加载   |
+| 标签                                       | 说明                                                   |
+| ------------------------------------------ | ------------------------------------------------------ |
+| Leaflet / Turf.js CDN                      | 第三方库，作为全局变量 `L` / `turf` 暴露给所有模块使用 |
+| `<script type="module" src="/js/main.js">` | 唯一项目入口；其余模块由 `main.js` 通过 `import` 加载  |
 
 ### 2.3 禁止事项
 
@@ -117,7 +117,7 @@ export default XxxService;
 | 文件名   | `camelCase.js`              | `mapService.js`                |
 | 私有变量 | `_camelCase` 前缀下划线     | `_faqData`, `_currentCategory` |
 | 公共方法 | `camelCase`                 | `filterByCategory()`           |
-| DOM ID   | `kebab-case`                | `faq-list`, `material-tabs`    |
+| DOM ID   | `kebab-case`                | `faq-list`, `simulator-form`   |
 | CSS 类名 | `kebab-case`                | `faq-item`, `zone-primary`     |
 | 数据字段 | `camelCase`                 | `zoneId`, `policyId`           |
 
@@ -150,19 +150,19 @@ export default XxxService;
 
 ### 4.2 数据文件与模块对应关系
 
-| 数据文件              | 加载模块           | 格式                      |
-| --------------------- | ------------------ | ------------------------- |
-| `zones.geojson`       | MapService         | GeoJSON FeatureCollection |
-| `schools.json`        | RenderService      | JSON Array                |
-| `policies.json`       | PolicyService      | JSON Array                |
-| `policy_diff.json`    | PolicyService      | JSON Array                |
-| `materials.json`      | MaterialService    | JSON Array                |
-| `faq.json`            | FaqService         | JSON Array                |
-| `contacts.json`       | InteractionService | JSON Array                |
-| `address_points.json` | SearchService      | JSON Array                |
-| `keywords_index.json` | SearchService      | JSON Array                |
-| `zones_history.json`  | RenderService      | JSON Array                |
-| `rumors.json`         | 预留               | JSON Array                |
+| 数据文件               | 加载模块           | 格式                      |
+| ---------------------- | ------------------ | ------------------------- |
+| `zones.geojson`        | MapService         | GeoJSON FeatureCollection |
+| `schools.json`         | RenderService      | JSON Array                |
+| `policies.json`        | PolicyService      | JSON Array                |
+| `policy_diff.json`     | PolicyService      | JSON Array                |
+| `simulator_rules.json` | SimulatorService   | JSON Object               |
+| `faq.json`             | FaqService         | JSON Array                |
+| `contacts.json`        | InteractionService | JSON Array                |
+| `address_points.json`  | SearchService      | JSON Array                |
+| `keywords_index.json`  | SearchService      | JSON Array                |
+| `zones_history.json`   | RenderService      | JSON Array                |
+| `rumors.json`          | 预留               | JSON Array                |
 
 ### 4.3 关键数据结构
 
@@ -234,26 +234,34 @@ export default XxxService;
 }
 ```
 
-**materials.json 条目：**
+**simulator_rules.json 结构：**
 
 ```json
 {
-  "group": "本地户籍",
-  "description": "...",
-  "applicableStage": ["小学", "初中"],
-  "items": [
+  "meta": { "title": "...", "effectiveYear": 2025, "dataStatus": "verified" },
+  "materials": {
+    "material_001": { "name": "户口簿", "required": true, "note": "..." }
+  },
+  "form": [
     {
-      "materialId": "mat01",
-      "name": "户口簿",
-      "required": true,
-      "note": "...",
-      "validity": "...",
-      "templateUrl": "",
-      "rejectReasons": ["..."]
+      "field": "stage",
+      "label": "申请学段",
+      "showWhen": null,
+      "options": [{ "value": "小学", "label": "小学" }]
+    }
+  ],
+  "rules": [
+    {
+      "ruleId": "sim_rule_2025_001",
+      "conditions": [{ "field": "hukou", "op": "eq", "value": "local" }],
+      "requiredMaterialIds": ["material_001"],
+      "policyIds": ["policy_2025_001"]
     }
   ]
 }
 ```
+
+`materials` 为材料字典，规则通过 `requiredMaterialIds` 按 id 引用；材料信息归自查助手所有，不再有独立数据文件。
 
 **faq.json 条目：**
 
@@ -455,16 +463,16 @@ npm run lint:fix    # 自动修复
 
 ## 九、常见冲突场景与避免方法
 
-| 冲突场景                              | 避免方法                                                                 |
-| ------------------------------------- | ------------------------------------------------------------------------ |
-| 多人同时修改同一模块                  | 每个模块尽量由一人负责；修改前先 `git pull`                              |
-| 同时修改 `index.html`                 | 不新增业务 `<script>` 标签（模块由 `main.js` import 加载）               |
-| 同时修改 `main.js` 的 import 区块     | 在已有 import 列表末尾追加新模块导入                                     |
-| 同时修改 `config.js`                  | 只在对应对象末尾追加新配置项，不修改已有项                               |
-| 同时修改 `main.js` 的 `bootstrapPage` | 在已有初始化调用之后追加新调用                                           |
-| 同时修改 `style.css`                  | 在文件末尾对应模块区块追加样式，不修改已有样式                           |
-| 同时修改数据文件                      | 不同数据文件互不影响，但同一文件需协商                                   |
-| 同时修改 `dataService.js`             | 只在 `loadAllData()` 末尾追加新的 `loadFile` 调用和返回字段              |
+| 冲突场景                              | 避免方法                                                    |
+| ------------------------------------- | ----------------------------------------------------------- |
+| 多人同时修改同一模块                  | 每个模块尽量由一人负责；修改前先 `git pull`                 |
+| 同时修改 `index.html`                 | 不新增业务 `<script>` 标签（模块由 `main.js` import 加载）  |
+| 同时修改 `main.js` 的 import 区块     | 在已有 import 列表末尾追加新模块导入                        |
+| 同时修改 `config.js`                  | 只在对应对象末尾追加新配置项，不修改已有项                  |
+| 同时修改 `main.js` 的 `bootstrapPage` | 在已有初始化调用之后追加新调用                              |
+| 同时修改 `style.css`                  | 在文件末尾对应模块区块追加样式，不修改已有样式              |
+| 同时修改数据文件                      | 不同数据文件互不影响，但同一文件需协商                      |
+| 同时修改 `dataService.js`             | 只在 `loadAllData()` 末尾追加新的 `loadFile` 调用和返回字段 |
 
 ---
 

@@ -1,6 +1,6 @@
 # 智慧入学·学区治理一站式可视化门户
 
-> 阶段性本地前端原型 · 基于学区边界、招生政策与入学材料的本地可视化查询
+> 阶段性本地前端原型 · 基于学区边界、招生政策与入学条件自查的本地可视化查询
 
 ---
 
@@ -23,11 +23,11 @@
 
 ## 一、项目简介
 
-本项目是面向义务教育入学场景的"一站式查询"前端原型，整合学区划分、招生政策、入学材料与常见问题，提供轻量化的可视化政务服务体验。当前版本为**阶段性本地原型**：仅含前端代码与示例数据，无后端、无数据库、无登录注册。
+本项目是面向义务教育入学场景的"一站式查询"前端原型，整合学区划分、招生政策、入学条件自查与常见问题，提供轻量化的可视化政务服务体验。当前版本为**阶段性本地原型**：仅含前端代码与示例数据，无后端、无数据库、无登录注册。
 
 **核心目标：**
 
-- 让家长在一个页面内完成"学区查询 → 政策了解 → 材料准备 → 疑问解答"的闭环；
+- 让家长在一个页面内完成"学区查询 → 政策了解 → 入学条件自查 → 疑问解答"的闭环；
 - 通过"前端 GIS + 本地 JSON / GeoJSON"的轻量架构，验证可迁移、低成本的政务网站技术路线；
 - 为后续接入真实政务数据、完善业务功能奠定结构基础。
 
@@ -35,15 +35,15 @@
 
 ## 二、技术栈
 
-| 类别     | 技术                                     | 版本           |
-| -------- | ---------------------------------------- | -------------- |
-| 基础     | HTML5 / CSS3 / Vanilla JavaScript (ES Modules) | —        |
-| 构建工具 | Vite (dev / build / preview)             | 8.x            |
-| UI 框架  | Bootstrap 5 + Bootstrap Icons            | 5.3.2 / 1.11.3 |
-| 地图     | Leaflet + 天地图在线瓦片 (WMTS)          | 1.9.4          |
-| 空间计算 | Turf.js (`booleanPointInPolygon`)        | 6.5.0          |
-| 数据     | 本地 JSON / GeoJSON 文件                 | —              |
-| 代码规范 | ESLint 扁平配置 (ES Modules 语法检查)    | 9.x            |
+| 类别     | 技术                                           | 版本           |
+| -------- | ---------------------------------------------- | -------------- |
+| 基础     | HTML5 / CSS3 / Vanilla JavaScript (ES Modules) | —              |
+| 构建工具 | Vite (dev / build / preview)                   | 8.x            |
+| UI 框架  | Bootstrap 5 + Bootstrap Icons                  | 5.3.2 / 1.11.3 |
+| 地图     | Leaflet + 天地图在线瓦片 (WMTS)                | 1.9.4          |
+| 空间计算 | Turf.js (`booleanPointInPolygon`)              | 6.5.0          |
+| 数据     | 本地 JSON / GeoJSON 文件                       | —              |
+| 代码规范 | ESLint 扁平配置 (ES Modules 语法检查)          | 9.x            |
 
 **本项目不使用** Vue / React / Angular / Node 后端 / TypeScript / 商业地图 API。
 
@@ -70,7 +70,7 @@ smart-admission/
 │   ├── mapService.js           # 地图服务（Leaflet 渲染 + Turf 点面判断）
 │   ├── searchService.js        # 搜索服务（地址点 + 关键词 + 天地图联网查询）
 │   ├── policyService.js        # 政策渲染与年度对比服务
-│   ├── materialService.js      # 入学材料清单（分组标签 + 勾选进度）
+│   ├── simulatorService.js     # 入学条件自查 / 情形判断助手
 │   ├── faqService.js           # 常见问题（搜索 + 分类筛选 + 展开/收起）
 │   ├── interactionService.js   # 政民互动（联系卡片 + 留言表单 + 本地存储）
 │   └── main.js                 # 主入口（import 所有模块，协调初始化顺序）
@@ -82,7 +82,7 @@ smart-admission/
 │   ├── keywords_index.json     # 关键词索引
 │   ├── policies.json           # 招生政策 (21KB)
 │   ├── policy_diff.json        # 政策年度对比数据 (17KB)
-│   ├── materials.json          # 入学材料分组 (14KB)
+│   ├── simulator_rules.json    # 入学自查规则与材料字典
 │   ├── faq.json                # 常见问题
 │   ├── contacts.json           # 联系方式
 │   └── rumors.json             # 辟谣信息（暂未接入）
@@ -143,20 +143,20 @@ npm run check          # lint + validate:data 一键检查
 
 ## 五、功能说明
 
-| 模块             | 功能描述                                                                                                                                      |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| **数据概览**     | 顶部 4 张统计卡片，实时展示学区、学校、政策、FAQ 数量                                                                                         |
-| **搜索查询**     | 输入学校、小区、道路或地址关键词，本地匹配地址点与关键词索引；未命中本地索引时自动调用天地图搜索 API 联网查询地址所属学区，支持多结果下拉选择 |
-| **学区等级筛选** | 初中/小学复选框，只控制地图上不同学段学区的显示与隐藏；不影响业务查询结果（隐藏后查询仍返回完整归属）                                        |
-| **学区地图**     | Leaflet + 天地图底图，渲染学区 Polygon（初中蓝色/小学绿色），悬停高亮、点击选中，自动适配视野                                                 |
-| **学区查询**     | 点击地图任意位置或搜索地址，使用 Turf 对全部学区数据做点面判断，同一坐标可同时返回小学+初中归属；地图点击与地址搜索共用同一查询入口           |
+| 模块             | 功能描述                                                                                                                                         |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **数据概览**     | 顶部 4 张统计卡片，实时展示学区、学校、政策、FAQ 数量                                                                                            |
+| **搜索查询**     | 输入学校、小区、道路或地址关键词，本地匹配地址点与关键词索引；未命中本地索引时自动调用天地图搜索 API 联网查询地址所属学区，支持多结果下拉选择    |
+| **学区等级筛选** | 初中/小学复选框，只控制地图上不同学段学区的显示与隐藏；不影响业务查询结果（隐藏后查询仍返回完整归属）                                            |
+| **学区地图**     | Leaflet + 天地图底图，渲染学区 Polygon（初中蓝色/小学绿色），悬停高亮、点击选中，自动适配视野                                                    |
+| **学区查询**     | 点击地图任意位置或搜索地址，使用 Turf 对全部学区数据做点面判断，同一坐标可同时返回小学+初中归属；地图点击与地址搜索共用同一查询入口              |
 | **查询结果面板** | 按"小学学区 / 初中学区"分组展示：学区名 / 招生范围 / 对应学校（地址/电话/区县/类型/官网）/ 关联政策 / 历年调整记录时间线；无匹配时显示明确空状态 |
-| **招生政策**     | 政策卡片列表，支持按"分类"和"年份"双向筛选，默认显示 6 条可展开                                                                               |
-| **政策年度对比** | 选择相邻年份，对比政策变化项与未变化项，含变化说明                                                                                            |
-| **入学材料**     | 按学生类型分组的材料清单，支持勾选、进度追踪，全部勾选时显示完成动画                                                                          |
-| **常见问题**     | 关键词搜索 + 分类标签筛选，问题可展开/收起，支持关联问题跳转                                                                                  |
-| **留言建议**     | 在线留言表单（含字数统计和分类选择），留言持久化到 localStorage，支持 Toast 提示                                                              |
-| **网站说明**     | 明示平台范围与数据来源，避免误解                                                                                                              |
+| **招生政策**     | 政策卡片列表，支持按"分类"和"年份"双向筛选，默认显示 6 条可展开                                                                                  |
+| **政策年度对比** | 选择相邻年份，对比政策变化项与未变化项，含变化说明                                                                                               |
+| **入学条件自查** | 按学段/户籍/住房等情形选择，匹配政策规则输出情形分类、需核验条件、建议准备材料与相关政策依据，不做录取概率预测                                   |
+| **常见问题**     | 关键词搜索 + 分类标签筛选，问题可展开/收起，支持关联问题跳转                                                                                     |
+| **留言建议**     | 在线留言表单（含字数统计和分类选择），留言持久化到 localStorage，支持 Toast 提示                                                                 |
+| **网站说明**     | 明示平台范围与数据来源，避免误解                                                                                                                 |
 
 ---
 
@@ -180,7 +180,7 @@ index.html ───────────────────────
         │
         ├── mapService.js ──────── 地图服务（Leaflet + Turf 点面判断）
         │
-        ├── materialService.js ─── 入学材料清单（勾选/进度）
+        ├── simulatorService.js ─ 入学条件自查 / 情形判断助手
         │
         ├── faqService.js ──────── 常见问题（搜索/分类/展开）
         │
@@ -195,7 +195,7 @@ index.html ───────────────────────
 2. `RenderService.renderStats()` — 渲染统计卡片
 3. `RenderService.renderDefaultResultTip()` — 渲染引导提示
 4. `PolicyService.init()` — 初始化政策模块
-5. `MaterialService.init()` — 初始化材料模块
+5. `SimulatorService.init()` — 初始化入学条件自查助手
 6. `FaqService.init()` — 初始化 FAQ 模块
 7. `InteractionService.init()` — 初始化互动模块
 8. `MapService.initMap()` + `SearchService.init()` — 初始化地图和搜索（含回调绑定）
@@ -207,19 +207,19 @@ index.html ───────────────────────
 
 所有业务数据来自本地 `data/` 目录，便于编辑与迁移：
 
-| 数据文件              | 大小   | 用途                                 | 消费模块                     |
-| --------------------- | ------ | ------------------------------------ | ---------------------------- |
-| `zones.geojson`       | 147 KB | 学区边界 Polygon (FeatureCollection) | MapService, RenderService    |
-| `schools.json`        | 62 KB  | 学校信息（73 所示例）                | RenderService                |
-| `policies.json`       | 30 KB  | 招生政策列表                         | PolicyService, RenderService |
-| `address_points.json` | 22 KB  | 本地地址点索引                       | SearchService                |
-| `policy_diff.json`    | 24 KB  | 政策年度对比数据                     | PolicyService                |
-| `materials.json`      | 14 KB  | 入学材料分组（4 类）                 | MaterialService              |
-| `faq.json`            | 9 KB   | 常见问题（含分类/优先级/关联）       | FaqService                   |
-| `keywords_index.json` | 7 KB   | 关键词索引（含关联 zoneId）          | SearchService                |
-| `zones_history.json`  | 5 KB   | 学区历年调整记录                     | RenderService                |
-| `contacts.json`       | 1 KB   | 联系方式                             | InteractionService           |
-| `rumors.json`         | 4 KB   | 辟谣信息（暂未接入渲染）             | 预留                         |
+| 数据文件               | 大小   | 用途                                 | 消费模块                     |
+| ---------------------- | ------ | ------------------------------------ | ---------------------------- |
+| `zones.geojson`        | 147 KB | 学区边界 Polygon (FeatureCollection) | MapService, RenderService    |
+| `schools.json`         | 62 KB  | 学校信息（73 所示例）                | RenderService                |
+| `policies.json`        | 30 KB  | 招生政策列表                         | PolicyService, RenderService |
+| `address_points.json`  | 22 KB  | 本地地址点索引                       | SearchService                |
+| `policy_diff.json`     | 24 KB  | 政策年度对比数据                     | PolicyService                |
+| `simulator_rules.json` | 12 KB  | 入学自查规则与材料字典               | SimulatorService             |
+| `faq.json`             | 9 KB   | 常见问题（含分类/优先级/关联）       | FaqService                   |
+| `keywords_index.json`  | 7 KB   | 关键词索引（含关联 zoneId）          | SearchService                |
+| `zones_history.json`   | 5 KB   | 学区历年调整记录                     | RenderService                |
+| `contacts.json`        | 1 KB   | 联系方式                             | InteractionService           |
+| `rumors.json`          | 4 KB   | 辟谣信息（暂未接入渲染）             | 预留                         |
 
 **关键数据结构详见** [CONTRIBUTING.md](CONTRIBUTING.md) 第四章。
 

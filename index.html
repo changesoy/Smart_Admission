@@ -2,7 +2,7 @@
 <!--
   智慧入学·学区治理一站式可视化门户
   ⚠️ 修改前必读: CONTRIBUTING.md
-  主页面:集成学区地图查询、招生政策、入学材料、FAQ、政民互动等模块
+  主页面:集成学区地图查询、招生政策、入学条件自查、FAQ、政民互动等模块
   依赖: Leaflet 1.9.4, Turf 6.5.0, Bootstrap 5.3.2, Bootstrap Icons 1.11.3
   项目代码以 ES Modules 组织: js/main.js 通过 import 显式声明依赖,
   由 Vite 负责开发服务器与构建;业务模块不再依赖 <script> 加载顺序。
@@ -48,7 +48,7 @@
         <h1 class="page-title">泰安市泰山区智慧入学平台</h1>
         <p class="page-subtitle">一站式义务教育入学信息查询服务</p>
         <p class="page-description">
-          为泰山区中小学生与家长提供学区查询、学校信息、招生政策、入学材料清单等服务，助力顺利完成入学报名。
+          为泰山区中小学生与家长提供学区查询、学校信息、招生政策、入学条件自查等服务，助力顺利完成入学报名。
         </p>
         <div class="mt-4">
           <img
@@ -267,28 +267,6 @@
                   <div id="simulatorResult" class="simulator-result"></div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- 8. 入学材料清单 -->
-        <section id="section-material" class="material-section mb-4">
-          <div class="card section-card">
-            <div class="card-header section-header">
-              <i class="bi bi-list-check"></i>入学材料清单
-            </div>
-            <div class="card-body">
-              <div id="material-tabs" class="material-tabs"></div>
-              <div class="mt-3">
-                <h5 id="material-group-title" class="material-group-title"></h5>
-                <p id="material-group-desc" class="material-group-desc"></p>
-                <span
-                  id="material-stage"
-                  class="material-stage badge bg-info text-white"
-                ></span>
-              </div>
-              <div id="material-progress" class="material-progress mt-3"></div>
-              <div id="material-list" class="material-list mt-3"></div>
             </div>
           </div>
         </section>
