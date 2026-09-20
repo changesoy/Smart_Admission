@@ -39,6 +39,9 @@ logger = logging.getLogger("server.tianditu")
 # 上游返回体在日志中的截断长度；只用于诊断，不会带上请求 URL（URL 含 tk）
 _LOG_BODY_LIMIT = 300
 
+# 用于判断查询词是否已自带城市名，避免重复叠加前缀
+_CITY_NAME = "泰安"
+
 
 class _TtlCache:
     """极简 TTL 缓存，仅用于吸收短时间内的重复查询。"""
@@ -122,7 +125,7 @@ def _build_post_str(query: str, count: int) -> dict[str, str]:
     """构造天地图 v2 搜索所需的 postStr 参数。"""
     post_str = json.dumps(
         {
-            "keyWord": f"{SEARCH_KEYWORD_PREFIX}{query}",
+            "keyWord": _build_keyword(query),
             "level": "12",
             "mapBound": SEARCH_BOUNDS.as_map_bound(),
             "queryType": "1",
@@ -132,6 +135,17 @@ def _build_post_str(query: str, count: int) -> dict[str, str]:
         ensure_ascii=False,
     )
     return {"postStr": post_str}
+
+
+def _build_keyword(query: str) -> str:
+    """补全省级以下的城市前缀，用于收敛上游检索范围。
+
+    查询词本身已含城市名时保持原样：否则「泰安望岳中学」会被拼成
+    「泰安市泰安望岳中学」，重复的「泰安」反而干扰上游的相关性排序。
+    """
+    if _CITY_NAME in query:
+        return query
+    return f"{SEARCH_KEYWORD_PREFIX}{query}"
 
 
 async def _request_upstream(params: dict[str, str]) -> dict[str, Any]:

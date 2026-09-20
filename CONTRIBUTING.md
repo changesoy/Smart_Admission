@@ -24,6 +24,7 @@ index.html ───────────────────────
   ├── mapService.js ──────────────── 地图服务（Leaflet + Turf 点面判断 + 业务查询入口）
   │
   ├── searchService.js ───────────── 地址搜索（与地图点击共用统一查询入口）
+  │                                   唯一与后端交互的前端模块，见第十一章
   │
   ├── simulatorService.js ────────── 入学条件自查 / 情形判断助手
   │
@@ -32,7 +33,12 @@ index.html ───────────────────────
   ├── interactionService.js ──────── 政民互动（留言/联系卡片）
   │
   └── main.js ────────────────────── 主入口（协调初始化顺序）
+
+server/（Python FastAPI，Backend Lite：仅 health / version / 搜索代理三个接口）
+  └── 不承载业务逻辑：点面判断、数据加载、政策匹配全部在前端完成
 ```
+
+> ⚠️ 涉及搜索、接口或密钥的改动，请先阅读[第十一章](#十一后端接口与密钥边界)。
 
 ---
 
@@ -517,7 +523,8 @@ npm run lint:fix    # 自动修复
 - [ ] `npm run dev` 启动后页面功能正常（或 `npm run build` 构建成功）
 - [ ] 浏览器控制台无 JS 报错
 - [ ] 如改动 `data/` 下的数据，已生成新的数据发布包并切换 `data/current.json` 指针（见 4.5）
-- [ ] **不要**提交 `node_modules/`、`dist/` 或 `.env`（已在 `.gitignore` 中忽略）
+- [ ] 如涉及搜索或接口，已确认前端未直连天地图、未写入任何 Key（见 11.4）
+- [ ] **不要**提交 `node_modules/`、`dist/`、`.env` 或 `.venv/`（已在 `.gitignore` 中忽略）
 
 ---
 
@@ -541,9 +548,12 @@ npm run lint:fix    # 自动修复
 ### 10.1 前置要求
 
 - Node.js 18+（项目基于 Vite，开发/构建/数据校验均依赖 npm）
+- Python 3.10+（仅后端需要；不涉及搜索功能时可不装）
 - 现代浏览器（Chrome / Edge / Firefox 最新版）
 
 ### 10.2 启动步骤
+
+只跑前端（地图、学区查询、政策、自查均可正常使用，仅联网搜索不可用）：
 
 ```bash
 # 1. 克隆仓库
@@ -560,6 +570,15 @@ npm run dev
 http://localhost:5173
 ```
 
+需要联网搜索时，另开一个终端启动后端（详见第十一章）：
+
+```bash
+python -m venv .venv
+.venv\Scripts\pip.exe install -r server/requirements.txt
+copy .env.example .env      # 填入服务端 Key
+.venv\Scripts\python.exe -m uvicorn server.app:app --port 8010 --reload
+```
+
 > ⚠️ **不要直接双击 `index.html` 运行。** 浏览器对 `file://` 协议下的 ES Module 和 `fetch()` 有跨域限制，会导致页面无法加载。
 
 ### 10.3 常用命令
@@ -574,3 +593,56 @@ npm run check       # lint + 数据文件完整性校验（引用一致性等）
 npm run check:release                        # 发布门禁（当前预期失败，见 4.6）
 node scripts/new-data-release.mjs <版本号>   # 生成不可变数据发布包，见 4.5
 ```
+
+---
+
+## 十一、后端接口与密钥边界
+
+### 11.1 后端职责边界（不得扩张）
+
+`server/` 是 **Backend Lite**，只提供三个接口：
+
+| 接口           | 作用                                     |
+| -------------- | ---------------------------------------- |
+| `/api/health`  | 存活检查                                 |
+| `/api/version` | 上报应用版本、构建时间与当前数据版本     |
+| `/api/search`  | 代理天地图 v2 搜索，做范围过滤与结果归一 |
+
+**明确不负责**：点面判断、学区查询、下发学校/政策数据、用户账号、管理后台。
+任何"顺手把业务逻辑搬到后端"的改动都超出边界，应先讨论而不是直接实现。
+
+### 11.2 两枚天地图 Key 必须分开
+
+| 用途         | 存放位置                                | Key 类型     | 浏览器可见 |
+| ------------ | --------------------------------------- | ------------ | ---------- |
+| 地图瓦片加载 | `js/config.js` 的 `tianditu.token`      | 浏览器端 Key | 是         |
+| 地址搜索代理 | 环境变量 `TIANDITU_SEARCH_TK`（`.env`） | 服务端 Key   | 否         |
+
+- **禁止**把服务端 Key 写入 `js/`、`server/` 源码或任何提交到仓库的文件；只能通过 `.env` 注入。
+- **禁止**让前端直接请求 `api.tianditu.gov.cn`。浏览器端 Key 调用搜索接口会被上游拒绝（`301012`），
+  而服务端 Key 一旦出现在前端代码里即等同泄露。
+- 瓦片 Key 无法隐藏，属既定事实：靠天地图控制台的**域名绑定 + 配额**控制风险，
+  不要试图用混淆、拼接等方式"藏"起来。
+
+### 11.3 前端调用约定
+
+- 前端只使用**同源相对路径** `AppConfig.searchApi`（当前为 `/api/search`），
+  不在代码里写 `127.0.0.1:8010` 或任何后端域名；`dev`/`preview` 由 `vite.config.js` 的
+  `API_TARGET` 代理，生产由 Nginx 等反向代理转发。
+- 服务端返回统一为 `{ ok, results }` 或 `{ ok: false, error: { code, message } }`；
+  前端按 `error.code` 映射用户文案（`RATE_LIMITED` / `TOKEN_MISSING` / `UPSTREAM_TIMEOUT` 等），
+  技术细节只进 `console.warn`，不直接展示给用户。
+- **搜索范围的唯一来源是 `server/config.py` 的 `SEARCH_BOUNDS`**，前端不得再持有一份副本自己过滤。
+- 服务端拼 `keyWord` 时会补 `泰安市` 前缀；若查询词本身已含"泰安"，不再叠加，避免
+  「泰安市泰安望岳中学」这类重复词干扰上游排序。
+
+### 11.4 改后自查
+
+```bash
+npm run check        # 前端 lint + 数据校验
+# 后端启动后，确认代理链路（应返回 200 且 ok: true）
+curl "http://localhost:5173/api/search?q=岱庙&count=10"
+```
+
+浏览器侧确认：Network 面板中 `/api/search` 的请求域名是前端同源域名，
+且页面资源列表里**不出现** `127.0.0.1:8010`。

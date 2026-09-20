@@ -5,8 +5,11 @@
  *
  * 功能: 提供本地地址点和关键词索引的模糊匹配搜索,渲染搜索建议下拉列表,
  *       支持上下键导航和 Enter 选中。本地无匹配或地址点坐标缺失时,
- *       自动调用天地图 POI 搜索 API 联网查询(支持取消前次请求、按范围过滤、
- *       多结果选择),选中结果后通过回调触发地图定位。
+ *       经服务端 /api/search 代理联网查询(支持取消前次请求、多结果选择),
+ *       选中结果后通过回调触发地图定位。
+ *
+ * 边界说明: 联网查询不直连天地图。搜索 token 只存在于服务端环境变量,范围过滤
+ *           (泰山区/岱岳区/泰山景区) 也在服务端完成,前端不持有搜索地址与 token。
  *
  * 关键接口:
  *   init(data)                          - 初始化,接收完整数据对象
@@ -16,6 +19,7 @@
  * 数据格式:
  *   addressPoint = { name, fullAddress, lng, lat, aliases[] }
  *   keywordsIndex = { keyword, aliases[], matchedZoneIds[], type, displayName }
+ *   在线结果(服务端已归一) = { uid, name, address, lng, lat }
  *
  * 搜索算法: 大小写不敏感的 includes 匹配,同时搜索 name/fullAddress/aliases
  *           关键词命中多个 matchedZoneIds 时展开为多个候选项
@@ -219,16 +223,21 @@ const SearchService = (() => {
     return aliases.some((alias) => alias && alias.toLowerCase().includes(q));
   };
 
-  /** 从 POI 对象提取经纬度（兼容 V1 lon/lat 和 V2 lonlat 格式） */
-  const poiLngLat = (poi) => {
-    if (poi.lonlat && typeof poi.lonlat === "string") {
-      const parts = poi.lonlat.split(",");
-      return { lng: parseFloat(parts[0]), lat: parseFloat(parts[1]) };
+  /** 服务端错误码 → 面向用户的提示文案;细节保留在 console 里供排查 */
+  const errorMessageOf = (code) => {
+    switch (code) {
+      case "RATE_LIMITED":
+        return "查询过于频繁，请稍后重试";
+      case "TOKEN_MISSING":
+        return "搜索服务未配置密钥，请联系管理员";
+      case "UPSTREAM_TIMEOUT":
+        return "联网查询超时，请稍后重试";
+      default:
+        return "联网查询失败，请稍后重试";
     }
-    return { lng: parseFloat(poi.lon), lat: parseFloat(poi.lat) };
   };
 
-  /** 联网查询: 调用天地图 POI 搜索 API（多结果），按范围过滤后展示给用户选择 */
+  /** 联网查询:经服务端 /api/search 代理查询 POI(token 与范围过滤均在服务端) */
   const queryOnline = (query) => {
     if (!_searchSuggestions) return;
     console.log("[Search] queryOnline 被调用，query:", query);
@@ -241,74 +250,56 @@ const SearchService = (() => {
     _searchSuggestions.innerHTML = `<div class="search-no-result">正在联网查询"${escapeHtml(query)}"...</div>`;
     _searchSuggestions.style.display = "block";
 
-    const token = AppConfig.tianditu ? AppConfig.tianditu.token : "";
-    const bounds = AppConfig.searchBounds;
-    const mapBoundStr = bounds
-      ? `${bounds.minLng},${bounds.minLat},${bounds.maxLng},${bounds.maxLat}`
-      : "";
-    const postStr = JSON.stringify({
-      keyWord: `泰安市${query}`,
-      level: "12",
-      mapBound: mapBoundStr,
-      queryType: "1",
-      start: "0",
-      count: "10",
-    });
-    const url = `https://api.tianditu.gov.cn/v2/search?postStr=${encodeURIComponent(postStr)}&type=query&tk=${token}`;
+    const url = `${AppConfig.searchApi}?q=${encodeURIComponent(query)}&count=10`;
 
     _onlineAbort = new AbortController();
     const { signal } = _onlineAbort;
 
     fetch(url, { signal })
-      .then((res) => res.json())
-      .then((data) => {
+      .then((res) =>
+        res
+          .json()
+          .then((payload) => ({ res, payload }))
+          .catch(() => ({ res, payload: null })),
+      )
+      .then(({ res, payload }) => {
         _onlineAbort = null;
-        console.log("[Search] POI 搜索返回:", data);
 
-        // V2: {count, pois, ...}; V1: {result: {count, pois}}
-        let pois = [];
-        if (data && data.pois) {
-          ({ pois } = data);
-        } else if (data && data.result && data.result.pois) {
-          ({ pois } = data.result);
-        }
-        const inBounds = [];
-        const cbounds = AppConfig.searchBounds;
-
-        for (const poi of pois) {
-          const { lng, lat } = poiLngLat(poi);
-          if (isNaN(lng) || isNaN(lat)) continue;
-          let inside = true;
-          if (cbounds) {
-            inside =
-              lng >= cbounds.minLng &&
-              lng <= cbounds.maxLng &&
-              lat >= cbounds.minLat &&
-              lat <= cbounds.maxLat;
-          }
-          if (inside) inBounds.push(poi);
+        if (!res.ok || !payload || payload.ok !== true) {
+          const code =
+            payload && payload.error
+              ? payload.error.code
+              : `HTTP_${res.status}`;
+          console.warn("[Search] 搜索代理返回错误:", code);
+          showNoResult(errorMessageOf(code));
+          return;
         }
 
-        console.log("[Search] 范围内:", inBounds.length, "个结果");
+        const pois = payload.results || [];
+        console.log(
+          "[Search] 服务端返回结果数:",
+          pois.length,
+          "cached:",
+          payload.cached,
+        );
 
-        if (inBounds.length === 0) {
+        if (pois.length === 0) {
           showNoResult(
-            "查询结果不在泰山区/岱岳区/泰山景区范围内，请尝试更完整的地址",
+            "未找到匹配结果，请尝试更完整的地址（服务范围限泰山区、岱岳区、泰山景区）",
           );
           return;
         }
 
-        if (inBounds.length === 1) {
+        if (pois.length === 1) {
           hideSuggestions();
           if (typeof _onPointResolved === "function") {
-            const { lng, lat } = poiLngLat(inBounds[0]);
-            _onPointResolved(lng, lat);
+            _onPointResolved(pois[0].lng, pois[0].lat);
           }
           return;
         }
 
-        // 多个范围内结果：展示建议列表让用户选择
-        _lastResults = inBounds.map((poi) => ({
+        // 多个结果：展示建议列表让用户选择
+        _lastResults = pois.map((poi) => ({
           source: "onlinePoi",
           data: poi,
         }));
@@ -318,6 +309,7 @@ const SearchService = (() => {
       .catch((err) => {
         _onlineAbort = null;
         if (err && err.name === "AbortError") return;
+        console.warn("[Search] 联网查询请求失败:", err);
         showNoResult("联网查询失败，请稍后重试");
       });
   };
@@ -399,8 +391,7 @@ const SearchService = (() => {
     } else if (result.source === "onlinePoi") {
       const poi = result.data;
       if (typeof _onPointResolved === "function") {
-        const oll = poiLngLat(poi);
-        _onPointResolved(oll.lng, oll.lat);
+        _onPointResolved(poi.lng, poi.lat);
       }
     } else if (result.source === "keywordZone") {
       const kw = result.data;

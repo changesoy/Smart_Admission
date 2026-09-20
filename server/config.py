@@ -3,8 +3,8 @@
 集中管理环境变量与常量。所有敏感值（如天地图 token）只从环境变量读取，
 ``server/`` 目录下不得出现任何真实 token 字面量。
 
-注意: ``SEARCH_BOUNDS`` 必须与前端 ``js/config.js`` 的 ``searchBounds``
-保持一致，否则前后端对「结果是否在服务区域内」的判断会漂移。
+注意: ``SEARCH_BOUNDS`` 是搜索区域过滤的唯一来源。前端不持有该范围，
+也不再自行过滤结果，因此修改这里即改变前后端一致的行为。
 """
 
 from __future__ import annotations

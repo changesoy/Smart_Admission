@@ -3,9 +3,9 @@
 Backend Lite 的职责严格限制为: health / version / 第三方搜索代理。
 明确不负责 Turf 点面判断、学区查询、返回学校与政策数据、用户账号、管理后台。
 
-本地启动::
+本地启动（端口需与 vite.config.js 的 API_TARGET 一致）::
 
-    .venv\\Scripts\\python.exe -m uvicorn server.app:app --reload
+    .venv\\Scripts\\python.exe -m uvicorn server.app:app --port 8010 --reload
 
 生产环境由反向代理把 /api 转发到本进程。
 """

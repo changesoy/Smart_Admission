@@ -12,6 +12,10 @@
  *   dataPaths    - 数据文件名映射,实际路径由版本的版本目录前缀拼接得到
  *   zoneStyle    - 按 stage(初中middle/小学primary)和状态(default/hover/selected)分组的 Leaflet Path 选项
  *   tianditu     - 天地图 WMTS 瓦片模板 URL,需替换 {token} 占位符
+ *   searchApi    - 联网地址搜索的服务端接口,由后端代理天地图并做范围过滤
+ *
+ * 注意: 本文件只保留瓦片 token。地址搜索的 token 存放于服务端环境变量
+ *       (TIANDITU_SEARCH_TK),前端不再持有、也不再拼接搜索请求参数。
  */
 const AppConfig = {
   /** 地图初始中心 [纬度, 经度] (Leaflet 格式) */
@@ -19,7 +23,11 @@ const AppConfig = {
   /** 地图初始缩放级别 */
   mapZoom: 14,
 
-  /** 天地图瓦片服务配置,含 vec(矢量)/cva(标注)/img(影像)/cia(影像标注) 四层 */
+  /**
+   * 天地图瓦片服务配置,含 vec(矢量)/cva(标注)/img(影像)/cia(影像标注) 四层。
+   * token 为浏览器端 Key,只能用于瓦片加载(必须在前端可见);地址搜索走服务端,
+   * 使用另一枚服务端 Key,不得混用。
+   */
   tianditu: {
     token: "913914b9096fb242c196babc64950515",
     vecUrl:
@@ -104,13 +112,11 @@ const AppConfig = {
     },
   },
 
-  /** 联网查询坐标范围限制（泰山区 + 岱岳区 + 泰山景区） */
-  searchBounds: {
-    minLng: 116.85,
-    maxLng: 117.3,
-    minLat: 35.85,
-    maxLat: 36.35,
-  },
+  /**
+   * 联网地址搜索接口(同源相对路径,由 vite 代理或 Nginx 转发到后端)。
+   * 服务端负责拼接 keyword、限定搜索范围(泰山区 + 岱岳区 + 泰山景区)与持有 token。
+   */
+  searchApi: "/api/search",
 
   /** 界面提示文案,供 RenderService 等模块引用 */
   texts: {
