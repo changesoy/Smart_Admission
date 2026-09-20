@@ -389,7 +389,8 @@ node scripts/new-data-release.mjs 2026.10.1
 
 `check:release` 的**拒发项**（任一命中即 `exit 1`）：
 
-- 占位/示例数据命中黑名单：`example.gov.cn`、`待补`、`TODO`、`示例电话`、`000000`、`XXXXXXXX`、`fake`、`mock`；
+- 占位/示例数据命中黑名单：`example.gov.cn`、`待补`、`【待`、`TODO`、`示例电话`、`000000`、`XXXXXXXX`、`fake`、`mock`
+  （`待补` 覆盖 `changeType` / `title` 这类无括号的裸词，`【待` 覆盖 `【待补：…】` / `【待查：…】` / `【待填：…】` 等全部方括号哨兵）；
 - `manifest.json` 缺失，或缺少 `version` / `generatedAt` / `effectiveYear` / `files`；
 - `manifest.version` 与所在目录名不一致；
 - `manifest.files` 与实际目录文件不一致（漏记或多记）；

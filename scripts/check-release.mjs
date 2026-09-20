@@ -39,6 +39,7 @@ const MANIFEST_FILE = "manifest.json";
 const PLACEHOLDER_TERMS = [
   "example.gov.cn",
   "待补",
+  "【待",
   "TODO",
   "示例电话",
   "000000",
@@ -48,7 +49,12 @@ const PLACEHOLDER_TERMS = [
 ];
 
 /** manifest 必填字段 */
-const REQUIRED_MANIFEST_FIELDS = ["version", "generatedAt", "effectiveYear", "files"];
+const REQUIRED_MANIFEST_FIELDS = [
+  "version",
+  "generatedAt",
+  "effectiveYear",
+  "files",
+];
 
 /** 提示项清单里最多列出的 id 个数,超出只报总数 */
 const MAX_LISTED_IDS = 10;
@@ -59,11 +65,9 @@ const notices = [];
 
 const relative = (filePath) => path.relative(ROOT, filePath);
 
-const readJson = (filePath) =>
-  JSON.parse(fs.readFileSync(filePath, "utf-8"));
+const readJson = (filePath) => JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
-const sha256Of = (buffer) =>
-  createHash("sha256").update(buffer).digest("hex");
+const sha256Of = (buffer) => createHash("sha256").update(buffer).digest("hex");
 
 /** 执行一个检查阶段,打印标题与结果,并把问题汇总到全局 */
 const phase = (title, run) => {
@@ -247,9 +251,7 @@ phase("4. 占位数据扫描", (result) => {
       .sort((a, b) => b[1] - a[1])
       .forEach(([key, count]) => {
         const [term, template] = key.split("\u0000");
-        result.blockers.push(
-          `${name} 「${term}」× ${count}: ${template}`,
-        );
+        result.blockers.push(`${name} 「${term}」× ${count}: ${template}`);
       });
   });
 });
@@ -265,8 +267,12 @@ phase("5. 结构与引用完整性 (strict)", (result) => {
   }
 
   const { errors, warnings } = validateDataset(dataset, { strict: true });
-  errors.forEach((item) => result.blockers.push(`${item.section}: ${item.message}`));
-  warnings.forEach((item) => result.notices.push(`${item.section}: ${item.message}`));
+  errors.forEach((item) =>
+    result.blockers.push(`${item.section}: ${item.message}`),
+  );
+  warnings.forEach((item) =>
+    result.notices.push(`${item.section}: ${item.message}`),
+  );
 });
 
 // ---------- 6. 提示项 ----------
@@ -296,7 +302,9 @@ phase("6. 提示项", (result) => {
       result.notices.push(`${name} dataStatus 分布: ${describe(statuses)}`);
     }
     if (accuracy.length > 0) {
-      result.notices.push(`${name} geometryAccuracy 分布: ${describe(accuracy)}`);
+      result.notices.push(
+        `${name} geometryAccuracy 分布: ${describe(accuracy)}`,
+      );
     }
   });
 
