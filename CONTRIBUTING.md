@@ -372,6 +372,34 @@ node scripts/new-data-release.mjs 2026.10.1
 （数据版本与应用版本相互独立）。若指针指向不存在的版本，页面会显示带失败文件路径的
 错误提示，不会白屏。
 
+### 4.6 发布门禁 `npm run check:release`
+
+开发期校验与发布期门禁是**两条**命令，不要合并：
+
+| 命令                    | 校验对象                        | 宽严                                      |
+| ----------------------- | ------------------------------- | ----------------------------------------- |
+| `npm run check`         | `data/` 下的工作副本            | 只查结构合法，允许 `estimated` 与占位数据 |
+| `npm run check:release` | `current.json` 指向的**发布包** | 在其上启用 strict，并追加发布专属检查     |
+
+`check:release` 的**拒发项**（任一命中即 `exit 1`）：
+
+- 占位/示例数据命中黑名单：`example.gov.cn`、`待补`、`TODO`、`示例电话`、`000000`、`XXXXXXXX`、`fake`、`mock`；
+- `manifest.json` 缺失，或缺少 `version` / `generatedAt` / `effectiveYear` / `files`；
+- `manifest.version` 与所在目录名不一致；
+- `manifest.files` 与实际目录文件不一致（漏记或多记）；
+- 文件内容与 manifest 记录的 `sha256` 不符；
+- `current.json` 指向的版本目录不存在；
+- 结构与引用错误：重复 ID、引用不存在的 id、环未闭合、坐标越界。
+
+仅**提示**、不阻断的项：`dataStatus` / `geometryAccuracy` / 年份分布、未被任何学区或自查规则引用的学校与政策。
+
+> ⚠️ **当前 `check:release` 预期失败，这不是脚本故障。** 现存数据含 `【待补：官方网页链接】`
+> 等占位内容，门禁建立后必然会命中。转绿依赖数据清理批次：补齐真实来源、统一元字段、
+> 修正 `zones.geojson` 的年份，清理完成后发布新版本。
+
+两个入口共用 `scripts/lib/validate-core.mjs`，校验规则只维护一份。新增规则请改公共核心，
+不要在任一入口里复制一份。
+
 ---
 
 ## 五、地图与坐标规范（极易出错）
@@ -543,5 +571,6 @@ npm run preview     # 本地预览 dist/ 构建产物
 npm run lint        # ESLint 检查（含 js/、scripts/ 与构建配置）
 npm run lint:fix    # 自动修复可修复的问题
 npm run check       # lint + 数据文件完整性校验（引用一致性等）
+npm run check:release                        # 发布门禁（当前预期失败，见 4.6）
 node scripts/new-data-release.mjs <版本号>   # 生成不可变数据发布包，见 4.5
 ```
