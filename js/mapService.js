@@ -9,11 +9,16 @@
  * 关键接口:
  *   initMap(params)              - 初始化地图,渲染学区图层并绑定交互
  *   flyToZoneById(zoneId)        - 飞行到指定学区并选中
- *   findZoneByPoint(lng, lat)    - 根据经纬度查找所属学区的 zoneId
+ *   findZonesByPoint(lng, lat)   - 根据经纬度查找命中的全部学区,返回 { primary:[], middle:[] }
+ *   selectZonesAt(lng, lat)      - 选中点位命中的全部学区并飞行到该点(供搜索定位使用)
  *   filterByStage(stages)        - 按学段(初中/小学)筛选可见图层
  *
  * 核心算法:
- *   handleMapClick → turf.point + turf.booleanPointInPolygon 遍历可见图层判断命中
+ *   handleMapClick → turf.point + turf.booleanPointInPolygon 遍历可见图层,
+ *   收集全部命中学区(同一坐标可同时命中小学/初中学区),不做提前返回
+ *
+ * 选中状态:
+ *   _selectedLayers 为数组,支持同时选中多个学区(地图点击命中多学段时全部高亮)
  *
  * 坐标顺序提醒(关键!容易混淆):
  *   GeoJSON coordinates:[经度, 纬度] (lng, lat)
@@ -24,7 +29,7 @@
 
 window.MapService = (() => {
   let _map = null;
-  let _selectedLayer = null;
+  const _selectedLayers = [];
   let _zonesData = null;
   const _zoneLayers = [];
   let _onZoneSelected = null;
@@ -39,9 +44,35 @@ window.MapService = (() => {
   const getFeatureZoneId = (feature) =>
     feature && feature.properties ? feature.properties.zoneId : null;
 
-  /** 在 _zoneLayers 中查找指定 Leaflet layer 对应的条目 */
-  const findLayerEntry = (layer) =>
-    _zoneLayers.find((entry) => entry.layer === layer) || null;
+  /** 判断图层当前是否处于选中态 */
+  const isLayerSelected = (layer) =>
+    _selectedLayers.some((entry) => entry.layer === layer);
+
+  /** 清除全部选中态,恢复默认样式 */
+  const clearSelection = () => {
+    _selectedLayers.forEach((entry) => {
+      const stage = getFeatureStage(entry.feature);
+      entry.layer.setStyle(getStageStyle(stage, "default"));
+    });
+    _selectedLayers.length = 0;
+  };
+
+  /** 将图层加入选中集合并应用选中样式(不清除已有选中) */
+  const addToSelection = (entry) => {
+    if (isLayerSelected(entry.layer)) return;
+    const stage = getFeatureStage(entry.feature);
+    entry.layer.setStyle(getStageStyle(stage, "selected"));
+    _selectedLayers.push(entry);
+  };
+
+  /** 选中单个图层:清除其他选中,仅保留该图层 */
+  const selectLayer = (layer, feature) => {
+    clearSelection();
+    addToSelection({ layer, feature });
+    if (typeof _onZoneSelected === "function") {
+      _onZoneSelected([feature]);
+    }
+  };
 
   /** 替换天地图 URL 模板中的 {token} 占位符 */
   const buildTiandituUrl = (template, token) =>
@@ -127,10 +158,10 @@ window.MapService = (() => {
       _zoneLayers.push({ layer: l, feature });
 
       l.on("mouseover", () => {
-        if (l !== _selectedLayer) l.setStyle(hoverStyle);
+        if (!isLayerSelected(l)) l.setStyle(hoverStyle);
       });
       l.on("mouseout", () => {
-        if (l !== _selectedLayer) l.setStyle(defaultStyle);
+        if (!isLayerSelected(l)) l.setStyle(defaultStyle);
       });
 
       l.on("click", (e) => {
@@ -142,25 +173,6 @@ window.MapService = (() => {
     geoLayer.addTo(_map);
 
     applyVisibility(feature);
-  };
-
-  /** 选中指定图层:取消前一个选中状态,应用选中样式,触发 onZoneSelected 回调 */
-  const selectLayer = (layer, feature) => {
-    const stage = getFeatureStage(feature);
-    const selectedStyle = getStageStyle(stage, "selected");
-
-    if (_selectedLayer && _selectedLayer !== layer) {
-      const prevEntry = findLayerEntry(_selectedLayer);
-      if (prevEntry) {
-        const prevStage = getFeatureStage(prevEntry.feature);
-        _selectedLayer.setStyle(getStageStyle(prevStage, "default"));
-      }
-    }
-    _selectedLayer = layer;
-    layer.setStyle(selectedStyle);
-    if (typeof _onZoneSelected === "function") {
-      _onZoneSelected(feature);
-    }
   };
 
   /** 根据 _visibleStages 控制 Feature 图层的显示/隐藏 */
@@ -182,7 +194,7 @@ window.MapService = (() => {
     }
   };
 
-  /** 按学段筛选可见图层,若当前选中图层被隐藏则取消选中 */
+  /** 按学段筛选可见图层,被隐藏学区的选中态一并清除 */
   const filterByStage = (stages) => {
     _visibleStages = {};
     if (stages && stages.length) {
@@ -191,13 +203,12 @@ window.MapService = (() => {
       });
     }
 
-    if (_selectedLayer) {
-      const selEntry = findLayerEntry(_selectedLayer);
-      if (selEntry) {
-        const selStage = getFeatureStage(selEntry.feature);
-        if (!_visibleStages[selStage]) {
-          _selectedLayer = null;
-        }
+    for (let i = _selectedLayers.length - 1; i >= 0; i--) {
+      const entry = _selectedLayers[i];
+      const selStage = getFeatureStage(entry.feature);
+      if (!_visibleStages[selStage]) {
+        entry.layer.setStyle(getStageStyle(selStage, "default"));
+        _selectedLayers.splice(i, 1);
       }
     }
 
@@ -208,7 +219,7 @@ window.MapService = (() => {
     }
   };
 
-  /** 地图点击处理:使用 Turf booleanPointInPolygon 遍历可见图层判断命中学区 */
+  /** 地图点击处理:使用 Turf booleanPointInPolygon 遍历可见图层,收集全部命中学区 */
   const handleMapClick = (e) => {
     if (
       !_zonesData ||
@@ -228,58 +239,106 @@ window.MapService = (() => {
       return;
     }
 
-    let matchedEntry = null;
+    const matchedEntries = collectMatchedEntries(pt);
+
+    if (matchedEntries.length > 0) {
+      clearSelection();
+      matchedEntries.forEach((entry) => addToSelection(entry));
+      if (typeof _onZoneSelected === "function") {
+        _onZoneSelected(matchedEntries.map((entry) => entry.feature));
+      }
+    } else {
+      clearSelection();
+      if (typeof _onNoMatch === "function") _onNoMatch();
+    }
+  };
+
+  /** 用 Turf 判断点位命中的全部可见图层条目(不做提前返回) */
+  const collectMatchedEntries = (pt) => {
+    const matched = [];
     for (const entry of _zoneLayers) {
       const entryStage = getFeatureStage(entry.feature);
       if (!_visibleStages[entryStage]) continue;
       if (!_map.hasLayer(entry.layer)) continue;
       try {
         if (turf.booleanPointInPolygon(pt, entry.feature)) {
-          matchedEntry = entry;
-          break;
+          matched.push(entry);
         }
       } catch (err) {
         console.warn("booleanPointInPolygon 异常:", err);
       }
     }
-
-    if (matchedEntry) {
-      selectLayer(matchedEntry.layer, matchedEntry.feature);
-    } else {
-      if (_selectedLayer) {
-        const selEntry = findLayerEntry(_selectedLayer);
-        if (selEntry) {
-          const selStage = getFeatureStage(selEntry.feature);
-          _selectedLayer.setStyle(getStageStyle(selStage, "default"));
-        }
-        _selectedLayer = null;
-      }
-      if (typeof _onNoMatch === "function") _onNoMatch();
-    }
+    return matched;
   };
 
-  /** 根据经纬度坐标查找所属学区的 zoneId,供 SearchService 调用 */
-  const findZoneByPoint = (lng, lat) => {
-    if (!_zoneLayers || _zoneLayers.length === 0) return null;
+  /** 根据经纬度查找命中的全部学区,按学段分组返回,供 SearchService/RenderService 使用 */
+  const findZonesByPoint = (lng, lat) => {
+    const empty = { primary: [], middle: [] };
+    if (!_zoneLayers || _zoneLayers.length === 0) return empty;
     let pt;
     try {
       pt = turf.point([lng, lat]);
     } catch (err) {
-      console.warn("findZoneByPoint: turf.point 构造失败:", err);
-      return null;
+      console.warn("findZonesByPoint: turf.point 构造失败:", err);
+      return empty;
     }
+    const grouped = { primary: [], middle: [] };
     for (const entry of _zoneLayers) {
       const entryStage = getFeatureStage(entry.feature);
       if (!_visibleStages[entryStage]) continue;
       try {
         if (turf.booleanPointInPolygon(pt, entry.feature)) {
-          return getFeatureZoneId(entry.feature);
+          const key = entryStage === "小学" ? "primary" : "middle";
+          grouped[key].push(entry.feature);
+          console.log(
+            "[Map] 命中学区:",
+            getFeatureZoneId(entry.feature),
+            `(${entryStage})`,
+          );
         }
       } catch (err) {
-        console.warn("findZoneByPoint: booleanPointInPolygon 异常:", err);
+        console.warn(
+          "findZonesByPoint: booleanPointInPolygon 异常:",
+          err,
+          "zoneId:",
+          getFeatureZoneId(entry.feature),
+        );
       }
     }
-    return null;
+    if (!grouped.primary.length && !grouped.middle.length) {
+      console.warn("[Map] 坐标未命中任何学区:", lng, lat);
+    }
+    return grouped;
+  };
+
+  /** 选中点位命中的全部学区(按学段)并飞行到该点,返回分组结果;未命中返回 null */
+  const selectZonesAt = (lng, lat) => {
+    if (!_zoneLayers || _zoneLayers.length === 0) return null;
+    let pt;
+    try {
+      pt = turf.point([lng, lat]);
+    } catch (err) {
+      console.warn("selectZonesAt: turf.point 构造失败:", err);
+      return null;
+    }
+    const matchedEntries = collectMatchedEntries(pt);
+    if (matchedEntries.length === 0) return null;
+
+    clearSelection();
+    matchedEntries.forEach((entry) => addToSelection(entry));
+
+    if (_map) {
+      _map.flyTo([lat, lng], 16, { duration: 0.8 });
+    }
+
+    return {
+      primary: matchedEntries
+        .filter((entry) => getFeatureStage(entry.feature) === "小学")
+        .map((entry) => entry.feature),
+      middle: matchedEntries
+        .filter((entry) => getFeatureStage(entry.feature) !== "小学")
+        .map((entry) => entry.feature),
+    };
   };
 
   /** 飞行到指定 zoneId 的学区并选中,若该学段被隐藏则自动勾选显示 */
@@ -314,11 +373,22 @@ window.MapService = (() => {
     console.warn("flyToZoneById: 未找到 zoneId:", zoneId);
   };
 
+  /** 飞行到指定经纬度坐标点 */
+  const flyToPoint = (lng, lat) => {
+    if (!_map) {
+      console.warn("flyToPoint: 地图未初始化");
+      return;
+    }
+    _map.flyTo([lat, lng], 16, { duration: 0.8 });
+  };
+
   /** 公共接口 */
   return {
     initMap,
     flyToZoneById,
-    findZoneByPoint,
+    flyToPoint,
+    findZonesByPoint,
+    selectZonesAt,
     filterByStage,
   };
 })();

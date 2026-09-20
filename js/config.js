@@ -53,15 +53,15 @@ window.AppConfig = {
   zoneStyle: {
     middle: {
       default: {
-        color: "#1E3A5F",
+        color: "#0066CC",
         weight: 2,
-        fillColor: "#3388ff",
+        fillColor: "#0066CC",
         fillOpacity: 0.2,
       },
       hover: {
-        color: "#1E3A5F",
+        color: "#0066CC",
         weight: 2,
-        fillColor: "#3388ff",
+        fillColor: "#0066CC",
         fillOpacity: 0.35,
       },
       selected: {
@@ -91,6 +91,14 @@ window.AppConfig = {
         fillOpacity: 0.45,
       },
     },
+  },
+
+  /** 联网查询坐标范围限制（泰山区 + 岱岳区 + 泰山景区） */
+  searchBounds: {
+    minLng: 116.85,
+    maxLng: 117.3,
+    minLat: 35.85,
+    maxLat: 36.35,
   },
 
   /** 界面提示文案,供 RenderService 等模块引用 */

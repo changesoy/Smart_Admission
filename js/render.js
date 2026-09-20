@@ -8,7 +8,7 @@
  *
  * 关键接口:
  *   renderStats(data)           - 渲染顶部4张统计卡片(学区/学校/政策/FAQ数量)
- *   renderResult(ctx)           - 渲染学区查询结果(学区信息+对应学校+关联政策+历年调整)
+ *   renderResult(ctx)           - 渲染学区查询结果,按学段分组展示(小学学区/初中学区)
  *   renderNoMatch()             - 渲染"未匹配学区"提示
  *   renderDefaultResultTip()    - 渲染默认引导提示
  *   renderError(message)        - 渲染加载错误状态
@@ -16,7 +16,9 @@
  *   safeText(value)             - XSS 安全的文本转义工具
  *
  * 数据格式:
- *   ctx = { zoneFeature: GeoJSON Feature, schools: Array, policies: Array, history: Array }
+ *   ctx = { zonesByStage: { primary:[Feature], middle:[Feature] }, schools: Array,
+ *           policies: Array, zonesHistory: Array }
+ *   zonesByStage 中的 Feature 为 GeoJSON Feature(含 stage/schoolId/policyIds 等属性)
  */
 window.RenderService = (() => {
   /** 渲染顶部统计卡片,从 data 中提取学区/学校/政策/FAQ 数量 */
@@ -111,16 +113,11 @@ window.RenderService = (() => {
     return "#";
   };
 
-  /** 渲染学区查询结果面板:学区名+对应学校+关联政策+历年调整记录时间线 */
-  const renderResult = (ctx) => {
-    const panel = document.getElementById("resultPanel");
-    if (!panel) return;
+  /** 学段分组的面板标题 */
+  const STAGE_LABELS = { primary: "小学学区", middle: "初中学区" };
 
-    const feature = ctx && ctx.zoneFeature;
-    if (!feature || !feature.properties) {
-      panel.innerHTML = `<div class="result-tip"><div>暂无学区数据</div></div>`;
-      return;
-    }
+  /** 渲染单个学区的详情块:学区名+招生范围+对应学校+关联政策+历年调整记录 */
+  const renderZoneBlock = (feature, ctx) => {
     const props = feature.properties;
 
     const school = (ctx.schools || []).find(
@@ -132,25 +129,28 @@ window.RenderService = (() => {
       policyIds.includes(p.policyId),
     );
 
+    const historyEntry = (ctx.zonesHistory || []).find(
+      (h) => h.zoneId === props.zoneId,
+    );
+    const history = historyEntry ? historyEntry.history || [] : [];
+
     let displayName = props.zoneName || "";
     displayName = displayName.replace(/学区$/, "");
 
     let html = "";
     html += `<div class="result-zone-name"><i class="bi bi-bookmark-fill text-warning"></i> ${safeText(displayName)}</div>`;
-    html += `<div class="text-muted small mb-2">学区年份:${safeText(props.year)}</div>`;
+    html += `<div class="text-muted small mb-2">信息来源年份:${safeText(props.year)}</div>`;
 
     html += `<div class="result-section-title">招生范围说明</div>`;
     html += `<div class="small">${safeText(props.description)}</div>`;
 
     html += `<div class="result-section-title">对应学校</div>`;
     html += `<div class="zone-school-card">`;
-    html += `<div class="zone-school-name">${safeText(school ? school.name : "未找到关联学校")}</div>`;
-    html += `<span class="zone-school-stage">${safeText(props.stage)}</span>`;
     html += `<div class="zone-meta-grid">`;
-    html += `<div><span>学校地址</span><strong>${safeText(school ? school.address : "—")}</strong></div>`;
-    html += `<div><span>联系电话</span><strong>${safeText(school ? school.phone : "—")}</strong></div>`;
-    html += `<div><span>所属区县</span><strong>${safeText(school ? school.district : "—")}</strong></div>`;
-    html += `<div><span>学校类型</span><strong>${safeText(school ? school.type : "—")}</strong></div>`;
+    html += `<div><span>学校地址：</span><strong>${safeText(school ? school.address : "—")}</strong></div>`;
+    html += `<div><span>联系电话：</span><strong>${safeText(school ? school.phone : "—")}</strong></div>`;
+    html += `<div><span>所属区县：</span><strong>${safeText(school ? school.district : "—")}</strong></div>`;
+    html += `<div><span>学校类型：</span><strong>${safeText(school ? school.type : "—")}</strong></div>`;
     html += `</div>`;
     if (school && school.website) {
       html += `<div class="zone-school-website"><i class="bi bi-globe"></i><a href="${safeUrl(school.website)}" target="_blank" rel="noopener noreferrer">学校官网</a></div>`;
@@ -174,7 +174,6 @@ window.RenderService = (() => {
     }
 
     html += `<div class="result-section-title">历年调整记录</div>`;
-    const history = ctx.history || [];
     if (history.length === 0) {
       html += `<div class="text-muted small">暂无调整记录</div>`;
     } else {
@@ -194,6 +193,37 @@ window.RenderService = (() => {
       });
       html += `</div>`;
     }
+
+    return html;
+  };
+
+  /** 渲染学区查询结果面板:按学段分组展示小学/初中学区详情 */
+  const renderResult = (ctx) => {
+    const panel = document.getElementById("resultPanel");
+    if (!panel) return;
+
+    const zonesByStage = ctx && ctx.zonesByStage;
+    const hasZone =
+      zonesByStage &&
+      ((zonesByStage.primary && zonesByStage.primary.length > 0) ||
+        (zonesByStage.middle && zonesByStage.middle.length > 0));
+
+    if (!hasZone) {
+      panel.innerHTML = `<div class="result-tip"><div>暂无学区数据</div></div>`;
+      return;
+    }
+
+    let html = "";
+    ["primary", "middle"].forEach((stageKey) => {
+      const features = zonesByStage[stageKey] || [];
+      if (features.length === 0) return;
+      html += `<div class="result-stage-title">${STAGE_LABELS[stageKey]}</div>`;
+      features.forEach((feature) => {
+        if (feature && feature.properties) {
+          html += renderZoneBlock(feature, ctx);
+        }
+      });
+    });
 
     panel.innerHTML = html;
   };

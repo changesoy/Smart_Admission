@@ -48,17 +48,18 @@ config.js ← dataService.js ← main.js → render.js
 
 `index.html` 中 `<script>` 标签的顺序**必须**保持以下排列，任何调换都会导致运行时错误：
 
-| 序号 | 文件                    | 说明                                |
-| ---- | ----------------------- | ----------------------------------- |
-| 1    | `config.js`             | `window.AppConfig` 必须最先可用     |
-| 2    | `dataService.js`        | 依赖 `AppConfig.dataPaths`          |
-| 3    | `render.js`             | 无前置模块依赖，但须在 main.js 之前 |
-| 4    | `policyService.js`      | 同上                                |
-| 5    | `mapService.js`         | 依赖 `AppConfig.zoneStyle`          |
-| 6    | `materialService.js`    | 同上                                |
-| 7    | `faqService.js`         | 同上                                |
-| 8    | `interactionService.js` | 同上                                |
-| 9    | `main.js`               | 必须最后加载，协调所有模块初始化    |
+| 序号 | 文件                    | 说明                                       |
+| ---- | ----------------------- | ------------------------------------------ |
+| 1    | `config.js`             | `window.AppConfig` 必须最先可用            |
+| 2    | `dataService.js`        | 依赖 `AppConfig.dataPaths`                 |
+| 3    | `render.js`             | 无前置模块依赖，但须在 main.js 之前        |
+| 4    | `policyService.js`      | 同上                                       |
+| 5    | `searchService.js`      | 依赖 `RenderService.safeText`，须在 main.js 之前 |
+| 6    | `mapService.js`         | 依赖 `AppConfig.zoneStyle`                 |
+| 7    | `materialService.js`    | 同上                                       |
+| 8    | `faqService.js`         | 同上                                       |
+| 9    | `interactionService.js` | 同上                                       |
+| 10   | `main.js`               | 必须最后加载，协调所有模块初始化           |
 
 ---
 

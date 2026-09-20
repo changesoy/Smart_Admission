@@ -4,12 +4,14 @@
  * ⚠️ 修改前必读: CONTRIBUTING.md
  *
  * 功能: 提供本地地址点和关键词索引的模糊匹配搜索,渲染搜索建议下拉列表,
- *       支持上下键导航和 Enter 选中。选中结果后通过回调触发地图定位。
+ *       支持上下键导航和 Enter 选中。本地无匹配或地址点坐标缺失时,
+ *       自动调用天地图 POI 搜索 API 联网查询(支持取消前次请求、按范围过滤、
+ *       多结果选择),选中结果后通过回调触发地图定位。
  *
  * 关键接口:
  *   init(data)                          - 初始化,接收完整数据对象
  *   setOnZoneMatched(fn)                - 设置关键词匹配学区后的回调
- *   setOnPointResolved(fn)              - 设置地址点坐标解析后的回调
+ *   setOnPointResolved(fn)              - 设置地址点/在线POI坐标解析后的回调
  *
  * 数据格式:
  *   addressPoint = { name, fullAddress, lng, lat, aliases[] }
@@ -30,6 +32,9 @@ window.SearchService = (() => {
 
   let _lastResults = [];
   let _activeIndex = -1;
+
+  /** 在线查询状态: AbortController,发起新请求前取消前一次 */
+  let _onlineAbort = null;
 
   const escapeHtml = (str) => window.RenderService.safeText(str);
 
@@ -94,7 +99,8 @@ window.SearchService = (() => {
     }
     _lastResults = search(query).slice(0, 10);
     _activeIndex = _lastResults.length > 0 ? 0 : -1;
-    renderSuggestions(_lastResults, query);
+    console.log("[Search] 输入:", query, "本地结果数:", _lastResults.length);
+    renderSuggestions(_lastResults);
   };
 
   /** 搜索框 keydown 事件处理:↑↓ 切换高亮,Enter 选中,Esc 关闭 */
@@ -122,9 +128,21 @@ window.SearchService = (() => {
       if (!query) return;
       if (_lastResults.length > 0) {
         const index = _activeIndex >= 0 ? _activeIndex : 0;
-        selectItem(_lastResults[index]);
+        const result = _lastResults[index];
+        // 本地地址点坐标无效时，走联网查询
+        if (
+          result.source === "addressPoint" &&
+          (result.data.lng == null || result.data.lat == null)
+        ) {
+          console.log("[Search] Enter - 本地匹配坐标为空，走联网查询:", query);
+          queryOnline(query);
+          return;
+        }
+        console.log("[Search] Enter - 走本地匹配，选中第", index, "项");
+        selectItem(result);
       } else {
-        showNoResult();
+        console.log("[Search] Enter - 本地无结果，走联网查询:", query);
+        queryOnline(query);
       }
     }
 
@@ -198,8 +216,114 @@ window.SearchService = (() => {
     return aliases.some((alias) => alias && alias.toLowerCase().includes(q));
   };
 
+  /** 从 POI 对象提取经纬度（兼容 V1 lon/lat 和 V2 lonlat 格式） */
+  const poiLngLat = (poi) => {
+    if (poi.lonlat && typeof poi.lonlat === "string") {
+      const parts = poi.lonlat.split(",");
+      return { lng: parseFloat(parts[0]), lat: parseFloat(parts[1]) };
+    }
+    return { lng: parseFloat(poi.lon), lat: parseFloat(poi.lat) };
+  };
+
+  /** 联网查询: 调用天地图 POI 搜索 API（多结果），按范围过滤后展示给用户选择 */
+  const queryOnline = (query) => {
+    if (!_searchSuggestions) return;
+    console.log("[Search] queryOnline 被调用，query:", query);
+
+    if (_onlineAbort) {
+      _onlineAbort.abort();
+      _onlineAbort = null;
+    }
+
+    _searchSuggestions.innerHTML = `<div class="search-no-result">正在联网查询"${escapeHtml(query)}"...</div>`;
+    _searchSuggestions.style.display = "block";
+
+    const token =
+      window.AppConfig && window.AppConfig.tianditu
+        ? window.AppConfig.tianditu.token
+        : "";
+    const bounds = window.AppConfig && window.AppConfig.searchBounds;
+    const mapBoundStr = bounds
+      ? `${bounds.minLng},${bounds.minLat},${bounds.maxLng},${bounds.maxLat}`
+      : "";
+    const postStr = JSON.stringify({
+      keyWord: `泰安市${query}`,
+      level: "12",
+      mapBound: mapBoundStr,
+      queryType: "1",
+      start: "0",
+      count: "10",
+    });
+    const url = `https://api.tianditu.gov.cn/v2/search?postStr=${encodeURIComponent(postStr)}&type=query&tk=${token}`;
+
+    _onlineAbort = new AbortController();
+    const { signal } = _onlineAbort;
+
+    fetch(url, { signal })
+      .then((res) => res.json())
+      .then((data) => {
+        _onlineAbort = null;
+        console.log("[Search] POI 搜索返回:", data);
+
+        // V2: {count, pois, ...}; V1: {result: {count, pois}}
+        let pois = [];
+        if (data && data.pois) {
+          ({ pois } = data);
+        } else if (data && data.result && data.result.pois) {
+          ({ pois } = data.result);
+        }
+        const inBounds = [];
+        const cbounds = window.AppConfig && window.AppConfig.searchBounds;
+
+        for (const poi of pois) {
+          const { lng, lat } = poiLngLat(poi);
+          if (isNaN(lng) || isNaN(lat)) continue;
+          let inside = true;
+          if (cbounds) {
+            inside =
+              lng >= cbounds.minLng &&
+              lng <= cbounds.maxLng &&
+              lat >= cbounds.minLat &&
+              lat <= cbounds.maxLat;
+          }
+          if (inside) inBounds.push(poi);
+        }
+
+        console.log("[Search] 范围内:", inBounds.length, "个结果");
+
+        if (inBounds.length === 0) {
+          showNoResult(
+            "查询结果不在泰山区/岱岳区/泰山景区范围内，请尝试更完整的地址",
+          );
+          return;
+        }
+
+        if (inBounds.length === 1) {
+          hideSuggestions();
+          if (typeof _onPointResolved === "function") {
+            const { lng, lat } = poiLngLat(inBounds[0]);
+            _onPointResolved(lng, lat);
+          }
+          return;
+        }
+
+        // 多个范围内结果：展示建议列表让用户选择
+        _lastResults = inBounds.map((poi) => ({
+          source: "onlinePoi",
+          data: poi,
+        }));
+        _activeIndex = 0;
+        renderSuggestions(_lastResults);
+      })
+      .catch((err) => {
+        _onlineAbort = null;
+        if (err && err.name === "AbortError") return;
+        showNoResult("联网查询失败，请稍后重试");
+      });
+  };
+
   /** 渲染搜索建议下拉列表,当前高亮项添加 active 类,绑定点击事件 */
-  const renderSuggestions = (results, query) => {
+  const renderSuggestions = (results) => {
     if (!_searchSuggestions) return;
 
     if (results.length === 0) {
@@ -214,14 +338,23 @@ window.SearchService = (() => {
       const typeTag =
         r.source === "addressPoint"
           ? "地址"
-          : r.source === "keywordZone"
-            ? "学区"
-            : item.type || "关键词";
+          : r.source === "onlinePoi"
+            ? "联网"
+            : r.source === "keywordZone"
+              ? "学区"
+              : item.type || "关键词";
       const displayName =
         r.source === "addressPoint"
           ? item.name
-          : item.displayName || item.keyword;
-      const subText = r.source === "addressPoint" ? item.fullAddress : "";
+          : r.source === "onlinePoi"
+            ? item.name
+            : item.displayName || item.keyword;
+      const subText =
+        r.source === "addressPoint"
+          ? item.fullAddress
+          : r.source === "onlinePoi"
+            ? item.address
+            : "";
       const activeClass = i === _activeIndex ? " active" : "";
 
       html += `<div class="search-suggestion-item${activeClass}" data-index="${i}">`;
@@ -248,15 +381,26 @@ window.SearchService = (() => {
     }
   };
 
-  /** 选中搜索结果:地址点触发 onPointResolved,关键词/关键词学区触发 onZoneMatched */
+  /** 选中搜索结果:地址点/在线POI触发 onPointResolved,关键词/关键词学区触发 onZoneMatched */
   const selectItem = (result) => {
     hideSuggestions();
     if (!result) return;
 
     if (result.source === "addressPoint") {
       const item = result.data;
+      if (item.lng == null || item.lat == null) {
+        console.warn("selectItem: 地址点坐标为空，走联网查询:", item.name);
+        queryOnline(item.name || item.fullAddress || "");
+        return;
+      }
       if (typeof _onPointResolved === "function") {
         _onPointResolved(item.lng, item.lat, item);
+      }
+    } else if (result.source === "onlinePoi") {
+      const poi = result.data;
+      if (typeof _onPointResolved === "function") {
+        const oll = poiLngLat(poi);
+        _onPointResolved(oll.lng, oll.lat);
       }
     } else if (result.source === "keywordZone") {
       const kw = result.data;
@@ -276,9 +420,9 @@ window.SearchService = (() => {
     }
   };
 
-  const showNoResult = () => {
+  const showNoResult = (msg) => {
     if (!_searchSuggestions) return;
-    _searchSuggestions.innerHTML = `<div class="search-no-result">未找到匹配结果</div>`;
+    _searchSuggestions.innerHTML = `<div class="search-no-result">${msg || "未找到匹配结果"}</div>`;
     _searchSuggestions.style.display = "block";
   };
 

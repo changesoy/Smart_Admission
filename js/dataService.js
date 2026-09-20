@@ -43,14 +43,17 @@ window.DataService = (() => {
     return resp.json();
   };
 
-  /** 加载全部数据:核心数据顺序加载(失败即抛出),可选数据并行加载(失败降级) */
+  /** 加载全部数据:核心数据并行加载(任一失败即抛出),可选数据并行加载(失败降级) */
   const loadAllData = async () => {
     const paths = window.AppConfig.dataPaths;
     const data = {};
 
-    for (const key of requiredKeys) {
-      data[key] = await loadFile(paths[key]);
-    }
+    const requiredResults = await Promise.all(
+      requiredKeys.map((key) => loadFile(paths[key]))
+    );
+    requiredKeys.forEach((key, index) => {
+      data[key] = requiredResults[index];
+    });
 
     const optionalEntries = Object.keys(optionalDefaults)
       .filter((key) => paths[key])
