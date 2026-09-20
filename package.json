@@ -8,8 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint js/",
-    "lint:fix": "eslint js/ --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "validate:data": "node scripts/validate-data.mjs",
     "check": "npm run lint && npm run validate:data"
   },

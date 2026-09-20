@@ -28,6 +28,22 @@ export default [
     },
   },
   {
-    ignores: ["node_modules/", "dist/", "data/", "docs/"],
+    files: ["scripts/**/*.mjs", "vite.config.js", "eslint.config.js"],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
+  {
+    ignores: [
+      "node_modules/",
+      "dist/",
+      "data/",
+      "docs/",
+      "**/.venv/",
+      "**/__pycache__/",
+      "**/site-packages/",
+    ],
   },
 ];

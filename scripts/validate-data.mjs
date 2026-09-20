@@ -70,11 +70,7 @@ const schoolIds = assertUnique(schools, (s) => s.schoolId, "schools.json");
 
 const policyIds = assertUnique(policies, (p) => p.policyId, "policies.json");
 
-const addressIds = assertUnique(
-  addressPoints,
-  (a) => a.addressId,
-  "address_points.json",
-);
+assertUnique(addressPoints, (a) => a.addressId, "address_points.json");
 
 console.log("\n--- zones.geojson 校验 ---");
 
@@ -188,11 +184,7 @@ keywordsIndex.forEach((item) => {
 console.log("\n--- simulator_rules.json 校验 ---");
 
 const simRules = simulatorRules.rules || [];
-const ruleIds = assertUnique(
-  simRules,
-  (r) => r.ruleId,
-  "simulator_rules.json rules",
-);
+assertUnique(simRules, (r) => r.ruleId, "simulator_rules.json rules");
 
 const simMaterials = simulatorRules.materials || {};
 const materialIds = new Set(Object.keys(simMaterials));
