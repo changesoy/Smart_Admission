@@ -5,3 +5,8 @@ polygon_output.txt
 node_modules/
 dist/
 .venv/
+111.md
+.env
+storage/
+__pycache__/
+*.pyc

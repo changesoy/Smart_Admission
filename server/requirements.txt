@@ -1,0 +1,8 @@
+# Smart Admission Backend Lite 依赖
+#
+# 只固定直接依赖，传递依赖由 pip 解析。
+# 升级时显式修改版本号并重新验证，不要改为范围符号（>= / ~= / ^）。
+fastapi==0.141.1
+uvicorn==0.53.0
+httpx==0.28.1
+python-dotenv==1.2.3
