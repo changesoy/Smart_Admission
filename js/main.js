@@ -109,17 +109,22 @@
         zones: data.zones,
         schools: data.schools,
         policies: data.policies,
-        onZoneSelected: (feature) => {
-          const zoneId =
-            feature && feature.properties ? feature.properties.zoneId : "";
-          const historyEntry = (data.zonesHistory || []).find(
-            (h) => h.zoneId === zoneId,
-          );
+        onZoneSelected: (features) => {
+          const arr = Array.isArray(features) ? features : [];
+          // 同一坐标可同时命中小学/初中学区,按学段分组渲染
+          const zonesByStage = {
+            primary: arr.filter(
+              (f) => f && f.properties && f.properties.stage === "小学",
+            ),
+            middle: arr.filter(
+              (f) => f && f.properties && f.properties.stage !== "小学",
+            ),
+          };
           window.RenderService.renderResult({
-            zoneFeature: feature,
+            zonesByStage,
             schools: data.schools,
             policies: data.policies,
-            history: historyEntry ? historyEntry.history : [],
+            zonesHistory: data.zonesHistory || [],
           });
           if (window.innerWidth < 992) {
             const panel = document.getElementById("resultPanel");
@@ -145,14 +150,19 @@
         }
       });
       window.SearchService.setOnPointResolved((lng, lat) => {
-        if (
-          !window.MapService ||
-          typeof window.MapService.findZoneByPoint !== "function"
-        )
-          return;
-        const zoneId = window.MapService.findZoneByPoint(lng, lat);
-        if (zoneId && typeof window.MapService.flyToZoneById === "function") {
-          window.MapService.flyToZoneById(zoneId);
+        if (!window.MapService) return;
+        // 联网/地址点结果:选中命中的全部学区(按学段)并渲染分组面板
+        const grouped =
+          typeof window.MapService.selectZonesAt === "function"
+            ? window.MapService.selectZonesAt(lng, lat)
+            : null;
+        if (grouped) {
+          window.RenderService.renderResult({
+            zonesByStage: grouped,
+            schools: data.schools,
+            policies: data.policies,
+            zonesHistory: data.zonesHistory || [],
+          });
         } else {
           // 坐标未命中任何学区，飞行到该点并提示用户
           if (typeof window.MapService.flyToPoint === "function") {

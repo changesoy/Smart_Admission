@@ -50,10 +50,12 @@
           为泰山区中小学生与家长提供学区查询、学校信息、招生政策、入学材料清单等服务，助力顺利完成入学报名。
         </p>
         <div class="mt-4">
-          <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Aerial%20view%20of%20Taian%20city%20with%20mountains%20in%20background%2C%20urban%20residential%20area%2C%20lake%20with%20bridge%2C%20green%20trees%2C%20beautiful%20cityscape%2C%20morning%20light&image_size=landscape_16_9" 
-               class="img-fluid rounded-lg shadow-lg" 
-               alt="泰安市泰山区风光" 
-               style="width: 100%; max-height: 300px; object-fit: cover;">
+          <img
+            src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Aerial%20view%20of%20Taian%20city%20with%20mountains%20in%20background%2C%20urban%20residential%20area%2C%20lake%20with%20bridge%2C%20green%20trees%2C%20beautiful%20cityscape%2C%20morning%20light&image_size=landscape_16_9"
+            class="img-fluid rounded-lg shadow-lg"
+            alt="泰安市泰山区风光"
+            style="width: 100%; max-height: 300px; object-fit: cover"
+          />
         </div>
       </section>
 
@@ -147,7 +149,7 @@
                 style="display: none"
               ></div>
               <div class="form-text mt-1">
-                当前先支持本地地址点和关键词匹配，在线地理编码后续接入。
+                支持本地地址点与关键词匹配，并已接入天地图在线搜索，可联网查询地址所属学区。
               </div>
             </div>
           </div>
@@ -190,9 +192,21 @@
               <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="input-group input-group-sm">
-                    <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-                    <input type="text" id="policySearchInput" class="form-control" placeholder="搜索政策标题或摘要..." />
-                    <button id="policySearchClearBtn" class="btn btn-outline-secondary" style="display:none" type="button">
+                    <span class="input-group-text bg-white"
+                      ><i class="bi bi-search"></i
+                    ></span>
+                    <input
+                      type="text"
+                      id="policySearchInput"
+                      class="form-control"
+                      placeholder="搜索政策标题或摘要..."
+                    />
+                    <button
+                      id="policySearchClearBtn"
+                      class="btn btn-outline-secondary"
+                      style="display: none"
+                      type="button"
+                    >
                       <i class="bi bi-x-lg"></i>
                     </button>
                   </div>
@@ -214,7 +228,9 @@
             <div class="card-body">
               <div class="row align-items-center mb-3">
                 <div class="col-md-5">
-                  <label class="form-label small text-muted mb-1">基准年份</label>
+                  <label class="form-label small text-muted mb-1"
+                    >基准年份</label
+                  >
                   <select id="diffYearA" class="form-select"></select>
                 </div>
                 <div class="col-md-2 text-center">
@@ -285,6 +301,12 @@
               <i class="bi bi-chat-square-dots-fill"></i>留言建议
             </div>
             <div class="card-body">
+              <!-- 联系方式 -->
+              <h6 class="contact-section-title">
+                <i class="bi bi-telephone-fill"></i> 联系方式
+              </h6>
+              <div id="contactList" class="mb-3"></div>
+
               <!-- 在线留言 -->
               <h6 class="contact-section-title">
                 <i class="bi bi-pencil-square"></i> 在线留言

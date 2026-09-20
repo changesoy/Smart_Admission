@@ -371,6 +371,23 @@ body {
   border-radius: 0 4px 4px 0;
 }
 
+/* 学段分组标题(小学学区/初中学区) */
+.result-stage-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--primary-color);
+  background: var(--bg-color);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 0.45rem 0.75rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.result-stage-title:first-child {
+  margin-top: 0;
+}
+
 .result-school-block {
   background: linear-gradient(135deg, var(--bg-color) 0%, #f0f4f8 100%);
   padding: 1rem;

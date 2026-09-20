@@ -4,12 +4,14 @@
  * ⚠️ 修改前必读: CONTRIBUTING.md
  *
  * 功能: 提供本地地址点和关键词索引的模糊匹配搜索,渲染搜索建议下拉列表,
- *       支持上下键导航和 Enter 选中。选中结果后通过回调触发地图定位。
+ *       支持上下键导航和 Enter 选中。本地无匹配或地址点坐标缺失时,
+ *       自动调用天地图 POI 搜索 API 联网查询(支持取消前次请求、按范围过滤、
+ *       多结果选择),选中结果后通过回调触发地图定位。
  *
  * 关键接口:
  *   init(data)                          - 初始化,接收完整数据对象
  *   setOnZoneMatched(fn)                - 设置关键词匹配学区后的回调
- *   setOnPointResolved(fn)              - 设置地址点坐标解析后的回调
+ *   setOnPointResolved(fn)              - 设置地址点/在线POI坐标解析后的回调
  *
  * 数据格式:
  *   addressPoint = { name, fullAddress, lng, lat, aliases[] }
@@ -19,21 +21,20 @@
  *           关键词命中多个 matchedZoneIds 时展开为多个候选项
  */
 window.SearchService = (() => {
-  var _addressPoints = [];
-  var _keywordsIndex = [];
-  var _onZoneMatched = null;
-  var _onPointResolved = null;
+  let _addressPoints = [];
+  let _keywordsIndex = [];
+  let _onZoneMatched = null;
+  let _onPointResolved = null;
 
-  var _searchInput = null;
-  var _searchClearBtn = null;
-  var _searchSuggestions = null;
+  let _searchInput = null;
+  let _searchClearBtn = null;
+  let _searchSuggestions = null;
 
-  var _lastResults = [];
-  var _activeIndex = -1;
+  let _lastResults = [];
+  let _activeIndex = -1;
 
-  /** 在线查询状态: 防止并发重复请求 */
-  var _onlinePending = false;
-  var _onlineAbort = null;
+  /** 在线查询状态: AbortController,发起新请求前取消前一次 */
+  let _onlineAbort = null;
 
   const escapeHtml = (str) => window.RenderService.safeText(str);
 
@@ -99,7 +100,7 @@ window.SearchService = (() => {
     _lastResults = search(query).slice(0, 10);
     _activeIndex = _lastResults.length > 0 ? 0 : -1;
     console.log("[Search] 输入:", query, "本地结果数:", _lastResults.length);
-    renderSuggestions(_lastResults, query);
+    renderSuggestions(_lastResults);
   };
 
   /** 搜索框 keydown 事件处理:↑↓ 切换高亮,Enter 选中,Esc 关闭 */
@@ -126,8 +127,8 @@ window.SearchService = (() => {
       const query = (_searchInput.value || "").trim();
       if (!query) return;
       if (_lastResults.length > 0) {
-        var index = _activeIndex >= 0 ? _activeIndex : 0;
-        var result = _lastResults[index];
+        const index = _activeIndex >= 0 ? _activeIndex : 0;
+        const result = _lastResults[index];
         // 本地地址点坐标无效时，走联网查询
         if (
           result.source === "addressPoint" &&
@@ -216,16 +217,16 @@ window.SearchService = (() => {
   };
 
   /** 从 POI 对象提取经纬度（兼容 V1 lon/lat 和 V2 lonlat 格式） */
-  var poiLngLat = function (poi) {
+  const poiLngLat = (poi) => {
     if (poi.lonlat && typeof poi.lonlat === "string") {
-      var parts = poi.lonlat.split(",");
+      const parts = poi.lonlat.split(",");
       return { lng: parseFloat(parts[0]), lat: parseFloat(parts[1]) };
     }
     return { lng: parseFloat(poi.lon), lat: parseFloat(poi.lat) };
   };
 
   /** 联网查询: 调用天地图 POI 搜索 API（多结果），按范围过滤后展示给用户选择 */
-  var queryOnline = function (query) {
+  const queryOnline = (query) => {
     if (!_searchSuggestions) return;
     console.log("[Search] queryOnline 被调用，query:", query);
 
@@ -234,74 +235,56 @@ window.SearchService = (() => {
       _onlineAbort = null;
     }
 
-    _onlinePending = true;
-    _searchSuggestions.innerHTML =
-      '<div class="search-no-result">正在联网查询"' +
-      escapeHtml(query) +
-      '"...</div>';
+    _searchSuggestions.innerHTML = `<div class="search-no-result">正在联网查询"${escapeHtml(query)}"...</div>`;
     _searchSuggestions.style.display = "block";
 
-    var token =
+    const token =
       window.AppConfig && window.AppConfig.tianditu
         ? window.AppConfig.tianditu.token
         : "";
-    var bounds = window.AppConfig && window.AppConfig.searchBounds;
-    var mapBoundStr = bounds
-      ? bounds.minLng +
-        "," +
-        bounds.minLat +
-        "," +
-        bounds.maxLng +
-        "," +
-        bounds.maxLat
+    const bounds = window.AppConfig && window.AppConfig.searchBounds;
+    const mapBoundStr = bounds
+      ? `${bounds.minLng},${bounds.minLat},${bounds.maxLng},${bounds.maxLat}`
       : "";
-    var postStr = JSON.stringify({
-      keyWord: "泰安市" + query,
+    const postStr = JSON.stringify({
+      keyWord: `泰安市${query}`,
       level: "12",
       mapBound: mapBoundStr,
       queryType: "1",
       start: "0",
       count: "10",
     });
-    var url =
-      "https://api.tianditu.gov.cn/v2/search?postStr=" +
-      encodeURIComponent(postStr) +
-      "&type=query&tk=" +
-      token;
+    const url = `https://api.tianditu.gov.cn/v2/search?postStr=${encodeURIComponent(postStr)}&type=query&tk=${token}`;
 
     _onlineAbort = new AbortController();
-    var signal = _onlineAbort.signal;
+    const { signal } = _onlineAbort;
 
-    fetch(url, { signal: signal })
-      .then(function (res) {
-        return res.json();
-      })
-      .then(function (data) {
-        _onlinePending = false;
+    fetch(url, { signal })
+      .then((res) => res.json())
+      .then((data) => {
         _onlineAbort = null;
         console.log("[Search] POI 搜索返回:", data);
 
         // V2: {count, pois, ...}; V1: {result: {count, pois}}
-        var pois = [];
+        let pois = [];
         if (data && data.pois) {
-          pois = data.pois;
+          ({ pois } = data);
         } else if (data && data.result && data.result.pois) {
-          pois = data.result.pois;
+          ({ pois } = data.result);
         }
-        var inBounds = [];
-        var cbounds = window.AppConfig && window.AppConfig.searchBounds;
+        const inBounds = [];
+        const cbounds = window.AppConfig && window.AppConfig.searchBounds;
 
-        for (var i = 0; i < pois.length; i++) {
-          var poi = pois[i];
-          var ll = poiLngLat(poi);
-          if (isNaN(ll.lng) || isNaN(ll.lat)) continue;
-          var inside = true;
+        for (const poi of pois) {
+          const { lng, lat } = poiLngLat(poi);
+          if (isNaN(lng) || isNaN(lat)) continue;
+          let inside = true;
           if (cbounds) {
             inside =
-              ll.lng >= cbounds.minLng &&
-              ll.lng <= cbounds.maxLng &&
-              ll.lat >= cbounds.minLat &&
-              ll.lat <= cbounds.maxLat;
+              lng >= cbounds.minLng &&
+              lng <= cbounds.maxLng &&
+              lat >= cbounds.minLat &&
+              lat <= cbounds.maxLat;
           }
           if (inside) inBounds.push(poi);
         }
@@ -318,25 +301,21 @@ window.SearchService = (() => {
         if (inBounds.length === 1) {
           hideSuggestions();
           if (typeof _onPointResolved === "function") {
-            var ll1 = poiLngLat(inBounds[0]);
-            _onPointResolved(ll1.lng, ll1.lat);
+            const { lng, lat } = poiLngLat(inBounds[0]);
+            _onPointResolved(lng, lat);
           }
           return;
         }
 
         // 多个范围内结果：展示建议列表让用户选择
-        _lastResults = [];
-        for (var j = 0; j < inBounds.length; j++) {
-          _lastResults.push({
-            source: "onlinePoi",
-            data: inBounds[j],
-          });
-        }
+        _lastResults = inBounds.map((poi) => ({
+          source: "onlinePoi",
+          data: poi,
+        }));
         _activeIndex = 0;
-        renderSuggestions(_lastResults, query);
+        renderSuggestions(_lastResults);
       })
-      .catch(function (err) {
-        _onlinePending = false;
+      .catch((err) => {
         _onlineAbort = null;
         if (err && err.name === "AbortError") return;
         showNoResult("联网查询失败，请稍后重试");
@@ -344,7 +323,7 @@ window.SearchService = (() => {
   };
 
   /** 渲染搜索建议下拉列表,当前高亮项添加 active 类,绑定点击事件 */
-  const renderSuggestions = (results, query) => {
+  const renderSuggestions = (results) => {
     if (!_searchSuggestions) return;
 
     if (results.length === 0) {
@@ -420,7 +399,7 @@ window.SearchService = (() => {
     } else if (result.source === "onlinePoi") {
       const poi = result.data;
       if (typeof _onPointResolved === "function") {
-        var oll = poiLngLat(poi);
+        const oll = poiLngLat(poi);
         _onPointResolved(oll.lng, oll.lat);
       }
     } else if (result.source === "keywordZone") {
@@ -441,14 +420,13 @@ window.SearchService = (() => {
     }
   };
 
-  var showNoResult = function (msg) {
+  const showNoResult = (msg) => {
     if (!_searchSuggestions) return;
-    _searchSuggestions.innerHTML =
-      '<div class="search-no-result">' + (msg || "未找到匹配结果") + "</div>";
+    _searchSuggestions.innerHTML = `<div class="search-no-result">${msg || "未找到匹配结果"}</div>`;
     _searchSuggestions.style.display = "block";
   };
 
-  var hideSuggestions = function () {
+  const hideSuggestions = () => {
     if (_searchSuggestions) {
       _searchSuggestions.style.display = "none";
       _searchSuggestions.innerHTML = "";
