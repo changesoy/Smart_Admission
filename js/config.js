@@ -8,7 +8,8 @@
  *
  * 关键结构:
  *   mapCenter    - [纬度, 经度], Leaflet setView 格式
- *   dataPaths    - 各 JSON/GeoJSON 文件的相对路径映射
+ *   dataRelease  - 数据版本入口(指针文件 + 版本目录),决定本次会话使用哪一版数据
+ *   dataPaths    - 数据文件名映射,实际路径由版本的版本目录前缀拼接得到
  *   zoneStyle    - 按 stage(初中middle/小学primary)和状态(default/hover/selected)分组的 Leaflet Path 选项
  *   tianditu     - 天地图 WMTS 瓦片模板 URL,需替换 {token} 占位符
  */
@@ -34,19 +35,29 @@ const AppConfig = {
       '© <a href="https://www.tianditu.gov.cn/" target="_blank">天地图</a> · 国家地理信息公共服务平台',
   },
 
-  /** 数据文件路径映射,键名与 DataService.loadAllData 解构顺序对应 */
+  /** 数据版本入口:先读指针拿到版本号,再按版本目录整包加载 */
+  dataRelease: {
+    currentPointer: "./data/current.json",
+    releasesDir: "./data/releases",
+  },
+
+  /**
+   * 数据文件名映射,键名与 DataService.loadAllData 解构顺序对应。
+   * 实际请求路径由 DataService 拼成 `${releasesDir}/${version}/${文件名}`,
+   * 因此这里只写文件名,不写目录。
+   */
   dataPaths: {
-    zones: "./data/zones.geojson",
-    schools: "./data/schools.json",
-    policies: "./data/policies.json",
-    faq: "./data/faq.json",
-    contacts: "./data/contacts.json",
-    policyDiff: "./data/policy_diff.json",
-    addressPoints: "./data/address_points.json",
-    keywordsIndex: "./data/keywords_index.json",
-    zonesHistory: "./data/zones_history.json",
-    rumors: "./data/rumors.json",
-    simulatorRules: "./data/simulator_rules.json",
+    zones: "zones.geojson",
+    schools: "schools.json",
+    policies: "policies.json",
+    faq: "faq.json",
+    contacts: "contacts.json",
+    policyDiff: "policy_diff.json",
+    addressPoints: "address_points.json",
+    keywordsIndex: "keywords_index.json",
+    zonesHistory: "zones_history.json",
+    rumors: "rumors.json",
+    simulatorRules: "simulator_rules.json",
   },
 
   /** 学区图层样式,按学段(stage)和交互状态分组,值为 Leaflet Path 选项 */

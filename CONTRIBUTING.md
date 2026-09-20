@@ -134,7 +134,7 @@ export default XxxService;
 - [ ] 依赖的其他模块全部通过顶部 `import` 显式声明
 - [ ] 在 `main.js` 顶部添加 `import`，并在 `bootstrapPage()` 中用 `safeInit` 添加初始化调用
 - [ ] 在 `dataService.js` 的 `loadAllData()` 中添加数据加载（如需要）
-- [ ] 在 `config.js` 的 `dataPaths` 中添加路径配置（如需要）
+- [ ] 在 `config.js` 的 `dataPaths` 中添加文件名（如需要，目录由数据版本决定）
 - [ ] 运行 `npm run lint` 无报错
 - [ ] 浏览器控制台无 JS 报错
 
@@ -336,10 +336,41 @@ export default XxxService;
 ### 4.4 新增数据文件检查清单
 
 - [ ] 在 `data/` 目录放置文件，格式符合 JSON 规范
-- [ ] 在 `config.js` 的 `dataPaths` 中添加路径键值对
-- [ ] 在 `dataService.js` 的 `loadAllData()` 解构中添加对应变量
+- [ ] 在 `config.js` 的 `dataPaths` 中添加该文件的**文件名**（不含目录，目录由数据版本决定）
+- [ ] 在 `dataService.js` 的 `optionalDefaults` 中添加对应键与降级默认值
 - [ ] 在 `main.js` 的 `bootstrapPage()` 中将数据传递给目标模块
-- [ ] 在 `docs/data-schema.md` 中补充数据结构说明
+- [ ] 按 4.5 生成新的数据发布包，并切换 `data/current.json` 指针
+
+### 4.5 数据版本与发布（重要）
+
+**前端读取的数据不是 `data/` 根目录下的文件，而是 `data/releases/<版本>/` 下的不可变快照。**
+启动时先读指针文件 `data/current.json` 拿到版本号，再从该版本目录整包加载
+（见 `dataService.js` 的 `resolveRelease()`）。三者职责分明：
+
+| 路径                    | 角色         | 能否就地修改       |
+| ----------------------- | ------------ | ------------------ |
+| `data/*.json`           | 工作副本     | 可，日常改这里     |
+| `data/releases/<版本>/` | 已发布快照   | **不可**，只增不改 |
+| `data/current.json`     | 当前生效指针 | 可，切换版本即改它 |
+
+**发布新版本流程：**
+
+```bash
+# 1. 修改 data/ 下的工作副本
+# 2. 生成不可变快照（纳入的文件清单取自 js/config.js 的 dataPaths，不另维护一份）
+node scripts/new-data-release.mjs 2026.10.1
+# 3. 切换指针：把 data/current.json 的 version 改成新版本号
+```
+
+- 版本号格式为 `YYYY.MM.N`；
+- 脚本为每个文件记录 `bytes` 与 `sha256`，并写出 `manifest.json`
+  （含 `version` / `generatedAt` / `effectiveYear` / `files`）；
+- 目标版本目录已存在时脚本会直接报错退出，以保证快照不可变；
+- `effectiveYear` 默认取 `simulator_rules.json` 的 `meta.effectiveYear`，可用 `--effective-year` 覆盖。
+
+**回滚：** 把 `data/current.json` 的 `version` 改回目标版本号即可，**无需重新构建前端**
+（数据版本与应用版本相互独立）。若指针指向不存在的版本，页面会显示带失败文件路径的
+错误提示，不会白屏。
 
 ---
 
@@ -457,7 +488,8 @@ npm run lint:fix    # 自动修复
 - [ ] `npm run check` 数据校验通过
 - [ ] `npm run dev` 启动后页面功能正常（或 `npm run build` 构建成功）
 - [ ] 浏览器控制台无 JS 报错
-- [ ] **不要**提交 `node_modules/` 或 `dist/`（已在 `.gitignore` 中忽略）
+- [ ] 如改动 `data/` 下的数据，已生成新的数据发布包并切换 `data/current.json` 指针（见 4.5）
+- [ ] **不要**提交 `node_modules/`、`dist/` 或 `.env`（已在 `.gitignore` 中忽略）
 
 ---
 
@@ -508,7 +540,8 @@ http://localhost:5173
 npm run dev         # 启动 Vite 开发服务器（热更新）
 npm run build       # 产物构建到 dist/（含 data/ 复制），dist/ 不提交
 npm run preview     # 本地预览 dist/ 构建产物
-npm run lint        # 检查所有 js/ 目录下的文件
+npm run lint        # ESLint 检查（含 js/、scripts/ 与构建配置）
 npm run lint:fix    # 自动修复可修复的问题
-npm run check       # 数据文件完整性校验（引用一致性等）
+npm run check       # lint + 数据文件完整性校验（引用一致性等）
+node scripts/new-data-release.mjs <版本号>   # 生成不可变数据发布包，见 4.5
 ```
