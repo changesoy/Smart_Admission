@@ -27,6 +27,9 @@
 import AppConfig from "./config.js";
 import RenderService from "./render.js";
 
+/** 本地无命中后等待多久(ms)再联网查询,兼顾响应速度与后端 30 次/分钟的限流 */
+const ONLINE_DEBOUNCE_MS = 400;
+
 const SearchService = (() => {
   let _addressPoints = [];
   let _keywordsIndex = [];
@@ -42,6 +45,24 @@ const SearchService = (() => {
 
   /** 在线查询状态: AbortController,发起新请求前取消前一次 */
   let _onlineAbort = null;
+
+  /** 输入防抖定时器: 本地无命中时延迟触发联网查询,避免逐字符打满上游限流 */
+  let _inputTimer = null;
+
+  /** 在线查询序号: 只有最新一次请求的响应允许落地,防止旧响应覆盖新结果 */
+  let _onlineSeq = 0;
+
+  /** 作废待发的联网查询与进行中的请求(输入变化、清空、重新发起时调用) */
+  const cancelPendingOnline = () => {
+    if (_inputTimer) {
+      clearTimeout(_inputTimer);
+      _inputTimer = null;
+    }
+    if (_onlineAbort) {
+      _onlineAbort.abort();
+      _onlineAbort = null;
+    }
+  };
 
   const escapeHtml = (str) => RenderService.safeText(str);
 
@@ -64,6 +85,7 @@ const SearchService = (() => {
 
     if (_searchClearBtn) {
       _searchClearBtn.addEventListener("click", () => {
+        cancelPendingOnline();
         _searchInput.value = "";
         _lastResults = [];
         _activeIndex = -1;
@@ -92,9 +114,13 @@ const SearchService = (() => {
     _onPointResolved = fn;
   };
 
-  /** 搜索框 input 事件处理:实时搜索并渲染建议列表,维护 _lastResults 和 _activeIndex */
+  /** 搜索框 input 事件处理:实时搜索并渲染建议列表,本地无命中时防抖联网查询 */
   const handleInput = () => {
     const query = (_searchInput.value || "").trim();
+
+    // 输入变化即作废上一次待发/进行中的联网查询
+    cancelPendingOnline();
+
     if (_searchClearBtn) {
       _searchClearBtn.style.display = query ? "inline-block" : "none";
     }
@@ -108,6 +134,14 @@ const SearchService = (() => {
     _activeIndex = _lastResults.length > 0 ? 0 : -1;
     console.log("[Search] 输入:", query, "本地结果数:", _lastResults.length);
     renderSuggestions(_lastResults);
+
+    // 本地无命中时自动联网查询(防抖 400ms),与 Enter 走同一分支
+    if (_lastResults.length === 0) {
+      _inputTimer = setTimeout(() => {
+        _inputTimer = null;
+        queryOnline(query);
+      }, ONLINE_DEBOUNCE_MS);
+    }
   };
 
   /** 搜索框 keydown 事件处理:↑↓ 切换高亮,Enter 选中,Esc 关闭 */
@@ -242,10 +276,7 @@ const SearchService = (() => {
     if (!_searchSuggestions) return;
     console.log("[Search] queryOnline 被调用，query:", query);
 
-    if (_onlineAbort) {
-      _onlineAbort.abort();
-      _onlineAbort = null;
-    }
+    cancelPendingOnline();
 
     _searchSuggestions.innerHTML = `<div class="search-no-result">正在联网查询"${escapeHtml(query)}"...</div>`;
     _searchSuggestions.style.display = "block";
@@ -254,6 +285,7 @@ const SearchService = (() => {
 
     _onlineAbort = new AbortController();
     const { signal } = _onlineAbort;
+    const seq = ++_onlineSeq;
 
     fetch(url, { signal })
       .then((res) =>
@@ -263,6 +295,7 @@ const SearchService = (() => {
           .catch(() => ({ res, payload: null })),
       )
       .then(({ res, payload }) => {
+        if (seq !== _onlineSeq) return;
         _onlineAbort = null;
 
         if (!res.ok || !payload || payload.ok !== true) {
@@ -307,6 +340,7 @@ const SearchService = (() => {
         renderSuggestions(_lastResults);
       })
       .catch((err) => {
+        if (seq !== _onlineSeq) return;
         _onlineAbort = null;
         if (err && err.name === "AbortError") return;
         console.warn("[Search] 联网查询请求失败:", err);
