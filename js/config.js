@@ -56,6 +56,7 @@ const AppConfig = {
    */
   dataPaths: {
     zones: "zones.geojson",
+    roads: "roads.geojson",
     schools: "schools.json",
     policies: "policies.json",
     faq: "faq.json",
@@ -111,6 +112,16 @@ const AppConfig = {
         fillOpacity: 0.45,
       },
     },
+  },
+
+  /** 边界道路图层样式:按要素 type(道路/河流/铁路)与 important 分组 */
+  roadStyle: {
+    road: {
+      important: { color: "#c9a227", weight: 4 },
+      normal: { color: "#8a817c", weight: 2 },
+    },
+    river: { color: "#0ea5e9", weight: 3 },
+    rail: { color: "#57534e", weight: 2, dashArray: "8 5" },
   },
 
   /**

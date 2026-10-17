@@ -9,6 +9,11 @@
       "sha256": "57794f2384461ea272dda028716f5472dbd9c37e80aa0b7381d17443d89ae8e6"
     },
     {
+      "name": "roads.geojson",
+      "bytes": 224231,
+      "sha256": "9bc98ae524d2151fa4b5dc2350ea4ba7f4ae6e7667d2755981f721839f120746"
+    },
+    {
       "name": "schools.json",
       "bytes": 74901,
       "sha256": "3d209bc5145603feabdfc1be6417ccc3e96dbaae3f25f5bd5785c2a52edd16f4"

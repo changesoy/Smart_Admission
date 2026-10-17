@@ -44,6 +44,8 @@ const MapService = (() => {
   let _onZoneSelected = null;
   let _onNoMatch = null;
   let _visibleStages = { 初中: true, 小学: true };
+  let _roadsLayer = null;
+  const ROAD_PANE = "roadPane";
 
   /* ---- 学区边界街道/河流图层内部状态 ---- */
   let _streetsData = null;               // FeatureCollection
@@ -220,6 +222,69 @@ const MapService = (() => {
           }
         }
       }
+    }
+  };
+
+  /** 根据要素属性返回道路/河流/铁路的 Leaflet Path 样式 */
+  const getRoadStyle = (feature) => {
+    const type = (feature.properties && feature.properties.type) || "道路";
+    const cfg = AppConfig.roadStyle;
+    if (type === "河流") return cfg.river;
+    if (type === "铁路") return cfg.rail;
+    const important = !!(feature.properties && feature.properties.important);
+    return important ? cfg.road.important : cfg.road.normal;
+  };
+
+  /** 渲染边界道路图层:浮于学区色块之上且不拦截地图点击,主干道常显名称标签 */
+  const renderRoads = (fc) => {
+    if (!_map || !fc || !fc.features || fc.features.length === 0) return;
+    if (!_map.getPane(ROAD_PANE)) {
+      const pane = _map.createPane(ROAD_PANE);
+      pane.style.zIndex = 450;
+      pane.style.pointerEvents = "none";
+    }
+    const group = L.layerGroup();
+    fc.features.forEach((feature) => {
+      // 跳过灰色次要街道:仅保留主干道(金色)、河流(蓝)、铁路
+      if (
+        feature.properties &&
+        feature.properties.type === "道路" &&
+        feature.properties.important !== true
+      ) {
+        return;
+      }
+      const style = getRoadStyle(feature);
+      const geoLayer = L.geoJSON(feature, {
+        style: () => style,
+        pane: ROAD_PANE,
+      });
+      const name =
+        feature.properties && feature.properties.name
+          ? feature.properties.name
+          : null;
+      const important = !!(feature.properties && feature.properties.important);
+      geoLayer.eachLayer((layer) => {
+        if (name && important) {
+          layer.bindTooltip(name, {
+            permanent: true,
+            direction: "center",
+            className: "road-label",
+          });
+        }
+      });
+      group.addLayer(geoLayer);
+    });
+    _roadsLayer = group;
+    group.addTo(_map);
+  };
+
+  /** 显示/隐藏边界道路图层 */
+  const toggleRoads = (visible) => {
+    if (!_roadsLayer || !_map) return;
+    if (visible) {
+      if (!_map.hasLayer(_roadsLayer)) _roadsLayer.addTo(_map);
+    } else if (_map.hasLayer(_roadsLayer)) {
+      _map.removeLayer(_roadsLayer);
     }
   };
 
@@ -675,6 +740,7 @@ const MapService = (() => {
     findZonesByPoint,
     selectZonesAt,
     filterByStage,
+    toggleRoads,
   };
 })();
 
