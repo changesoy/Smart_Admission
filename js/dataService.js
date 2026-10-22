@@ -34,6 +34,7 @@ const DataService = (() => {
     zonesHistory: [],
     rumors: [],
     simulatorRules: { meta: {}, form: [], rules: [] },
+    streets: { type: "FeatureCollection", features: [] },
   };
 
   /** 版本解析结果,整个会话内复用,避免同一会话混用两个数据版本 */

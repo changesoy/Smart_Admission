@@ -57,6 +57,11 @@
       "name": "simulator_rules.json",
       "bytes": 25289,
       "sha256": "bda32d01a33b8b0572652636fc5bf86fd34db17d20ec721f8809b7ca14682697"
+    },
+    {
+      "name": "streets.geojson",
+      "bytes": 127308,
+      "sha256": "90150966aeb3a2bdeefd9a133b5ed70d8908a6c25d6f821af12792093d0e008a"
     }
   ]
 }
