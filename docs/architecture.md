@@ -111,6 +111,7 @@ data/current.json ──► version ──► data/releases/<version>/ ──►
 | 数据文件               | 用途                                  | 消费模块                     |
 | ---------------------- | ------------------------------------- | ---------------------------- |
 | `zones.geojson`        | 学区边界 Polygon (FeatureCollection)  | MapService, RenderService    |
+| `roads.geojson`        | 边界道路/河流/铁路 LineString（双线已并中心线） | MapService                |
 | `schools.json`         | 学校信息（名称/地址/电话/区县/类型）  | RenderService                |
 | `policies.json`        | 招生政策列表                          | PolicyService, RenderService |
 | `policy_diff.json`     | 政策年度对比数据                      | PolicyService                |
