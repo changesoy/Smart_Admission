@@ -1988,3 +1988,151 @@ body {
   color: var(--accent-color);
   margin-right: 0.3rem;
 }
+
+/* ========== 学区边界街道/河流 图层与开关控件 ========== */
+
+/* 街道名称标签:包裹层透明,内部 span 用 transform 居中在锚点上 */
+.street-label-anchor {
+  background: transparent;
+  border: none;
+}
+.street-label {
+  display: inline-block;
+  transform: translate(-50%, -50%);
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: #ffffff;
+  pointer-events: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+.street-label--road {
+  background: #b45309;
+}
+.street-label--river {
+  background: #0369a1;
+}
+.street-label--rail {
+  background: #1f2937;
+}
+
+/* 街道开关控件(Leaflet custom control,右上角) */
+.street-control {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  width: 232px;
+  max-width: 70vw;
+  font-size: 13px;
+  color: var(--text-primary, #1a202c);
+}
+.street-ctl-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-light, #e2e8f0);
+}
+.street-ctl-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  cursor: pointer;
+  font-size: 13px;
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: left;
+}
+.street-ctl-caret {
+  flex: 0 0 auto;
+  font-size: 10px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  color: var(--text-secondary, #4a5568);
+}
+.street-control--collapsed .street-ctl-caret {
+  transform: rotate(-90deg);
+}
+.street-control--collapsed .street-ctl-head {
+  border-bottom: none;
+}
+.street-control--collapsed .street-ctl-body {
+  display: none;
+}
+.street-ctl-head-title {
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.street-ctl-head-title i {
+  margin-right: 4px;
+}
+.street-ctl-all {
+  border: 1px solid var(--border-light, #e2e8f0);
+  background: #ffffff;
+  color: var(--text-secondary, #4a5568);
+  border-radius: 5px;
+  padding: 2px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.street-ctl-all:hover {
+  background: #f1f5f9;
+}
+.street-ctl-body {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 4px 10px 10px;
+}
+.street-ctl-group-title {
+  margin: 8px 0 4px;
+  padding-bottom: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary, #4a5568);
+  border-bottom: 1px dashed var(--border-light, #e2e8f0);
+}
+.street-ctl-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.street-ctl-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 400;
+}
+.street-ctl-item:hover {
+  background: #f1f5f9;
+}
+.street-ctl-check {
+  margin: 0;
+  cursor: pointer;
+}
+.street-ctl-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+.street-ctl-dot--road {
+  background: #b45309;
+}
+.street-ctl-dot--river {
+  background: #0369a1;
+}
+.street-ctl-dot--rail {
+  background: #1f2937;
+}

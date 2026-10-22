@@ -45,6 +45,13 @@ const MapService = (() => {
   let _onNoMatch = null;
   let _visibleStages = { 初中: true, 小学: true };
 
+  /* ---- 学区边界街道/河流图层内部状态 ---- */
+  let _streetsData = null;               // FeatureCollection
+  const _streetLayers = [];              // { layer, feature, name, type }
+  const _streetLabelMarkers = [];        // { marker, name, anchor:{lat,lng} }
+  let _streetVisible = {};               // name -> boolean
+  let _streetControl = null;             // Leaflet 控制面板
+
   /** 获取 Feature 的学段,默认"初中" */
   const getFeatureStage = (feature) =>
     (feature && feature.properties && feature.properties.stage) || "初中";
@@ -124,6 +131,10 @@ const MapService = (() => {
       type: "FeatureCollection",
       features: [],
     };
+    _streetsData = (params && params.streets) || {
+      type: "FeatureCollection",
+      features: [],
+    };
     _onZoneSelected = params && params.onZoneSelected;
     _onNoMatch = params && params.onNoMatch;
 
@@ -147,6 +158,15 @@ const MapService = (() => {
     } else {
       console.warn("学区数据为空,仅显示底图");
     }
+
+    // 渲染学区边界街道/河流/铁路(线要素 + 名称标签 + 开关控件)
+    addStreetLayers(_streetsData);
+    buildStreetControl();
+
+    // 缩放/平移后重新排布标签,避免叠加
+    _map.on("zoomend moveend", () => {
+      relayoutStreetLabels();
+    });
 
     _map.on("click", (e) => {
       handleMapClick(e);
@@ -227,6 +247,287 @@ const MapService = (() => {
       });
     }
   };
+
+  /* ================= 学区边界街道/河流/铁路图层 ================= */
+
+  /** HTML 转义,防止街道名注入标签 */
+  const escapeHtml = (value) =>
+    String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+
+  /** 类型 → CSS 类后缀(避免中文类名) */
+  const streetTypeClass = (type) => {
+    if (type === "河流") return "river";
+    if (type === "铁路") return "rail";
+    return "road";
+  };
+
+  /** 获取街道线样式 */
+  const getStreetStyle = (type) =>
+    (AppConfig.streetStyle && AppConfig.streetStyle[type]) ||
+    { color: "#64748B", weight: 2, opacity: 0.9 };
+
+  /** 当前缩放级别是否允许显示街道名称标签(低于 streetLabelMinZoom 收起) */
+  const labelsAllowed = () =>
+    !!_map &&
+    _map.getZoom() >= (AppConfig.streetLabelMinZoom ?? 14);
+
+  /** 构造街道名称标签 divIcon */
+  const makeStreetLabelIcon = (name, type) =>
+    L.divIcon({
+      className: "street-label-anchor",
+      html: `<span class="street-label street-label--${streetTypeClass(type)}">${escapeHtml(name)}</span>`,
+      iconSize: [10, 10],
+      iconAnchor: [5, 5],
+    });
+
+  /** 渲染街道线要素与名称标签,结果直接加到地图(逐条,便于单独开关) */
+  const addStreetLayers = (streetsData) => {
+    const features = (streetsData && streetsData.features) || [];
+    features.forEach((feature) => {
+      const props = feature.properties || {};
+      const name = props.name;
+      const type = props.type || "道路";
+      if (!name) return;
+
+      // 默认全部可见;仅当数据明确标记 defaultVisible=false 时才默认隐藏
+      _streetVisible[name] = props.defaultVisible !== false;
+
+      const style = getStreetStyle(type);
+      const geoLayer = L.geoJSON(feature, { style: () => style });
+      geoLayer.eachLayer((l) => {
+        // 直接逐条加地图,避免 FeatureGroup 导致 hasLayer/removeLayer 失效
+        l.addTo(_map);
+        _streetLayers.push({ layer: l, feature, name, type });
+      });
+
+      if (
+        typeof props.labelLat === "number" &&
+        typeof props.labelLng === "number"
+      ) {
+        const icon = makeStreetLabelIcon(name, type);
+        const marker = L.marker([props.labelLat, props.labelLng], {
+          icon,
+          interactive: false,
+          keyboard: false,
+        });
+        marker.addTo(_map);
+        _streetLabelMarkers.push({
+          marker,
+          name,
+          anchor: { lat: props.labelLat, lng: props.labelLng },
+        });
+      }
+    });
+
+    applyStreetVisibility();
+  };
+
+  /** 根据 _streetVisible 同步线要素与名称标签的显示/隐藏 */
+  const applyStreetVisibility = () => {
+    const byName = new Map();
+    _streetLayers.forEach((entry) => {
+      if (!byName.has(entry.name)) byName.set(entry.name, []);
+      byName.get(entry.name).push(entry.layer);
+    });
+    const labelsByName = new Map();
+    _streetLabelMarkers.forEach((entry) => {
+      if (!labelsByName.has(entry.name)) labelsByName.set(entry.name, []);
+      labelsByName.get(entry.name).push(entry.marker);
+    });
+
+    Object.keys(_streetVisible).forEach((name) => {
+      const show = _streetVisible[name] !== false;
+      (byName.get(name) || []).forEach((layer) => {
+        if (show) {
+          if (!_map.hasLayer(layer)) _map.addLayer(layer);
+        } else if (_map.hasLayer(layer)) {
+          _map.removeLayer(layer);
+        }
+      });
+      (labelsByName.get(name) || []).forEach((marker) => {
+        if (show && labelsAllowed()) {
+          if (!_map.hasLayer(marker)) _map.addLayer(marker);
+        } else if (_map.hasLayer(marker)) {
+          _map.removeLayer(marker);
+        }
+      });
+    });
+
+    relayoutStreetLabels();
+  };
+
+  /** 设置单条街道显隐 */
+  const setStreetVisible = (name, visible) => {
+    _streetVisible[name] = !!visible;
+    applyStreetVisibility();
+  };
+
+  /** 设置全部街道显隐 */
+  const setAllStreetsVisible = (visible) => {
+    Object.keys(_streetVisible).forEach((name) => {
+      _streetVisible[name] = !!visible;
+    });
+    applyStreetVisibility();
+  };
+
+  /** 标签去重叠:按锚点像素坐标贪心向下错位,避免相邻街道名叠加 */
+  const relayoutStreetLabels = () => {
+    if (!_map || _streetLabelMarkers.length === 0) return;
+
+    // 缩放级别低于阈值时收起全部名称标签;达到阈值则按 _streetVisible 重新补齐
+    const allowed = labelsAllowed();
+    _streetLabelMarkers.forEach((entry) => {
+      const shouldShow = allowed && _streetVisible[entry.name] !== false;
+      if (shouldShow) {
+        if (!_map.hasLayer(entry.marker)) _map.addLayer(entry.marker);
+      } else if (_map.hasLayer(entry.marker)) {
+        _map.removeLayer(entry.marker);
+      }
+    });
+    if (!allowed) return;
+
+    const items = [];
+    _streetLabelMarkers.forEach((entry) => {
+      if (!_map.hasLayer(entry.marker)) return;
+      const pt = _map.latLngToContainerPoint([
+        entry.anchor.lat,
+        entry.anchor.lng,
+      ]);
+      const label = entry.name || "";
+      items.push({
+        entry,
+        x: pt.x,
+        y: pt.y,
+        w: label.length * 13 + 16,
+        h: 20,
+      });
+    });
+    items.sort((a, b) => a.y - b.y || a.x - b.x);
+
+    const placed = [];
+    items.forEach((it) => {
+      let x = it.x;
+      let y = it.y;
+      for (let attempt = 0; attempt < 60; attempt += 1) {
+        const box = { x, y, w: it.w, h: it.h };
+        const overlapped = placed.some(
+          (p) =>
+            Math.abs(p.x - box.x) < (p.w + box.w) / 2 &&
+            Math.abs(p.y - box.y) < (p.h + box.h) / 2,
+        );
+        if (!overlapped) break;
+        y += it.h + 2;
+        if (attempt > 0 && attempt % 3 === 0) x += it.w / 2 + 4;
+      }
+      placed.push({ x, y, w: it.w, h: it.h });
+      const latLng = _map.containerPointToLatLng([x, y]);
+      it.entry.marker.setLatLng(latLng);
+    });
+  };
+
+  /** 生成街道开关控件 HTML */
+  const renderStreetControlHtml = () => {
+    const typeOrder = AppConfig.streetTypes || ["道路", "河流", "铁路"];
+    let body = "";
+    typeOrder.forEach((type) => {
+      const names = _streetLayers
+        .map((e) => e.name)
+        .filter((name, i, arr) => {
+          // 只保留属于该类型且首次出现的名称
+          const entry = _streetLayers.find((e) => e.name === name);
+          return entry && entry.type === type && arr.indexOf(name) === i;
+        })
+        .sort((a, b) => a.localeCompare(b, "zh"));
+      if (names.length === 0) return;
+      const items = names
+        .map(
+          (n) =>
+            `<label class="street-ctl-item">` +
+            `<input type="checkbox" class="street-ctl-check street-ctl-name" data-name="${escapeHtml(n)}"${
+              _streetVisible[n] !== false ? " checked" : ""
+            } />` +
+            `<span class="street-ctl-dot street-ctl-dot--${streetTypeClass(type)}" aria-hidden="true"></span>` +
+            `<span>${escapeHtml(n)}</span>` +
+            `</label>`,
+        )
+        .join("");
+      body +=
+        `<div class="street-ctl-group">` +
+        `<div class="street-ctl-group-title">${escapeHtml(type)} · ${names.length}</div>` +
+        `<div class="street-ctl-items">${items}</div>` +
+        `</div>`;
+    });
+    return (
+      `<div class="street-ctl-head">` +
+      `<button type="button" class="street-ctl-toggle" title="展开 / 收起边界道路与河流列表">` +
+      `<span class="street-ctl-caret" aria-hidden="true">▾</span>` +
+      `<span class="street-ctl-head-title"><i class="bi bi-signpost-split"></i> 边界道路 / 河流</span>` +
+      `</button>` +
+      `<button type="button" class="street-ctl-all" title="全部显示或隐藏">全部隐藏</button>` +
+      `</div>` +
+      `<div class="street-ctl-body">${body}</div>`
+    );
+  };
+
+  /** 绑定街道开关控件事件 */
+  const bindStreetControlEvents = (container) => {
+    const toggle = container.querySelector(".street-ctl-toggle");
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        container.classList.toggle("street-control--collapsed");
+      });
+    }
+
+    container
+      .querySelectorAll(".street-ctl-name")
+      .forEach((checkbox) => {
+        checkbox.addEventListener("change", () => {
+          setStreetVisible(checkbox.dataset.name, checkbox.checked);
+        });
+      });
+
+    const allBtn = container.querySelector(".street-ctl-all");
+    if (allBtn) {
+      allBtn.addEventListener("click", () => {
+        const anyVisible = Object.values(_streetVisible).some((v) => v === true);
+        setAllStreetsVisible(!anyVisible);
+        container
+          .querySelectorAll(".street-ctl-name")
+          .forEach((cb) => {
+            cb.checked = _streetVisible[cb.dataset.name] !== false;
+          });
+        allBtn.textContent = anyVisible ? "全部显示" : "全部隐藏";
+      });
+    }
+  };
+
+  /** 在地图上挂载街道开关控件(右上角,可折叠) */
+  const buildStreetControl = () => {
+    if (!_map || _streetControl || _streetLayers.length === 0) return;
+    const StreetControl = L.Control.extend({
+      options: { position: "topright" },
+      onAdd() {
+        const container = L.DomUtil.create(
+          "div",
+          "street-control street-control--collapsed",
+        );
+        L.DomEvent.disableClickPropagation(container);
+        L.DomEvent.disableScrollPropagation(container);
+        container.innerHTML = renderStreetControlHtml();
+        bindStreetControlEvents(container);
+        return container;
+      },
+    });
+    _streetControl = new StreetControl();
+    _streetControl.addTo(_map);
+  };
+
+  /* ================= 学区边界街道图层结束 ================= */
 
   /** 地图点击处理:业务查询与显示分离,点击回调返回完整业务结果(不受图层可见性影响) */
   const handleMapClick = (e) => {
