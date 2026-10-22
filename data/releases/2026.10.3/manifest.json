@@ -15,13 +15,13 @@
     },
     {
       "name": "schools.json",
-      "bytes": 74901,
-      "sha256": "3d209bc5145603feabdfc1be6417ccc3e96dbaae3f25f5bd5785c2a52edd16f4"
+      "bytes": 76644,
+      "sha256": "b3096cded2e9462d330ccfd13853d59c614ce40f98c3730da18b9197becd1c04"
     },
     {
       "name": "policies.json",
-      "bytes": 32112,
-      "sha256": "9739f1be81123de1ccaa4e99b3bdb24638ed53a1d38b151708bd69984916fd9b"
+      "bytes": 32633,
+      "sha256": "5bc23b6cabef180e5fcd39a008b1da8beb6dc8f686a1924be8acac7ce780527d"
     },
     {
       "name": "faq.json",
@@ -30,18 +30,18 @@
     },
     {
       "name": "contacts.json",
-      "bytes": 1308,
-      "sha256": "75880979a5ccde069185981d1ae6360d1f51ee6187d395f15db74b488385dc01"
+      "bytes": 1340,
+      "sha256": "ae2669d6f20558cbbf95bd008a735cb31e89ec3ac999ec0f6795ab1c5a601663"
     },
     {
       "name": "policy_diff.json",
-      "bytes": 24934,
-      "sha256": "8ab8d1dcf2179a591e32a7c9aac8e2c47a27f31b7d767c5c0ce2d540797ea7c0"
+      "bytes": 25705,
+      "sha256": "39a53c15aa87bff5fa029b8e34981a57e0be09bc52d95884bea36ad263a7ebbf"
     },
     {
       "name": "address_points.json",
-      "bytes": 6413,
-      "sha256": "c9df82db5e7170b19ad75f81bce9f248205a8ce5927340b06272a6a22fad6b74"
+      "bytes": 6601,
+      "sha256": "1105997528397aa1cef8e0f9fa022ede015db337897336526127ec01bf926ef3"
     },
     {
       "name": "keywords_index.json",
@@ -60,8 +60,8 @@
     },
     {
       "name": "simulator_rules.json",
-      "bytes": 24851,
-      "sha256": "272fc86e924da17f2a5003f005c7f75db42e6acc705d1b899145cb9b6a8adba0"
+      "bytes": 25289,
+      "sha256": "bda32d01a33b8b0572652636fc5bf86fd34db17d20ec721f8809b7ca14682697"
     }
   ]
 }
