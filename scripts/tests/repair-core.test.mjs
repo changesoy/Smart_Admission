@@ -74,6 +74,8 @@ const sharedZone = () =>
 
 const issuesOf = (features) => checkZones(featureCollection(features));
 
+const ZONES_SHA = `sha256:${"0".repeat(64)}`;
+
 const baseRecord = (issueId, overrides = {}) => ({
   recordId: "r-001",
   issueId,
@@ -96,12 +98,14 @@ const baseBatch = (issueId, overrides = {}) => ({
   batchId: "test-batch",
   createdAt: "2026-10-22",
   baseRelease: "2026.09.5",
+  baseZonesSha256: ZONES_SHA,
   records: [baseRecord(issueId, overrides)],
 });
 
 const contextOf = (features, overrides = {}) => ({
   fileName: "test-batch.json",
   currentRelease: "2026.09.5",
+  zonesSha256: ZONES_SHA,
   zones: featureCollection(features),
   checkReport: issuesOf(features),
   referenceFeatures: null,
@@ -278,6 +282,47 @@ test("同一学区的两条记录锚点区间重叠时失败", () => {
 
   const precheck = precheckBatch(batch, context);
   assert.ok(precheck.errors.some((item) => item.message.includes("区间重叠")));
+});
+
+test("baseZonesSha256 缺失、格式错误或与当前快照不符时失败", () => {
+  const features = [referenceZone(), wedgeZone()];
+  const report = issuesOf(features);
+  const { issueId } = report.issues.find((item) =>
+    item.issueId.startsWith("overlap-containment"),
+  );
+  const context = contextOf(features);
+
+  const missing = precheckBatch(
+    { ...baseBatch(issueId), baseZonesSha256: undefined },
+    context,
+  );
+  assert.ok(
+    missing.errors.some((item) =>
+      item.message.includes("baseZonesSha256 必填"),
+    ),
+  );
+
+  const malformed = precheckBatch(
+    { ...baseBatch(issueId), baseZonesSha256: "sha256:xyz" },
+    context,
+  );
+  assert.ok(malformed.errors.some((item) => item.message.includes("64 位")));
+
+  const stale = precheckBatch(
+    { ...baseBatch(issueId), baseZonesSha256: `sha256:${"1".repeat(64)}` },
+    context,
+  );
+  assert.ok(stale.errors.some((item) => item.message.includes("不一致")));
+
+  const noHash = precheckBatch(
+    baseBatch(issueId),
+    contextOf(features, { zonesSha256: null }),
+  );
+  assert.ok(
+    noHash.errors.some((item) =>
+      item.message.includes("未提供 zones.geojson 哈希"),
+    ),
+  );
 });
 
 test("L2 记录缺少骨架线时预检失败", () => {

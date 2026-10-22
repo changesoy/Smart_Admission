@@ -26,6 +26,8 @@ const CONTESTED_ISSUE = /^(overlap-|shared-edge-)/;
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
+const SHA256_RE = /^sha256:[0-9a-f]{64}$/;
+
 const isObject = (value) =>
   value !== null && typeof value === "object" && !Array.isArray(value);
 
@@ -180,6 +182,33 @@ const checkBatchHeader = (batch, context, errors, warnings) => {
       errors,
       null,
       `baseRelease 与当前生效版本不一致：${String(batch.baseRelease)} != ${String(context.currentRelease)}`,
+    );
+  }
+
+  // 版本号可能对应多份内容（发布目录被原地追加文件），必须锁定到具体哈希
+  if (typeof batch.baseZonesSha256 !== "string") {
+    pushError(
+      errors,
+      null,
+      "baseZonesSha256 必填：记录所依据的 zones.geojson 哈希",
+    );
+  } else if (!SHA256_RE.test(batch.baseZonesSha256)) {
+    pushError(
+      errors,
+      null,
+      "baseZonesSha256 必须形如 sha256:<64 位小写十六进制>",
+    );
+  } else if (typeof context.zonesSha256 !== "string") {
+    pushError(
+      errors,
+      null,
+      "无法校验 baseZonesSha256：当前快照未提供 zones.geojson 哈希",
+    );
+  } else if (batch.baseZonesSha256 !== context.zonesSha256) {
+    pushError(
+      errors,
+      null,
+      `baseZonesSha256 与当前 zones.geojson 不一致：${batch.baseZonesSha256} != ${context.zonesSha256}`,
     );
   }
 
@@ -649,6 +678,7 @@ export const precheckBatch = (batch, context = {}) => {
     issues: issueIndex(context.checkReport),
     referenceFeatures: context.referenceFeatures ?? null,
     featuresSha256: context.featuresSha256 ?? null,
+    zonesSha256: context.zonesSha256 ?? null,
   };
 
   if (!checkBatchHeader(batch, normalized, errors, warnings)) {

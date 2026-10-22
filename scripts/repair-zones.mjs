@@ -74,10 +74,13 @@ const main = () => {
   );
 
   let zones;
+  let zonesSha256;
   let currentRelease;
   try {
+    const zonesPath = path.join(dataDir, "zones.geojson");
     currentRelease = readJson(path.join(dataDir, "current.json")).version;
-    zones = readJson(path.join(dataDir, "zones.geojson"));
+    zones = readJson(zonesPath);
+    zonesSha256 = sha256Of(zonesPath);
   } catch (error) {
     console.error(`[repair:zones] 读取数据失败: ${error.message}`);
     process.exit(2);
@@ -160,6 +163,7 @@ const main = () => {
       fileName,
       currentRelease,
       zones,
+      zonesSha256,
       checkReport,
       referenceFeatures,
       featuresSha256,
