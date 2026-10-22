@@ -56,6 +56,7 @@ const AppConfig = {
    */
   dataPaths: {
     zones: "zones.geojson",
+    roads: "roads.geojson",
     schools: "schools.json",
     policies: "policies.json",
     faq: "faq.json",
@@ -66,7 +67,6 @@ const AppConfig = {
     zonesHistory: "zones_history.json",
     rumors: "rumors.json",
     simulatorRules: "simulator_rules.json",
-    streets: "streets.geojson",
   },
 
   /** 学区图层样式,按学段(stage)和交互状态分组,值为 Leaflet Path 选项 */
@@ -113,23 +113,15 @@ const AppConfig = {
     },
   },
 
-  /**
-   * 学区边界街道/河流/铁路图层样式。按 type(道路/河流/铁路)分组,值为 Leaflet Path 选项。
-   * 这些线要素是学区四至范围描述里的边界参照物(如"沿岱宗大街""梳洗河东岸"),
-   * 由 data/…/streets.geojson(line 几何)驱动,与学区多边形(zones)相互独立。
-   */
-  streetStyle: {
-    道路: { color: "#B45309", weight: 2, opacity: 0.9 },
-    河流: { color: "#0369A1", weight: 3, opacity: 0.9 },
-    铁路: { color: "#1F2937", weight: 2, opacity: 0.9, dashArray: "7 5" },
+  /** 边界道路图层样式:按要素 type(道路/河流/铁路)与 important 分组 */
+  roadStyle: {
+    road: {
+      important: { color: "#c9a227", weight: 4 },
+      normal: { color: "#8a817c", weight: 2 },
+    },
+    river: { color: "#0ea5e9", weight: 3 },
+    rail: { color: "#57534e", weight: 2, dashArray: "8 5" },
   },
-
-  /** 街道名称标签的类别顺序与显隐默认值 */
-  streetTypes: ["道路", "河流", "铁路"],
-  streetDefaultVisible: true,
-
-  /** 街道名称标签的最小显示缩放级别:低于该级别收起全部名称标签,避免低倍率下错位/重叠 */
-  streetLabelMinZoom: 14,
 
   /**
    * 联网地址搜索接口(同源相对路径,由 vite 代理或 Nginx 转发到后端)。

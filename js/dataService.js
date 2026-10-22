@@ -26,6 +26,7 @@ const DataService = (() => {
 
   /** 可选数据键名及其降级默认值,加载失败仅 console.warn 并使用默认值 */
   const optionalDefaults = {
+    roads: { type: "FeatureCollection", features: [] },
     faq: [],
     contacts: [],
     policyDiff: [],

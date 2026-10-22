@@ -5,8 +5,13 @@
   "files": [
     {
       "name": "zones.geojson",
-      "bytes": 151613,
-      "sha256": "57794f2384461ea272dda028716f5472dbd9c37e80aa0b7381d17443d89ae8e6"
+      "bytes": 81698,
+      "sha256": "f8c4e11d46c1d8d728536abe0fdce1ce2f79e7f0f4c23f716b5059c966b791ec"
+    },
+    {
+      "name": "roads.geojson",
+      "bytes": 224231,
+      "sha256": "9bc98ae524d2151fa4b5dc2350ea4ba7f4ae6e7667d2755981f721839f120746"
     },
     {
       "name": "schools.json",

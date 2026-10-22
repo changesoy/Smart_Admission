@@ -286,6 +286,26 @@ body {
   position: relative;
 }
 
+/* ========== 边界道路图层 ========== */
+/* 主干道常显名称标签:悬浮于道路线之上,不遮挡地图点击 */
+.road-label {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--accent-color);
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+}
+
+.road-label::before {
+  display: none;
+}
+
 /* ========== 结果面板 ========== */
 .result-card {
   height: 100%;

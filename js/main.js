@@ -67,6 +67,15 @@ const bindStageFilter = () => {
   });
 };
 
+/** 绑定边界道路显隐复选框 */
+const bindRoadsToggle = () => {
+  const cb = document.getElementById("showRoads");
+  if (!cb) return;
+  cb.addEventListener("change", () => {
+    MapService.toggleRoads(cb.checked);
+  });
+};
+
 /** 数据加载成功后初始化所有业务模块,每个模块用 safeInit 隔离 */
 const bootstrapPage = (data) => {
   safeInit("RenderService", () => {
@@ -101,7 +110,7 @@ const bootstrapPage = (data) => {
   safeInit("MapService", () => {
     MapService.initMap({
       zones: data.zones,
-      streets: data.streets,
+      roads: data.roads,
       schools: data.schools,
       policies: data.policies,
       onZoneSelected: (features) => {
@@ -157,6 +166,7 @@ const bootstrapPage = (data) => {
     });
   });
 
+  safeInit("RoadsToggle", bindRoadsToggle);
   safeInit("StageFilter", bindStageFilter);
 };
 
