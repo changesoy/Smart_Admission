@@ -16,7 +16,7 @@
     "repair:zones": "node scripts/repair-zones.mjs",
     "test:zones": "node --test \"scripts/tests/*.test.mjs\"",
     "check:release": "node scripts/check-release.mjs",
-    "test:server": "python -m server.test_app",
+    "test:server": "python -m server.tests.test_app",
     "check": "npm run lint && npm run validate:data"
   },
   "devDependencies": {

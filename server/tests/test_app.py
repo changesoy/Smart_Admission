@@ -5,7 +5,7 @@
 
 用法::
 
-    .venv\\Scripts\\python.exe -m server.test_app
+    .venv\\Scripts\\python.exe -m server.tests.test_app
 
 依赖: fastapi.testclient（基于 httpx，均已在 requirements.txt 中）。
 """
@@ -17,8 +17,8 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from .app import _DIST_DIR, _mount_static, app
-from .config import ROOT_DIR
+from ..app import _DIST_DIR, _mount_static, app
+from ..config import ROOT_DIR
 
 _SKIPPED: list[str] = []
 

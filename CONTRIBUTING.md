@@ -125,7 +125,11 @@ export default XxxService;
 | 公共方法 | `camelCase`                 | `filterByCategory()`           |
 | DOM ID   | `kebab-case`                | `faq-list`, `simulator-form`   |
 | CSS 类名 | `kebab-case`                | `faq-item`, `zone-primary`     |
-| 数据字段 | `camelCase`                 | `zoneId`, `policyId`           |
+| 数据字段 | `camelCase`                | `zoneId`, `policyId`           |
+
+> **例外**：`js/geo/` 下的纯计算库（如 `zone-geometry.js`）需要同时被浏览器与 `scripts/` 复用，
+> 采用 kebab-case 文件名 + 具名导出，不套用 IIFE + `export default` 的模块模板。
+> 不要为了统一约定另写一份脚本专用副本。
 
 ### 3.3 公共接口约束
 
