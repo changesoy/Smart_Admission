@@ -125,7 +125,7 @@ export default XxxService;
 | 公共方法 | `camelCase`                 | `filterByCategory()`           |
 | DOM ID   | `kebab-case`                | `faq-list`, `simulator-form`   |
 | CSS 类名 | `kebab-case`                | `faq-item`, `zone-primary`     |
-| 数据字段 | `camelCase`                | `zoneId`, `policyId`           |
+| 数据字段 | `camelCase`                 | `zoneId`, `policyId`           |
 
 > **例外**：`js/geo/` 下的纯计算库（如 `zone-geometry.js`）需要同时被浏览器与 `scripts/` 复用，
 > 采用 kebab-case 文件名 + 具名导出，不套用 IIFE + `export default` 的模块模板。
@@ -163,6 +163,7 @@ export default XxxService;
 | 数据文件               | 加载模块           | 格式                      |
 | ---------------------- | ------------------ | ------------------------- |
 | `zones.geojson`        | MapService         | GeoJSON FeatureCollection |
+| `roads.geojson`        | MapService         | GeoJSON FeatureCollection |
 | `schools.json`         | RenderService      | JSON Array                |
 | `policies.json`        | PolicyService      | JSON Array                |
 | `policy_diff.json`     | PolicyService      | JSON Array                |

@@ -10,7 +10,7 @@
         "geometryStatus": "ready",
         "sourceType": "osm",
         "accuracy": "约 5 米",
-        "note": "第 2 对（泰前 zone_035 ↔ 兴隆 zone_040）的共用界线，取自 data/streets.geojson 的明堂路中心线。L2 记录用两个交点作为替换端点：南端在 road[23]→[24] 段（约 117.185267, 36.219728），北端在 road[35]→[36] 段（约 117.185188, 36.235080），两点之间整段复用本折线。"
+        "note": "第 2 对（泰前 zone_035 ↔ 兴隆 zone_040）的共用界线，取自 data/roads.geojson 的明堂路中心线。L2 记录用两个交点作为替换端点：南端在 road[23]→[24] 段（约 117.185267, 36.219728），北端在 road[35]→[36] 段（约 117.185188, 36.235080），两点之间整段复用本折线。"
       },
       "geometry": {
         "type": "LineString",
@@ -68,7 +68,7 @@
         "geometryStatus": "needsTrace",
         "sourceType": "pending",
         "accuracy": "未标定",
-        "note": "第 3 对（凤台 zone_031 ↔ 兴隆校区 zone_040）待标定；data/streets.geojson 的 33 条道路中未收录谢过城街，待补可靠线源后改为 ready。"
+        "note": "第 3 对（凤台 zone_031 ↔ 兴隆校区 zone_040）待标定；data/roads.geojson 中未收录谢过城街，待补可靠线源后改为 ready。"
       },
       "geometry": {
         "type": "LineString",
