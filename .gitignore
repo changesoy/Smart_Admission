@@ -4,6 +4,7 @@ polygon_output.txt
 学区新增范围重叠处理规划.md
 node_modules/
 dist/
+reports/
 .venv/
 111.md
 .env

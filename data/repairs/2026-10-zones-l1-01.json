@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "batchId": "2026-10-zones-l1-01",
+  "createdAt": "2026-10-22",
+  "baseRelease": "2026.09.5",
+  "note": "首批试点第 1 对：南关中学 ↔ 迎春学校（初中部）。两侧四至同指迎春西路，删除迎春南端约 18 m × 59 m 楔形，南关不动。第 2、3 对（明堂路、谢过城街）等待道路标定后再登记。",
+  "records": [
+    {
+      "recordId": "r-001",
+      "issueId": "overlap-containment:zone_034|zone_039:761523ab",
+      "zoneId": "zone_039",
+      "action": "snap-shared-boundary",
+      "referenceZoneId": "zone_034",
+      "anchors": {
+        "from": [117.1325798733139, 36.17264303465733],
+        "to": [117.13224735904457, 36.1740952548651]
+      },
+      "referenceAnchors": {
+        "from": [117.1321494185802, 36.17265847962223],
+        "to": [117.1322083683789, 36.17365031346186]
+      },
+      "guards": {
+        "maxDeviationM": 22
+      },
+      "expected": {
+        "areaDeltaM2": [-1220, -1130],
+        "pointCount": 103
+      },
+      "ruling": {
+        "basis": "same-feature",
+        "note": "南关东界与迎春初中部西界均写明沿迎春西路，按 D8 第 1 档以该路为准，不比较文本详细度；只删除迎春南端伸入南关的楔形。"
+      },
+      "evidence": {
+        "excerpt": "南关中学东界：…自南关中学东界至迎春西路、沿迎春西路向北至与灵山大街交汇处…；迎春学校（初中部）：自迎春学校往西至南湖大街与迎春西路交界，沿迎春西路向北到灵山大街交界处…",
+        "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+        "sourceUrl": "http://www.sdtaishan.gov.cn/module/download/downfile.jsp?filename=f7b71722cc194c69ada4d865e256ce1c.pdf"
+      },
+      "confirmedBy": "项目维护者",
+      "confirmedAt": "2026-10-22"
+    }
+  ]
+}
