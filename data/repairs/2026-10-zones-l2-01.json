@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "batchId": "2026-10-zones-l2-01",
+  "createdAt": "2026-10-22",
+  "baseRelease": "2026.09.5",
+  "baseZonesSha256": "sha256:57794f2384461ea272dda028716f5472dbd9c37e80aa0b7381d17443d89ae8e6",
+  "featuresSha256": "sha256:812f4eaa2332fcf24ae2361a512dc224681a5e809ce6087fd7765634c209c647",
+  "note": "首批试点第 2 对：泰前中学 ↔ 东岳中学兴隆校区，两侧界线均改为明堂路中心线。以“环边 × 明堂路”的两个交点为替换端点：南端交点 117.185267,36.219728（road[23]→[24] 段，兴隆南界与道路的交点），北端交点 117.185188,36.235080（road[35]→[36] 段，兴隆北界与道路的交点）。两端之间整段复用明堂路折线（road[24..35]），两侧学区共用同一对交点与同一条折线，西北角不再向北顶出小尖。替换消除约 4.9 m 宽、1607.5 m² 的重叠带及 0.36 m 缝隙。",
+  "records": [
+    {
+      "recordId": "r-001",
+      "issueId": "overlap-containment:zone_035|zone_040:c5c83105",
+      "zoneId": "zone_040",
+      "action": "replace-with-feature",
+      "featureId": "bf_mingtang_road",
+      "cuts": {
+        "from": [117.1852670374555, 36.219728418077906],
+        "to": [117.18518785218427, 36.23507995231164]
+      },
+      "guards": {
+        "maxCutOffsetM": 3
+      },
+      "expected": {
+        "areaDeltaM2": [-5770, -5750],
+        "pointCount": 48
+      },
+      "ruling": {
+        "basis": "same-feature",
+        "note": "兴隆校区西界、泰前中学东界均写明明堂路，按 D8 第 1 档以该路中线为准，不比较文本详细度。南界、北界与明堂路的交点作为替换端点，中间整段落到中心线上，西界不再保留任何偏离道路的旧顶点。"
+      },
+      "evidence": {
+        "excerpt": "山东省泰安东岳中学兴隆校区：东界：博阳路；西界：明堂路；北界：环山东路；南界：谢过城街。",
+        "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+        "sourceUrl": "http://www.sdtaishan.gov.cn/module/download/downfile.jsp?filename=f7b71722cc194c69ada4d865e256ce1c.pdf"
+      },
+      "confirmedBy": "项目维护者",
+      "confirmedAt": "2026-10-22"
+    },
+    {
+      "recordId": "r-002",
+      "issueId": "overlap-containment:zone_035|zone_040:c5c83105",
+      "zoneId": "zone_035",
+      "action": "replace-with-feature",
+      "featureId": "bf_mingtang_road",
+      "cuts": {
+        "from": [117.1852670374555, 36.219728418077906],
+        "to": [117.18518785218427, 36.23507995231164]
+      },
+      "guards": {
+        "maxCutOffsetM": 3
+      },
+      "expected": {
+        "areaDeltaM2": [5300, 5320],
+        "pointCount": 240
+      },
+      "ruling": {
+        "basis": "same-feature",
+        "note": "泰前中学\"东至明堂路\"与兴隆校区\"西界：明堂路\"同指一条具名界线，以中线为准，不比较详细度；本条东界向西收缩到中线，与 r-001 共用同一对交点与同一条 road[24..35] 折线，替换后两侧逐点共用顶点。"
+      },
+      "evidence": {
+        "excerpt": "泰安市泰山区泰前中学：初中部：北至艾洼小区，南至北上高大街，东至明堂路，西至温泉路。",
+        "sourceName": "泰山区2025年义务教育学校地址及四至范围统计表",
+        "sourceUrl": "http://www.sdtaishan.gov.cn/module/download/downfile.jsp?filename=f7b71722cc194c69ada4d865e256ce1c.pdf"
+      },
+      "confirmedBy": "项目维护者",
+      "confirmedAt": "2026-10-22"
+    }
+  ]
+}

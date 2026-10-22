@@ -136,7 +136,8 @@ export const segmentIntersection = (a, b, c, d) => {
   const oppositeSigns = (x, y) => (x > 0 && y < 0) || (x < 0 && y > 0);
 
   if (oppositeSigns(d1, d2) && oppositeSigns(d3, d4)) {
-    const t = d1 / (d1 - d2);
+    // d3/d4 是 a、b 相对 CD 的符号，比例对应 AB 上的位置，必须在 AB 上插值
+    const t = d3 / (d3 - d4);
     return {
       type: "proper",
       point: [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t],

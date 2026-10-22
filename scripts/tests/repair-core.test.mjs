@@ -1,7 +1,8 @@
 /**
- * repair-core.test.mjs - 修复记录预检与 L1 执行
+ * repair-core.test.mjs - 修复记录预检与 L1/L2 执行
  *
- * 覆盖：分侧锚点替换（首批试点的真实形态）、同锚点经典替换，以及 A5 的各类负例。
+ * 覆盖：分侧锚点替换（首批试点的真实形态）、同锚点经典替换、L2 交点裁剪，
+ * 以及 A5 的各类负例。
  */
 
 import assert from "node:assert/strict";
@@ -75,6 +76,27 @@ const sharedZone = () =>
 const issuesOf = (features) => checkZones(featureCollection(features));
 
 const ZONES_SHA = `sha256:${"0".repeat(64)}`;
+const FEATURES_SHA = `sha256:${"2".repeat(64)}`;
+
+/** 测试骨架线：x = 110 的南北向道路，中间带一个顶点 */
+const roadFeatures = () => ({
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      properties: {
+        featureId: "bf_test_road",
+        name: "测试路",
+        lineType: "道路",
+        geometryStatus: "ready",
+      },
+      geometry: {
+        type: "LineString",
+        coordinates: [point(110, -20), point(110, 50), point(110, 120)],
+      },
+    },
+  ],
+});
 
 const baseRecord = (issueId, overrides = {}) => ({
   recordId: "r-001",
@@ -344,5 +366,147 @@ test("L2 记录缺少骨架线时预检失败", () => {
   const precheck = precheckBatch(batch, context);
   assert.ok(
     precheck.errors.some((item) => item.message.includes("骨架线文件不存在")),
+  );
+});
+
+const l2Batch = (issueId, overrides = {}) => {
+  const batch = baseBatch(issueId, {
+    action: "replace-with-feature",
+    anchors: undefined,
+    referenceZoneId: undefined,
+    referenceAnchors: undefined,
+    featureId: "bf_test_road",
+    cuts: { from: point(110, -10), to: point(110, 110) },
+    guards: { maxCutOffsetM: 0.5 },
+    expected: { areaDeltaM2: [-610, -590], pointCount: 5 },
+    ...overrides,
+  });
+  batch.featuresSha256 = FEATURES_SHA;
+  return batch;
+};
+
+const l2Context = (features, overrides = {}) =>
+  contextOf(features, {
+    referenceFeatures: roadFeatures(),
+    featuresSha256: FEATURES_SHA,
+    ...overrides,
+  });
+
+/** 西界在 x=105，横穿 x=110 的测试路；两交点即道路与上下边界的交点 */
+const cutZone = () =>
+  polygon("zone_b", [
+    point(200, -10),
+    point(105, -10),
+    point(105, 110),
+    point(200, 110),
+  ]);
+
+const ISSUE_OF_CUT_ZONE = () =>
+  issuesOf([referenceZone(), cutZone()]).issues.find((item) =>
+    item.issueId.startsWith("overlap-crossing:zone_a|zone_b"),
+  );
+
+test("L2 交点裁剪：两交点之间的边界整段换成骨架线折线", () => {
+  const features = [referenceZone(), cutZone()];
+  const issue = ISSUE_OF_CUT_ZONE();
+  assert.ok(issue, "夹具应产生两环交叉问题");
+
+  const batch = l2Batch(issue.issueId);
+  const context = l2Context(features);
+  const precheck = precheckBatch(batch, context);
+  assert.deepEqual(precheck.errors, []);
+  assert.equal(precheck.plans[0].ringForward, true);
+  assert.ok(precheck.plans[0].maxCutOffsetM < 0.01);
+
+  const execution = executeBatch(batch, precheck.plans, context);
+  assert.deepEqual(execution.errors, []);
+  assert.deepEqual(execution.diffs[0].featureId, "bf_test_road");
+  assert.equal(execution.diffs[0].ringStartChanged, true);
+
+  const after = execution.candidate.features.find(
+    (feature) => feature.properties.zoneId === "zone_b",
+  );
+  assert.deepEqual(after.geometry.coordinates[0], [
+    point(110, -10),
+    point(110, 50),
+    point(110, 110),
+    point(200, 110),
+    point(200, -10),
+    point(110, -10),
+  ]);
+});
+
+test("L2 交点裁剪：环反向时自动选择另一段弧，结果与正向一致", () => {
+  const reversedZone = () =>
+    polygon("zone_b", [
+      point(200, -10),
+      point(200, 110),
+      point(105, 110),
+      point(105, -10),
+    ]);
+  const features = [referenceZone(), reversedZone()];
+  const issue = ISSUE_OF_CUT_ZONE();
+  assert.ok(issue, "夹具应产生两环交叉问题");
+
+  const batch = l2Batch(issue.issueId);
+  const context = l2Context(features);
+  const precheck = precheckBatch(batch, context);
+  assert.deepEqual(precheck.errors, []);
+  assert.equal(precheck.plans[0].ringForward, false);
+
+  const execution = executeBatch(batch, precheck.plans, context);
+  assert.deepEqual(execution.errors, []);
+
+  const after = execution.candidate.features.find(
+    (feature) => feature.properties.zoneId === "zone_b",
+  );
+  // 环向不变，起点仍是交点，只是从另一侧进入骨架线
+  assert.deepEqual(after.geometry.coordinates[0], [
+    point(110, 110),
+    point(110, 50),
+    point(110, -10),
+    point(200, -10),
+    point(200, 110),
+    point(110, 110),
+  ]);
+});
+
+test("L2 交点裁剪：缺 cuts、交点偏离环/骨架线、缺 maxCutOffsetM 时失败", () => {
+  const features = [referenceZone(), cutZone()];
+  const issue = ISSUE_OF_CUT_ZONE();
+  assert.ok(issue);
+
+  const context = l2Context(features);
+
+  const noCuts = precheckBatch(
+    l2Batch(issue.issueId, { cuts: undefined }),
+    context,
+  );
+  assert.ok(noCuts.errors.some((item) => item.message.includes("cuts 必须")));
+
+  const offRing = precheckBatch(
+    l2Batch(issue.issueId, {
+      cuts: { from: point(90, 0), to: point(110, 100) },
+    }),
+    context,
+  );
+  assert.ok(offRing.errors.some((item) => item.message.includes("距环")));
+
+  const offFeature = precheckBatch(
+    l2Batch(issue.issueId, {
+      cuts: { from: point(105, 0), to: point(110, 110) },
+    }),
+    context,
+  );
+  assert.ok(
+    offFeature.errors.some((item) => item.message.includes("距骨架线")),
+  );
+
+  const noGuard = precheckBatch(
+    l2Batch(issue.issueId, { guards: {} }),
+    context,
+  );
+  assert.ok(
+    noGuard.errors.some((item) => item.message.includes("maxCutOffsetM")),
   );
 });

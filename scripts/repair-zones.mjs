@@ -201,13 +201,16 @@ const main = () => {
     }
 
     for (const diff of execution.diffs) {
-      const deviation =
-        diff.maxDeviationM === null ? "" : `  最大偏离 ${diff.maxDeviationM} m`;
+      const detail =
+        diff.maxDeviationM !== null
+          ? `  最大偏离 ${diff.maxDeviationM} m`
+          : `  骨架线 ${diff.featureId}  交点偏移 ≤ ${diff.cutOffsetM} m`;
+      const start = diff.ringStartChanged ? "  环起点变动" : "";
       console.log(
         `  ${diff.recordId} ${diff.zoneId} ${diff.action}  ` +
           `面积 ${formatM2(diff.areaBeforeM2)} → ${formatM2(diff.areaAfterM2)} m²` +
           `（${diff.areaDeltaM2 >= 0 ? "+" : ""}${formatM2(diff.areaDeltaM2)}）  ` +
-          `顶点 ${diff.pointCountBefore} → ${diff.pointCountAfter}${deviation}`,
+          `顶点 ${diff.pointCountBefore} → ${diff.pointCountAfter}${detail}${start}`,
       );
     }
     console.log(`  地址归属变化: ${execution.addressChanges.length} 条`);

@@ -6,6 +6,7 @@
  */
 
 import {
+  metersPerDegree,
   pointInRing,
   pointToPolylineDistanceM,
   ringAreaM2,
@@ -529,6 +530,97 @@ const checkL1 = (record, context, errors) => {
   };
 };
 
+/**
+ * 骨架线上的交点裁剪（replace-with-feature）
+ * 与 L1 的区别：L2 的端点是"环边 × 骨架线"的交点，是记录里写明的精确坐标；
+ * 中间整段复用骨架线折线，因此会引入新坐标，且两侧学区共用同一交点与同一条折线。
+ */
+
+/** 点到折线的最近点：返回段号、段内参数与偏移（米） */
+const nearestOnPolyline = (line, target) => {
+  if (!Array.isArray(line) || line.length < 2) return null;
+  let best = null;
+  for (let seg = 0; seg < line.length - 1; seg += 1) {
+    const a = line[seg];
+    const b = line[seg + 1];
+    const { lng, lat } = metersPerDegree((target[1] + a[1] + b[1]) / 3);
+    const bx = (b[0] - a[0]) * lng;
+    const by = (b[1] - a[1]) * lat;
+    const px = (target[0] - a[0]) * lng;
+    const py = (target[1] - a[1]) * lat;
+    const lengthSquared = bx * bx + by * by;
+    const t =
+      lengthSquared === 0
+        ? 0
+        : Math.max(0, Math.min(1, (px * bx + py * by) / lengthSquared));
+    const offsetM = Math.hypot(px - t * bx, py - t * by);
+    if (!best || offsetM < best.offsetM) best = { seg, t, offsetM };
+  }
+  return best;
+};
+
+/** 点到环（闭合折线）的最近点：seg 为边的起点下标 */
+const nearestOnRing = (points, target) => {
+  const count = points.length;
+  let best = null;
+  for (let seg = 0; seg < count; seg += 1) {
+    const near = nearestOnPolyline(
+      [points[seg], points[(seg + 1) % count]],
+      target,
+    );
+    if (!near) continue;
+    if (!best || near.offsetM < best.offsetM) {
+      best = { seg, t: near.t, offsetM: near.offsetM };
+    }
+  }
+  return best;
+};
+
+/** 骨架线上的位置；落在顶点上时吸附为整数，避免同一顶点被当成两段的中点 */
+const featurePosition = (line, cut) => {
+  const near = nearestOnPolyline(line, cut);
+  if (!near) return null;
+  if (near.t < 1e-9) return { order: near.seg, offsetM: near.offsetM };
+  if (near.t > 1 - 1e-9) {
+    return { order: near.seg + 1, offsetM: near.offsetM };
+  }
+  return { order: near.seg + near.t, offsetM: near.offsetM };
+};
+
+/** 沿环按分数位置取弧：从 startPos 前进 distance，返回途经顶点（不含两端） */
+const arcVertices = (points, startPos, distance) => {
+  const count = points.length;
+  const entries = [];
+  for (let i = 0; i < count; i += 1) {
+    const offset = (i - startPos + count) % count;
+    if (offset > 0 && offset < distance)
+      entries.push({ offset, point: points[i] });
+  }
+  entries.sort((a, b) => a.offset - b.offset);
+  return entries.map((entry) => entry.point);
+};
+
+/** 骨架线在两个交点之间的顶点（不含交点本身），按 from→to 的顺序 */
+const interiorBetween = (line, fromOrder, toOrder) => {
+  const low = Math.min(fromOrder, toOrder);
+  const high = Math.max(fromOrder, toOrder);
+  const indices = [];
+  for (let i = 0; i < line.length; i += 1) {
+    if (i > low && i < high) indices.push(i);
+  }
+  if (fromOrder > toOrder) indices.reverse();
+  return indices.map((i) => line[i]);
+};
+
+/** 候选环弧上各顶点到骨架线折线的最大距离 */
+const arcDeviationM = (arc, line) => {
+  let max = 0;
+  for (const point of arc) {
+    max = Math.max(max, pointToPolylineDistanceM(point, line));
+  }
+  return max;
+};
+
 const checkL2 = (record, context, errors) => {
   const { recordId } = record;
   if (typeof record.featureId !== "string") {
@@ -564,52 +656,113 @@ const checkL2 = (record, context, errors) => {
     return null;
   }
 
+  if (
+    !isObject(record.guards) ||
+    !isFiniteNumber(record.guards.maxCutOffsetM)
+  ) {
+    pushError(errors, recordId, "L2 记录必须提供 guards.maxCutOffsetM");
+    return null;
+  }
+  if (record.guards.maxCutOffsetM < 0) {
+    pushError(errors, recordId, "guards.maxCutOffsetM 不能为负数");
+    return null;
+  }
+  const toleranceM = record.guards.maxCutOffsetM;
+
+  if (
+    !isObject(record.cuts) ||
+    !isCoord(record.cuts.from) ||
+    !isCoord(record.cuts.to)
+  ) {
+    pushError(
+      errors,
+      recordId,
+      "cuts 必须是 { from: [经度, 纬度], to: [经度, 纬度] }（环边与骨架线的交点）",
+    );
+    return null;
+  }
+  if (coordEq(record.cuts.from, record.cuts.to)) {
+    pushError(errors, recordId, "cuts 的 from 与 to 不能是同一坐标");
+    return null;
+  }
+
   const target = ringOf(context.zones.get(record.zoneId));
   if (!target) {
     pushError(errors, recordId, `被修改学区几何不可编辑：${record.zoneId}`);
     return null;
   }
-  const targetAnchors = locateAnchors(
-    target.points,
-    record.anchors,
-    "anchors",
-    recordId,
-    errors,
-  );
-  if (!targetAnchors) return null;
-
   const line = feature.geometry.coordinates ?? [];
-  const lineAnchors = locateAnchors(
-    line,
-    record.anchors,
-    "anchors（骨架线）",
-    recordId,
-    errors,
-  );
-  if (!lineAnchors) return null;
+  if (line.length < 2) {
+    pushError(errors, recordId, `骨架线没有有效坐标：${record.featureId}`);
+    return null;
+  }
 
-  if (Math.min(targetAnchors.from, targetAnchors.to) === 0) {
+  const located = {};
+  const featureOrders = {};
+  let maxCutOffsetM = 0;
+  for (const side of ["from", "to"]) {
+    const cut = record.cuts[side];
+    const onRing = nearestOnRing(target.points, cut);
+    if (!onRing) {
+      pushError(errors, recordId, `无法定位 cuts.${side}：环顶点不足`);
+      return null;
+    }
+    if (onRing.offsetM > toleranceM) {
+      pushError(
+        errors,
+        recordId,
+        `cuts.${side} 距环 ${onRing.offsetM.toFixed(2)} m，超过 guards.maxCutOffsetM ${toleranceM} m`,
+      );
+      return null;
+    }
+    const onFeature = featurePosition(line, cut);
+    if (!onFeature || onFeature.offsetM > toleranceM) {
+      pushError(
+        errors,
+        recordId,
+        `cuts.${side} 距骨架线 ${(onFeature?.offsetM ?? Number.NaN).toFixed(2)} m，超过 guards.maxCutOffsetM ${toleranceM} m`,
+      );
+      return null;
+    }
+    located[side] = onRing;
+    featureOrders[side] = onFeature.order;
+    maxCutOffsetM = Math.max(maxCutOffsetM, onRing.offsetM, onFeature.offsetM);
+  }
+
+  if (located.from.seg === located.to.seg) {
     pushError(
       errors,
       recordId,
-      "被替换子路径包含环首点（ring[0]），v1 不支持；请调整记录锚点或数据起点",
+      "两个交点落在同一条环边上，v1 不支持；请检查交点坐标",
     );
     return null;
   }
 
-  const forward = lineAnchors.from < lineAnchors.to;
-  const referenceRun = arcOf(line, lineAnchors.from, lineAnchors.to, forward);
-  if (referenceRun.length < 2) {
-    pushError(errors, recordId, "骨架线在两锚点之间没有边");
+  const featureInterior = interiorBetween(
+    line,
+    featureOrders.from,
+    featureOrders.to,
+  );
+  const run = [record.cuts.from, ...featureInterior, record.cuts.to];
+
+  // 两个交点把环分成两段，取更贴近骨架线的一段替换；另一端原样保留
+  const count = target.points.length;
+  const fromPos = located.from.seg + located.from.t;
+  const toPos = located.to.seg + located.to.t;
+  const forwardDistance = (toPos - fromPos + count) % count;
+  const forwardArc = arcVertices(target.points, fromPos, forwardDistance);
+  const backwardArc = arcVertices(
+    target.points,
+    toPos,
+    count - forwardDistance,
+  );
+  const ringForward =
+    arcDeviationM(forwardArc, run) <= arcDeviationM(backwardArc, run);
+  if (forwardDistance < 1e-9 || count - forwardDistance < 1e-9) {
+    pushError(errors, recordId, "两个交点在环上位置重合，无法裁剪");
     return null;
   }
 
-  const targetRun = arcOf(
-    target.points,
-    targetAnchors.from,
-    targetAnchors.to,
-    targetAnchors.from < targetAnchors.to,
-  );
   return {
     recordId,
     action: record.action,
@@ -617,12 +770,14 @@ const checkL2 = (record, context, errors) => {
     featureId: record.featureId,
     issueId: record.issueId,
     expected: record.expected,
-    forward: targetAnchors.from < targetAnchors.to,
-    fromIndex: targetAnchors.from,
-    toIndex: targetAnchors.to,
-    targetRun,
-    zoneAnchors: { from: targetRun[0], to: targetRun[targetRun.length - 1] },
-    referenceRun,
+    cuts: { from: record.cuts.from, to: record.cuts.to },
+    featureInterior,
+    ringForward,
+    cutToleranceM: toleranceM,
+    maxCutOffsetM,
+    fromIndex: located.from.seg,
+    toIndex: located.to.seg,
+    targetRun: run,
   };
 };
 
@@ -720,7 +875,7 @@ export const precheckBatch = (batch, context = {}) => {
   return { errors, warnings, plans };
 };
 
-/** 按计划替换一个环；返回新环（含闭合点）与被替换区间 */
+/** L1：按环顶点区间替换；返回新环（含闭合点） */
 const spliceRing = (plan, points) => {
   const { forward, fromIndex, toIndex, referenceRun } = plan;
   const replacement = forward ? referenceRun : [...referenceRun].reverse();
@@ -741,6 +896,26 @@ const spliceRing = (plan, points) => {
     points: next,
     ring: [...next, next[0]],
   };
+};
+
+/** L2：用两个交点裁掉环上的一段，中间整段换成骨架线折线 */
+const spliceCutRing = (plan, points, located) => {
+  const { cuts, featureInterior, ringForward } = plan;
+  const count = points.length;
+  const fromPos = located.from.seg + located.from.t;
+  const toPos = located.to.seg + located.to.t;
+  const forwardDistance = (toPos - fromPos + count) % count;
+
+  // 环是定向的：替换段必须按环的前进方向书写，否则环绕向会翻转
+  if (ringForward) {
+    const kept = arcVertices(points, toPos, count - forwardDistance);
+    const next = [cuts.from, ...featureInterior, cuts.to, ...kept];
+    return { points: next, ring: [...next, next[0]] };
+  }
+
+  const kept = arcVertices(points, fromPos, forwardDistance);
+  const next = [cuts.to, ...[...featureInterior].reverse(), cuts.from, ...kept];
+  return { points: next, ring: [...next, next[0]] };
 };
 
 const deepClone = (value) => JSON.parse(JSON.stringify(value));
@@ -784,15 +959,6 @@ export const executeBatch = (batch, plans, context = {}) => {
   );
 
   for (const plan of sorted) {
-    if (plan.action === "replace-with-feature") {
-      pushError(
-        errors,
-        plan.recordId,
-        "L2（replace-with-feature）预检已通过，执行将在 M4 启用",
-      );
-      continue;
-    }
-
     const feature = candidate.features.find(
       (item) => item.properties?.zoneId === plan.zoneId,
     );
@@ -802,27 +968,57 @@ export const executeBatch = (batch, plans, context = {}) => {
       continue;
     }
 
-    // 同一批次内前序记录可能改变下标，按锚点坐标重新定位
-    const located = locateAnchors(
-      current.points,
-      plan.zoneAnchors,
-      "anchors（执行）",
-      plan.recordId,
-      errors,
-    );
-    if (!located) continue;
-
-    const executionPlan = {
-      ...plan,
-      forward: located.from < located.to,
-      fromIndex: located.from,
-      toIndex: located.to,
-    };
-
     const beforeArea = ringAreaM2(current.ring);
     const beforeCount = current.points.length;
     const beforeSign = Math.sign(ringSignedAreaM2(current.ring));
-    const { points, ring } = spliceRing(executionPlan, current.points);
+
+    let spliced;
+    if (plan.action === "replace-with-feature") {
+      // 同一批次内前序记录可能改变环下标，交点按坐标重新定位
+      const locatedCuts = {};
+      for (const side of ["from", "to"]) {
+        const near = nearestOnRing(current.points, plan.cuts[side]);
+        if (!near || near.offsetM > plan.cutToleranceM) {
+          pushError(
+            errors,
+            plan.recordId,
+            `执行时 cuts.${side} 距环 ${near ? near.offsetM.toFixed(2) : "未知"} m，超过 guards.maxCutOffsetM ${plan.cutToleranceM} m`,
+          );
+          break;
+        }
+        locatedCuts[side] = near;
+      }
+      if (!locatedCuts.from || !locatedCuts.to) continue;
+      if (locatedCuts.from.seg === locatedCuts.to.seg) {
+        pushError(
+          errors,
+          plan.recordId,
+          "执行时两个交点落在同一条环边上，拒绝生成候选",
+        );
+        continue;
+      }
+      spliced = spliceCutRing(plan, current.points, locatedCuts);
+    } else {
+      // 同一批次内前序记录可能改变下标，按锚点坐标重新定位
+      const located = locateAnchors(
+        current.points,
+        plan.zoneAnchors,
+        "anchors（执行）",
+        plan.recordId,
+        errors,
+      );
+      if (!located) continue;
+      spliced = spliceRing(
+        {
+          ...plan,
+          forward: located.from < located.to,
+          fromIndex: located.from,
+          toIndex: located.to,
+        },
+        current.points,
+      );
+    }
+    const { points, ring } = spliced;
 
     const afterArea = ringAreaM2(ring);
     const deltaArea = afterArea - beforeArea;
@@ -858,6 +1054,7 @@ export const executeBatch = (batch, plans, context = {}) => {
       recordId: plan.recordId,
       zoneId: plan.zoneId,
       referenceZoneId: plan.referenceZoneId ?? null,
+      featureId: plan.featureId ?? null,
       action: plan.action,
       issueId: plan.issueId,
       areaBeforeM2: Number(beforeArea.toFixed(2)),
@@ -865,11 +1062,20 @@ export const executeBatch = (batch, plans, context = {}) => {
       areaDeltaM2: Number(deltaArea.toFixed(2)),
       pointCountBefore: beforeCount,
       pointCountAfter: points.length,
+      ringStartChanged: vertexKey(current.points[0]) !== vertexKey(points[0]),
       maxDeviationM:
         plan.maxDeviationM === undefined
           ? null
           : Number(plan.maxDeviationM.toFixed(2)),
-      changedBbox: bboxOf([...plan.targetRun, ...plan.referenceRun]),
+      cutOffsetM:
+        plan.maxCutOffsetM === undefined
+          ? null
+          : Number(plan.maxCutOffsetM.toFixed(2)),
+      changedBbox: bboxOf(
+        plan.action === "replace-with-feature"
+          ? plan.targetRun
+          : [...plan.targetRun, ...plan.referenceRun],
+      ),
     });
   }
 
