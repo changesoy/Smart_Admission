@@ -5,8 +5,8 @@
   "files": [
     {
       "name": "zones.geojson",
-      "bytes": 81698,
-      "sha256": "f8c4e11d46c1d8d728536abe0fdce1ce2f79e7f0f4c23f716b5059c966b791ec"
+      "bytes": 151613,
+      "sha256": "57794f2384461ea272dda028716f5472dbd9c37e80aa0b7381d17443d89ae8e6"
     },
     {
       "name": "roads.geojson",
