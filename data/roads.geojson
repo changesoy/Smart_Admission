@@ -1972,263 +1972,6 @@
       "type": "Feature",
       "properties": {
         "roadId": "road_014",
-        "name": "环山东路",
-        "type": "道路",
-        "important": true,
-        "label": false,
-        "dataStatus": "osm",
-        "note": "四至范围涉及的边界道路;坐标取自 OpenStreetMap(或历史 OSM 抓取),上下行双线已并为中心线,剔除立交匝道与环岛。 (© OpenStreetMap contributors, ODbL)"
-      },
-      "geometry": {
-        "type": "MultiLineString",
-        "coordinates": [
-          [
-            [
-              117.134457,
-              36.206345
-            ],
-            [
-              117.136509,
-              36.208041
-            ],
-            [
-              117.13831,
-              36.208846
-            ],
-            [
-              117.138899,
-              36.209015
-            ],
-            [
-              117.140479,
-              36.20933
-            ],
-            [
-              117.140776,
-              36.209503
-            ],
-            [
-              117.140974,
-              36.209767
-            ],
-            [
-              117.141484,
-              36.210775
-            ],
-            [
-              117.141578,
-              36.211101
-            ],
-            [
-              117.141552,
-              36.212961
-            ],
-            [
-              117.141729,
-              36.213414
-            ],
-            [
-              117.141942,
-              36.213677
-            ],
-            [
-              117.142174,
-              36.213891
-            ],
-            [
-              117.142459,
-              36.214062
-            ],
-            [
-              117.144691,
-              36.215024
-            ],
-            [
-              117.145197,
-              36.215431
-            ],
-            [
-              117.146239,
-              36.216755
-            ],
-            [
-              117.146449,
-              36.216939
-            ],
-            [
-              117.148015,
-              36.217798
-            ],
-            [
-              117.14897,
-              36.218149
-            ],
-            [
-              117.14975,
-              36.218491
-            ],
-            [
-              117.150244,
-              36.218816
-            ],
-            [
-              117.1507,
-              36.219191
-            ],
-            [
-              117.151186,
-              36.220226
-            ],
-            [
-              117.151767,
-              36.22082
-            ],
-            [
-              117.151847,
-              36.221002
-            ],
-            [
-              117.151817,
-              36.221636
-            ],
-            [
-              117.151967,
-              36.222071
-            ],
-            [
-              117.152321,
-              36.22271
-            ],
-            [
-              117.152959,
-              36.224503
-            ],
-            [
-              117.153158,
-              36.224799
-            ],
-            [
-              117.153488,
-              36.225097
-            ],
-            [
-              117.153853,
-              36.225306
-            ],
-            [
-              117.154314,
-              36.225475
-            ],
-            [
-              117.157014,
-              36.226337
-            ],
-            [
-              117.158266,
-              36.226625
-            ],
-            [
-              117.159172,
-              36.22667
-            ],
-            [
-              117.159819,
-              36.226787
-            ],
-            [
-              117.160359,
-              36.226979
-            ],
-            [
-              117.161158,
-              36.227389
-            ],
-            [
-              117.161483,
-              36.227498
-            ],
-            [
-              117.162395,
-              36.227686
-            ],
-            [
-              117.164143,
-              36.228195
-            ],
-            [
-              117.164691,
-              36.228268
-            ],
-            [
-              117.166457,
-              36.228337
-            ],
-            [
-              117.166914,
-              36.228428
-            ],
-            [
-              117.169258,
-              36.229122
-            ],
-            [
-              117.170181,
-              36.22923
-            ],
-            [
-              117.172585,
-              36.22928
-            ]
-          ],
-          [
-            [
-              117.103979,
-              36.206416
-            ],
-            [
-              117.106156,
-              36.206242
-            ],
-            [
-              117.108433,
-              36.205785
-            ],
-            [
-              117.109146,
-              36.20573
-            ],
-            [
-              117.11044,
-              36.20588
-            ],
-            [
-              117.111964,
-              36.206224
-            ],
-            [
-              117.11377,
-              36.206257
-            ],
-            [
-              117.114464,
-              36.206316
-            ],
-            [
-              117.118454,
-              36.207216
-            ],
-            [
-              117.119351,
-              36.207297
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "roadId": "road_015",
         "name": "文化路",
         "type": "道路",
         "important": true,
@@ -2275,7 +2018,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_016",
+        "roadId": "road_015",
         "name": "龙潭路",
         "type": "道路",
         "important": true,
@@ -2464,7 +2207,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_017",
+        "roadId": "road_016",
         "name": "红门路",
         "type": "道路",
         "important": true,
@@ -2515,7 +2258,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_018",
+        "roadId": "road_017",
         "name": "长城路",
         "type": "道路",
         "important": true,
@@ -2624,7 +2367,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_019",
+        "roadId": "road_018",
         "name": "温泉路",
         "type": "道路",
         "important": true,
@@ -2719,7 +2462,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_020",
+        "roadId": "road_019",
         "name": "虎山路",
         "type": "道路",
         "important": true,
@@ -2830,7 +2573,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_021",
+        "roadId": "road_020",
         "name": "虎山东路",
         "type": "道路",
         "important": true,
@@ -2873,7 +2616,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_022",
+        "roadId": "road_021",
         "name": "迎春路",
         "type": "道路",
         "important": true,
@@ -2912,7 +2655,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_023",
+        "roadId": "road_022",
         "name": "青年路",
         "type": "道路",
         "important": true,
@@ -2971,7 +2714,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_024",
+        "roadId": "road_023",
         "name": "傲徕峰路",
         "type": "道路",
         "important": true,
@@ -3014,7 +2757,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_025",
+        "roadId": "road_024",
         "name": "科山路",
         "type": "道路",
         "important": true,
@@ -3053,7 +2796,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_026",
+        "roadId": "road_025",
         "name": "校场街",
         "type": "道路",
         "important": true,
@@ -3100,7 +2843,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_027",
+        "roadId": "road_026",
         "name": "通天街",
         "type": "道路",
         "important": true,
@@ -3135,7 +2878,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_028",
+        "roadId": "road_027",
         "name": "岱道庵路",
         "type": "道路",
         "important": true,
@@ -3206,7 +2949,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_029",
+        "roadId": "road_028",
         "name": "天烛峰路",
         "type": "道路",
         "important": true,
@@ -3257,7 +3000,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_030",
+        "roadId": "road_029",
         "name": "明堂路",
         "type": "道路",
         "important": true,
@@ -3328,7 +3071,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_031",
+        "roadId": "road_030",
         "name": "博阳路",
         "type": "道路",
         "important": true,
@@ -3459,7 +3202,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_032",
+        "roadId": "road_031",
         "name": "佳苑路",
         "type": "道路",
         "important": true,
@@ -3498,7 +3241,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_033",
+        "roadId": "road_032",
         "name": "迎胜路",
         "type": "道路",
         "important": true,
@@ -3671,7 +3414,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_034",
+        "roadId": "road_033",
         "name": "迎胜东路",
         "type": "道路",
         "important": true,
@@ -3726,7 +3469,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_035",
+        "roadId": "road_034",
         "name": "万官大街",
         "type": "道路",
         "important": true,
@@ -4039,7 +3782,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_036",
+        "roadId": "road_035",
         "name": "梅山东路",
         "type": "道路",
         "important": true,
@@ -4090,7 +3833,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_037",
+        "roadId": "road_036",
         "name": "御碑楼路",
         "type": "道路",
         "important": true,
@@ -4157,7 +3900,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_038",
+        "roadId": "road_037",
         "name": "仰圣街",
         "type": "道路",
         "important": true,
@@ -4184,7 +3927,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_039",
+        "roadId": "road_038",
         "name": "岱庙北街",
         "type": "道路",
         "important": true,
@@ -4211,7 +3954,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_040",
+        "roadId": "road_039",
         "name": "花园路",
         "type": "道路",
         "important": true,
@@ -4270,7 +4013,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_041",
+        "roadId": "road_040",
         "name": "望岳东路",
         "type": "道路",
         "important": true,
@@ -4357,7 +4100,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_042",
+        "roadId": "road_041",
         "name": "望岳西路",
         "type": "道路",
         "important": true,
@@ -4464,7 +4207,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_043",
+        "roadId": "road_042",
         "name": "康复路",
         "type": "道路",
         "important": true,
@@ -4499,7 +4242,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_044",
+        "roadId": "road_043",
         "name": "普照寺路",
         "type": "道路",
         "important": true,
@@ -4542,7 +4285,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_045",
+        "roadId": "road_044",
         "name": "罗汉崖路",
         "type": "道路",
         "important": true,
@@ -4705,7 +4448,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_046",
+        "roadId": "road_045",
         "name": "泰山大桥",
         "type": "道路",
         "important": true,
@@ -4736,7 +4479,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_047",
+        "roadId": "road_046",
         "name": "唐王街",
         "type": "道路",
         "important": true,
@@ -4797,7 +4540,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_048",
+        "roadId": "road_047",
         "name": "紫欣园路",
         "type": "道路",
         "important": true,
@@ -4852,7 +4595,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_049",
+        "roadId": "road_048",
         "name": "三里大街",
         "type": "道路",
         "important": true,
@@ -4903,7 +4646,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_050",
+        "roadId": "road_049",
         "name": "梳洗河",
         "type": "河流",
         "important": true,
@@ -5218,7 +4961,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_051",
+        "roadId": "road_050",
         "name": "双龙河",
         "type": "河流",
         "important": true,
@@ -5701,7 +5444,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_052",
+        "roadId": "road_051",
         "name": "奈河",
         "type": "河流",
         "important": true,
@@ -6300,7 +6043,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_053",
+        "roadId": "road_052",
         "name": "泮汶河",
         "type": "河流",
         "important": true,
@@ -6407,7 +6150,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_054",
+        "roadId": "road_053",
         "name": "明堂河",
         "type": "河流",
         "important": true,
@@ -6778,7 +6521,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_055",
+        "roadId": "road_054",
         "name": "京沪线",
         "type": "铁路",
         "important": true,
@@ -7237,7 +6980,7 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_056",
+        "roadId": "road_055",
         "name": "辛泰线",
         "type": "铁路",
         "important": true,
