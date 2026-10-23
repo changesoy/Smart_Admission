@@ -45,7 +45,9 @@ const MapService = (() => {
   let _onNoMatch = null;
   let _visibleStages = { 初中: true, 小学: true };
   let _roadsLayer = null;
+  let _districtLayer = null;
   const ROAD_PANE = "roadPane";
+  const DISTRICT_PANE = "districtPane";
 
   /** 获取 Feature 的学段,默认"初中" */
   const getFeatureStage = (feature) =>
@@ -150,6 +152,7 @@ const MapService = (() => {
       console.warn("学区数据为空,仅显示底图");
     }
 
+    renderDistrict((params && params.district) || null);
     renderRoads((params && params.roads) || null);
 
     _map.on("click", (e) => {
@@ -209,12 +212,37 @@ const MapService = (() => {
 
   /** 根据要素属性返回道路/河流/铁路的 Leaflet Path 样式 */
   const getRoadStyle = (feature) => {
-    const type = (feature.properties && feature.properties.type) || "道路";
+    const props = (feature && feature.properties) || {};
     const cfg = AppConfig.roadStyle;
-    if (type === "河流") return cfg.river;
-    if (type === "铁路") return cfg.rail;
-    const important = !!(feature.properties && feature.properties.important);
-    return important ? cfg.road.important : cfg.road.normal;
+    if (props.type === "河流") return cfg.river;
+    if (props.type === "铁路") return cfg.rail;
+    if (props.important === true) return cfg.road.important;
+    const cls = props.highway || "";
+    // 次干路与支路分两档:路网补全后仍能一眼分出主次
+    if (
+      ["motorway", "trunk", "primary", "secondary", "tertiary"].some((k) =>
+        cls.startsWith(k),
+      )
+    ) {
+      return cfg.road.normal;
+    }
+    return cfg.road.minor;
+  };
+
+  /** 渲染泰山区行政边界:虚线常显,位于学区色块之上、道路之下且不拦截点击 */
+  const renderDistrict = (fc) => {
+    if (!_map || !fc || !fc.features || fc.features.length === 0) return;
+    if (!_map.getPane(DISTRICT_PANE)) {
+      const pane = _map.createPane(DISTRICT_PANE);
+      pane.style.zIndex = 440;
+      pane.style.pointerEvents = "none";
+    }
+    _districtLayer = L.geoJSON(fc, {
+      pane: DISTRICT_PANE,
+      interactive: false,
+      style: () => AppConfig.districtStyle,
+    });
+    _districtLayer.addTo(_map);
   };
 
   /** 渲染边界道路图层:浮于学区色块之上且不拦截地图点击,主干道常显名称标签 */
@@ -225,28 +253,28 @@ const MapService = (() => {
       pane.style.zIndex = 450;
       pane.style.pointerEvents = "none";
     }
+    // 路网为数百条多段线,统一走 canvas 渲染,避免 SVG 节点过多导致卡顿
+    const roadRenderer = L.canvas({ pane: ROAD_PANE, padding: 0.5 });
     const group = L.layerGroup();
     fc.features.forEach((feature) => {
-      // 跳过灰色次要街道:仅保留主干道(金色)、河流(蓝)、铁路
-      if (
-        feature.properties &&
-        feature.properties.type === "道路" &&
-        feature.properties.important !== true
-      ) {
-        return;
-      }
       const style = getRoadStyle(feature);
       const geoLayer = L.geoJSON(feature, {
         style: () => style,
         pane: ROAD_PANE,
+        renderer: roadRenderer,
+        interactive: false,
       });
       const name =
         feature.properties && feature.properties.name
           ? feature.properties.name
           : null;
-      const important = !!(feature.properties && feature.properties.important);
+      // 路名标签只给干线性道路(label 由数据侧给出),避免标签铺满地图
+      const label =
+        feature.properties && feature.properties.label !== undefined
+          ? !!feature.properties.label
+          : !!(feature.properties && feature.properties.important);
       geoLayer.eachLayer((layer) => {
-        if (name && important) {
+        if (name && label) {
           layer.bindTooltip(name, {
             permanent: true,
             direction: "center",

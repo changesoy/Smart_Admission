@@ -9,10 +9,11 @@
  *
  * 关键接口:
  *   loadAllData() → Promise<Object>
- *     返回结构: { dataVersion, zones, schools, policies, faq, contacts,
+ *     返回结构: { dataVersion, zones, district, schools, policies, faq, contacts,
  *                 policyDiff, addressPoints, keywordsIndex, zonesHistory, rumors }
  *     - dataVersion: 本次加载的数据版本号,取自 data/current.json
  *     - zones: GeoJSON FeatureCollection (学区多边形)
+ *     - district: GeoJSON FeatureCollection (泰山区行政边界,单要素)
  *     - 其余: 普通 JSON 数组或对象
  *
  * 依赖: ./config.js 导出的 AppConfig.dataRelease(版本入口)与 AppConfig.dataPaths(文件名映射)。
@@ -26,6 +27,7 @@ const DataService = (() => {
 
   /** 可选数据键名及其降级默认值,加载失败仅 console.warn 并使用默认值 */
   const optionalDefaults = {
+    district: { type: "FeatureCollection", features: [] },
     roads: { type: "FeatureCollection", features: [] },
     faq: [],
     contacts: [],

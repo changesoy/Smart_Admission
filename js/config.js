@@ -56,6 +56,7 @@ const AppConfig = {
    */
   dataPaths: {
     zones: "zones.geojson",
+    district: "district.geojson",
     roads: "roads.geojson",
     schools: "schools.json",
     policies: "policies.json",
@@ -113,14 +114,25 @@ const AppConfig = {
     },
   },
 
-  /** 边界道路图层样式:按要素 type(道路/河流/铁路)与 important 分组 */
+  /** 边界道路图层样式:主路(金) / 次干路(浅金) / 支路(浅灰) / 河流 / 铁路 */
   roadStyle: {
     road: {
       important: { color: "#c9a227", weight: 4 },
-      normal: { color: "#8a817c", weight: 2 },
+      normal: { color: "#d9b45a", weight: 2.4 },
+      /** 支路(住宅区/生活街区等):更细更浅,保证路网完整但不抢视觉 */
+      minor: { color: "#c8c2bd", weight: 1.2 },
     },
     river: { color: "#0ea5e9", weight: 3 },
     rail: { color: "#57534e", weight: 2, dashArray: "8 5" },
+  },
+
+  /** 区界图层样式:泰山区行政边界,虚线常显、不填充、不拦截地图点击 */
+  districtStyle: {
+    color: "#b91c1c",
+    weight: 3,
+    dashArray: "10 6",
+    fill: false,
+    interactive: false,
   },
 
   /**

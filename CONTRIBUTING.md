@@ -163,6 +163,7 @@ export default XxxService;
 | 数据文件               | 加载模块           | 格式                      |
 | ---------------------- | ------------------ | ------------------------- |
 | `zones.geojson`        | MapService         | GeoJSON FeatureCollection |
+| `district.geojson`     | MapService         | GeoJSON FeatureCollection |
 | `roads.geojson`        | MapService         | GeoJSON FeatureCollection |
 | `schools.json`         | RenderService      | JSON Array                |
 | `policies.json`        | PolicyService      | JSON Array                |

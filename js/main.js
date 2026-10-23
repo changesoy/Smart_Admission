@@ -110,6 +110,7 @@ const bootstrapPage = (data) => {
   safeInit("MapService", () => {
     MapService.initMap({
       zones: data.zones,
+      district: data.district,
       roads: data.roads,
       schools: data.schools,
       policies: data.policies,
