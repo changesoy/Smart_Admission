@@ -112,7 +112,7 @@ data/current.json ──► version ──► data/releases/<version>/ ──►
 | ---------------------- | ------------------------------------- | ---------------------------- |
 | `zones.geojson`        | 学区边界 Polygon (FeatureCollection)  | MapService, RenderService    |
 | `district.geojson`     | 泰山区行政边界 Polygon（单要素，虚线常显） | MapService                |
-| `roads.geojson`        | 道路/河流/铁路 MultiLineString（上下行双线已并为中心线、裁剪到区界） | MapService |
+| `roads.geojson`        | 四至范围涉及的道路/河流/铁路 MultiLineString（双线并中心线、剔除立交匝道与环岛、裁剪到区界） | MapService |
 | `schools.json`         | 学校信息（名称/地址/电话/区县/类型）  | RenderService                |
 | `policies.json`        | 招生政策列表                          | PolicyService, RenderService |
 | `policy_diff.json`     | 政策年度对比数据                      | PolicyService                |

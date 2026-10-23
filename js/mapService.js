@@ -245,7 +245,7 @@ const MapService = (() => {
     _districtLayer.addTo(_map);
   };
 
-  /** 渲染边界道路图层:浮于学区色块之上且不拦截地图点击,主干道常显名称标签 */
+  /** 渲染边界道路图层:浮于学区色块之上且不拦截地图点击;路名由底图提供,不再自绘标签 */
   const renderRoads = (fc) => {
     if (!_map || !fc || !fc.features || fc.features.length === 0) return;
     if (!_map.getPane(ROAD_PANE)) {
@@ -263,24 +263,6 @@ const MapService = (() => {
         pane: ROAD_PANE,
         renderer: roadRenderer,
         interactive: false,
-      });
-      const name =
-        feature.properties && feature.properties.name
-          ? feature.properties.name
-          : null;
-      // 路名标签只给干线性道路(label 由数据侧给出),避免标签铺满地图
-      const label =
-        feature.properties && feature.properties.label !== undefined
-          ? !!feature.properties.label
-          : !!(feature.properties && feature.properties.important);
-      geoLayer.eachLayer((layer) => {
-        if (name && label) {
-          layer.bindTooltip(name, {
-            permanent: true,
-            direction: "center",
-            className: "road-label",
-          });
-        }
       });
       group.addLayer(geoLayer);
     });
