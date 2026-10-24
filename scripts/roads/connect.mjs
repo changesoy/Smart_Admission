@@ -38,6 +38,21 @@ const dd = (a, b) => {
   return 2 * R * Math.asin(Math.sqrt(h));
 };
 const len = (p) => p.reduce((s, q, i) => (i ? s + dd(p[i - 1], q) : 0), 0);
+const densify = (line, step) => {
+  const out = [line[0]];
+  for (let i = 1; i < line.length; i++) {
+    const d = dd(line[i - 1], line[i]);
+    const n = Math.max(1, Math.round(d / step));
+    for (let k = 1; k <= n; k++) {
+      const t = k / n;
+      out.push([
+        line[i - 1][0] + t * (line[i][0] - line[i - 1][0]),
+        line[i - 1][1] + t * (line[i][1] - line[i - 1][1]),
+      ]);
+    }
+  }
+  return out;
+};
 
 /** 端点外侧单位方向：从端点向线内走 100m，取反向向量 */
 const outwardDir = (line, atStart) => {
@@ -75,6 +90,109 @@ const feats = fc.features.map((f, index) => ({
   type: f.properties.type,
   segs: f.geometry.type === "MultiLineString" ? f.geometry.coordinates : [f.geometry.coordinates],
 }));
+
+/** 网格索引：判断 p 在 r 米内是否有采样点 */
+const CELL = 0.0005;
+const nearAny = (grid, p, r) => {
+  const cx = Math.floor(p[0] / CELL);
+  const cy = Math.floor(p[1] / CELL);
+  for (let dx = -1; dx <= 1; dx++) {
+    for (let dy = -1; dy <= 1; dy++) {
+      const arr = grid.get(`${cx + dx}:${cy + dy}`);
+      if (!arr) continue;
+      for (const q of arr) if (dd(p, q) <= r) return true;
+    }
+  }
+  return false;
+};
+const gridOf = (pts) => {
+  const grid = new Map();
+  for (const p of pts) {
+    const k = `${Math.floor(p[0] / CELL)}:${Math.floor(p[1] / CELL)}`;
+    if (!grid.has(k)) grid.set(k, []);
+    grid.get(k).push(p);
+  }
+  return grid;
+};
+/**
+ * 识别并展开"往返叠画"造成的闭合环（首尾同点）。
+ *
+ * 两种形态：
+ *   1. 单掉头：A→B→A，去程与回程完全重合 → 保留去程 A→B。
+ *   2. 双掉头：A→B→A→C→A（B、C 为两个端点），整条路被画了两遍 →
+ *      保留两个掉头点之间的简单路径，即 B→A→C，与真实中心线等价。
+ *
+ * 判定：首尾 ≤20m 闭合；前后各取 30m 走向，点积 <-0.7 视为掉头点；
+ * 双掉头形态还要求"保留段长度 ≈ 去掉段长度"，排除真实环形路/hairpin。
+ */
+const unfoldDualLoop = (line) => {
+  if (line.length < 8) return null;
+  if (dd(line[0], line[line.length - 1]) > 20) return null;
+  const total = len(line);
+  if (total < 300) return null;
+
+  const cum = [0];
+  for (let i = 1; i < line.length; i++) cum.push(cum[i - 1] + dd(line[i - 1], line[i]));
+  const backIdx = (i) => {
+    let j = i;
+    while (j > 0 && cum[i] - cum[j] < 30) j--;
+    return j;
+  };
+  const fwdIdx = (i) => {
+    let k = i;
+    while (k < line.length - 1 && cum[k] - cum[i] < 30) k++;
+    return k;
+  };
+
+  // 掉头点，再按里程 80m 聚簇（避免同一个掉头被判成多个）
+  const turn = [];
+  for (let i = 1; i < line.length - 1; i++) {
+    const j = backIdx(i);
+    const k = fwdIdx(i);
+    if (j === i || k === i) continue;
+    const inx = line[i][0] - line[j][0];
+    const iny = line[i][1] - line[j][1];
+    const outx = line[k][0] - line[i][0];
+    const outy = line[k][1] - line[i][1];
+    const n1 = Math.hypot(inx, iny);
+    const n2 = Math.hypot(outx, outy);
+    if (!n1 || !n2) continue;
+    if ((inx * outx + iny * outy) / (n1 * n2) < -0.7) turn.push(i);
+  }
+  const turnClusters = [];
+  for (const i of turn) {
+    const last = turnClusters[turnClusters.length - 1];
+    if (last && cum[i] - cum[last[last.length - 1]] < 80) last.push(i);
+    else turnClusters.push([i]);
+  }
+  const reps = turnClusters.map((c) => c[Math.floor(c.length / 2)]);
+
+  if (reps.length >= 2) {
+    const i0 = reps[0];
+    const i1 = reps[reps.length - 1];
+    const kept = line.slice(i0, i1 + 1);
+    const keptLen = len(kept);
+    const removed = total - keptLen;
+    const ratio = keptLen / Math.max(1, removed);
+    if (removed > 200 && ratio > 0.7 && ratio < 1.4) {
+      return { line: kept, removedKm: +(removed / 1000).toFixed(2), mode: "双掉头" };
+    }
+    return null;
+  }
+
+  if (reps.length === 1) {
+    const farIdx = reps[0];
+    if (farIdx < 3 || farIdx > line.length - 4) return null;
+    const legA = line.slice(0, farIdx + 1);
+    const grid = gridOf(densify(legA, 20));
+    const samples = densify(line.slice(farIdx), 20);
+    let hit = 0;
+    for (const p of samples) if (nearAny(grid, p, 40)) hit++;
+    if (hit / samples.length < 0.7) return null;
+    return { line: legA, removedKm: +((total - len(legA)) / 1000).toFixed(2), mode: "单掉头" };
+  }
+  return null;
+};
 
 /** 端点记录：part 下标 + 是否起点 */
 const endpointsOf = (parts) => {
@@ -121,10 +239,32 @@ const merges = [];
 const blocked = [];
 const pendingA1 = [];
 const changedFeatures = new Set();
+const unfoldings = [];
+
+/** 把 merged 写入 lo 槽、删除 hi 槽，避免先删后写造成下标错位 */
+const mergeTwo = (parts, pa, pb, merged) => {
+  const lo = Math.min(pa, pb);
+  const hi = Math.max(pa, pb);
+  parts[lo] = merged;
+  parts.splice(hi, 1);
+};
 
 for (const f of feats) {
-  if (f.segs.length < 2) continue;
   const parts = f.segs.map((s) => [...s]);
+
+  // 1) 展开"往返叠画"的闭合环，消除首尾同点造成的假断口
+  parts.forEach((line, pi) => {
+    const u = unfoldDualLoop(line);
+    if (!u) return;
+    parts[pi] = u.line;
+    changedFeatures.add(f.index);
+    unfoldings.push({ name: f.name, part: pi, removedKm: u.removedKm, mode: u.mode });
+  });
+
+  if (parts.length < 2) {
+    f.segs = parts;
+    continue;
+  }
   let changed = true;
   let guard = 0;
   while (changed && guard < parts.length * 4) {
@@ -134,7 +274,38 @@ for (const f of feats) {
     const groups = clustersOf(eps);
     if (groups.length < 2) break;
 
-    // 所有跨簇端点对，按距离升序
+    // 2a) 同簇端点（相距 ≤30m，几何上已贴合）直接拼接，不做夹角校验
+    // 铁路例外：双轨的两条线端点本就相邻（约 20m），合并会把 53km 双轨折成一条回折线
+    let sameDone = false;
+    for (const g of f.type === "铁路" ? [] : groups) {
+      let best = null;
+      for (let i = 0; i < g.length; i++) {
+        for (let j = i + 1; j < g.length; j++) {
+          if (g[i].pi === g[j].pi) continue;
+          const d = dd(g[i].p, g[j].p);
+          if (!best || d < best.d) best = { d, ea: g[i], eb: g[j] };
+        }
+      }
+      if (!best) continue;
+      const merged = mergeParts(parts[best.ea.pi], parts[best.eb.pi], best.ea.atStart, best.eb.atStart);
+      merges.push({
+        name: f.name,
+        gapM: +best.d.toFixed(1),
+        angleA: 0,
+        angleB: 0,
+        sameCluster: true,
+        from: [best.ea.p[1], best.ea.p[0]],
+        to: [best.eb.p[1], best.eb.p[0]],
+      });
+      mergeTwo(parts, best.ea.pi, best.eb.pi, merged);
+      changedFeatures.add(f.index);
+      sameDone = true;
+      changed = true;
+      break;
+    }
+    if (sameDone) continue;
+
+    // 2b) 所有跨簇端点对，按距离升序
     const cands = [];
     for (let i = 0; i < groups.length; i++) {
       for (let j = i + 1; j < groups.length; j++) {
@@ -171,8 +342,7 @@ for (const f of feats) {
         from: [c.ea.p[1], c.ea.p[0]],
         to: [c.eb.p[1], c.eb.p[0]],
       });
-      parts[c.ea.pi] = merged;
-      parts.splice(c.eb.pi, 1);
+      mergeTwo(parts, c.ea.pi, c.eb.pi, merged);
       changedFeatures.add(f.index);
       done = true;
       changed = true;
@@ -231,6 +401,8 @@ const summary = {
   },
   mergedCount: merges.length,
   mergedKm: +(merges.reduce((s, m) => s + m.gapM, 0) / 1000).toFixed(2),
+  sameClusterMerges: merges.filter((m) => m.sameCluster).length,
+  unfoldings,
   merges,
   blocked,
   pendingA1,
@@ -255,7 +427,11 @@ if (WRITE) {
 
 /* ---------- 控制台摘要 ---------- */
 console.log(`${summary.before.features} 要素 / ${summary.before.segments} 段（${summary.mode}）`);
-console.log(`自动接续 ${merges.length} 处，共补 ${summary.mergedKm} km：`);
+if (unfoldings.length) {
+  console.log(`展开往返叠画的闭合环 ${unfoldings.length} 处：`);
+  unfoldings.forEach((x) => console.log(`  ${x.name} part#${x.part}（${x.mode}），去掉回程 ${x.removedKm} km`));
+}
+console.log(`自动接续 ${merges.length} 处（其中同簇贴合 ${summary.sameClusterMerges} 处），共补 ${summary.mergedKm} km：`);
 const byName = new Map();
 merges.forEach((m) => byName.set(m.name, (byName.get(m.name) || 0) + 1));
 [...byName.entries()].sort((a, b) => b[1] - a[1]).forEach(([n, c]) => console.log(`  ${n}: ${c} 处`));
