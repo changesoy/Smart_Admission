@@ -15,8 +15,8 @@
     },
     {
       "name": "roads.geojson",
-      "bytes": 1175738,
-      "sha256": "3059e426fa0a7690e236411da6e69c1b1134b06d42027f313d1e136ebd582187"
+      "bytes": 112244,
+      "sha256": "28145739bd9c7db3cff980800a67bfc69013e49402940e4275a58bef68854847"
     },
     {
       "name": "schools.json",
