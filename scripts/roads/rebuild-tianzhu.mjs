@@ -30,7 +30,6 @@ const OSM = osmIdx !== -1 && process.argv[osmIdx + 1]
 
 const NORTH = [136913568, 246812271];
 const SOUTH = [246812260, 375335691];
-const JOIN_LAT = 36.20537;
 
 const rad = (d) => (d * Math.PI) / 180;
 const R = 6371000;
