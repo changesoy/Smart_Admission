@@ -8161,70 +8161,6 @@
     {
       "type": "Feature",
       "properties": {
-        "roadId": "road_009",
-        "name": "财源街",
-        "type": "道路",
-        "important": false,
-        "dataStatus": "osm",
-        "note": "坐标取自 OpenStreetMap（2026-10 抓取），补齐 1 处断口 (© OpenStreetMap contributors, ODbL)"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            117.131825,
-            36.188094
-          ],
-          [
-            117.12612,
-            36.18763
-          ],
-          [
-            117.124887,
-            36.187566
-          ],
-          [
-            117.120088,
-            36.187219
-          ],
-          [
-            117.11784,
-            36.186954
-          ],
-          [
-            117.117427,
-            36.186862
-          ],
-          [
-            117.117371,
-            36.186892
-          ],
-          [
-            117.1156,
-            36.186431
-          ],
-          [
-            117.112019,
-            36.185578
-          ],
-          [
-            117.112092,
-            36.185453
-          ],
-          [
-            117.117389,
-            36.186795
-          ],
-          [
-            117.117427,
-            36.186862
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "roadId": "road_010",
         "name": "东湖路",
         "type": "道路",
@@ -14386,7 +14322,7 @@
       "type": "Feature",
       "properties": {
         "roadId": "road_041",
-        "name": "泰良路",
+        "name": "博城路",
         "type": "道路",
         "important": false,
         "dataStatus": "estimated",
