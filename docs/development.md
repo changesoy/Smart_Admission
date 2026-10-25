@@ -31,12 +31,12 @@ copy .env.example .env
 
 `.env` 关键项（模板见 [.env.example](../.env.example)）：
 
-| 变量                       | 说明                                                        |
-| -------------------------- | ----------------------------------------------------------- |
-| `TIANDITU_SEARCH_TK`       | 天地图**服务端**搜索 Key，与前端瓦片 Key 不同，留空则联网搜索返回 `TOKEN_MISSING` |
-| `DATA_DIR`                 | 数据目录，开发为 `./data`，生产为 `/workspace/data`         |
-| `APP_VERSION` / `BUILD_TIME` | 留空时分别回退到 `package.json` 版本 / 上报 `null`         |
-| `SEARCH_TIMEOUT_SECONDS` 等 | 搜索代理超时、缓存 TTL、限流阈值                            |
+| 变量                         | 说明                                                                              |
+| ---------------------------- | --------------------------------------------------------------------------------- |
+| `TIANDITU_SEARCH_TK`         | 天地图**服务端**搜索 Key，与前端瓦片 Key 不同，留空则联网搜索返回 `TOKEN_MISSING` |
+| `DATA_DIR`                   | 数据目录，开发为 `./data`，生产为 `/workspace/data`                               |
+| `APP_VERSION` / `BUILD_TIME` | 留空时分别回退到 `package.json` 版本 / 上报 `null`                                |
+| `SEARCH_TIMEOUT_SECONDS` 等  | 搜索代理超时、缓存 TTL、限流阈值                                                  |
 
 `.env` 已加入 `.gitignore`，**不要提交**。生产环境建议直接注入环境变量而非落地文件。
 
@@ -95,26 +95,29 @@ npm run preview    # 本地预览 dist/ 产物（同样把 /api 代理到 8010�
 
 ## 五、命令速查
 
-| 命令                                          | 作用                                                         |
-| --------------------------------------------- | ------------------------------------------------------------ |
-| `npm run dev`                                 | 启动 Vite 开发服务器（热更新）                               |
-| `npm run dev:all`                             | 一键启动后端 + 前端（Windows）                               |
-| `npm run build`                               | 构建到 `dist/`（含 `data/` 复制）                            |
-| `npm run preview`                             | 本地预览 `dist/` 构建产物                                    |
-| `npm run lint` / `npm run lint:fix`           | ESLint 检查 / 自动修复                                       |
-| `npm run validate:data`                       | 开发期数据校验（`data/` 工作副本，允许占位数据）             |
-| `npm run check`                               | `lint` + `validate:data`，**提交前必跑**                     |
-| `npm run check:release`                       | 发布门禁（严格模式，当前预期失败，见下）                     |
-| `npm run test:server`                         | 运行后端测试                                                 |
-| `node scripts/new-data-release.mjs <版本号>`  | 生成不可变数据发布包（不自动改指针）                         |
+| 命令                                                                 | 作用                                                        |
+| -------------------------------------------------------------------- | ----------------------------------------------------------- |
+| `npm run dev`                                                        | 启动 Vite 开发服务器（热更新）                              |
+| `npm run dev:all`                                                    | 一键启动后端 + 前端（Windows）                              |
+| `npm run build`                                                      | 构建到 `dist/`（含 `data/` 复制）                           |
+| `npm run preview`                                                    | 本地预览 `dist/` 构建产物                                   |
+| `npm run lint` / `npm run lint:fix`                                  | ESLint 检查 / 自动修复                                      |
+| `npm run validate:data`                                              | 开发期数据校验（`data/` 工作副本，允许占位数据）            |
+| `npm run check`                                                      | `lint` + `validate:data`，**提交前必跑**                    |
+| `npm run check:release`                                              | 发布门禁（严格模式：清单/字节/哈希/占位/结构）              |
+| `npm run audit:roads`                                                | 路网体检报告（断口、双线、示意线、悬空端点）                |
+| `npm run build:intersections`                                        | 重算交点图（默认 dry-run，加 `--write` 才落盘）             |
+| `npm run diagnose:junctions`                                         | 诊断 A 接近交点 / B 欠伸 / C 过冲（`--fix --write` 可修复） |
+| `npm run test:server`                                                | 运行后端测试                                                |
+| `node scripts/new-data-release.mjs <版本号> [--effective-year <年>]` | 生成不可变数据发布包（不自动改指针）                        |
 
 ### 数据版本与发布门禁
 
 数据版本流程（工作副本 → 生成快照 → 切换指针 → 回滚）与 `check:release` 的完整拒发项清单见
 [CONTRIBUTING.md 第 4.5 / 4.6 节](../CONTRIBUTING.md)，此处不重复。
 
-> ⚠️ **当前 `check:release` 预期失败，这不是脚本故障。** 现存数据含 `【待补：官方网页链接】`
-> 等占位内容，门禁建立后必然会命中。转绿依赖数据清理批次。
+> 门禁当前状态：**通过**（`2026.11.05`，0 拒发、15 项提示）。提示项主要是占位数据与未被引用的
+> 学校/政策，不阻断发布；新增拒发问题时应先修数据，不要放宽门禁规则。
 
 ---
 

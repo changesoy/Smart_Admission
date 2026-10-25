@@ -160,21 +160,22 @@ export default XxxService;
 
 ### 4.2 数据文件与模块对应关系
 
-| 数据文件               | 加载模块           | 格式                      |
-| ---------------------- | ------------------ | ------------------------- |
-| `zones.geojson`        | MapService         | GeoJSON FeatureCollection |
-| `district.geojson`     | MapService         | GeoJSON FeatureCollection |
-| `roads.geojson`        | MapService         | GeoJSON FeatureCollection |
-| `schools.json`         | RenderService      | JSON Array                |
-| `policies.json`        | PolicyService      | JSON Array                |
-| `policy_diff.json`     | PolicyService      | JSON Array                |
-| `simulator_rules.json` | SimulatorService   | JSON Object               |
-| `faq.json`             | FaqService         | JSON Array                |
-| `contacts.json`        | InteractionService | JSON Array                |
-| `address_points.json`  | SearchService      | JSON Array                |
-| `keywords_index.json`  | SearchService      | JSON Array                |
-| `zones_history.json`   | RenderService      | JSON Array                |
-| `rumors.json`          | 预留               | JSON Array                |
+| 数据文件                | 加载模块           | 格式                      |
+| ----------------------- | ------------------ | ------------------------- |
+| `zones.geojson`         | MapService         | GeoJSON FeatureCollection |
+| `district.geojson`      | MapService         | GeoJSON FeatureCollection |
+| `roads.geojson`         | MapService         | GeoJSON FeatureCollection |
+| `intersections.geojson` | MapService         | GeoJSON FeatureCollection |
+| `schools.json`          | RenderService      | JSON Array                |
+| `policies.json`         | PolicyService      | JSON Array                |
+| `policy_diff.json`      | PolicyService      | JSON Array                |
+| `simulator_rules.json`  | SimulatorService   | JSON Object               |
+| `faq.json`              | FaqService         | JSON Array                |
+| `contacts.json`         | InteractionService | JSON Array                |
+| `address_points.json`   | SearchService      | JSON Array                |
+| `keywords_index.json`   | SearchService      | JSON Array                |
+| `zones_history.json`    | RenderService      | JSON Array                |
+| `rumors.json`           | 预留               | JSON Array                |
 
 ### 4.3 关键数据结构
 
@@ -345,6 +346,29 @@ export default XxxService;
 }
 ```
 
+#### 4.3.1 元字段与引用约束（原 `docs/data-schema.md` 的有效部分）
+
+真实或团队整理的数据建议带上来源与状态元字段（缺失只提示、不拒发）：
+
+| 字段               | 类型   | 取值                                                        | 说明                                                               |
+| ------------------ | ------ | ----------------------------------------------------------- | ------------------------------------------------------------------ |
+| `sourceName`       | string | —                                                           | 来源名称                                                           |
+| `sourceUrl`        | string | —                                                           | 原始链接；找不到就留空，**不要编造**                               |
+| `sourceType`       | string | `official` / `school` / `media` / `manual` / `demo`         | 来源类型                                                           |
+| `verifiedDate`     | string | `YYYY-MM-DD`                                                | 核验日期                                                           |
+| `dataStatus`       | string | `verified` / `estimated` / `demo` / `outdated`              | 数据状态                                                           |
+| `geometryAccuracy` | string | `officialBoundary` / `manualApproximation` / `demoBoundary` | 仅几何数据用；按文字四至人工绘制的学区必须标 `manualApproximation` |
+
+数据字段名统一 `camelCase`（见 3.1）。引用完整性由 `npm run validate:data` 与 `check:release` 共同校验：
+
+- 各自文件内 ID 不得重复：`zoneId` / `schoolId` / `policyId` / `faqId` / `contactId`；
+- `zones.schoolId` 必须存在于 `schools.json`，`policyIds` 必须存在于 `policies.json`；
+- `address_points.matchedZoneId`、`keywords_index.matchedZoneIds`、`zones_history.zoneId` 必须存在于 `zones.geojson`；
+- `simulator_rules.rules[].requiredMaterialIds` 必须存在于 `simulator_rules.materials`；
+- GeoJSON 环必须闭合，坐标不得越出项目范围。
+
+`admission_scores.json` 与 `interaction_topics.json` 是早期可选设计，当前未启用、不在 `dataPaths` 中，不要新增。
+
 ### 4.4 新增数据文件检查清单
 
 - [ ] 在 `data/` 目录放置文件，格式符合 JSON 规范
@@ -406,9 +430,9 @@ node scripts/new-data-release.mjs 2026.10.1
 
 仅**提示**、不阻断的项：`dataStatus` / `geometryAccuracy` / 年份分布、未被任何学区或自查规则引用的学校与政策。
 
-> ⚠️ **当前 `check:release` 预期失败，这不是脚本故障。** 现存数据含 `【待补：官方网页链接】`
-> 等占位内容，门禁建立后必然会命中。转绿依赖数据清理批次：补齐真实来源、统一元字段、
-> 修正 `zones.geojson` 的年份，清理完成后发布新版本。
+> **当前状态：通过。** 生效版本见 `data/current.json`，发布包为 `data/releases/<版本>/`
+> （0 拒发、15 项提示）。提示项是占位数据与未被引用的学校/政策，不阻断发布；新增拒发问题
+> 时应先修数据，不要放宽门禁规则。
 
 两个入口共用 `scripts/lib/validate-core.mjs`，校验规则只维护一份。新增规则请改公共核心，
 不要在任一入口里复制一份。
@@ -597,7 +621,7 @@ npm run preview     # 本地预览 dist/ 构建产物
 npm run lint        # ESLint 检查（含 js/、scripts/ 与构建配置）
 npm run lint:fix    # 自动修复可修复的问题
 npm run check       # lint + 数据文件完整性校验（引用一致性等）
-npm run check:release                        # 发布门禁（当前预期失败，见 4.6）
+npm run check:release                        # 发布门禁（当前通过，见 4.6）
 node scripts/new-data-release.mjs <版本号>   # 生成不可变数据发布包，见 4.5
 ```
 

@@ -108,22 +108,23 @@ data/current.json ──► version ──► data/releases/<version>/ ──►
 纳入发布包的文件清单取自 `js/config.js` 的 `dataPaths`，前端与发布脚本读同一份配置，
 因此不存在"新增了数据文件但忘记打包"的情况。
 
-| 数据文件               | 用途                                  | 消费模块                     |
-| ---------------------- | ------------------------------------- | ---------------------------- |
-| `zones.geojson`        | 学区边界 Polygon (FeatureCollection)  | MapService, RenderService    |
-| `district.geojson`     | 泰山区行政边界 Polygon（单要素，虚线常显） | MapService                |
-| `roads.geojson`        | 四至范围涉及的道路/河流/铁路 MultiLineString（双线并中心线、剔除立交匝道与环岛、裁剪到区界） | MapService |
-| `schools.json`         | 学校信息（名称/地址/电话/区县/类型）  | RenderService                |
-| `policies.json`        | 招生政策列表                          | PolicyService, RenderService |
-| `policy_diff.json`     | 政策年度对比数据                      | PolicyService                |
-| `simulator_rules.json` | 入学自查规则与材料字典                | SimulatorService             |
-| `address_points.json`  | 本地地址点索引                        | SearchService                |
-| `keywords_index.json`  | 关键词索引（含关联 zoneId）           | SearchService                |
-| `faq.json`             | 常见问题（含分类/优先级/关联）        | FaqService                   |
-| `zones_history.json`   | 学区历年调整记录                      | RenderService                |
-| `contacts.json`        | 联系方式                              | InteractionService           |
-| `rumors.json`          | 辟谣信息（暂未接入渲染）              | 预留                         |
-| `manifest.json`        | 发布清单（版本/生成时间/文件 sha256） | 发布门禁, `/api/version`     |
+| 数据文件                | 用途                                                                                                         | 消费模块                     |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------- |
+| `zones.geojson`         | 学区边界 Polygon (FeatureCollection)                                                                         | MapService, RenderService    |
+| `district.geojson`      | 泰山区行政边界 Polygon（单要素，虚线常显）                                                                   | MapService                   |
+| `roads.geojson`         | 四至范围涉及的道路/河流/铁路线（LineString / MultiLineString，双线并中心线、剔除立交匝道与环岛、裁剪到区界） | MapService                   |
+| `intersections.geojson` | 路-路交点节点（Point，`kind` 为 cross/tee/multi/end，由 `scripts/build-intersections.mjs` 生成）             | MapService                   |
+| `schools.json`          | 学校信息（名称/地址/电话/区县/类型）                                                                         | RenderService                |
+| `policies.json`         | 招生政策列表                                                                                                 | PolicyService, RenderService |
+| `policy_diff.json`      | 政策年度对比数据                                                                                             | PolicyService                |
+| `simulator_rules.json`  | 入学自查规则与材料字典                                                                                       | SimulatorService             |
+| `address_points.json`   | 本地地址点索引                                                                                               | SearchService                |
+| `keywords_index.json`   | 关键词索引（含关联 zoneId）                                                                                  | SearchService                |
+| `faq.json`              | 常见问题（含分类/优先级/关联）                                                                               | FaqService                   |
+| `zones_history.json`    | 学区历年调整记录                                                                                             | RenderService                |
+| `contacts.json`         | 联系方式                                                                                                     | InteractionService           |
+| `rumors.json`           | 辟谣信息（暂未接入渲染）                                                                                     | 预留                         |
+| `manifest.json`         | 发布清单（版本/生成时间/文件 sha256）                                                                        | 发布门禁, `/api/version`     |
 
 各文件的**字段结构**与新增文件的检查清单见 [CONTRIBUTING.md 第 4.2 / 4.3 / 4.4 节](../CONTRIBUTING.md)。
 
@@ -145,7 +146,8 @@ data/current.json ──► version ──► data/releases/<version>/ ──►
 ## 六、地图与坐标约定
 
 底图使用**天地图**（国家地理信息公共服务平台），默认中心 `[36.1947, 117.1297]`（山东省泰安市泰山区附近），
-缩放级别 `14`；学区图层样式按学段与交互状态分组定义在 `config.js` 的 `zoneStyle`。
+缩放级别 `14`；学区图层样式按学段与交互状态分组定义在 `config.js` 的 `zoneStyle`，
+边界路网与路-路交点分别使用 `roadStyle`、`intersectionStyle`（交点默认红色圆点，浮于路网之上）。
 
 > ⚠️ GeoJSON 与 Leaflet 的坐标顺序不同，**极易出错**（GeoJSON / Turf 是 `[lng, lat]`，Leaflet 是 `[lat, lng]`），
 > 且 Polygon 必须首尾点相同才算闭合。四处易错点的对照表见
