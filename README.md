@@ -11,20 +11,20 @@
 
 本 README 只做**项目门面**（是什么、有什么、怎么跑）。细则按职责拆分：
 
-| 文档                                                                                   | 内容                                                         |
-| -------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [CONTRIBUTING.md](CONTRIBUTING.md)                                                     | **改任何源文件前必读**：模块/数据/样式/Git 规范、密钥边界    |
-| [docs/architecture.md](docs/architecture.md)                                           | 模块架构、初始化顺序、数据文件与数据流、坐标约定             |
-| [docs/development.md](docs/development.md)                                             | 本地运行、构建部署、命令速查、排错 FAQ                       |
-| [docs/使用说明-路网交点脚本.md](docs/使用说明-路网交点脚本.md)                         | 路网并入 → 交点构建 → B/C 缺陷诊断与修复 → 发布全流程        |
-| [docs/roadmap.md](docs/roadmap.md)                                                     | 后续扩展方向                                                 |
-| [docs/zone-school-list.md](docs/zone-school-list.md)                                   | 学区-学校清单（v1.0 草案，映射以 `data/zones.geojson` 为准） |
-| [docs/planning/完善规划.md](docs/planning/完善规划.md)                                 | 项目完善规划（Public Beta 阶段目标与 P0-P2 任务）            |
-| [docs/planning/项目情况总结.md](docs/planning/项目情况总结.md)                         | 项目交接文档（背景、技术决策与历史状态）                     |
-| [docs/planning/学区边界临时规划.md](docs/planning/学区边界临时规划.md)                 | 学区边界修复的阶段性方案                                     |
-| [docs/planning/学区边界修复脚本规划.md](docs/planning/学区边界修复脚本规划.md)         | 学区边界修复脚本的详细设计与实施记录                         |
-| [docs/planning/111.md](docs/planning/111.md)                                           | 部署前置改造规划（Backend Lite / 数据版本 / 发布门禁）       |
-| [docs/planning/学区新增范围重叠处理规划.md](docs/planning/学区新增范围重叠处理规划.md) | 新增学区与既有学区重叠的处理方案                             |
+| 文档                                                                                   | 内容                                                          |
+| -------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| [CONTRIBUTING.md](CONTRIBUTING.md)                                                     | **改任何源文件前必读**：模块/数据/样式/Git 规范、密钥边界     |
+| [docs/architecture.md](docs/architecture.md)                                           | 模块架构、初始化顺序、数据文件与数据流、坐标约定              |
+| [docs/development.md](docs/development.md)                                             | 本地运行、构建部署、命令速查、排错 FAQ                        |
+| [docs/使用说明-路网交点脚本.md](docs/使用说明-路网交点脚本.md)                         | 一条命令导入路网 → 交点构建 → B/C 缺陷诊断与修复 → 发布全流程 |
+| [docs/roadmap.md](docs/roadmap.md)                                                     | 后续扩展方向                                                  |
+| [docs/zone-school-list.md](docs/zone-school-list.md)                                   | 学区-学校清单（v1.0 草案，映射以 `data/zones.geojson` 为准）  |
+| [docs/planning/完善规划.md](docs/planning/完善规划.md)                                 | 项目完善规划（Public Beta 阶段目标与 P0-P2 任务）             |
+| [docs/planning/项目情况总结.md](docs/planning/项目情况总结.md)                         | 项目交接文档（背景、技术决策与历史状态）                      |
+| [docs/planning/学区边界临时规划.md](docs/planning/学区边界临时规划.md)                 | 学区边界修复的阶段性方案                                      |
+| [docs/planning/学区边界修复脚本规划.md](docs/planning/学区边界修复脚本规划.md)         | 学区边界修复脚本的详细设计与实施记录                          |
+| [docs/planning/111.md](docs/planning/111.md)                                           | 部署前置改造规划（Backend Lite / 数据版本 / 发布门禁）        |
+| [docs/planning/学区新增范围重叠处理规划.md](docs/planning/学区新增范围重叠处理规划.md) | 新增学区与既有学区重叠的处理方案                              |
 
 > 规范类内容只在 CONTRIBUTING.md 维护一份，其余文档一律链接引用，不复制。
 

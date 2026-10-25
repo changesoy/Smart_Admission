@@ -19,6 +19,8 @@
     "audit:roads": "node scripts/roads/audit.mjs",
     "build:intersections": "node scripts/build-intersections.mjs",
     "diagnose:junctions": "node scripts/junction-diagnose.mjs",
+    "import:network": "node scripts/import-network.mjs",
+    "network": "node scripts/network.mjs",
     "test:server": "python -m server.tests.test_app",
     "check": "npm run lint && npm run validate:data"
   },

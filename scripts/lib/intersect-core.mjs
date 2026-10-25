@@ -161,6 +161,87 @@ export function insertPointsIntoLine(line, inserts, reuseM = 0.05) {
 }
 
 /**
+ * 线段网格索引：按线段中点所在网格（含长度一半的 pad）建桶，供最近段查询与两两求交复用
+ * @param entries 段数组，至少含 {roadIdx, part, segIndex, aXY, bXY}；额外字段原样保留
+ * @param opts.gridM 网格边长（米），build 用 100、diagnose 用 50
+ * @param opts.projector 可选投影器，段上没带 aXY/bXY 时用来补算
+ * @returns {{segs:Array, buckets:Array, cellsNear:Function, nearest:Function}}
+ *   buckets 为 grid.values() 的数组快照，顺序与旧实现一致
+ */
+export function createSegmentIndex(
+  entries,
+  { gridM = 100, projector = null } = {},
+) {
+  const cellKey = (x, y) => `${x}_${y}`;
+  const cellRange = (p, pad) => ({
+    x0: Math.floor((p[0] - pad) / gridM),
+    x1: Math.floor((p[0] + pad) / gridM),
+    y0: Math.floor((p[1] - pad) / gridM),
+    y1: Math.floor((p[1] + pad) / gridM),
+  });
+
+  const grid = new Map();
+  const segs = [];
+  for (const entry of entries) {
+    const seg =
+      entry.aXY && entry.bXY
+        ? entry
+        : {
+            ...entry,
+            aXY: projector.toXY(entry.a),
+            bXY: projector.toXY(entry.b),
+          };
+    segs.push(seg);
+    const r = cellRange(
+      [(seg.aXY[0] + seg.bXY[0]) / 2, (seg.aXY[1] + seg.bXY[1]) / 2],
+      Math.hypot(seg.bXY[0] - seg.aXY[0], seg.bXY[1] - seg.aXY[1]) / 2,
+    );
+    for (let x = r.x0; x <= r.x1; x += 1) {
+      for (let y = r.y0; y <= r.y1; y += 1) {
+        const k = cellKey(x, y);
+        if (!grid.has(k)) grid.set(k, []);
+        grid.get(k).push(seg);
+      }
+    }
+  }
+
+  // 允许跨格重复，与旧实现的 cellsNear 行为一致
+  const cellsNear = (p, pad) => {
+    const r = cellRange(p, pad);
+    const out = [];
+    for (let x = r.x0; x <= r.x1; x += 1) {
+      for (let y = r.y0; y <= r.y1; y += 1) {
+        const bucket = grid.get(cellKey(x, y));
+        if (bucket) out.push(...bucket);
+      }
+    }
+    return out;
+  };
+
+  // 最近段：跳过 excludeRoadIdx，返回 {seg, dist, t, foot}
+  const nearest = (p, pad, excludeRoadIdx = null) => {
+    const r = cellRange(p, pad);
+    let best = null;
+    for (let x = r.x0; x <= r.x1; x += 1) {
+      for (let y = r.y0; y <= r.y1; y += 1) {
+        const bucket = grid.get(cellKey(x, y));
+        if (!bucket) continue;
+        for (const seg of bucket) {
+          if (excludeRoadIdx !== null && seg.roadIdx === excludeRoadIdx)
+            continue;
+          const hit = closestPointOnSegment(p, seg.aXY, seg.bXY);
+          if (!best || hit.dist < best.dist)
+            best = { seg, dist: hit.dist, t: hit.t, foot: hit.foot };
+        }
+      }
+    }
+    return best;
+  };
+
+  return { segs, buckets: [...grid.values()], cellsNear, nearest };
+}
+
+/**
  * 半径聚类（XY 空间，贪心 + 坐标排序保证确定性）
  * @param items [{coord:[lon,lat]}]
  * @returns 分组下标数组
