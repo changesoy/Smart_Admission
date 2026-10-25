@@ -1,6 +1,7 @@
 MERGE_PLAN.md
 node_modules/
 dist/
+exports/
 reports/
 .venv/
 .env
