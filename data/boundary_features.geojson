@@ -68,7 +68,7 @@
         "geometryStatus": "needsTrace",
         "sourceType": "pending",
         "accuracy": "未标定",
-        "note": "第 3 对（凤台 zone_031 ↔ 兴隆校区 zone_040）待标定；data/roads.geojson 中未收录谢过城街，待补可靠线源后改为 ready。"
+        "note": "第 3 对（凤台 zone_031 ↔ 兴隆校区 zone_040）待标定；谢过城街已于 2026.11.07 收录进 data/roads.geojson（roadId=64，OSM 走廊自佛光路经天烛峰路东至省庄镇东部），此处几何待截取对应线段后再改为 ready。"
       },
       "geometry": {
         "type": "LineString",
