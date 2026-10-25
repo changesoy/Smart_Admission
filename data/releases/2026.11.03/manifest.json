@@ -1,6 +1,6 @@
 {
   "version": "2026.11.03",
-  "generatedAt": "2026-10-25T11:58:27.710Z",
+  "generatedAt": "2026-10-25T11:36:33.938Z",
   "effectiveYear": 2026,
   "files": [
     {
@@ -10,18 +10,13 @@
     },
     {
       "name": "district.geojson",
-      "bytes": 33729,
-      "sha256": "625b2d2d37042bf0bfc1db27f441884727dc882ff38043bcfd2ce39f4034f97e"
+      "bytes": 25178,
+      "sha256": "fbbaa15818800805225e9df627c6937b04f245391daa03919fd3db99a5a527ab"
     },
     {
       "name": "roads.geojson",
-      "bytes": 432620,
-      "sha256": "c003ca72e62fe32b0715138497a235aef0f8633fc48ac70df6019a1e469cb67c"
-    },
-    {
-      "name": "intersections.geojson",
-      "bytes": 159171,
-      "sha256": "e15c2289f8d0344d9e9a508035aa1c5e116d260b37b1f585ac658aaad1ee661a"
+      "bytes": 411415,
+      "sha256": "e1f6855c401af2bc5d801e059d7ac7abfd6c3ced7c289063870e7cf4145e5a3a"
     },
     {
       "name": "schools.json",

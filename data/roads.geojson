@@ -6819,6 +6819,10 @@
             36.177181
           ],
           [
+            117.1268908,
+            36.1771846
+          ],
+          [
             117.1268379,
             36.1771876
           ],
@@ -10261,13 +10265,25 @@
         "roadId": "road_032",
         "name": "通天街",
         "type": "道路",
-        "important": false,
+        "important": true,
         "dataStatus": "osm",
-        "note": "坐标取自 OpenStreetMap（2026-10 抓取） (© OpenStreetMap contributors, ODbL)"
+        "note": "坐标取自 OpenStreetMap（2026-10 抓取） (© OpenStreetMap contributors, ODbL)；2026-10-25 南延 0.76 km 接南关大街（OSM 无名 secondary 双线 1087914567/1087914568 取中点）；2026-10-25 提升为 important 渲染（原缺 highway 字段落入 minor 1.2px，与南关大街同级）；2026-10-25 北端延长 17.4 m 接东岳大街（B1 目视修正）"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
+          [
+            117.126953,
+            36.176579
+          ],
+          [
+            117.1268908,
+            36.1771846
+          ],
+          [
+            117.126776,
+            36.178301
+          ],
           [
             117.1264045,
             36.1833619

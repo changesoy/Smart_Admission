@@ -83,7 +83,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.104366,
+          117.1043659,
           36.183023
         ]
       },
@@ -587,42 +587,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1261196,
-          36.18763
-        ]
-      },
-      "properties": {
-        "id": "ix_road_032_road_047_1",
-        "label": "通天街×财源大街",
-        "kind": "cross",
-        "confidence": "high",
-        "roads": [
-          {
-            "roadId": "road_032",
-            "name": "通天街",
-            "part": 0,
-            "vertex": 5,
-            "s": 475.54,
-            "vertexGapM": 0,
-            "confidence": "high"
-          },
-          {
-            "roadId": "road_047",
-            "name": "财源大街",
-            "part": 0,
-            "vertex": 20,
-            "s": 1291.75,
-            "vertexGapM": 0.04,
-            "confidence": "high"
-          }
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           117.1178398,
           36.186954
         ]
@@ -659,7 +623,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1262818,
+          117.1262817,
           36.1964677
         ]
       },
@@ -684,7 +648,7 @@
             "part": 0,
             "vertex": 2,
             "s": 341.87,
-            "vertexGapM": 0.03,
+            "vertexGapM": 0.02,
             "confidence": "high"
           }
         ]
@@ -1297,6 +1261,42 @@
             "vertex": 23,
             "s": 1806.34,
             "vertexGapM": 0.02,
+            "confidence": "high"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.1261196,
+          36.18763
+        ]
+      },
+      "properties": {
+        "id": "ix_road_032_road_047_1",
+        "label": "通天街×财源大街",
+        "kind": "cross",
+        "confidence": "high",
+        "roads": [
+          {
+            "roadId": "road_032",
+            "name": "通天街",
+            "part": 0,
+            "vertex": 8,
+            "s": 1231.41,
+            "vertexGapM": 0,
+            "confidence": "high"
+          },
+          {
+            "roadId": "road_047",
+            "name": "财源大街",
+            "part": 0,
+            "vertex": 20,
+            "s": 1291.75,
+            "vertexGapM": 0.04,
             "confidence": "high"
           }
         ]
@@ -2171,7 +2171,43 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.0827011,
+          117.1268908,
+          36.1771846
+        ]
+      },
+      "properties": {
+        "id": "ix_road_008_road_032_1",
+        "label": "南湖大街×通天街",
+        "kind": "cross",
+        "confidence": "high",
+        "roads": [
+          {
+            "roadId": "road_008",
+            "name": "南湖大街",
+            "part": 0,
+            "vertex": 27,
+            "s": 2322.28,
+            "vertexGapM": 0,
+            "confidence": "high"
+          },
+          {
+            "roadId": "road_032",
+            "name": "通天街",
+            "part": 0,
+            "vertex": 1,
+            "s": 67.57,
+            "vertexGapM": 0,
+            "confidence": "high"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.0827012,
           36.1968952
         ]
       },
@@ -2187,7 +2223,7 @@
             "part": 0,
             "vertex": 27,
             "s": 2338.7,
-            "vertexGapM": 0.5,
+            "vertexGapM": 0.51,
             "confidence": "high"
           },
           {
@@ -2196,7 +2232,7 @@
             "part": 1,
             "vertex": 0,
             "s": 0,
-            "vertexGapM": 0.51,
+            "vertexGapM": 0.5,
             "confidence": "high"
           }
         ]
@@ -2473,7 +2509,7 @@
             "roadId": "road_008",
             "name": "南湖大街",
             "part": 0,
-            "vertex": 29,
+            "vertex": 30,
             "s": 2648.75,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4563,7 +4599,7 @@
       "properties": {
         "id": "ix_road_005_road_032_1",
         "label": "灵山大街×通天街",
-        "kind": "tee",
+        "kind": "cross",
         "confidence": "high",
         "roads": [
           {
@@ -4579,8 +4615,8 @@
             "roadId": "road_032",
             "name": "通天街",
             "part": 0,
-            "vertex": 0,
-            "s": 0,
+            "vertex": 3,
+            "s": 755.87,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -5236,7 +5272,7 @@
             "roadId": "road_008",
             "name": "南湖大街",
             "part": 0,
-            "vertex": 33,
+            "vertex": 34,
             "s": 2848.58,
             "vertexGapM": 0,
             "confidence": "high"
@@ -5785,8 +5821,8 @@
             "roadId": "road_032",
             "name": "通天街",
             "part": 0,
-            "vertex": 8,
-            "s": 874.01,
+            "vertex": 11,
+            "s": 1629.88,
             "vertexGapM": 0,
             "confidence": "high"
           }
