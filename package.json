@@ -17,6 +17,8 @@
     "test:zones": "node --test \"scripts/tests/*.test.mjs\"",
     "check:release": "node scripts/check-release.mjs",
     "audit:roads": "node scripts/roads/audit.mjs",
+    "build:intersections": "node scripts/build-intersections.mjs",
+    "diagnose:junctions": "node scripts/junction-diagnose.mjs",
     "test:server": "python -m server.tests.test_app",
     "check": "npm run lint && npm run validate:data"
   },
