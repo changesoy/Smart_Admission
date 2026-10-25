@@ -45,8 +45,10 @@ const MapService = (() => {
   let _onNoMatch = null;
   let _visibleStages = { 初中: true, 小学: true };
   let _roadsLayer = null;
+  let _intersectionsLayer = null;
   let _districtLayer = null;
   const ROAD_PANE = "roadPane";
+  const INTERSECTION_PANE = "intersectionPane";
   const DISTRICT_PANE = "districtPane";
 
   /** 获取 Feature 的学段,默认"初中" */
@@ -131,10 +133,7 @@ const MapService = (() => {
     _onZoneSelected = params && params.onZoneSelected;
     _onNoMatch = params && params.onNoMatch;
 
-    _map = L.map(container).setView(
-      AppConfig.mapCenter,
-      AppConfig.mapZoom,
-    );
+    _map = L.map(container).setView(AppConfig.mapCenter, AppConfig.mapZoom);
 
     loadTiandituBaseLayers(_map);
 
@@ -154,6 +153,7 @@ const MapService = (() => {
 
     renderDistrict((params && params.district) || null);
     renderRoads((params && params.roads) || null);
+    renderIntersections((params && params.intersections) || null);
 
     _map.on("click", (e) => {
       handleMapClick(e);
@@ -280,6 +280,41 @@ const MapService = (() => {
     }
   };
 
+  /** 渲染路-路交点:红色圆点浮于路网之上,用于核对交点是否落在真实路口,不拦截点击 */
+  const renderIntersections = (fc) => {
+    if (!_map || !fc || !fc.features || fc.features.length === 0) return;
+    if (!_map.getPane(INTERSECTION_PANE)) {
+      const pane = _map.createPane(INTERSECTION_PANE);
+      pane.style.zIndex = 455;
+      pane.style.pointerEvents = "none";
+    }
+    const markerRenderer = L.canvas({
+      pane: INTERSECTION_PANE,
+      padding: 0.5,
+    });
+    const markerOptions = {
+      ...AppConfig.intersectionStyle,
+      pane: INTERSECTION_PANE,
+      renderer: markerRenderer,
+      interactive: false,
+    };
+    _intersectionsLayer = L.geoJSON(fc, {
+      pane: INTERSECTION_PANE,
+      pointToLayer: (feature, latlng) => L.circleMarker(latlng, markerOptions),
+    });
+    _intersectionsLayer.addTo(_map);
+  };
+
+  /** 显示/隐藏路-路交点图层 */
+  const toggleIntersections = (visible) => {
+    if (!_intersectionsLayer || !_map) return;
+    if (visible) {
+      if (!_map.hasLayer(_intersectionsLayer)) _intersectionsLayer.addTo(_map);
+    } else if (_map.hasLayer(_intersectionsLayer)) {
+      _map.removeLayer(_intersectionsLayer);
+    }
+  };
+
   /** 按学段筛选可见图层,被隐藏学区的选中态一并清除 */
   const filterByStage = (stages) => {
     _visibleStages = {};
@@ -365,7 +400,8 @@ const MapService = (() => {
       try {
         if (turf.booleanPointInPolygon(pt, entry.feature)) {
           matchedEntries.push(entry);
-          const key = getFeatureStage(entry.feature) === "小学" ? "primary" : "middle";
+          const key =
+            getFeatureStage(entry.feature) === "小学" ? "primary" : "middle";
           grouped[key].push(entry.feature);
         }
       } catch (err) {
@@ -452,6 +488,7 @@ const MapService = (() => {
     selectZonesAt,
     filterByStage,
     toggleRoads,
+    toggleIntersections,
   };
 })();
 

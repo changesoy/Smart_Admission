@@ -76,6 +76,15 @@ const bindRoadsToggle = () => {
   });
 };
 
+/** 绑定路-路交点显隐复选框 */
+const bindIntersectionsToggle = () => {
+  const cb = document.getElementById("showIntersections");
+  if (!cb) return;
+  cb.addEventListener("change", () => {
+    MapService.toggleIntersections(cb.checked);
+  });
+};
+
 /** 数据加载成功后初始化所有业务模块,每个模块用 safeInit 隔离 */
 const bootstrapPage = (data) => {
   safeInit("RenderService", () => {
@@ -112,6 +121,7 @@ const bootstrapPage = (data) => {
       zones: data.zones,
       district: data.district,
       roads: data.roads,
+      intersections: data.intersections,
       schools: data.schools,
       policies: data.policies,
       onZoneSelected: (features) => {
@@ -168,6 +178,7 @@ const bootstrapPage = (data) => {
   });
 
   safeInit("RoadsToggle", bindRoadsToggle);
+  safeInit("IntersectionsToggle", bindIntersectionsToggle);
   safeInit("StageFilter", bindStageFilter);
 };
 

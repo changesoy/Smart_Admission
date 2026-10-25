@@ -58,6 +58,7 @@ const AppConfig = {
     zones: "zones.geojson",
     district: "district.geojson",
     roads: "roads.geojson",
+    intersections: "intersections.geojson",
     schools: "schools.json",
     policies: "policies.json",
     faq: "faq.json",
@@ -114,16 +115,25 @@ const AppConfig = {
     },
   },
 
-  /** 边界道路图层样式:主路(金) / 次干路(浅金) / 支路(浅灰) / 河流 / 铁路 */
+  /** 边界道路图层样式:主路(金) / 次干路 / 支路,同色不同粗细 */
   roadStyle: {
     road: {
       important: { color: "#c9a227", weight: 4 },
-      normal: { color: "#d9b45a", weight: 2.4 },
-      /** 支路(住宅区/生活街区等):更细更浅,保证路网完整但不抢视觉 */
-      minor: { color: "#c8c2bd", weight: 1.2 },
+      normal: { color: "#c9a227", weight: 2.2 },
+      /** 支路(住宅区/生活街区等):同主路颜色但更细,保证路网完整又不抢视觉 */
+      minor: { color: "#c9a227", weight: 1.2 },
     },
     river: { color: "#0ea5e9", weight: 3 },
     rail: { color: "#57534e", weight: 2, dashArray: "8 5" },
+  },
+
+  /** 路-路交点图层样式:红色圆点,浮于路网之上,便于核对交点是否落在真实路口 */
+  intersectionStyle: {
+    radius: 4,
+    color: "#7f1d1d",
+    weight: 1,
+    fillColor: "#dc2626",
+    fillOpacity: 0.95,
   },
 
   /** 区界图层样式:泰山区行政边界,虚线常显、不填充、不拦截地图点击 */
