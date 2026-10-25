@@ -83,7 +83,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1043659,
+          117.104366,
           36.183023
         ]
       },
@@ -142,7 +142,7 @@
             "roadId": "road_038",
             "name": "天烛峰路",
             "part": 0,
-            "vertex": 49,
+            "vertex": 50,
             "s": 4646.53,
             "vertexGapM": 0,
             "confidence": "high"
@@ -623,7 +623,43 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1262817,
+          117.1868446,
+          36.2197991
+        ]
+      },
+      "properties": {
+        "id": "ix_river_004_64_1",
+        "label": "明堂河×谢过城街",
+        "kind": "cross",
+        "confidence": "high",
+        "roads": [
+          {
+            "roadId": "river_004",
+            "name": "明堂河",
+            "part": 0,
+            "vertex": 1,
+            "s": 489.08,
+            "vertexGapM": 0,
+            "confidence": "high"
+          },
+          {
+            "roadId": 64,
+            "name": "谢过城街",
+            "part": 0,
+            "vertex": 8,
+            "s": 1964.11,
+            "vertexGapM": 0,
+            "confidence": "high"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.1262818,
           36.1964677
         ]
       },
@@ -648,7 +684,7 @@
             "part": 0,
             "vertex": 2,
             "s": 341.87,
-            "vertexGapM": 0.02,
+            "vertexGapM": 0.03,
             "confidence": "high"
           }
         ]
@@ -1199,6 +1235,42 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          117.172377,
+          36.2187812
+        ]
+      },
+      "properties": {
+        "id": "ix_road_038_64_1",
+        "label": "天烛峰路×谢过城街",
+        "kind": "cross",
+        "confidence": "high",
+        "roads": [
+          {
+            "roadId": "road_038",
+            "name": "天烛峰路",
+            "part": 0,
+            "vertex": 6,
+            "s": 1128.96,
+            "vertexGapM": 0,
+            "confidence": "high"
+          },
+          {
+            "roadId": 64,
+            "name": "谢过城街",
+            "part": 0,
+            "vertex": 3,
+            "s": 661.22,
+            "vertexGapM": 0,
+            "confidence": "high"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           117.123519,
           36.187453
         ]
@@ -1645,7 +1717,7 @@
             "roadId": "river_004",
             "name": "明堂河",
             "part": 0,
-            "vertex": 4,
+            "vertex": 5,
             "s": 1539.12,
             "vertexGapM": 0,
             "confidence": "high"
@@ -2207,7 +2279,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.0827012,
+          117.0827011,
           36.1968952
         ]
       },
@@ -2223,7 +2295,7 @@
             "part": 0,
             "vertex": 27,
             "s": 2338.7,
-            "vertexGapM": 0.51,
+            "vertexGapM": 0.5,
             "confidence": "high"
           },
           {
@@ -2232,7 +2304,7 @@
             "part": 1,
             "vertex": 0,
             "s": 0,
-            "vertexGapM": 0.5,
+            "vertexGapM": 0.51,
             "confidence": "high"
           }
         ]
@@ -2305,6 +2377,42 @@
             "vertex": 4,
             "s": 610.49,
             "vertexGapM": 0,
+            "confidence": "high"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.1852666,
+          36.219721
+        ]
+      },
+      "properties": {
+        "id": "ix_road_039_64_1",
+        "label": "明堂路×谢过城街",
+        "kind": "cross",
+        "confidence": "high",
+        "roads": [
+          {
+            "roadId": "road_039",
+            "name": "明堂路",
+            "part": 0,
+            "vertex": 25,
+            "s": 2557.83,
+            "vertexGapM": 0.04,
+            "confidence": "high"
+          },
+          {
+            "roadId": 64,
+            "name": "谢过城街",
+            "part": 0,
+            "vertex": 7,
+            "s": 1822.32,
+            "vertexGapM": 0.04,
             "confidence": "high"
           }
         ]
@@ -2554,7 +2662,7 @@
             "roadId": "road_038",
             "name": "天烛峰路",
             "part": 0,
-            "vertex": 6,
+            "vertex": 7,
             "s": 2028.65,
             "vertexGapM": 0,
             "confidence": "high"
@@ -2806,7 +2914,7 @@
             "roadId": "river_004",
             "name": "明堂河",
             "part": 0,
-            "vertex": 14,
+            "vertex": 15,
             "s": 3289.97,
             "vertexGapM": 0,
             "confidence": "high"
@@ -2950,7 +3058,7 @@
             "roadId": "road_038",
             "name": "天烛峰路",
             "part": 0,
-            "vertex": 13,
+            "vertex": 14,
             "s": 3567.6,
             "vertexGapM": 0,
             "confidence": "high"
@@ -3501,6 +3609,42 @@
             "part": 0,
             "vertex": 69,
             "s": 4260.21,
+            "vertexGapM": 0,
+            "confidence": "high"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.2121559,
+          36.2217175
+        ]
+      },
+      "properties": {
+        "id": "ix_river_005_64_1",
+        "label": "芝田河×谢过城街",
+        "kind": "cross",
+        "confidence": "high",
+        "roads": [
+          {
+            "roadId": "river_005",
+            "name": "芝田河",
+            "part": 0,
+            "vertex": 25,
+            "s": 5096.45,
+            "vertexGapM": 0,
+            "confidence": "high"
+          },
+          {
+            "roadId": 64,
+            "name": "谢过城街",
+            "part": 0,
+            "vertex": 17,
+            "s": 4246.84,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -4399,7 +4543,7 @@
             "roadId": "road_038",
             "name": "天烛峰路",
             "part": 0,
-            "vertex": 8,
+            "vertex": 9,
             "s": 3211.51,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4617,6 +4761,42 @@
             "part": 0,
             "vertex": 3,
             "s": 755.87,
+            "vertexGapM": 0,
+            "confidence": "high"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.2015789,
+          36.2211719
+        ]
+      },
+      "properties": {
+        "id": "ix_road_040_64_1",
+        "label": "博阳路×谢过城街",
+        "kind": "cross",
+        "confidence": "low",
+        "roads": [
+          {
+            "roadId": "road_040",
+            "name": "博阳路",
+            "part": 0,
+            "vertex": 43,
+            "s": 8939.98,
+            "vertexGapM": 0,
+            "confidence": "low"
+          },
+          {
+            "roadId": 64,
+            "name": "谢过城街",
+            "part": 0,
+            "vertex": 14,
+            "s": 3295.75,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -5083,7 +5263,7 @@
             "roadId": "road_040",
             "name": "博阳路",
             "part": 0,
-            "vertex": 51,
+            "vertex": 52,
             "s": 10444.27,
             "vertexGapM": 0,
             "confidence": "low"
@@ -5425,7 +5605,7 @@
             "roadId": "road_038",
             "name": "天烛峰路",
             "part": 0,
-            "vertex": 88,
+            "vertex": 89,
             "s": 5711.27,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6145,7 +6325,7 @@
             "roadId": "road_038",
             "name": "天烛峰路",
             "part": 0,
-            "vertex": 17,
+            "vertex": 18,
             "s": 3923.25,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6685,7 +6865,7 @@
             "roadId": "river_005",
             "name": "芝田河",
             "part": 0,
-            "vertex": 42,
+            "vertex": 43,
             "s": 9041.83,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6757,7 +6937,7 @@
             "roadId": "river_004",
             "name": "明堂河",
             "part": 0,
-            "vertex": 33,
+            "vertex": 34,
             "s": 5462.15,
             "vertexGapM": 0,
             "confidence": "high"
