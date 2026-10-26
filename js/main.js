@@ -140,6 +140,7 @@ const bootstrapPage = (data) => {
           schools: data.schools,
           policies: data.policies,
           zonesHistory: data.zonesHistory || [],
+          zoneSpecs: data.zoneSpecs,
         });
         if (window.innerWidth < 992) {
           const panel = document.getElementById("resultPanel");
@@ -168,6 +169,7 @@ const bootstrapPage = (data) => {
           schools: data.schools,
           policies: data.policies,
           zonesHistory: data.zonesHistory || [],
+          zoneSpecs: data.zoneSpecs,
         });
       } else {
         // 坐标未命中任何学区:飞行到该点并展示明确的空状态

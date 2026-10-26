@@ -350,14 +350,17 @@ export default XxxService;
 
 真实或团队整理的数据建议带上来源与状态元字段（缺失只提示、不拒发）：
 
-| 字段               | 类型   | 取值                                                        | 说明                                                               |
-| ------------------ | ------ | ----------------------------------------------------------- | ------------------------------------------------------------------ |
-| `sourceName`       | string | —                                                           | 来源名称                                                           |
-| `sourceUrl`        | string | —                                                           | 原始链接；找不到就留空，**不要编造**                               |
-| `sourceType`       | string | `official` / `school` / `media` / `manual` / `demo`         | 来源类型                                                           |
-| `verifiedDate`     | string | `YYYY-MM-DD`                                                | 核验日期                                                           |
-| `dataStatus`       | string | `verified` / `estimated` / `demo` / `outdated`              | 数据状态                                                           |
-| `geometryAccuracy` | string | `officialBoundary` / `manualApproximation` / `demoBoundary` | 仅几何数据用；按文字四至人工绘制的学区必须标 `manualApproximation` |
+| 字段               | 类型   | 取值                                                                   | 说明                                                                                                                   |
+| ------------------ | ------ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `sourceName`       | string | —                                                                      | 来源名称                                                                                                               |
+| `sourceUrl`        | string | —                                                                      | 原始链接；找不到就留空，**不要编造**                                                                                   |
+| `sourceType`       | string | `official` / `school` / `media` / `manual` / `demo`                    | 来源类型                                                                                                               |
+| `verifiedDate`     | string | `YYYY-MM-DD`                                                           | 核验日期                                                                                                               |
+| `dataStatus`       | string | `verified` / `estimated` / `demo` / `outdated`                         | 数据状态                                                                                                               |
+| `geometryAccuracy` | string | `officialBoundary` / `manualApproximation` / `demoBoundary`            | 仅几何数据用；按文字四至人工绘制的学区必须标 `manualApproximation`                                                     |
+| `boundaryRulings`  | array  | `{ edge, original, adopted, geometryRef, reason, decidedAt, decider }` | 仅 `zones` 用；四至原文与环几何冲突、经人工裁定采信环时记录。**`boundaryText` 必须保留官方原文不改**，裁定只写在此字段 |
+
+`boundaryRulings[].edge` 取 `东`/`西`/`南`/`北`；`geometryRef` 指向 `roads.geojson` 的 `roadId`，便于人工核对“被采信的要素确实存在”。
 
 数据字段名统一 `camelCase`（见 3.1）。引用完整性由 `npm run validate:data` 与 `check:release` 共同校验：
 
@@ -623,6 +626,7 @@ npm run lint:fix    # 自动修复可修复的问题
 npm run check       # lint + 数据文件完整性校验（引用一致性等）
 npm run check:release                        # 发布门禁（当前通过，见 4.6）
 node scripts/new-data-release.mjs <版本号>   # 生成不可变数据发布包，见 4.5
+node scripts/extract-zone-specs.mjs          # 逐边来源表 dry-run（默认 4 所试点）；加 --write 写 data/zone_specs.json
 ```
 
 ---

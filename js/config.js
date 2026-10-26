@@ -59,6 +59,7 @@ const AppConfig = {
     district: "district.geojson",
     roads: "roads.geojson",
     intersections: "intersections.geojson",
+    zoneSpecs: "zone_specs.json",
     schools: "schools.json",
     policies: "policies.json",
     faq: "faq.json",

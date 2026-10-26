@@ -175,6 +175,17 @@
         "schoolId": "school_m_006",
         "description": "东至双龙河，西至迎春路，北至东岳大街，南至灵山大街（除东湖路以北，温泉路以西区域）。",
         "boundaryText": "东至双龙河，西至迎春路，北至东岳大街，南至灵山大街（除东湖路以北，温泉路以西区域）。",
+        "boundaryRulings": [
+          {
+            "edge": "东",
+            "original": "双龙河",
+            "adopted": "唐王河",
+            "geometryRef": "river_007",
+            "reason": "环东侧 29 个顶点逐点贴 river_007（偏差 0~23.4 m），与 zone_016 东界、zone_031 西界、zone_032 西界共用同一顶点序列；双龙河在该纬段距环 670~1036 m",
+            "decidedAt": "2026-10-26",
+            "decider": "用户"
+          }
+        ],
         "year": 2025,
         "policyIds": [
           "policy_2025_001"
@@ -1676,6 +1687,17 @@
         "schoolId": "school_m_013",
         "description": "东至芝田河、西至双龙河、南至五马街、北至谢过城街。",
         "boundaryText": "中学部：东至芝田河、西至双龙河、南至五马街、北至谢过城街。",
+        "boundaryRulings": [
+          {
+            "edge": "西",
+            "original": "双龙河",
+            "adopted": "唐王河",
+            "geometryRef": "river_007",
+            "reason": "环西侧 v50~v71 逐点贴 river_007（偏差 0~23.4 m），与 zone_006 东界、zone_032 西界、zone_016 东界共用同一顶点序列；双龙河在该纬段距环 714~1036 m",
+            "decidedAt": "2026-10-26",
+            "decider": "用户"
+          }
+        ],
         "year": 2025,
         "policyIds": [
           "policy_2025_001"

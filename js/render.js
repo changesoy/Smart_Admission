@@ -118,6 +118,13 @@ const RenderService = (() => {
   /** 学段分组的面板标题 */
   const STAGE_LABELS = { primary: "小学学区", middle: "初中学区" };
 
+  /** 逐边来源表的来源三态标签 */
+  const SOURCE_BADGES = {
+    text: { label: "原文点名", cls: "text-bg-success" },
+    "ring-snap": { label: "按环推定", cls: "text-bg-info" },
+    legacy: { label: "待补线", cls: "text-bg-secondary" },
+  };
+
   /** 渲染单个学区的详情块:学区名+招生范围+对应学校+关联政策+历年调整记录 */
   const renderZoneBlock = (feature, ctx) => {
     const props = feature.properties;
@@ -145,6 +152,32 @@ const RenderService = (() => {
 
     html += `<div class="result-section-title">招生范围说明</div>`;
     html += `<div class="small">${safeText(props.description)}</div>`;
+
+    // 逐边来源表只覆盖已抽取的试点学区,没有就整块不渲染
+    const specZones = (ctx.zoneSpecs && ctx.zoneSpecs.zones) || [];
+    const spec = specZones.find((z) => z.zoneId === props.zoneId);
+    const specRing = spec && spec.rings ? spec.rings[0] : null;
+    if (specRing) {
+      html += `<div class="result-section-title">边界逐段来源</div>`;
+      html += `<div class="small text-muted mb-1">逐段反查最贴近的道路/河流,从某个路口出发沿该要素走到下一个路口。</div>`;
+      html += `<ol class="small mb-1 ps-3">`;
+      specRing.steps.forEach((step) => {
+        const badge = SOURCE_BADGES[step.source] || SOURCE_BADGES.legacy;
+        const along = step.along
+          ? safeText(step.along.name || step.along.roadId)
+          : "无具名要素";
+        html += `<li>${safeText(step.side)} 沿 ${along} ${Math.round(step.lengthM)} 米`;
+        html += ` <span class="badge ${badge.cls}">${badge.label}</span>`;
+        if (step.needsRuling) {
+          html += ` <span class="badge text-bg-warning">待裁定</span>`;
+        }
+        html += `</li>`;
+      });
+      html += `</ol>`;
+      const pending = (specRing.needsRulingSteps || []).length;
+      const passed = specRing.verification && specRing.verification.ok;
+      html += `<div class="small text-muted">契约自检:${passed ? "通过" : "未通过"};待裁定 ${pending} 段</div>`;
+    }
 
     html += `<div class="result-section-title">对应学校</div>`;
     html += `<div class="zone-school-card">`;
