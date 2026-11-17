@@ -1,0 +1,968 @@
+{
+  "schemaVersion": 1,
+  "counters": {
+    "boundaryFeature": 61,
+    "networkNode": 0,
+    "networkEdge": 0,
+    "zoneRing": 0,
+    "zoneStep": 0,
+    "boundaryRuling": 2
+  },
+  "entries": [
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "number",
+          "value": 62
+        }
+      ],
+      "id": "bf_000001",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "number",
+          "value": 63
+        }
+      ],
+      "id": "bf_000002",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "number",
+          "value": 64
+        },
+        {
+          "namespace": "featureId",
+          "jsonType": "string",
+          "value": "bf_xieguocheng_street"
+        }
+      ],
+      "id": "bf_000003",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "rail_001"
+        }
+      ],
+      "id": "bf_000004",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "rail_002"
+        }
+      ],
+      "id": "bf_000005",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "river_001"
+        }
+      ],
+      "id": "bf_000006",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "river_002"
+        }
+      ],
+      "id": "bf_000007",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "river_003"
+        }
+      ],
+      "id": "bf_000008",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "river_004"
+        }
+      ],
+      "id": "bf_000009",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "river_005"
+        }
+      ],
+      "id": "bf_000010",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "river_006"
+        }
+      ],
+      "id": "bf_000011",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "river_007"
+        }
+      ],
+      "id": "bf_000012",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_001"
+        }
+      ],
+      "id": "bf_000013",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_002"
+        }
+      ],
+      "id": "bf_000014",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_003"
+        }
+      ],
+      "id": "bf_000015",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_004"
+        }
+      ],
+      "id": "bf_000016",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_005"
+        }
+      ],
+      "id": "bf_000017",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_006"
+        }
+      ],
+      "id": "bf_000018",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_007"
+        }
+      ],
+      "id": "bf_000019",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_008"
+        }
+      ],
+      "id": "bf_000020",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_009"
+        }
+      ],
+      "id": "bf_000021",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_010"
+        }
+      ],
+      "id": "bf_000022",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_011"
+        }
+      ],
+      "id": "bf_000023",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_018"
+        }
+      ],
+      "id": "bf_000024",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_019"
+        }
+      ],
+      "id": "bf_000025",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_020"
+        }
+      ],
+      "id": "bf_000026",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_021"
+        }
+      ],
+      "id": "bf_000027",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_022"
+        }
+      ],
+      "id": "bf_000028",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_023"
+        }
+      ],
+      "id": "bf_000029",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_024"
+        }
+      ],
+      "id": "bf_000030",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_025"
+        }
+      ],
+      "id": "bf_000031",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_026"
+        }
+      ],
+      "id": "bf_000032",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_027"
+        }
+      ],
+      "id": "bf_000033",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_028"
+        }
+      ],
+      "id": "bf_000034",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_029"
+        }
+      ],
+      "id": "bf_000035",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_030"
+        }
+      ],
+      "id": "bf_000036",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_031"
+        }
+      ],
+      "id": "bf_000037",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_032"
+        }
+      ],
+      "id": "bf_000038",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_035"
+        }
+      ],
+      "id": "bf_000039",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_038"
+        }
+      ],
+      "id": "bf_000040",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_039"
+        },
+        {
+          "namespace": "featureId",
+          "jsonType": "string",
+          "value": "bf_mingtang_road"
+        }
+      ],
+      "id": "bf_000041",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_040"
+        }
+      ],
+      "id": "bf_000042",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_042"
+        }
+      ],
+      "id": "bf_000043",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_045"
+        }
+      ],
+      "id": "bf_000044",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_046"
+        }
+      ],
+      "id": "bf_000045",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_047"
+        }
+      ],
+      "id": "bf_000046",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_048"
+        }
+      ],
+      "id": "bf_000047",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_049"
+        }
+      ],
+      "id": "bf_000048",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_050"
+        }
+      ],
+      "id": "bf_000049",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_051"
+        }
+      ],
+      "id": "bf_000050",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_052"
+        }
+      ],
+      "id": "bf_000051",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_053"
+        }
+      ],
+      "id": "bf_000052",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_054"
+        }
+      ],
+      "id": "bf_000053",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_055"
+        }
+      ],
+      "id": "bf_000054",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_056"
+        }
+      ],
+      "id": "bf_000055",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_057"
+        }
+      ],
+      "id": "bf_000056",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_058"
+        }
+      ],
+      "id": "bf_000057",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_059"
+        }
+      ],
+      "id": "bf_000058",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_060"
+        }
+      ],
+      "id": "bf_000059",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_061"
+        }
+      ],
+      "id": "bf_000060",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "roadId",
+          "jsonType": "string",
+          "value": "road_062"
+        }
+      ],
+      "id": "bf_000061",
+      "entityType": "boundaryFeature",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "legacyRuling",
+          "jsonType": "string",
+          "value": "zone_006|东|双龙河|唐王河"
+        }
+      ],
+      "id": "br_000001",
+      "entityType": "boundaryRuling",
+      "createdAt": "2026-10-26"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [
+        {
+          "namespace": "legacyRuling",
+          "jsonType": "string",
+          "value": "zone_031|西|双龙河|唐王河"
+        }
+      ],
+      "id": "br_000002",
+      "entityType": "boundaryRuling",
+      "createdAt": "2026-10-26"
+    }
+  ]
+}

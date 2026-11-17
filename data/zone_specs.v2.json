@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 2,
+  "zones": [
+    {
+      "zoneId": "zone_002",
+      "zoneName": "泰安望岳中学学区",
+      "schoolId": "school_m_002",
+      "stage": "初中",
+      "year": 2025,
+      "boundaryText": "东界：致富路，荣军医院东路，西界：佳苑路，长城路，南界：灵山大街，北界：铁路。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_006",
+      "zoneName": "山东省泰安第六中学新校区学区",
+      "schoolId": "school_m_006",
+      "stage": "初中",
+      "year": 2025,
+      "boundaryText": "东至双龙河，西至迎春路，北至东岳大街，南至灵山大街（除东湖路以北，温泉路以西区域）。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [
+        {
+          "rulingId": "br_000001",
+          "edge": "东",
+          "original": "双龙河",
+          "adopted": "唐王河",
+          "geometryRefs": {
+            "featureIds": [
+              "bf_000012"
+            ],
+            "edgeIds": []
+          },
+          "reason": "环东侧 29 个顶点逐点贴 river_007（偏差 0~23.4 m），与 zone_016 东界、zone_031 西界、zone_032 西界共用同一顶点序列；双龙河在该纬段距环 670~1036 m",
+          "decidedAt": "2026-10-26",
+          "decider": "用户",
+          "lifecycle": "active",
+          "supersedes": [],
+          "supersededBy": [],
+          "createdAt": "2026-10-26",
+          "retiredAt": null
+        }
+      ],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_004",
+      "zoneName": "山东省泰安东岳中学学区",
+      "schoolId": "school_m_004",
+      "stage": "初中",
+      "year": 2025,
+      "boundaryText": "初中部：自东岳大街与唐王河交界处起，沿唐王河向北接北上高大街，沿北上高大街向西，接温泉路向北；自东岳大街与唐王河交界处起，沿东岳大街向西至温泉路向南接东湖路向西接迎春路向北接东岳大街向西至虎山路；沿虎山路向北过岱宗大街，擂鼓石大街接虎山路，沿梳洗河东岸向北。包括东关村和三合村。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_010",
+      "zoneName": "泰安一中萃英学校学区",
+      "schoolId": "school_m_010",
+      "stage": "初中",
+      "year": 2025,
+      "boundaryText": "东至红门路，西至渿河，南至岱宗大街（含青年路以西，北新东街以北，北新街以东，岱宗大街以南的小片区域）。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_016",
+      "zoneName": "泰安市第一实验学校花园校区学区",
+      "schoolId": "school_p_004",
+      "stage": "小学",
+      "year": 2025,
+      "boundaryText": "北界：东岳大街以南自东岳大街与温泉路交界处起，沿东岳大街向东、至与唐王河交界处止；西界：温泉路以东自温泉路与东岳大街交界处起，沿温泉路向南、至与东湖路交界处止；南界：东湖路以北自东湖路与温泉路交界处起，沿东湖路向东、至与唐王河交界处止；东界：唐王河以西自东湖路与唐王河交界处起，沿唐王河向北、至与东岳大街交界处止；该学区含东湖路以南的花园小区南区48号、49号楼。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_003",
+      "zoneName": "山东省泰安第六中学学区",
+      "schoolId": "school_m_003",
+      "stage": "初中",
+      "year": 2025,
+      "boundaryText": "东界：虎山路（东湖公园西门）往北沿虎山路，经过岱宗大街与虎山路路口，沿梳洗河到环山路，梳洗河以西。北界：红门路与梳洗河之间。西界：红门路（下行至岱宗大街，向西至校场街北头），南界：自东岳大街与校场街十字路口向东至岱庙南门（双龙池），向南至通天街到财源街交叉路口，再向东达东湖公园西门路口。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_031",
+      "zoneName": "泰安市泰山区凤台学校学区",
+      "schoolId": "school_m_013",
+      "stage": "初中",
+      "year": 2025,
+      "boundaryText": "中学部：东至芝田河、西至双龙河、南至五马街、北至谢过城街。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [
+        {
+          "rulingId": "br_000002",
+          "edge": "西",
+          "original": "双龙河",
+          "adopted": "唐王河",
+          "geometryRefs": {
+            "featureIds": [
+              "bf_000012"
+            ],
+            "edgeIds": []
+          },
+          "reason": "环西侧 v50~v71 逐点贴 river_007（偏差 0~23.4 m），与 zone_006 东界、zone_032 西界、zone_016 东界共用同一顶点序列；双龙河在该纬段距环 714~1036 m",
+          "decidedAt": "2026-10-26",
+          "decider": "用户",
+          "lifecycle": "active",
+          "supersedes": [],
+          "supersededBy": [],
+          "createdAt": "2026-10-26",
+          "retiredAt": null
+        }
+      ],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_032",
+      "zoneName": "泰安市泰山区凤台小学学区",
+      "schoolId": "school_p_019",
+      "stage": "小学",
+      "year": 2025,
+      "boundaryText": "小学部：北至北上高大街，南至东湖路，西至唐王河，东至天烛峰路。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_033",
+      "zoneName": "泰安泰山实验中学学区",
+      "schoolId": "school_m_005",
+      "stage": "初中",
+      "year": 2025,
+      "boundaryText": "西界：王家庄社区接长城路以东（长城路以西圣山帝景属于）；东界：龙潭路；南界：长城路南接泰山大街，东接15号路，北接铁路，东接荣疗东路，南接泰山大街，东接龙潭路；北界：北环山路东接优山美地西邻路，南接迎胜路，东接擂鼓石路，南接科山路，东接文化路，南接傲徕峰路，东接东岳大街，东接龙潭路。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_034",
+      "zoneName": "山东省泰安南关中学学区",
+      "schoolId": "school_m_007",
+      "stage": "初中",
+      "year": 2025,
+      "boundaryText": "东界：自泮河大街与泰良路交界处起，沿泰良路向北至泰辛铁路、沿泰辛铁路向东至南关中学东临，自南关中学东界至迎春西路、沿迎春西路向北至与灵山大街交汇处，沿灵山大街向西至顺河街，沿顺河街向北至与财源街交汇处，沿财源街向东至于通天街交汇处，沿通天街向北至与东岳大街交汇处止。北界：自通天街与东岳大街交汇处向西至与校场街交汇处，沿校场街向南至与财源街交汇处，沿财源北街向西至与龙潭路交汇处止。西界：自财源大街与龙潭路交界处起，沿龙潭路向南至与泮河大街交界处止。南界：自泮河大街与龙潭路交界处起，沿泮河大街向东、至与泰良路交界处止。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_035",
+      "zoneName": "泰安市泰山区泰前中学学区",
+      "schoolId": "school_m_016",
+      "stage": "初中",
+      "year": 2025,
+      "boundaryText": "初中部：北至艾洼小区，南至北上高大街，东至明堂路，西至温泉路。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_036",
+      "zoneName": "泰山学院附属中学学区",
+      "schoolId": "school_m_001",
+      "stage": "初中",
+      "year": 2025,
+      "boundaryText": "校场街以西,财源街以北,龙潭路以东,泰山大桥以西,沿岱宗大街向北,沿渿河西路向北到大众桥,沿环山路向西,泰疗、老卫校、煤气公司至优山美地,科山路南沿擂鼓石大街以北东西两边；从擂鼓石大街以南,科山路以东； 从文化路以北,文化路以南只有老师专家属院和试验设备厂属于；至傲徕峰路以东至东岳大街以北至龙潭路齐鲁银座南与财源北街汇合到校场街处。另含老人口学校宿舍、老迎胜小区1-12号楼、宋家庄老回迁楼。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_039",
+      "zoneName": "山东省泰安迎春学校（初中部）学区",
+      "schoolId": "school_m_008",
+      "stage": "初中",
+      "year": 2025,
+      "boundaryText": "初中部：自迎春学校往西至南湖大街与迎春西路交界，沿迎春西路向北到灵山大街交界处，沿灵山大街向西，到渿河东路交界处。沿渿河东路向北到财源大街交界处。沿财源大街向东到虎山路交界处。沿虎山路向北到东岳大街。沿东岳大街向东直至迎春路交界处。沿迎春路向南直至灵山大街。沿灵山大街向东直至唐訾路，沿唐訾路向南直至南湖大街，沿南湖大街向西至温泉路，沿温泉路向北到韩家结庄新村北墙，再向西到韩家结庄西墙，沿西墙向南至南湖大街，沿南湖大街向西至韩家结庄村委西路，沿西路往南到铁路，沿辛泰铁路向西直至东岳小区西墙，沿路向北到南湖大街。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [],
+      "rings": []
+    },
+    {
+      "zoneId": "zone_040",
+      "zoneName": "山东省泰安东岳中学兴隆校区学区",
+      "schoolId": "school_m_012",
+      "stage": "初中",
+      "year": 2025,
+      "boundaryText": "东界：博阳路；西界：明堂路；北界：环山东路；南界：谢过城街。",
+      "policyIds": [
+        "policy_2025_001"
+      ],
+      "boundaryRulings": [],
+      "rings": []
+    }
+  ]
+}

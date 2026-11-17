@@ -73,6 +73,8 @@
 | `data/intersections.geojson` | 兼容展示或审计产物 | 自动生成 | 是，但仅为派生副本 | 迁移期保留 |
 | `data/id_registry.json` | ID 分配与退役登记 | 由专用脚本维护 | 否 | 否 |
 
+> 迁移期双轨命名：新版边界要素与学区语义先写入 `data/boundary_features.v2.geojson` 与 `data/zone_specs.v2.json`，避免覆盖 L2 修复流程仍在使用的 `data/boundary_features.geojson` 与发布链路读取的 `data/zone_specs.json`。整批切换时提升为正式文件名，旧文件同步退役，`repair-zones.mjs` 一并下线。
+
 权威顺序：
 
 ```text

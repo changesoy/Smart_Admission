@@ -21,6 +21,10 @@
     "diagnose:junctions": "node scripts/junction-diagnose.mjs",
     "import:network": "node scripts/import-network.mjs",
     "network": "node scripts/network.mjs",
+    "migrate:features": "node scripts/migrate-boundary-features.mjs",
+    "migrate:zone-specs": "node scripts/migrate-zone-specs-v2.mjs",
+    "validate:network": "node scripts/validate-network.mjs",
+    "export:network-refs": "node scripts/export-network-refs.mjs",
     "test:server": "python -m server.tests.test_app",
     "check": "npm run lint && npm run validate:data"
   },
