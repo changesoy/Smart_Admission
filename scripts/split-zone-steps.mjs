@@ -12,7 +12,13 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { allocateIds, addEntry, loadRegistry, saveRegistry } from "./lib/id-registry.mjs";
+import {
+  allocateIds,
+  addEntry,
+  loadRegistry,
+  retireEntry,
+  saveRegistry,
+} from "./lib/id-registry.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SPEC_FILE = path.join(ROOT, "data", "zone_specs.v2.json");
@@ -23,6 +29,7 @@ const TODAY = "2026-11-17";
  * 四至拆分表。
  * side 取值：东 / 西 / 南 / 北 / 说明 / 排除
  * text 必须是官方原文的连续片段，不改变措辞。
+ * 第 4 项 rulingIds 中 "$key" 形式引用 RULINGS 中的裁定。
  */
 const STEPS = {
   zone_002: [
@@ -34,11 +41,12 @@ const STEPS = {
     ["北", "北界：铁路"],
   ],
   zone_006: [
-    ["东", "东至双龙河", "boundaryRuling", ["br_000001"]],
-    ["西", "西至迎春路"],
+    ["排除", "除东湖路以北", "boundaryRuling", ["$excision-eastlake"]],
+    ["排除", "温泉路以西区域", "boundaryRuling", ["$excision-eastlake"]],
     ["北", "北至东岳大街"],
+    ["东", "东至双龙河", "boundaryRuling", ["br_000001"]],
     ["南", "南至灵山大街"],
-    ["排除", "除东湖路以北，温泉路以西区域"],
+    ["西", "西至迎春路"],
   ],
   zone_004: [
     ["说明", "自东岳大街与唐王河交界处起，沿唐王河向北接北上高大街"],
@@ -171,6 +179,20 @@ const STEPS = {
   ],
 };
 
+/**
+ * 需要写入学区 boundaryRulings 的裁定。
+ * 由 STEPS 中的 "$key" 引用；key 唯一确定一条裁定，重复执行时按 original 复用。
+ */
+const RULINGS = {
+  "zone_006|excision-eastlake": {
+    edge: "排除",
+    original: "除东湖路以北，温泉路以西区域",
+    adopted: "外环凹口：东湖路自迎春路向东至温泉路，温泉路自东湖路向北至东岳大街",
+    reason:
+      "该排除区与学区西界迎春路、北界东岳大街相接，未形成独立闭包；按凹口并入外环，不生成洞环。",
+  },
+};
+
 const dryRun = process.argv.includes("--dry-run");
 
 const specs = JSON.parse(fs.readFileSync(SPEC_FILE, "utf-8"));
@@ -184,11 +206,41 @@ if (missing.length > 0 || extra.length > 0) {
 
 let ringCount = 0;
 let stepCount = 0;
+let rulingCount = 0;
+const rulingIdByKey = new Map();
 
 specs.zones.forEach((zone) => {
+  zone.boundaryRulings = zone.boundaryRulings ?? [];
+  Object.entries(RULINGS).forEach(([key, ruling]) => {
+    const [zoneId, rulingKey] = key.split("|");
+    if (zoneId !== zone.zoneId) return;
+
+    let existing = zone.boundaryRulings.find((item) => item.original === ruling.original);
+    if (!existing) {
+      const [rulingId] = allocateIds(registry, "boundaryRuling", 1);
+      addEntry(registry, { id: rulingId, entityType: "boundaryRuling", createdAt: TODAY });
+      existing = {
+        rulingId,
+        ...ruling,
+        geometryRefs: { featureIds: [], edgeIds: [] },
+        decidedAt: TODAY,
+        decider: "用户",
+        lifecycle: "active",
+        supersedes: [],
+        supersededBy: [],
+        createdAt: TODAY,
+        retiredAt: null,
+      };
+      zone.boundaryRulings.push(existing);
+      rulingCount += 1;
+    }
+    rulingIdByKey.set(`${zone.zoneId}|${rulingKey}`, existing.rulingId);
+  });
+
   const rows = STEPS[zone.zoneId];
   const existingRing = zone.rings?.[0];
   const existingSteps = existingRing?.steps ?? [];
+  const stepIdByKey = new Map(existingSteps.map((step) => [`${step.side}|${step.text}`, step.stepId]));
 
   let ringId = existingRing?.ringId;
   if (!ringId) {
@@ -197,14 +249,28 @@ specs.zones.forEach((zone) => {
     ringCount += 1;
   }
 
-  const steps = rows.map(([side, text, sourceType = "officialText", rulingIds = []], index) => {
-    let stepId = existingSteps[index]?.stepId;
+  const newStepIds = new Set();
+  const steps = rows.map(([side, text, sourceType = "officialText", rulingIds = []]) => {
+    const resolved = rulingIds.map((id) =>
+      id.startsWith("$") ? rulingIdByKey.get(`${zone.zoneId}|${id.slice(1)}`) : id,
+    );
+    let stepId = stepIdByKey.get(`${side}|${text}`);
     if (!stepId) {
       [stepId] = allocateIds(registry, "zoneStep", 1);
       addEntry(registry, { id: stepId, entityType: "zoneStep", createdAt: TODAY });
+      newStepIds.add(stepId);
       stepCount += 1;
     }
-    return { stepId, side, text, sourceType, rulingIds, edgeRefs: [] };
+    return { stepId, side, text, sourceType, rulingIds: resolved, edgeRefs: [] };
+  });
+
+  // 合并、拆分或改写后不再使用的步骤退役，并记录被同方位新步骤取代
+  existingSteps.forEach((step) => {
+    if (steps.some((item) => item.stepId === step.stepId)) return;
+    const replacements = steps
+      .filter((item) => newStepIds.has(item.stepId) && item.side === step.side)
+      .map((item) => item.stepId);
+    retireEntry(registry, step.stepId, { retiredAt: TODAY, supersededBy: replacements });
   });
 
   zone.rings = [{ ringId, role: "outer", steps }];
@@ -219,7 +285,7 @@ if (dryRun) {
   saveRegistry(REGISTRY_FILE, registry);
   fs.writeFileSync(SPEC_FILE, `${JSON.stringify(specs, null, 2)}\n`, "utf-8");
   console.log(
-    `已写入 ${specs.zones.length} 个学区，新增 ${ringCount} 个环、${stepCount} 个步骤；` +
+    `已写入 ${specs.zones.length} 个学区，新增 ${ringCount} 个环、${stepCount} 个步骤、${rulingCount} 条裁定；` +
       `环总数 ${registry.counters.zoneRing}，步骤总数 ${registry.counters.zoneStep}`,
   );
 }

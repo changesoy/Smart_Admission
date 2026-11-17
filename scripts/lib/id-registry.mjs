@@ -117,6 +117,16 @@ export const addLegacyRef = (registry, id, legacyRef) => {
   return true;
 };
 
+/** 退役实体：保留登记，禁止回收 ID，并记录替代关系 */
+export const retireEntry = (registry, id, { retiredAt, supersededBy = [] } = {}) => {
+  const entry = registry.entries.find((item) => item.id === id);
+  if (!entry) return false;
+  entry.lifecycle = "retired";
+  entry.retiredAt = retiredAt ?? null;
+  entry.supersededBy = supersededBy;
+  return true;
+};
+
 /** 已登记 ID 的最大序号，用于一致性核对 */
 export const maxAllocatedSequence = (registry, entityType) =>
   registry.entries.reduce((max, entry) => {

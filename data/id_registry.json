@@ -5,8 +5,8 @@
     "networkNode": 0,
     "networkEdge": 0,
     "zoneRing": 14,
-    "zoneStep": 116,
-    "boundaryRuling": 2
+    "zoneStep": 118,
+    "boundaryRuling": 3
   },
   "entries": [
     {
@@ -1073,9 +1073,12 @@
       "createdAt": "2026-11-17"
     },
     {
-      "lifecycle": "active",
-      "retiredAt": null,
-      "supersededBy": [],
+      "lifecycle": "retired",
+      "retiredAt": "2026-11-17",
+      "supersededBy": [
+        "zs_0000117",
+        "zs_0000118"
+      ],
       "legacyRefs": [],
       "id": "zs_0000011",
       "entityType": "zoneStep",
@@ -2131,6 +2134,33 @@
       "supersededBy": [],
       "legacyRefs": [],
       "id": "zs_0000116",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "br_000003",
+      "entityType": "boundaryRuling",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000117",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000118",
       "entityType": "zoneStep",
       "createdAt": "2026-11-17"
     }

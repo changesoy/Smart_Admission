@@ -99,6 +99,24 @@
           "supersededBy": [],
           "createdAt": "2026-10-26",
           "retiredAt": null
+        },
+        {
+          "rulingId": "br_000003",
+          "edge": "排除",
+          "original": "除东湖路以北，温泉路以西区域",
+          "adopted": "外环凹口：东湖路自迎春路向东至温泉路，温泉路自东湖路向北至东岳大街",
+          "reason": "该排除区与学区西界迎春路、北界东岳大街相接，未形成独立闭包；按凹口并入外环，不生成洞环。",
+          "geometryRefs": {
+            "featureIds": [],
+            "edgeIds": []
+          },
+          "decidedAt": "2026-11-17",
+          "decider": "用户",
+          "lifecycle": "active",
+          "supersedes": [],
+          "supersededBy": [],
+          "createdAt": "2026-11-17",
+          "retiredAt": null
         }
       ],
       "rings": [
@@ -107,21 +125,23 @@
           "role": "outer",
           "steps": [
             {
-              "stepId": "zs_0000007",
-              "side": "东",
-              "text": "东至双龙河",
+              "stepId": "zs_0000117",
+              "side": "排除",
+              "text": "除东湖路以北",
               "sourceType": "boundaryRuling",
               "rulingIds": [
-                "br_000001"
+                "br_000003"
               ],
               "edgeRefs": []
             },
             {
-              "stepId": "zs_0000008",
-              "side": "西",
-              "text": "西至迎春路",
-              "sourceType": "officialText",
-              "rulingIds": [],
+              "stepId": "zs_0000118",
+              "side": "排除",
+              "text": "温泉路以西区域",
+              "sourceType": "boundaryRuling",
+              "rulingIds": [
+                "br_000003"
+              ],
               "edgeRefs": []
             },
             {
@@ -133,6 +153,16 @@
               "edgeRefs": []
             },
             {
+              "stepId": "zs_0000007",
+              "side": "东",
+              "text": "东至双龙河",
+              "sourceType": "boundaryRuling",
+              "rulingIds": [
+                "br_000001"
+              ],
+              "edgeRefs": []
+            },
+            {
               "stepId": "zs_0000010",
               "side": "南",
               "text": "南至灵山大街",
@@ -141,9 +171,9 @@
               "edgeRefs": []
             },
             {
-              "stepId": "zs_0000011",
-              "side": "排除",
-              "text": "除东湖路以北，温泉路以西区域",
+              "stepId": "zs_0000008",
+              "side": "西",
+              "text": "西至迎春路",
               "sourceType": "officialText",
               "rulingIds": [],
               "edgeRefs": []

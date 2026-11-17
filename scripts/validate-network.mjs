@@ -21,6 +21,7 @@ import { fileURLToPath } from "node:url";
 import {
   ID_SPECS,
   STEP_SOURCE_TYPES,
+  STEP_SIDES,
   RING_ROLES,
   createReport,
   isId,
@@ -138,7 +139,14 @@ const validateZoneSpecs = (zoneSpecs, features, registry, report, options = {}) 
       });
     });
 
-    (zone.rings ?? []).forEach((ring, ringIndex) => {
+    const rings = zone.rings ?? [];
+    const outerRings = rings.filter((ring) => ring.role === "outer");
+    if (outerRings.length !== 1) {
+      report.error(section, `${at} 必须且只能有一个 outer 环，当前 ${outerRings.length} 个`);
+    }
+    const outerRingId = outerRings[0]?.ringId;
+
+    rings.forEach((ring, ringIndex) => {
       const ringAt = `${at} 第 ${ringIndex + 1} 个环`;
       if (!isId("zoneRing", ring.ringId)) {
         report.error(section, `${ringAt} ringId 非法: ${JSON.stringify(ring.ringId)}`);
@@ -149,6 +157,23 @@ const validateZoneSpecs = (zoneSpecs, features, registry, report, options = {}) 
       }
       if (!RING_ROLES.includes(ring.role)) {
         report.error(section, `${ringAt} role 非法: ${JSON.stringify(ring.role)}`);
+      }
+      if (ring.role === "hole") {
+        if (ring.appliesToRingId !== outerRingId) {
+          report.error(
+            section,
+            `${ringAt} hole 环必须用 appliesToRingId 指向本学区外环 ${outerRingId}`,
+          );
+        }
+        if (!Array.isArray(ring.steps) || ring.steps.length < 3) {
+          report.error(section, `${ringAt} hole 环至少需要 3 个步骤才能闭合成环`);
+        }
+        if ((ring.steps ?? []).some((step) => step.side === "排除")) {
+          report.error(
+            section,
+            `${ringAt} hole 环内不得出现 side=排除 的步骤；与外环相接的排除区应并入外环作凹口`,
+          );
+        }
       }
       if (!Array.isArray(ring.steps) || ring.steps.length === 0) {
         report.error(section, `${ringAt} 没有 steps，未绑定完成的环不应写入`);
@@ -166,6 +191,9 @@ const validateZoneSpecs = (zoneSpecs, features, registry, report, options = {}) 
         }
         if (!STEP_SOURCE_TYPES.includes(step.sourceType)) {
           report.error(section, `${stepAt} sourceType 非法: ${JSON.stringify(step.sourceType)}`);
+        }
+        if (!STEP_SIDES.includes(step.side)) {
+          report.error(section, `${stepAt} side 非法: ${JSON.stringify(step.side)}`);
         }
         if (!Array.isArray(step.edgeRefs) || step.edgeRefs.length === 0) {
           unboundSteps += 1;

@@ -78,6 +78,9 @@ export const STEP_SOURCE_TYPES = [
   "legacyMigration",
 ];
 
+/** 学区步骤方位；排除用于原文明示的排除区域 */
+export const STEP_SIDES = ["东", "西", "南", "北", "说明", "排除"];
+
 /** 环角色 */
 export const RING_ROLES = ["outer", "hole"];
 
