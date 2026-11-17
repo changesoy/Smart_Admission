@@ -561,31 +561,45 @@ zones.geojson
 ```json
 {
   "draftId": "draft_zone_006_20261117_01",
+  "schemaVersion": 1,
   "zoneId": "zone_006",
-  "boundaryText": "东至双龙河，西至迎春路，北至东岳大街，南至灵山大街。",
+  "boundaryText": "东至双龙河，西至迎春路，北至东岳大街，南至灵山大街（除东湖路以北，温泉路以西区域）。",
   "status": "editing",
+  "createdBy": "用户",
+  "createdAt": "2026-11-17",
+  "updatedAt": "2026-11-17",
   "rings": [
     {
       "role": "outer",
-      "edgeRefs": [
-        { "edgeId": "be_0012045", "direction": "forward" }
+      "appliesToRingId": null,
+      "steps": [
+        { "stepId": "zs_0000117", "edgeRefs": [] },
+        { "stepId": "zs_0000118", "edgeRefs": [] },
+        {
+          "stepId": "zs_0000009",
+          "edgeRefs": [{ "edgeId": "be_0012045", "direction": "forward" }]
+        }
       ]
     }
   ],
   "operations": [
     {
       "type": "selectEdge",
+      "stepId": "zs_0000009",
       "edgeId": "be_0012045",
       "decidedBy": "用户",
       "decidedAt": "2026-11-17",
-      "textRef": "东至双龙河"
+      "textRef": "北至东岳大街"
     }
-  ]
+  ],
+  "rejectReason": null
 }
 ```
 
 规则：
 
+- 草稿按正式步骤逐条绑定：`stepId` 必须沿用 `zone_specs.json` 中的步骤，不新增、不改序、不改写原文；环的有序边序列由步骤顺序拼接派生，不再另存一份环级 `edgeRefs`；
+- 字段级冻结、状态取值和校验清单见 `docs/planning/草稿字段冻结清单.md`；
 - 编辑器只能选择、取消选择或反向使用既有 active、`boundaryEligible=true` 的边；
 - 自动补全只能列出候选路径，禁止静默采用最短路径、最近道路或补画直线；
 - 候选路径为零或多条时必须停留在草稿态并要求人工选择；
