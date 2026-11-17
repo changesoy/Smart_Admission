@@ -28,7 +28,12 @@ export default [
     },
   },
   {
-    files: ["scripts/**/*.mjs", "vite.config.js", "eslint.config.js"],
+    files: [
+      "scripts/**/*.mjs",
+      "exports/**/*.mjs",
+      "vite.config.js",
+      "eslint.config.js",
+    ],
     languageOptions: {
       globals: {
         ...globals.node,
