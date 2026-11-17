@@ -4,8 +4,8 @@
     "boundaryFeature": 61,
     "networkNode": 0,
     "networkEdge": 0,
-    "zoneRing": 0,
-    "zoneStep": 0,
+    "zoneRing": 14,
+    "zoneStep": 116,
     "boundaryRuling": 2
   },
   "entries": [
@@ -963,6 +963,1176 @@
       "id": "br_000002",
       "entityType": "boundaryRuling",
       "createdAt": "2026-10-26"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000001",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000001",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000002",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000003",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000004",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000005",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000006",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000002",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000007",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000008",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000009",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000010",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000011",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000003",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000012",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000013",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000014",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000015",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000016",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000017",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000018",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000019",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000020",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000021",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000004",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000022",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000023",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000024",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000025",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000005",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000026",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000027",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000028",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000029",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000030",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000006",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000031",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000032",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000033",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000034",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000035",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000036",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000037",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000007",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000038",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000039",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000040",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000041",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000008",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000042",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000043",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000044",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000045",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000009",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000046",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000047",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000048",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000049",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000050",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000051",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000052",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000053",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000054",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000055",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000056",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000057",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000058",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000059",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000060",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000061",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000062",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000063",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000010",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000064",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000065",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000066",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000067",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000068",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000069",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000070",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000071",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000072",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000073",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000074",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000075",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000076",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000011",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000077",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000078",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000079",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000080",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000012",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000081",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000082",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000083",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000084",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000085",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000086",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000087",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000088",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000089",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000090",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000091",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000092",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000093",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000094",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000013",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000095",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000096",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000097",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000098",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000099",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000100",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000101",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000102",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000103",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000104",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000105",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000106",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000107",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000108",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000109",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000110",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000111",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000112",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zr_000014",
+      "entityType": "zoneRing",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000113",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000114",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000115",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "zs_0000116",
+      "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
     }
   ]
 }

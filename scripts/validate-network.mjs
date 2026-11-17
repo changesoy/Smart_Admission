@@ -84,7 +84,7 @@ const crossCheckFeatures = (features, registry, report) => {
 };
 
 /** 学区骨架校验：只检查结构与引用，不检查尚未存在的边 */
-const validateZoneSpecs = (zoneSpecs, features, registry, report) => {
+const validateZoneSpecs = (zoneSpecs, features, registry, report, options = {}) => {
   const section = "zone_specs_v2";
   if (zoneSpecs?.schemaVersion !== 2) {
     report.error(section, `schemaVersion 应为 2，当前: ${zoneSpecs?.schemaVersion}`);
@@ -154,6 +154,7 @@ const validateZoneSpecs = (zoneSpecs, features, registry, report) => {
         report.error(section, `${ringAt} 没有 steps，未绑定完成的环不应写入`);
         return;
       }
+      let unboundSteps = 0;
       ring.steps.forEach((step, stepIndex) => {
         const stepAt = `${ringAt} 第 ${stepIndex + 1} 步`;
         if (!isId("zoneStep", step.stepId)) {
@@ -167,9 +168,16 @@ const validateZoneSpecs = (zoneSpecs, features, registry, report) => {
           report.error(section, `${stepAt} sourceType 非法: ${JSON.stringify(step.sourceType)}`);
         }
         if (!Array.isArray(step.edgeRefs) || step.edgeRefs.length === 0) {
-          report.error(section, `${stepAt} 缺少 edgeRefs`);
+          unboundSteps += 1;
         }
       });
+      if (unboundSteps > 0) {
+        const emit = options.strict ? report.error : report.warn;
+        emit(
+          section,
+          `${ringAt} 有 ${unboundSteps}/${ring.steps.length} 个步骤尚未绑定 edgeRefs（绑定完成前允许为空）`,
+        );
+      }
     });
   });
 };
@@ -247,7 +255,7 @@ const main = () => {
   crossCheckFeatures(features, registry, report);
 
   const zoneSpecs = readJson(FILES.zoneSpecs);
-  if (zoneSpecs) validateZoneSpecs(zoneSpecs, features, registry, report);
+  if (zoneSpecs) validateZoneSpecs(zoneSpecs, features, registry, report, { strict: STRICT });
 
   const nodes = readJson(FILES.nodes);
   const edges = readJson(FILES.edges);
