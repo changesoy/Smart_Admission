@@ -6,7 +6,7 @@
     "networkEdge": 0,
     "zoneRing": 14,
     "zoneStep": 118,
-    "boundaryRuling": 3
+    "boundaryRuling": 7
   },
   "entries": [
     {
@@ -2162,6 +2162,42 @@
       "legacyRefs": [],
       "id": "zs_0000118",
       "entityType": "zoneStep",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "br_000004",
+      "entityType": "boundaryRuling",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "br_000005",
+      "entityType": "boundaryRuling",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "br_000006",
+      "entityType": "boundaryRuling",
+      "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "br_000007",
+      "entityType": "boundaryRuling",
       "createdAt": "2026-11-17"
     }
   ]

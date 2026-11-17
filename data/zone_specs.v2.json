@@ -292,7 +292,26 @@
       "policyIds": [
         "policy_2025_001"
       ],
-      "boundaryRulings": [],
+      "boundaryRulings": [
+        {
+          "rulingId": "br_000004",
+          "edge": "说明",
+          "original": "含青年路以西，北新东街以北，北新街以东，岱宗大街以南的小片区域",
+          "adopted": "维持现绘制归属：该小片计入 zone_003 山东省泰安第六中学学区，不计入本学区",
+          "reason": "原文把该小片列入本学区，但现有绘制与招生实际均归第六中学（探测点 117.118,36.1905 落在 zone_003）。按现绘制维持，避免同批切换同时改动两校边界。",
+          "geometryRefs": {
+            "featureIds": [],
+            "edgeIds": []
+          },
+          "decidedAt": "2026-11-17",
+          "decider": "用户",
+          "lifecycle": "active",
+          "supersedes": [],
+          "supersededBy": [],
+          "createdAt": "2026-11-17",
+          "retiredAt": null
+        }
+      ],
       "rings": [
         {
           "ringId": "zr_000004",
@@ -326,8 +345,10 @@
               "stepId": "zs_0000025",
               "side": "说明",
               "text": "含青年路以西，北新东街以北，北新街以东，岱宗大街以南的小片区域",
-              "sourceType": "officialText",
-              "rulingIds": [],
+              "sourceType": "boundaryRuling",
+              "rulingIds": [
+                "br_000004"
+              ],
               "edgeRefs": []
             }
           ]
@@ -344,7 +365,26 @@
       "policyIds": [
         "policy_2025_001"
       ],
-      "boundaryRulings": [],
+      "boundaryRulings": [
+        {
+          "rulingId": "br_000005",
+          "edge": "说明",
+          "original": "该学区含东湖路以南的花园小区南区48号、49号楼",
+          "adopted": "维持现绘制归属：两栋楼计入 zone_006 山东省泰安第六中学新校区学区",
+          "reason": "本学区原文含该两栋楼，但 zone_006 原文仅排除东湖路以北、温泉路以西，两份官方原文相互冲突；现有绘制与实际招生均归六中新校区，按现绘制维持。",
+          "geometryRefs": {
+            "featureIds": [],
+            "edgeIds": []
+          },
+          "decidedAt": "2026-11-17",
+          "decider": "用户",
+          "lifecycle": "active",
+          "supersedes": [],
+          "supersededBy": [],
+          "createdAt": "2026-11-17",
+          "retiredAt": null
+        }
+      ],
       "rings": [
         {
           "ringId": "zr_000005",
@@ -386,8 +426,10 @@
               "stepId": "zs_0000030",
               "side": "说明",
               "text": "该学区含东湖路以南的花园小区南区48号、49号楼",
-              "sourceType": "officialText",
-              "rulingIds": [],
+              "sourceType": "boundaryRuling",
+              "rulingIds": [
+                "br_000005"
+              ],
               "edgeRefs": []
             }
           ]
@@ -895,7 +937,26 @@
       "policyIds": [
         "policy_2025_001"
       ],
-      "boundaryRulings": [],
+      "boundaryRulings": [
+        {
+          "rulingId": "br_000006",
+          "edge": "北",
+          "original": "北至艾洼小区",
+          "adopted": "沿现有绘制北界（约北纬 36.2592 的水平线）",
+          "reason": "艾洼小区为居住小区，非道路要素，现有路网无同名要素、也无实测范围；按现有绘制近似，待实测边界后替换。",
+          "geometryRefs": {
+            "featureIds": [],
+            "edgeIds": []
+          },
+          "decidedAt": "2026-11-17",
+          "decider": "用户",
+          "lifecycle": "active",
+          "supersedes": [],
+          "supersededBy": [],
+          "createdAt": "2026-11-17",
+          "retiredAt": null
+        }
+      ],
       "rings": [
         {
           "ringId": "zr_000011",
@@ -905,8 +966,10 @@
               "stepId": "zs_0000077",
               "side": "北",
               "text": "北至艾洼小区",
-              "sourceType": "officialText",
-              "rulingIds": [],
+              "sourceType": "boundaryRuling",
+              "rulingIds": [
+                "br_000006"
+              ],
               "edgeRefs": []
             },
             {
@@ -947,7 +1010,26 @@
       "policyIds": [
         "policy_2025_001"
       ],
-      "boundaryRulings": [],
+      "boundaryRulings": [
+        {
+          "rulingId": "br_000007",
+          "edge": "说明",
+          "original": "另含老人口学校宿舍、老迎胜小区1-12号楼、宋家庄老回迁楼",
+          "adopted": "主区采用现有绘制几何作过渡边界；建筑级包含仅登记清单，不单独建环",
+          "reason": "原文由半平面、道路两侧与楼院级包含混合描述，无法排成唯一闭合环。首批绑定以现有绘制几何为准，语义差异保留在步骤与裁定中。",
+          "geometryRefs": {
+            "featureIds": [],
+            "edgeIds": []
+          },
+          "decidedAt": "2026-11-17",
+          "decider": "用户",
+          "lifecycle": "active",
+          "supersedes": [],
+          "supersededBy": [],
+          "createdAt": "2026-11-17",
+          "retiredAt": null
+        }
+      ],
       "rings": [
         {
           "ringId": "zr_000012",
@@ -1061,8 +1143,10 @@
               "stepId": "zs_0000094",
               "side": "说明",
               "text": "另含老人口学校宿舍、老迎胜小区1-12号楼、宋家庄老回迁楼",
-              "sourceType": "officialText",
-              "rulingIds": [],
+              "sourceType": "boundaryRuling",
+              "rulingIds": [
+                "br_000007"
+              ],
               "edgeRefs": []
             }
           ]
