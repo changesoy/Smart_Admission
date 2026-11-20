@@ -70,7 +70,7 @@
             "roadId": "road_022",
             "name": "温泉路",
             "part": 0,
-            "vertex": 46,
+            "vertex": 48,
             "s": 5946.26,
             "vertexGapM": 0,
             "confidence": "high"
@@ -119,7 +119,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1043659,
+          117.104366,
           36.183023
         ]
       },
@@ -538,7 +538,7 @@
             "roadId": "road_022",
             "name": "温泉路",
             "part": 0,
-            "vertex": 59,
+            "vertex": 61,
             "s": 7102.09,
             "vertexGapM": 0,
             "confidence": "high"
@@ -898,8 +898,8 @@
             "roadId": "road_022",
             "name": "温泉路",
             "part": 0,
-            "vertex": 22,
-            "s": 3604.59,
+            "vertex": 24,
+            "s": 3604.6,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -1127,7 +1127,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1521494,
+          117.1521495,
           36.2017142
         ]
       },
@@ -1222,7 +1222,7 @@
             "roadId": "road_019",
             "name": "龙潭路",
             "part": 0,
-            "vertex": 70,
+            "vertex": 72,
             "s": 4316.92,
             "vertexGapM": 0,
             "confidence": "high"
@@ -1631,8 +1631,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.0738389,
-          36.170269
+          117.0738419,
+          36.1702532
         ]
       },
       "properties": {
@@ -1645,8 +1645,8 @@
             "roadId": "road_007",
             "name": "泮河大街",
             "part": 0,
-            "vertex": 47,
-            "s": 1367.09,
+            "vertex": 18,
+            "s": 1360.48,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -1654,8 +1654,8 @@
             "roadId": "road_021",
             "name": "长城路",
             "part": 0,
-            "vertex": 59,
-            "s": 5252.52,
+            "vertex": 58,
+            "s": 3608.87,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -2122,7 +2122,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 234,
+            "vertex": 235,
             "s": 18451.94,
             "vertexGapM": 0,
             "confidence": "high"
@@ -2266,7 +2266,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 214,
+            "vertex": 215,
             "s": 17034.52,
             "vertexGapM": 0,
             "confidence": "high"
@@ -2410,7 +2410,7 @@
             "roadId": "road_022",
             "name": "温泉路",
             "part": 0,
-            "vertex": 34,
+            "vertex": 36,
             "s": 5037.97,
             "vertexGapM": 0,
             "confidence": "high"
@@ -2423,31 +2423,31 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.0782908,
-          36.2046082
+          117.078289,
+          36.2046054
         ]
       },
       "properties": {
         "id": "ix_road_004_road_054_1",
         "label": "环山路×御碑楼路",
-        "kind": "tee",
+        "kind": "cross",
         "confidence": "high",
         "roads": [
           {
             "roadId": "road_004",
             "name": "环山路",
             "part": 0,
-            "vertex": 51,
-            "s": 2274.52,
-            "vertexGapM": 0.03,
+            "vertex": 65,
+            "s": 2271.13,
+            "vertexGapM": 0,
             "confidence": "high"
           },
           {
             "roadId": "road_054",
             "name": "御碑楼路",
             "part": 0,
-            "vertex": 0,
-            "s": 0,
+            "vertex": 1,
+            "s": 0.35,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -2567,7 +2567,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.0827012,
+          117.0827011,
           36.1968952
         ]
       },
@@ -2583,7 +2583,7 @@
             "part": 0,
             "vertex": 27,
             "s": 2338.7,
-            "vertexGapM": 0.51,
+            "vertexGapM": 0.5,
             "confidence": "high"
           },
           {
@@ -2592,7 +2592,7 @@
             "part": 1,
             "vertex": 0,
             "s": 0,
-            "vertexGapM": 0.5,
+            "vertexGapM": 0.51,
             "confidence": "high"
           }
         ]
@@ -2603,8 +2603,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1509623,
-          36.2197409
+          117.1509627,
+          36.2197403
         ]
       },
       "properties": {
@@ -2617,8 +2617,8 @@
             "roadId": "river_003",
             "name": "双龙河",
             "part": 0,
-            "vertex": 32,
-            "s": 2390.45,
+            "vertex": 33,
+            "s": 2390.53,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -2626,8 +2626,8 @@
             "roadId": "road_004",
             "name": "环山路",
             "part": 0,
-            "vertex": 263,
-            "s": 9985.79,
+            "vertex": 361,
+            "s": 9940.2,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -2701,42 +2701,6 @@
             "vertex": 7,
             "s": 1822.32,
             "vertexGapM": 0.04,
-            "confidence": "high"
-          }
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          117.0857511,
-          36.1480794
-        ]
-      },
-      "properties": {
-        "id": "ix_road_021_road_046_1",
-        "label": "长城路×万官大街",
-        "kind": "cross",
-        "confidence": "high",
-        "roads": [
-          {
-            "roadId": "road_021",
-            "name": "长城路",
-            "part": 0,
-            "vertex": 34,
-            "s": 2559.95,
-            "vertexGapM": 0,
-            "confidence": "high"
-          },
-          {
-            "roadId": "road_046",
-            "name": "万官大街",
-            "part": 0,
-            "vertex": 78,
-            "s": 8155.87,
-            "vertexGapM": 0,
             "confidence": "high"
           }
         ]
@@ -3175,7 +3139,7 @@
             "roadId": "road_022",
             "name": "温泉路",
             "part": 0,
-            "vertex": 29,
+            "vertex": 31,
             "s": 4367.24,
             "vertexGapM": 0,
             "confidence": "high"
@@ -3188,7 +3152,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.0687232,
+          117.0687233,
           36.1851844
         ]
       },
@@ -3204,15 +3168,15 @@
             "part": 0,
             "vertex": 52,
             "s": 3275.23,
-            "vertexGapM": 0,
+            "vertexGapM": 0.01,
             "confidence": "high"
           },
           {
             "roadId": "road_021",
             "name": "长城路",
             "part": 0,
-            "vertex": 85,
-            "s": 6994.61,
+            "vertex": 30,
+            "s": 1865.88,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -3368,8 +3332,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.2074402,
-          36.2346501
+          117.2074277,
+          36.2346705
         ]
       },
       "properties": {
@@ -3383,7 +3347,7 @@
             "name": "芝田河",
             "part": 0,
             "vertex": 16,
-            "s": 3561.24,
+            "s": 3558.71,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -3391,8 +3355,8 @@
             "roadId": 63,
             "name": "碧霞大街",
             "part": 0,
-            "vertex": 63,
-            "s": 3400.69,
+            "vertex": 77,
+            "s": 3394.23,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -3404,7 +3368,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.0706982,
+          117.0706977,
           36.1760698
         ]
       },
@@ -3420,15 +3384,15 @@
             "part": 0,
             "vertex": 56,
             "s": 3570.82,
-            "vertexGapM": 0,
+            "vertexGapM": 0.04,
             "confidence": "high"
           },
           {
             "roadId": "road_021",
             "name": "长城路",
             "part": 0,
-            "vertex": 67,
-            "s": 5957.24,
+            "vertex": 48,
+            "s": 2902.65,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -3670,7 +3634,7 @@
             "roadId": "river_003",
             "name": "双龙河",
             "part": 0,
-            "vertex": 66,
+            "vertex": 67,
             "s": 4022.61,
             "vertexGapM": 0,
             "confidence": "high"
@@ -3692,7 +3656,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1501197,
+          117.1501198,
           36.178623
         ]
       },
@@ -3717,7 +3681,7 @@
             "part": 0,
             "vertex": 89,
             "s": 3859.09,
-            "vertexGapM": 0.03,
+            "vertexGapM": 0.02,
             "confidence": "high"
           }
         ]
@@ -3742,7 +3706,7 @@
             "roadId": "river_003",
             "name": "双龙河",
             "part": 0,
-            "vertex": 67,
+            "vertex": 68,
             "s": 4033.19,
             "vertexGapM": 0,
             "confidence": "high"
@@ -3837,7 +3801,7 @@
         "type": "Point",
         "coordinates": [
           117.185197,
-          36.2350576
+          36.2350577
         ]
       },
       "properties": {
@@ -3852,16 +3816,16 @@
             "part": 0,
             "vertex": 38,
             "s": 4270.64,
-            "vertexGapM": 0,
+            "vertexGapM": 0.01,
             "confidence": "high"
           },
           {
             "roadId": 63,
             "name": "碧霞大街",
             "part": 0,
-            "vertex": 21,
-            "s": 1392.08,
-            "vertexGapM": 0,
+            "vertex": 38,
+            "s": 1389.75,
+            "vertexGapM": 0.01,
             "confidence": "high"
           }
         ]
@@ -3872,8 +3836,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.102339,
-          36.205689
+          117.1023335,
+          36.2057012
         ]
       },
       "properties": {
@@ -3886,9 +3850,9 @@
             "roadId": "road_004",
             "name": "环山路",
             "part": 0,
-            "vertex": 103,
-            "s": 4632.86,
-            "vertexGapM": 0,
+            "vertex": 153,
+            "s": 4614.35,
+            "vertexGapM": 1.45,
             "confidence": "high"
           },
           {
@@ -3897,7 +3861,7 @@
             "part": 0,
             "vertex": 0,
             "s": 0,
-            "vertexGapM": 0,
+            "vertexGapM": 1.45,
             "confidence": "high"
           }
         ]
@@ -3933,6 +3897,42 @@
             "part": 0,
             "vertex": 0,
             "s": 0,
+            "vertexGapM": 0,
+            "confidence": "high"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.1109362,
+          36.170373
+        ]
+      },
+      "properties": {
+        "id": "ix_road_007_road_019_1",
+        "label": "泮河大街×龙潭路",
+        "kind": "cross",
+        "confidence": "high",
+        "roads": [
+          {
+            "roadId": "road_007",
+            "name": "泮河大街",
+            "part": 0,
+            "vertex": 58,
+            "s": 4726.23,
+            "vertexGapM": 0,
+            "confidence": "high"
+          },
+          {
+            "roadId": "road_019",
+            "name": "龙潭路",
+            "part": 0,
+            "vertex": 71,
+            "s": 4261.53,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -4016,42 +4016,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1109401,
-          36.1703845
-        ]
-      },
-      "properties": {
-        "id": "ix_road_007_road_019_1",
-        "label": "泮河大街×龙潭路",
-        "kind": "cross",
-        "confidence": "high",
-        "roads": [
-          {
-            "roadId": "road_007",
-            "name": "泮河大街",
-            "part": 0,
-            "vertex": 212,
-            "s": 4761.59,
-            "vertexGapM": 0,
-            "confidence": "high"
-          },
-          {
-            "roadId": "road_019",
-            "name": "龙潭路",
-            "part": 0,
-            "vertex": 69,
-            "s": 4260.21,
-            "vertexGapM": 0,
-            "confidence": "high"
-          }
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           117.2121559,
           36.2217175
         ]
@@ -4066,7 +4030,7 @@
             "roadId": "river_005",
             "name": "芝田河",
             "part": 0,
-            "vertex": 25,
+            "vertex": 26,
             "s": 5096.45,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4102,7 +4066,7 @@
             "roadId": "river_003",
             "name": "双龙河",
             "part": 0,
-            "vertex": 78,
+            "vertex": 79,
             "s": 5145.89,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4282,7 +4246,7 @@
             "roadId": "river_003",
             "name": "双龙河",
             "part": 0,
-            "vertex": 84,
+            "vertex": 85,
             "s": 5555.9,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4318,7 +4282,7 @@
             "roadId": "road_022",
             "name": "温泉路",
             "part": 0,
-            "vertex": 41,
+            "vertex": 43,
             "s": 5597.94,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4363,7 +4327,7 @@
             "roadId": "road_022",
             "name": "温泉路",
             "part": 0,
-            "vertex": 48,
+            "vertex": 50,
             "s": 6392.48,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4390,7 +4354,7 @@
             "roadId": "river_003",
             "name": "双龙河",
             "part": 0,
-            "vertex": 88,
+            "vertex": 89,
             "s": 5885.41,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4399,7 +4363,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 249,
+            "vertex": 250,
             "s": 19511.97,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4413,7 +4377,7 @@
         "type": "Point",
         "coordinates": [
           117.1484159,
-          36.1617265
+          36.1617268
         ]
       },
       "properties": {
@@ -4428,15 +4392,15 @@
             "part": 0,
             "vertex": 81,
             "s": 5987.11,
-            "vertexGapM": 0,
+            "vertexGapM": 0.03,
             "confidence": "high"
           },
           {
             "roadId": "road_007",
             "name": "泮河大街",
             "part": 0,
-            "vertex": 310,
-            "s": 8595.31,
+            "vertex": 117,
+            "s": 8537.52,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -4484,8 +4448,44 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1251352,
-          36.1617269
+          117.0857524,
+          36.1480794
+        ]
+      },
+      "properties": {
+        "id": "ix_road_021_road_046_1",
+        "label": "长城路×万官大街",
+        "kind": "cross",
+        "confidence": "high",
+        "roads": [
+          {
+            "roadId": "road_021",
+            "name": "长城路",
+            "part": 0,
+            "vertex": 92,
+            "s": 6298.07,
+            "vertexGapM": 0,
+            "confidence": "high"
+          },
+          {
+            "roadId": "road_046",
+            "name": "万官大街",
+            "part": 0,
+            "vertex": 78,
+            "s": 8155.76,
+            "vertexGapM": 0,
+            "confidence": "high"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          117.125134,
+          36.1617191
         ]
       },
       "properties": {
@@ -4498,8 +4498,8 @@
             "roadId": "road_007",
             "name": "泮河大街",
             "part": 0,
-            "vertex": 300,
-            "s": 6505.14,
+            "vertex": 106,
+            "s": 6447.31,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -4508,7 +4508,7 @@
             "name": "南关大街",
             "part": 0,
             "vertex": 10,
-            "s": 2990.7,
+            "s": 2989.82,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -4520,8 +4520,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1224948,
-          36.206686
+          117.1224941,
+          36.206694
         ]
       },
       "properties": {
@@ -4534,17 +4534,17 @@
             "roadId": "road_004",
             "name": "环山路",
             "part": 0,
-            "vertex": 154,
-            "s": 6512.63,
-            "vertexGapM": 0.02,
+            "vertex": 216,
+            "s": 6488.11,
+            "vertexGapM": 0,
             "confidence": "high"
           },
           {
             "roadId": "road_020",
             "name": "红门路",
             "part": 0,
-            "vertex": 19,
-            "s": 1182.79,
+            "vertex": 20,
+            "s": 1183.68,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -4570,7 +4570,7 @@
             "roadId": "river_003",
             "name": "双龙河",
             "part": 0,
-            "vertex": 93,
+            "vertex": 94,
             "s": 6549.76,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4678,7 +4678,7 @@
             "roadId": "road_019",
             "name": "龙潭路",
             "part": 0,
-            "vertex": 89,
+            "vertex": 91,
             "s": 6865.64,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4700,32 +4700,32 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1260057,
-          36.205041
+          117.1260058,
+          36.2050455
         ]
       },
       "properties": {
         "id": "ix_road_004_road_023_1",
         "label": "环山路×虎山路",
-        "kind": "cross",
+        "kind": "tee",
         "confidence": "high",
         "roads": [
           {
             "roadId": "road_004",
             "name": "环山路",
             "part": 0,
-            "vertex": 175,
-            "s": 6923,
-            "vertexGapM": 0.03,
+            "vertex": 247,
+            "s": 6889.4,
+            "vertexGapM": 0.46,
             "confidence": "high"
           },
           {
             "roadId": "road_023",
             "name": "虎山路",
             "part": 1,
-            "vertex": 1,
-            "s": 0.05,
-            "vertexGapM": 0,
+            "vertex": 0,
+            "s": 0,
+            "vertexGapM": 0.46,
             "confidence": "high"
           }
         ]
@@ -4759,7 +4759,7 @@
             "roadId": "river_003",
             "name": "双龙河",
             "part": 0,
-            "vertex": 151,
+            "vertex": 154,
             "s": 10969.89,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4786,7 +4786,7 @@
             "roadId": "river_003",
             "name": "双龙河",
             "part": 0,
-            "vertex": 99,
+            "vertex": 100,
             "s": 7059.73,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4858,7 +4858,7 @@
             "roadId": "road_019",
             "name": "龙潭路",
             "part": 0,
-            "vertex": 97,
+            "vertex": 99,
             "s": 7276.64,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4880,8 +4880,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1028649,
-          36.206062
+          117.1028673,
+          36.2060605
         ]
       },
       "properties": {
@@ -4894,8 +4894,8 @@
             "roadId": "river_001",
             "name": "渿河",
             "part": 0,
-            "vertex": 136,
-            "s": 7324.45,
+            "vertex": 137,
+            "s": 7324.73,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -4903,8 +4903,8 @@
             "roadId": "road_004",
             "name": "环山路",
             "part": 0,
-            "vertex": 106,
-            "s": 4697.57,
+            "vertex": 159,
+            "s": 4677.23,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -4966,7 +4966,7 @@
             "roadId": "river_003",
             "name": "双龙河",
             "part": 0,
-            "vertex": 102,
+            "vertex": 103,
             "s": 7582.49,
             "vertexGapM": 0,
             "confidence": "high"
@@ -4977,42 +4977,6 @@
             "part": 0,
             "vertex": 208,
             "s": 11847.99,
-            "vertexGapM": 0,
-            "confidence": "high"
-          }
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          117.134281,
-          36.206058
-        ]
-      },
-      "properties": {
-        "id": "ix_road_004_road_050_1",
-        "label": "环山路×虎山东路",
-        "kind": "tee",
-        "confidence": "high",
-        "roads": [
-          {
-            "roadId": "road_004",
-            "name": "环山路",
-            "part": 0,
-            "vertex": 199,
-            "s": 7696.24,
-            "vertexGapM": 0,
-            "confidence": "high"
-          },
-          {
-            "roadId": "road_050",
-            "name": "虎山东路",
-            "part": 0,
-            "vertex": 22,
-            "s": 954.25,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -5132,8 +5096,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.144709,
-          36.1617225
+          117.1447089,
+          36.1617255
         ]
       },
       "properties": {
@@ -5146,8 +5110,8 @@
             "roadId": "road_007",
             "name": "泮河大街",
             "part": 0,
-            "vertex": 308,
-            "s": 8262.53,
+            "vertex": 115,
+            "s": 8204.73,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -5155,8 +5119,8 @@
             "roadId": "road_022",
             "name": "温泉路",
             "part": 0,
-            "vertex": 12,
-            "s": 1928.74,
+            "vertex": 14,
+            "s": 1929.08,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -5218,7 +5182,7 @@
             "roadId": "river_001",
             "name": "渿河",
             "part": 0,
-            "vertex": 149,
+            "vertex": 150,
             "s": 8514.53,
             "vertexGapM": 0,
             "confidence": "high"
@@ -5240,8 +5204,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1414841,
-          36.2107753
+          117.1414765,
+          36.210777
         ]
       },
       "properties": {
@@ -5254,9 +5218,9 @@
             "roadId": "road_004",
             "name": "环山路",
             "part": 0,
-            "vertex": 220,
-            "s": 8571.36,
-            "vertexGapM": 0.03,
+            "vertex": 306,
+            "s": 8530.11,
+            "vertexGapM": 0.7,
             "confidence": "high"
           },
           {
@@ -5265,7 +5229,7 @@
             "part": 0,
             "vertex": 32,
             "s": 2097.97,
-            "vertexGapM": 0,
+            "vertexGapM": 0.71,
             "confidence": "high"
           }
         ]
@@ -5326,7 +5290,7 @@
             "roadId": "river_005",
             "name": "芝田河",
             "part": 0,
-            "vertex": 42,
+            "vertex": 43,
             "s": 8811.24,
             "vertexGapM": 0,
             "confidence": "high"
@@ -5384,8 +5348,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1447811,
-          36.2150939
+          117.1447774,
+          36.2150974
         ]
       },
       "properties": {
@@ -5398,18 +5362,18 @@
             "roadId": "road_004",
             "name": "环山路",
             "part": 0,
-            "vertex": 241,
-            "s": 9205.42,
-            "vertexGapM": 0,
+            "vertex": 331,
+            "s": 9161.95,
+            "vertexGapM": 0.5,
             "confidence": "high"
           },
           {
             "roadId": "road_022",
             "name": "温泉路",
             "part": 0,
-            "vertex": 67,
+            "vertex": 69,
             "s": 7882.36,
-            "vertexGapM": 0,
+            "vertexGapM": 0.51,
             "confidence": "high"
           }
         ]
@@ -5470,7 +5434,7 @@
             "roadId": "river_001",
             "name": "渿河",
             "part": 0,
-            "vertex": 155,
+            "vertex": 156,
             "s": 9276.68,
             "vertexGapM": 0,
             "confidence": "high"
@@ -5515,7 +5479,7 @@
             "roadId": "road_046",
             "name": "万官大街",
             "part": 0,
-            "vertex": 89,
+            "vertex": 90,
             "s": 9512.51,
             "vertexGapM": 0,
             "confidence": "high"
@@ -5537,8 +5501,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1570751,
-          36.1617349
+          117.1570746,
+          36.1617313
         ]
       },
       "properties": {
@@ -5551,8 +5515,8 @@
             "roadId": "river_003",
             "name": "双龙河",
             "part": 0,
-            "vertex": 126,
-            "s": 9656.53,
+            "vertex": 129,
+            "s": 9656.94,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -5560,8 +5524,8 @@
             "roadId": "road_007",
             "name": "泮河大街",
             "part": 0,
-            "vertex": 312,
-            "s": 9372.68,
+            "vertex": 119,
+            "s": 9314.85,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -5587,7 +5551,7 @@
             "roadId": "river_001",
             "name": "渿河",
             "part": 0,
-            "vertex": 161,
+            "vertex": 162,
             "s": 9799.17,
             "vertexGapM": 0,
             "confidence": "high"
@@ -5596,7 +5560,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 194,
+            "vertex": 195,
             "s": 15501.66,
             "vertexGapM": 0,
             "confidence": "high"
@@ -5659,9 +5623,9 @@
             "roadId": "road_007",
             "name": "泮河大街",
             "part": 0,
-            "vertex": 314,
-            "s": 10049.29,
-            "vertexGapM": 0,
+            "vertex": 121,
+            "s": 9991.5,
+            "vertexGapM": 0.01,
             "confidence": "high"
           },
           {
@@ -5695,8 +5659,8 @@
             "roadId": "road_007",
             "name": "泮河大街",
             "part": 0,
-            "vertex": 315,
-            "s": 10070.95,
+            "vertex": 122,
+            "s": 10013.16,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -5731,7 +5695,7 @@
             "roadId": "river_001",
             "name": "渿河",
             "part": 0,
-            "vertex": 167,
+            "vertex": 168,
             "s": 10267.9,
             "vertexGapM": 0,
             "confidence": "high"
@@ -5753,8 +5717,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.0642206,
-          36.2005723
+          117.0642324,
+          36.2005692
         ]
       },
       "properties": {
@@ -5767,8 +5731,8 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 120,
-            "s": 10285.24,
+            "vertex": 121,
+            "s": 10286.36,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -5776,8 +5740,8 @@
             "roadId": "road_021",
             "name": "长城路",
             "part": 0,
-            "vertex": 113,
-            "s": 8832.11,
+            "vertex": 1,
+            "s": 30.55,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -5812,7 +5776,7 @@
             "roadId": "road_022",
             "name": "温泉路",
             "part": 0,
-            "vertex": 26,
+            "vertex": 28,
             "s": 4277.12,
             "vertexGapM": 0,
             "confidence": "high"
@@ -5825,8 +5789,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.2025195,
-          36.2346528
+          117.2025177,
+          36.234645
         ]
       },
       "properties": {
@@ -5840,7 +5804,7 @@
             "name": "博阳路",
             "part": 0,
             "vertex": 53,
-            "s": 10444.27,
+            "s": 10443.39,
             "vertexGapM": 0,
             "confidence": "low"
           },
@@ -5848,8 +5812,8 @@
             "roadId": 63,
             "name": "碧霞大街",
             "part": 0,
-            "vertex": 40,
-            "s": 2955.82,
+            "vertex": 65,
+            "s": 2952.74,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -5875,7 +5839,7 @@
             "roadId": "river_001",
             "name": "渿河",
             "part": 0,
-            "vertex": 171,
+            "vertex": 172,
             "s": 10758.87,
             "vertexGapM": 0,
             "confidence": "high"
@@ -5897,8 +5861,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.155781,
-          36.225916
+          117.1557805,
+          36.225917
         ]
       },
       "properties": {
@@ -5911,9 +5875,9 @@
             "roadId": "road_004",
             "name": "环山路",
             "part": 0,
-            "vertex": 285,
-            "s": 10863.81,
-            "vertexGapM": 0,
+            "vertex": 397,
+            "s": 10813.67,
+            "vertexGapM": 0.13,
             "confidence": "high"
           },
           {
@@ -5922,7 +5886,7 @@
             "part": 0,
             "vertex": 23,
             "s": 5208.84,
-            "vertexGapM": 0,
+            "vertexGapM": 0.12,
             "confidence": "high"
           }
         ]
@@ -5983,7 +5947,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 136,
+            "vertex": 137,
             "s": 11433.95,
             "vertexGapM": 0,
             "confidence": "high"
@@ -5992,7 +5956,7 @@
             "roadId": "road_054",
             "name": "御碑楼路",
             "part": 0,
-            "vertex": 7,
+            "vertex": 8,
             "s": 849.28,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6019,7 +5983,7 @@
             "roadId": "river_001",
             "name": "渿河",
             "part": 0,
-            "vertex": 176,
+            "vertex": 177,
             "s": 11436.48,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6091,7 +6055,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 144,
+            "vertex": 145,
             "s": 12039.1,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6127,8 +6091,8 @@
             "roadId": "road_004",
             "name": "环山路",
             "part": 0,
-            "vertex": 322,
-            "s": 12436.79,
+            "vertex": 446,
+            "s": 12384.55,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -6253,7 +6217,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 153,
+            "vertex": 154,
             "s": 12731.51,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6275,8 +6239,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1186115,
-          36.1627343
+          117.1186471,
+          36.1627581
         ]
       },
       "properties": {
@@ -6289,8 +6253,8 @@
             "roadId": "river_001",
             "name": "渿河",
             "part": 0,
-            "vertex": 197,
-            "s": 13404.93,
+            "vertex": 198,
+            "s": 13400.78,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -6298,8 +6262,8 @@
             "roadId": "road_007",
             "name": "泮河大街",
             "part": 0,
-            "vertex": 267,
-            "s": 5883.95,
+            "vertex": 86,
+            "s": 5836.98,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -6361,7 +6325,7 @@
             "roadId": "river_001",
             "name": "渿河",
             "part": 0,
-            "vertex": 199,
+            "vertex": 202,
             "s": 13493.12,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6397,7 +6361,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 170,
+            "vertex": 171,
             "s": 13650.41,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6433,7 +6397,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 181,
+            "vertex": 182,
             "s": 14352.2,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6469,7 +6433,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 187,
+            "vertex": 188,
             "s": 14950.41,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6505,7 +6469,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 195,
+            "vertex": 196,
             "s": 15524.62,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6541,7 +6505,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 197,
+            "vertex": 198,
             "s": 15801.74,
             "vertexGapM": 0.05,
             "confidence": "high"
@@ -6577,7 +6541,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 201,
+            "vertex": 202,
             "s": 16051.69,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6613,7 +6577,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 203,
+            "vertex": 204,
             "s": 16160.55,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6649,7 +6613,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 209,
+            "vertex": 210,
             "s": 16575.89,
             "vertexGapM": 0.02,
             "confidence": "high"
@@ -6685,7 +6649,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 218,
+            "vertex": 219,
             "s": 17338.87,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6721,7 +6685,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 221,
+            "vertex": 222,
             "s": 17594.97,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6757,7 +6721,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 226,
+            "vertex": 227,
             "s": 17844.87,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6766,7 +6730,7 @@
             "roadId": "road_022",
             "name": "温泉路",
             "part": 0,
-            "vertex": 38,
+            "vertex": 40,
             "s": 5367.86,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6793,7 +6757,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 231,
+            "vertex": 232,
             "s": 18321.53,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6829,7 +6793,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 236,
+            "vertex": 237,
             "s": 18635.36,
             "vertexGapM": 0.04,
             "confidence": "high"
@@ -6865,7 +6829,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 243,
+            "vertex": 244,
             "s": 19078.23,
             "vertexGapM": 0,
             "confidence": "high"
@@ -6901,7 +6865,7 @@
             "roadId": "road_001",
             "name": "东岳大街",
             "part": 0,
-            "vertex": 261,
+            "vertex": 262,
             "s": 20123.07,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7067,8 +7031,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1119042,
-          36.1699161
+          117.1118919,
+          36.1698866
         ]
       },
       "properties": {
@@ -7082,7 +7046,7 @@
             "name": "京沪铁路",
             "part": 1,
             "vertex": 124,
-            "s": 22759.03,
+            "s": 22755.56,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -7090,8 +7054,8 @@
             "roadId": "road_007",
             "name": "泮河大街",
             "part": 0,
-            "vertex": 218,
-            "s": 4863.59,
+            "vertex": 61,
+            "s": 4827.66,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -7103,8 +7067,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.1121113,
-          36.1698085
+          117.1120954,
+          36.1697696
         ]
       },
       "properties": {
@@ -7118,7 +7082,7 @@
             "name": "京沪铁路",
             "part": 0,
             "vertex": 118,
-            "s": 22773.76,
+            "s": 22769.2,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -7126,8 +7090,8 @@
             "roadId": "road_007",
             "name": "泮河大街",
             "part": 0,
-            "vertex": 221,
-            "s": 4885.76,
+            "vertex": 62,
+            "s": 4850.09,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -7153,7 +7117,7 @@
             "roadId": "rail_001",
             "name": "京沪铁路",
             "part": 1,
-            "vertex": 137,
+            "vertex": 139,
             "s": 24071.1,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7189,7 +7153,7 @@
             "roadId": "rail_001",
             "name": "京沪铁路",
             "part": 0,
-            "vertex": 135,
+            "vertex": 137,
             "s": 24107.61,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7225,7 +7189,7 @@
             "roadId": "rail_001",
             "name": "京沪铁路",
             "part": 1,
-            "vertex": 149,
+            "vertex": 151,
             "s": 24963.57,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7261,7 +7225,7 @@
             "roadId": "rail_001",
             "name": "京沪铁路",
             "part": 0,
-            "vertex": 145,
+            "vertex": 147,
             "s": 25005.34,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7297,7 +7261,7 @@
             "roadId": "rail_001",
             "name": "京沪铁路",
             "part": 1,
-            "vertex": 171,
+            "vertex": 173,
             "s": 27414.71,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7333,7 +7297,7 @@
             "roadId": "rail_001",
             "name": "京沪铁路",
             "part": 0,
-            "vertex": 167,
+            "vertex": 169,
             "s": 27458.99,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7355,8 +7319,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.0684429,
-          36.188794
+          117.068441,
+          36.1887941
         ]
       },
       "properties": {
@@ -7369,8 +7333,8 @@
             "roadId": "rail_001",
             "name": "京沪铁路",
             "part": 1,
-            "vertex": 186,
-            "s": 28679.94,
+            "vertex": 189,
+            "s": 28680.11,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -7378,8 +7342,8 @@
             "roadId": "road_021",
             "name": "长城路",
             "part": 0,
-            "vertex": 91,
-            "s": 7396.77,
+            "vertex": 27,
+            "s": 1463.69,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -7391,8 +7355,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          117.0684402,
-          36.1888302
+          117.0684368,
+          36.1888304
         ]
       },
       "properties": {
@@ -7405,8 +7369,8 @@
             "roadId": "rail_001",
             "name": "京沪铁路",
             "part": 0,
-            "vertex": 182,
-            "s": 28725.83,
+            "vertex": 185,
+            "s": 28726.13,
             "vertexGapM": 0,
             "confidence": "high"
           },
@@ -7414,8 +7378,8 @@
             "roadId": "road_021",
             "name": "长城路",
             "part": 0,
-            "vertex": 92,
-            "s": 7400.81,
+            "vertex": 26,
+            "s": 1459.64,
             "vertexGapM": 0,
             "confidence": "high"
           }
@@ -7450,7 +7414,7 @@
             "roadId": "river_005",
             "name": "芝田河",
             "part": 0,
-            "vertex": 44,
+            "vertex": 45,
             "s": 9041.83,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7594,7 +7558,7 @@
             "roadId": "river_003",
             "name": "双龙河",
             "part": 0,
-            "vertex": 112,
+            "vertex": 113,
             "s": 8267.79,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7666,7 +7630,7 @@
             "roadId": "road_022",
             "name": "温泉路",
             "part": 0,
-            "vertex": 19,
+            "vertex": 21,
             "s": 3143.16,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7693,7 +7657,7 @@
             "roadId": "rail_001",
             "name": "京沪铁路",
             "part": 1,
-            "vertex": 263,
+            "vertex": 266,
             "s": 39449.21,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7729,7 +7693,7 @@
             "roadId": "rail_001",
             "name": "京沪铁路",
             "part": 0,
-            "vertex": 259,
+            "vertex": 262,
             "s": 39494.25,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7774,7 +7738,7 @@
             "roadId": "road_009",
             "name": "南关大街",
             "part": 0,
-            "vertex": 13,
+            "vertex": 15,
             "s": 4230.18,
             "vertexGapM": 0,
             "confidence": "high"
@@ -7810,7 +7774,7 @@
             "roadId": "river_001",
             "name": "渿河",
             "part": 0,
-            "vertex": 183,
+            "vertex": 184,
             "s": 11836.67,
             "vertexGapM": 0,
             "confidence": "high"
