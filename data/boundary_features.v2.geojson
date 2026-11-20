@@ -1324,7 +1324,9 @@
       "properties": {
         "featureId": "bf_000002",
         "canonicalName": "碧霞大街",
-        "aliases": [],
+        "aliases": [
+          "环山东路"
+        ],
         "featureType": "road",
         "boundaryEligible": true,
         "importance": "primary",
@@ -1339,7 +1341,7 @@
         "supersededBy": [],
         "createdAt": "2026-11-17",
         "retiredAt": null,
-        "note": "OSM primary（S103，天地图标注为「环山东路」）1095937431/377410899/1095897350/676825213/676825217 + 东段无名 primary 双线 1085631677/1085631678 取中点，西起环山路东端路口、东至博阳路 (© OpenStreetMap contributors, ODbL)；2026-10-25 东延 5.31 km 沿 S243 至 117.26036（天地图标注「环山东路」，OSM 无名 primary 双线取中点）"
+        "note": "OSM primary（S103，天地图标注为「环山东路」）1095937431/377410899/1095897350/676825213/676825217 + 东段无名 primary 双线 1085631677/1085631678 取中点，西起环山路东端路口、东至博阳路 (© OpenStreetMap contributors, ODbL)；2026-10-25 东延 5.31 km 沿 S243 至 117.26036（天地图标注「环山东路」，OSM 无名 primary 双线取中点）；2026-11-19 aliases 补「环山东路」：zone_040 北界 21 个顶点与本线偏差 0.6–1.9 m，距环山路 bf_000016 为 1262–2728 m；天地图标注碧霞大街为环山东路，本区「环山东路」指本要素，不并入环山路"
       }
     },
     {
@@ -10706,7 +10708,9 @@
       "properties": {
         "featureId": "bf_000015",
         "canonicalName": "擂鼓石大街",
-        "aliases": [],
+        "aliases": [
+          "擂鼓石路"
+        ],
         "featureType": "road",
         "boundaryEligible": true,
         "importance": "primary",
@@ -10721,7 +10725,7 @@
         "supersededBy": [],
         "createdAt": "2026-11-17",
         "retiredAt": null,
-        "note": "坐标取自 OpenStreetMap（2026-10 抓取） (© OpenStreetMap contributors, ODbL)；P1 去除同路并行副本 1 段（1.53 km）；P3 接续断口；中心线按双幅路中点校正（7.00 km）；2026-10-25 补齐中段缺口 1.14 km（OSM 无名 residential/secondary：135896227/136913840/376040026/1216150800 + 1095897368/1095897369 双线取中），与东段「擂鼓石东大街」合并为一条"
+        "note": "坐标取自 OpenStreetMap（2026-10 抓取） (© OpenStreetMap contributors, ODbL)；P1 去除同路并行副本 1 段（1.53 km）；P3 接续断口；中心线按双幅路中点校正（7.00 km）；2026-10-25 补齐中段缺口 1.14 km（OSM 无名 residential/secondary：135896227/136913840/376040026/1216150800 + 1095897368/1095897369 双线取中），与东段「擂鼓石东大街」合并为一条；2026-11-19 aliases 补「擂鼓石路」：2020 年通告原擂鼓石路更名擂鼓石大街，2025 官方四至 3 处仍作擂鼓石路"
       }
     },
     {
@@ -15802,8 +15806,8 @@
             36.189035
           ],
           [
-            117.131743,
-            36.189018
+            117.1317432,
+            36.1890182
           ]
         ]
       },
@@ -15825,7 +15829,7 @@
         "supersededBy": [],
         "createdAt": "2026-11-17",
         "retiredAt": null,
-        "note": "坐标取自 OpenStreetMap（2026-10 抓取） (© OpenStreetMap contributors, ODbL)"
+        "note": "坐标取自 OpenStreetMap（2026-10 抓取） (© OpenStreetMap contributors, ODbL)；2026-11-19 西端顶点改为 117.1317432,36.1890182，与虎山路 bf_000029 第 0 段第 14 个顶点（0 基 13）精确共点，作为东湖公园西门路口锚点（gap-2026-0010）"
       }
     },
     {
@@ -20394,20 +20398,20 @@
         "canonicalName": "博阳路",
         "aliases": [],
         "featureType": "road",
-        "boundaryEligible": true,
+        "boundaryEligible": false,
         "importance": "primary",
         "sourceType": "legacy",
         "sourceName": null,
         "sourceUrl": null,
         "verifiedDate": null,
-        "verificationStatus": "unreviewed",
+        "verificationStatus": "disputed",
         "geometryAccuracy": "unknown",
         "lifecycle": "active",
         "supersedes": [],
         "supersededBy": [],
         "createdAt": "2026-11-17",
         "retiredAt": null,
-        "note": "OSM 无同名「博阳路」几何，线形沿用华益路（S103）走廊，仅示意，不代表真实博阳路走向；L-11 去东侧平行回程 4.65 km，补南端 4.90 km（OSM 华益路 S103 走廊）"
+        "note": "OSM 无同名「博阳路」几何，线形沿用华益路（S103）走廊，仅示意，不代表真实博阳路走向；L-11 去东侧平行回程 4.65 km，补南端 4.90 km（OSM 华益路 S103 走廊）；2026-11-19 A 复核结论：OSM 泰安范围 0 条同名 way（历史 P4 三次 Overpass 亦 0 命中），线形实为华益路 S103 走廊，与真实「博阳路」无对应关系；判定为示意线，boundaryEligible=false，不得作为 zone_040 东界最终依据，需影像描线或实测后替换"
       }
     },
     {
@@ -21392,7 +21396,9 @@
       "properties": {
         "featureId": "bf_000046",
         "canonicalName": "财源大街",
-        "aliases": [],
+        "aliases": [
+          "财源街"
+        ],
         "featureType": "road",
         "boundaryEligible": true,
         "importance": "normal",
@@ -21407,7 +21413,7 @@
         "supersededBy": [],
         "createdAt": "2026-11-17",
         "retiredAt": null,
-        "note": "坐标取自 OpenStreetMap（2026-10 抓取）(© OpenStreetMap contributors, ODbL)；P1 去除同路并行副本 1 段（0.51 km）"
+        "note": "坐标取自 OpenStreetMap（2026-10 抓取）(© OpenStreetMap contributors, ODbL)；P1 去除同路并行副本 1 段（0.51 km）；2026-11-19 aliases 补「财源街」：2025 官方四至 7 处作财源街，官方名财源大街（同一条东西向走廊）；财源北街为 bf_000037 独立要素（校场街以西至龙潭路段），不并入本条"
       }
     },
     {
@@ -21556,20 +21562,12 @@
             36.202264
           ],
           [
-            117.134893,
-            36.202264
-          ],
-          [
             117.134888,
             36.202334
           ],
           [
             117.1348864,
             36.202344
-          ],
-          [
-            117.134879,
-            36.20239
           ],
           [
             117.134879,
@@ -21594,14 +21592,6 @@
           [
             117.134522,
             36.205016
-          ],
-          [
-            117.134522,
-            36.205016
-          ],
-          [
-            117.134404,
-            36.205621
           ],
           [
             117.134404,
@@ -21631,7 +21621,7 @@
         "supersededBy": [],
         "createdAt": "2026-11-17",
         "retiredAt": null,
-        "note": "四至范围边界道路;坐标取自 OpenStreetMap(2026-10 抓取),上下行双线已合并为中心线。 (© OpenStreetMap contributors, ODbL)；2026-10-25 按 OSM 206864706/1104686541/1104686543/670455166/670455145 全节点重描（22 点）"
+        "note": "四至范围边界道路;坐标取自 OpenStreetMap(2026-10 抓取),上下行双线已合并为中心线。 (© OpenStreetMap contributors, ODbL)；2026-10-25 按 OSM 206864706/1104686541/1104686543/670455166/670455145 全节点重描（22 点）；2026-11-19 删除第 0 段 4 处重复顶点（第 9/13/19/21 点，23→19 点），线路走向未改"
       }
     },
     {
@@ -22970,7 +22960,7 @@
         "canonicalName": "五马街",
         "aliases": [],
         "featureType": "road",
-        "boundaryEligible": true,
+        "boundaryEligible": false,
         "importance": "normal",
         "sourceType": "boundaryDerived",
         "sourceName": null,
@@ -22983,7 +22973,7 @@
         "supersededBy": [],
         "createdAt": "2026-11-17",
         "retiredAt": null,
-        "note": "四至「南至五马街」所指要素；OSM 无该名称线（仅同名公交站 POI），按用户裁定复用 zone_031 南界现状环 v37→v50 作为替代几何，东端贴芝田河、西端贴唐王河，非实测道路中心线；后续有可靠来源再按影像重描替换"
+        "note": "四至「南至五马街」所指要素；OSM 无该名称线（仅同名公交站 POI），按用户裁定复用 zone_031 南界现状环 v37→v50 作为替代几何，东端贴芝田河、西端贴唐王河，非实测道路中心线；后续有可靠来源再按影像重描替换；2026-11-19 A 复核结论：OSM 无同名 way（仅同名公交站 POI），B2 实测与顺河街 100% 重合、重合 6.98 km，几何源自 zone_031 南界反推；判定不可作最终边界依据，boundaryEligible=false，待影像或实测重描"
       }
     }
   ]
