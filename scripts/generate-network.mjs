@@ -27,6 +27,7 @@ const DEFAULTS = {
   registry: "data/id_registry.json",
   nodesOut: "data/network_nodes.json",
   edgesOut: "data/network_edges.json",
+  placementRemap: null,
 };
 
 const VALUE_FLAGS = new Map([
@@ -39,6 +40,7 @@ const VALUE_FLAGS = new Map([
   ["--edges-out", "edgesOut"],
   ["--report", "report"],
   ["--effective-date", "effectiveDate"],
+  ["--placement-remap", "placementRemap"],
 ]);
 
 const BOOLEAN_FLAGS = new Set(["--write", "--help", "-h"]);
@@ -58,6 +60,7 @@ const USAGE = `节点/边生成器
   --edges-out <path>       边输出，默认 ${DEFAULTS.edgesOut}
   --report <path>          报告输出（dry-run 下唯一允许的写操作）
   --effective-date <date>  新实体 createdAt（必填，YYYY-MM-DD）
+  --placement-remap <path> 插点前后 placement 下标映射
   --write                  以单事务写入三个目标文件
   --help                   打印本说明
 
@@ -207,6 +210,9 @@ const main = () => {
     });
     const previousNodes = readSnapshot(resolve(options.previousNodes), { required: false });
     const previousEdges = readSnapshot(resolve(options.previousEdges), { required: false });
+    const placementRemap = options.placementRemap
+      ? readSnapshot(resolve(options.placementRemap), { required: true })
+      : { exists: false, json: null };
     const registry = readSnapshot(resolve(options.registry), { required: true });
 
     const registryReport = validateIdRegistry(registry.json);
@@ -222,6 +228,7 @@ const main = () => {
       decisions: decisions.json,
       previousNodes: previousNodes.json,
       previousEdges: previousEdges.json,
+      placementRemap: placementRemap.json,
       registry: registry.json,
       effectiveDate: options.effectiveDate,
     });
@@ -237,6 +244,9 @@ const main = () => {
     assertUnchanged(resolve(options.decisions), decisions);
     assertUnchanged(resolve(options.previousNodes), previousNodes);
     assertUnchanged(resolve(options.previousEdges), previousEdges);
+    if (options.placementRemap) {
+      assertUnchanged(resolve(options.placementRemap), placementRemap);
+    }
     assertUnchanged(resolve(options.registry), registry);
 
     const nodesText = serializeJson(result.nodes);

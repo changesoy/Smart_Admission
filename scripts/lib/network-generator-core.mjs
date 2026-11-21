@@ -203,6 +203,7 @@ export const buildNetwork = (input) => {
     decisions = null,
     previousNodes = null,
     previousEdges = null,
+    placementRemap = null,
     registry,
     effectiveDate,
   } = input;
@@ -228,17 +229,51 @@ export const buildNetwork = (input) => {
     };
   }
 
+  const remapIndex = new Map(
+    (placementRemap?.placements ?? []).map((entry) => [
+      `${entry.featureId}|${entry.partIndex}|${entry.oldVertexIndex}`,
+      entry.newVertexIndex,
+    ]),
+  );
+  const remapPlacement = (placement) => {
+    const newVertexIndex = remapIndex.get(
+      `${placement.featureId}|${placement.partIndex}|${placement.vertexIndex}`,
+    );
+    return newVertexIndex === undefined
+      ? placement
+      : { ...placement, vertexIndex: newVertexIndex };
+  };
+  const remappedDecisions = decisions
+    ? {
+        ...decisions,
+        decisions: (decisions.decisions ?? []).map((decision) => ({
+          ...decision,
+          placements: (decision.placements ?? []).map(remapPlacement),
+        })),
+      }
+    : decisions;
   const featureIndex = indexFeatures(features, report);
   const normalizedDecisions = validateConnectionDecisions({
-    decisionsFile: decisions,
+    decisionsFile: remappedDecisions,
     featureIndex,
     registry,
     report,
   });
 
   const candidates = buildNodeCandidates(featureIndex, normalizedDecisions, report);
-  const previousNodeList = previousNodes?.nodes ?? [];
-  const previousEdgeList = previousEdges?.edges ?? [];
+  const previousNodeList = (previousNodes?.nodes ?? []).map((node) => ({
+    ...node,
+    placements: (node.placements ?? []).map(remapPlacement),
+  }));
+  const previousEdgeList = (previousEdges?.edges ?? []).map((edge) => ({
+    ...edge,
+    fromVertexIndex:
+      remapIndex.get(`${edge.featureId}|${edge.partIndex}|${edge.fromVertexIndex}`) ??
+      edge.fromVertexIndex,
+    toVertexIndex:
+      remapIndex.get(`${edge.featureId}|${edge.partIndex}|${edge.toVertexIndex}`) ??
+      edge.toVertexIndex,
+  }));
 
   // 上一版 active 节点按 placement 集合建索引，仅用于稳定身份匹配
   const previousByPlacementSet = new Map();
@@ -672,6 +707,7 @@ export const validateGeneratedNetwork = ({ nodes, edges, registry, featureIndex 
     if (!registered.has(edge.edgeId)) {
       report.error(section, `边 ${edge.edgeId} 未在注册表登记`);
     }
+    if (edge.lifecycle !== "active") return;
     const feature = featureIndex?.get(edge.featureId);
     if (!feature) {
       report.error(section, `${edge.edgeId} 引用了不存在的要素 ${edge.featureId}`);
@@ -725,7 +761,6 @@ export const validateGeneratedNetwork = ({ nodes, edges, registry, featureIndex 
       report.error(section, `${edge.edgeId} lengthM 与坐标重算不一致`);
     }
 
-    if (edge.lifecycle !== "active") return;
     nodeList.forEach((node) => {
       if (node.lifecycle !== "active" || node.connectionType !== "connected") return;
       node.placements.forEach((placement) => {

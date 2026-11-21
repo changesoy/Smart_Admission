@@ -22,10 +22,10 @@ const CATEGORY_LABELS = {
 };
 
 const STATUS_LABELS = {
-  pending: "pending · 待裁定",
-  connected: "connected · 连通",
-  nonConnectingCrossing: "nonConnectingCrossing · 交叉但不连通",
-  needsGeometryFix: "needsGeometryFix · 退回修几何",
+  pending: "pending · 暂不处理",
+  connected: "acceptedIntersection · 接受边界交点",
+  nonConnectingCrossing: "legacy · 非常规状态",
+  needsGeometryFix: "needsGeometryFix · 修复边界几何",
 };
 
 const STATUS_TYPE = {
@@ -519,7 +519,7 @@ const applyStatus = (status) => {
   }
   if (status === "connected" && !placementConnected(candidate)) {
     showBanner(
-      "该候选没有两个共点的 placement，不能直接连通；请退回修几何或标为交叉但不连通。",
+      "该候选尚未形成两个共点 placement，请先执行自动插点或修复边界几何。",
       "warning",
     );
     return;
@@ -674,7 +674,6 @@ const main = async () => {
   document.querySelectorAll(".action-grid button").forEach((button) => {
     button.dataset.status = {
       "btn-connected": "connected",
-      "btn-nonconnecting": "nonConnectingCrossing",
       "btn-pending": "pending",
       "btn-geometry": "needsGeometryFix",
     }[button.id];

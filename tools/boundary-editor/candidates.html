@@ -64,8 +64,7 @@
             <select id="status-filter">
               <option value="all">全部</option>
               <option value="pending">pending</option>
-              <option value="connected">connected</option>
-              <option value="nonConnectingCrossing">nonConnectingCrossing</option>
+              <option value="connected">acceptedIntersection</option>
               <option value="needsGeometryFix">needsGeometryFix</option>
             </select>
           </div>
@@ -106,18 +105,17 @@
 
             <h3>审核</h3>
             <div class="action-grid">
-              <button id="btn-connected" type="button" class="success">连通 connected</button>
-              <button id="btn-nonconnecting" type="button">交叉但不连通</button>
-              <button id="btn-pending" type="button">待裁定 pending</button>
-              <button id="btn-geometry" type="button" class="danger">退回修几何</button>
+              <button id="btn-connected" type="button" class="success">接受边界交点</button>
+              <button id="btn-pending" type="button">暂不处理</button>
+              <button id="btn-geometry" type="button" class="danger">修复边界几何</button>
             </div>
             <label class="block-field">
               审核说明
               <textarea id="review-note" rows="3" placeholder="needsGeometryFix 必须说明缺口"></textarea>
             </label>
             <p class="hint">
-              pending 与 needsGeometryFix 不产出正式裁定；只有 connected 与
-              nonConnectingCrossing 会进入后续 ncd_* 候选决策。
+              几何有效交点默认连通；审核只处理重复近邻 anchor 与几何缺口，
+              不判断道路、河道或铁路是否现实可通行。
             </p>
           </div>
         </section>

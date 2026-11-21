@@ -30,6 +30,10 @@ const COMMANDS = {
     script: "scripts/build-connection-decisions.mjs",
     desc: "审核文档转候选裁定（ncd_*，不写 data/）",
   },
+  "network:prepare-topology": {
+    script: "scripts/prepare-boundary-topology.mjs",
+    desc: "自动插入边界交点并淘汰近邻重复交点",
+  },
   "draft:validate": {
     script: "scripts/validate-zone-draft.mjs",
     desc: "校验学区草稿（D01–D17，只读）",

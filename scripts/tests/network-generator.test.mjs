@@ -106,6 +106,32 @@ test("生成结果与 B8 最小样例深相等", () => {
   assert.deepEqual(result.registry, fixture("expected_id_registry.json"));
 });
 
+test("placement remap 保持插点前终端节点身份", () => {
+  const input = baseInput();
+  const features = structuredClone(input.features);
+  features.features[3].geometry.coordinates.splice(1, 0, [117.1, 36.1075]);
+  const result = buildNetwork({
+    ...input,
+    features,
+    placementRemap: {
+      schemaVersion: 1,
+      placements: [
+        { featureId: "bf_900004", partIndex: 0, oldVertexIndex: 0, newVertexIndex: 0 },
+        { featureId: "bf_900004", partIndex: 0, oldVertexIndex: 1, newVertexIndex: 2 },
+        { featureId: "bf_900004", partIndex: 0, oldVertexIndex: 2, newVertexIndex: 3 },
+      ],
+    },
+  });
+  assert.deepEqual(result.report.errors, []);
+  assert.ok(result.allocations.reusedNodes.includes("bn_000001"));
+  assert.equal(
+    result.nodes.nodes
+      .find((node) => node.nodeId === "bn_000001")
+      .placements.find((placement) => placement.featureId === "bf_900004").vertexIndex,
+    3,
+  );
+});
+
 test("边输出字节与规范化序列化完全一致", () => {
   const result = buildNetwork(baseInput());
   const expected = fixture("expected_network_edges.json");

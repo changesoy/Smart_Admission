@@ -31,6 +31,7 @@
     "candidates:network": "node scripts/build-connection-candidates.mjs",
     "validate:candidate-review": "node scripts/validate-candidate-review.mjs",
     "build:decisions": "node scripts/build-connection-decisions.mjs",
+    "prepare:topology": "node scripts/prepare-boundary-topology.mjs",
     "validate:draft": "node scripts/validate-zone-draft.mjs",
     "import:draft": "node scripts/import-zone-draft.mjs",
     "export:network-refs": "node scripts/export-network-refs.mjs",
