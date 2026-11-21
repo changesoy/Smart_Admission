@@ -26,6 +26,10 @@ const COMMANDS = {
     script: "scripts/validate-candidate-review.mjs",
     desc: "校验候选审核文档（只读，不写 data/）",
   },
+  "network:build-decisions": {
+    script: "scripts/build-connection-decisions.mjs",
+    desc: "审核文档转候选裁定（ncd_*，不写 data/）",
+  },
   "draft:validate": {
     script: "scripts/validate-zone-draft.mjs",
     desc: "校验学区草稿（D01–D17，只读）",
