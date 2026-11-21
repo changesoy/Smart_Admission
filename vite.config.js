@@ -18,6 +18,10 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { createReport } from "./scripts/lib/network-schema.mjs";
+import { indexFeatures } from "./scripts/lib/network-generator-core.mjs";
+import { validateCandidateReview } from "./scripts/lib/candidate-review.mjs";
+
 /** 本地后端地址,dev 与 preview 共用同一目标 */
 const API_TARGET = "http://127.0.0.1:8010";
 
@@ -157,8 +161,100 @@ const zoneDraftImport = () => ({
   },
 });
 
+const candidateReviewSave = () => ({
+  name: "candidate-review-save",
+  apply: "serve",
+  configureServer(server) {
+    const root = fileURLToPath(new URL("./", import.meta.url));
+
+    server.middlewares.use("/__tools/save-candidate-review", (req, res) => {
+      const reply = (status, payload) => {
+        res.statusCode = status;
+        res.setHeader("Content-Type", "application/json; charset=utf-8");
+        res.end(JSON.stringify(payload));
+      };
+
+      if (req.method !== "POST") {
+        reply(405, { ok: false, error: "只接受 POST" });
+        return;
+      }
+
+      const chunks = [];
+      let size = 0;
+      req.on("data", (chunk) => {
+        size += chunk.length;
+        if (size <= 8 * 1024 * 1024) chunks.push(chunk);
+      });
+      req.on("end", () => {
+        if (size > 8 * 1024 * 1024) {
+          reply(413, { ok: false, error: "审核文档超过 8 MB，拒绝处理" });
+          return;
+        }
+
+        let payload;
+        try {
+          const text = Buffer.concat(chunks).toString("utf8").replace(/^\uFEFF/, "");
+          payload = JSON.parse(text);
+        } catch {
+          reply(400, { ok: false, error: "请求体不是合法 JSON" });
+          return;
+        }
+
+        const review = payload?.review;
+        const confirm = payload?.confirm;
+        if (!review?.reviewId || review.reviewId !== confirm) {
+          reply(400, { ok: false, error: "confirm 必须等于审核文档 reviewId" });
+          return;
+        }
+
+        try {
+          const features = JSON.parse(
+            readFileSync(join(root, "data/boundary_features.v2.geojson"), "utf8"),
+          );
+          const registry = JSON.parse(
+            readFileSync(join(root, "data/id_registry.json"), "utf8"),
+          );
+          const report = createReport();
+          const featureIndex = indexFeatures(features, createReport());
+          const normalized = validateCandidateReview({
+            review,
+            registry,
+            featureIndex,
+            report,
+          });
+
+          if (!normalized || report.errors.length > 0) {
+            reply(409, {
+              ok: false,
+              errors: report.errors,
+              warnings: report.warnings,
+            });
+            return;
+          }
+
+          const target = join(
+            root,
+            "reports/network/connection-candidates.reviewed.json",
+          );
+          mkdirSync(join(root, "reports/network"), { recursive: true });
+          writeFileSync(target, `${JSON.stringify(normalized, null, 2)}\n`, "utf8");
+
+          reply(200, {
+            ok: true,
+            path: "reports/network/connection-candidates.reviewed.json",
+            counts: normalized.counts,
+            warnings: report.warnings,
+          });
+        } catch (error) {
+          reply(500, { ok: false, error: error.message });
+        }
+      });
+    });
+  },
+});
+
 export default defineConfig({
-  plugins: [copyData(), zoneDraftImport()],
+  plugins: [copyData(), zoneDraftImport(), candidateReviewSave()],
   server: {
     proxy: apiProxy,
   },

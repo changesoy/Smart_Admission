@@ -60,6 +60,57 @@ const indexRulings = (registry) => {
 };
 
 /**
+ * 校验 rulingIds：数组、br_ 六位、无重复、注册表存在且 active。
+ * @returns {{ ok: boolean, ids: string[] }}
+ */
+export const validateRulingIds = ({
+  rulingIds,
+  registry,
+  report,
+  section = "connection_decisions",
+  context = "",
+}) => {
+  const prefix = context ? `${context} ` : "";
+  if (!Array.isArray(rulingIds)) {
+    report.error(section, `${prefix}rulingIds 必须是数组`);
+    return { ok: false, ids: [] };
+  }
+
+  const rulingIndex = indexRulings(registry);
+  const seen = new Set();
+  const ids = [];
+  let ok = true;
+
+  rulingIds.forEach((rulingId) => {
+    if (!isId("boundaryRuling", rulingId)) {
+      report.error(section, `${prefix}rulingId 格式非法: ${JSON.stringify(rulingId)}`);
+      ok = false;
+      return;
+    }
+    if (seen.has(rulingId)) {
+      report.error(section, `${prefix}rulingId 重复: ${rulingId}`);
+      ok = false;
+      return;
+    }
+    seen.add(rulingId);
+    const entry = rulingIndex.get(rulingId);
+    if (!entry) {
+      report.error(section, `${prefix}rulingId 未在注册表登记: ${rulingId}`);
+      ok = false;
+      return;
+    }
+    if (entry.lifecycle !== "active") {
+      report.error(section, `${prefix}rulingId ${rulingId} 生命周期为 ${entry.lifecycle}`);
+      ok = false;
+      return;
+    }
+    ids.push(rulingId);
+  });
+
+  return { ok, ids: ids.sort() };
+};
+
+/**
  * 校验并规范化连接裁定。
  * @param {object} input
  * @param {object|null} input.decisionsFile network_connection_decisions 原始对象
@@ -89,7 +140,6 @@ export const validateConnectionDecisions = ({
     return decisions;
   }
 
-  const rulingIndex = indexRulings(registry);
   const seenDecisionIds = new Set();
   const placementOwners = new Map();
 
@@ -125,38 +175,14 @@ export const validateConnectionDecisions = ({
       bad = true;
     }
 
-    const rulingIds = [];
-    if (!Array.isArray(decision.rulingIds)) {
-      report.error(section, `${at} rulingIds 必须是数组`);
-      bad = true;
-    } else {
-      const seenRulings = new Set();
-      decision.rulingIds.forEach((rulingId) => {
-        if (!isId("boundaryRuling", rulingId)) {
-          report.error(section, `${at} rulingId 格式非法: ${JSON.stringify(rulingId)}`);
-          bad = true;
-          return;
-        }
-        if (seenRulings.has(rulingId)) {
-          report.error(section, `${at} rulingId 重复: ${rulingId}`);
-          bad = true;
-          return;
-        }
-        seenRulings.add(rulingId);
-        const entry = rulingIndex.get(rulingId);
-        if (!entry) {
-          report.error(section, `${at} rulingId 未在注册表登记: ${rulingId}`);
-          bad = true;
-          return;
-        }
-        if (entry.lifecycle !== "active") {
-          report.error(section, `${at} rulingId ${rulingId} 生命周期为 ${entry.lifecycle}`);
-          bad = true;
-          return;
-        }
-        rulingIds.push(rulingId);
-      });
-    }
+    const rulingResult = validateRulingIds({
+      rulingIds: decision.rulingIds,
+      registry,
+      report,
+      context: at,
+    });
+    const rulingIds = rulingResult.ids;
+    if (!rulingResult.ok) bad = true;
 
     if (decision.connectionType === "conditional" && rulingIds.length === 0) {
       report.error(section, `${at} conditional 裁定必须关联至少一个有效 rulingId`);

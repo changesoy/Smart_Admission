@@ -22,6 +22,10 @@ const COMMANDS = {
     script: "scripts/build-connection-candidates.mjs",
     desc: "连接候选只读报告（ncc_*，不写 data/）",
   },
+  "network:review-candidates": {
+    script: "scripts/validate-candidate-review.mjs",
+    desc: "校验候选审核文档（只读，不写 data/）",
+  },
   "draft:validate": {
     script: "scripts/validate-zone-draft.mjs",
     desc: "校验学区草稿（D01–D17，只读）",
