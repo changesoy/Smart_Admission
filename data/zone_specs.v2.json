@@ -612,6 +612,14 @@
               "edgeRefs": []
             },
             {
+              "stepId": "zs_0000045",
+              "side": "东",
+              "text": "东至天烛峰路",
+              "sourceType": "officialText",
+              "rulingIds": [],
+              "edgeRefs": []
+            },
+            {
               "stepId": "zs_0000043",
               "side": "南",
               "text": "南至东湖路",
@@ -623,14 +631,6 @@
               "stepId": "zs_0000044",
               "side": "西",
               "text": "西至唐王河",
-              "sourceType": "officialText",
-              "rulingIds": [],
-              "edgeRefs": []
-            },
-            {
-              "stepId": "zs_0000045",
-              "side": "东",
-              "text": "东至天烛峰路",
               "sourceType": "officialText",
               "rulingIds": [],
               "edgeRefs": []
