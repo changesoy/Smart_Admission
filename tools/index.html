@@ -112,10 +112,13 @@
       </div>
 
       <div class="note">
-        <strong>reports/ 下的页面不是源码</strong>，由脚本运行后生成，未生成时打开会 404。
-        常用命令：<code>npm run import:network</code>（路网全流程）、
-        <code>npm run diagnose:junctions</code>（只出诊断）、
-        <code>npm run cli -- network:generate --effective-date &lt;日期&gt; --write</code>（生成学区网络）。
+        <strong>reports/ 下的页面是查看器</strong>，报告数据由脚本生成：
+        <code>npm run diagnose:junctions</code> 与 <code>npm run build:intersections</code>
+        会写入 <code>reports/junctions/latest.json</code> 与
+        <code>reports/intersections/latest.json</code>，未生成时页面会提示数据缺失。
+        路网全流程用 <code>npm run import:network</code>；
+        生成学区网络用
+        <code>npm run cli -- network:generate --effective-date &lt;日期&gt; --write</code>。
       </div>
     </main>
   </body>
