@@ -1,0 +1,2765 @@
+{
+  "schemaVersion": 1,
+  "nodes": [
+    {
+      "nodeId": "bn_000001",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "泰明路端点",
+      "placements": [
+        {
+          "featureId": "bf_000001",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000002",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "泰明路端点",
+      "placements": [
+        {
+          "featureId": "bf_000001",
+          "partIndex": 0,
+          "vertexIndex": 14
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000003",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "碧霞大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000002",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000004",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "碧霞大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000002",
+          "partIndex": 0,
+          "vertexIndex": 305
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000005",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "谢过城街端点",
+      "placements": [
+        {
+          "featureId": "bf_000003",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000006",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "谢过城街端点",
+      "placements": [
+        {
+          "featureId": "bf_000003",
+          "partIndex": 0,
+          "vertexIndex": 29
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000007",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "京沪铁路端点",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000008",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "京沪铁路端点",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 0,
+          "vertexIndex": 326
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000009",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "京沪铁路端点",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 1,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000010",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "京沪铁路端点",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 1,
+          "vertexIndex": 338
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000011",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "京沪铁路端点",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 2,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000012",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "京沪铁路端点",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 2,
+          "vertexIndex": 63
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000013",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "辛泰铁路端点",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000014",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "辛泰铁路端点",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 208
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000015",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "渿河端点",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000016",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "渿河端点",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 199
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000017",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "梳洗河端点",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000018",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "梳洗河端点",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 141
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000019",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "双龙河端点",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000020",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "双龙河端点",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 151
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000021",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "明堂河端点",
+      "placements": [
+        {
+          "featureId": "bf_000009",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000022",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "明堂河端点",
+      "placements": [
+        {
+          "featureId": "bf_000009",
+          "partIndex": 0,
+          "vertexIndex": 131
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000023",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "芝田河端点",
+      "placements": [
+        {
+          "featureId": "bf_000010",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000024",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "芝田河端点",
+      "placements": [
+        {
+          "featureId": "bf_000010",
+          "partIndex": 0,
+          "vertexIndex": 46
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000025",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "泮河端点",
+      "placements": [
+        {
+          "featureId": "bf_000011",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000026",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "泮河端点",
+      "placements": [
+        {
+          "featureId": "bf_000011",
+          "partIndex": 0,
+          "vertexIndex": 24
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000027",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "唐王河端点",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000028",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "唐王河端点",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 89
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000029",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "东岳大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000030",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "东岳大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 261
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000031",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "岱宗大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000032",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "岱宗大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 64
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000033",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "擂鼓石大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000034",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "擂鼓石大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 168
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000035",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "环山路端点",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000036",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "环山路端点",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 322
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000037",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "环山路端点",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 1,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000038",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "环山路端点",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 1,
+          "vertexIndex": 61
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000039",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "灵山大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000040",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "灵山大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 242
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000041",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "泰山大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000018",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000042",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "泰山大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000018",
+          "partIndex": 0,
+          "vertexIndex": 208
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000043",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "泮河大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000044",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "泮河大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 315
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000045",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "南湖大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000046",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "南湖大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 37
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000047",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "南关大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000021",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000048",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "南关大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000021",
+          "partIndex": 0,
+          "vertexIndex": 15
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000049",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "东湖路端点",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000050",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "东湖路端点",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000051",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "北上高大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000052",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "北上高大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 63
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000053",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "文化路端点",
+      "placements": [
+        {
+          "featureId": "bf_000024",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000054",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "文化路端点",
+      "placements": [
+        {
+          "featureId": "bf_000024",
+          "partIndex": 0,
+          "vertexIndex": 27
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000055",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "龙潭路端点",
+      "placements": [
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000056",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "龙潭路端点",
+      "placements": [
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 126
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000057",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "红门路端点",
+      "placements": [
+        {
+          "featureId": "bf_000026",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000058",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "红门路端点",
+      "placements": [
+        {
+          "featureId": "bf_000026",
+          "partIndex": 0,
+          "vertexIndex": 28
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000059",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "长城路端点",
+      "placements": [
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000060",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "长城路端点",
+      "placements": [
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 114
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000061",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "长城路端点",
+      "placements": [
+        {
+          "featureId": "bf_000027",
+          "partIndex": 1,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000062",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "长城路端点",
+      "placements": [
+        {
+          "featureId": "bf_000027",
+          "partIndex": 1,
+          "vertexIndex": 105
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000063",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "温泉路端点",
+      "placements": [
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000064",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "温泉路端点",
+      "placements": [
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 67
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000065",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "虎山路端点",
+      "placements": [
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000066",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "虎山路端点",
+      "placements": [
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 27
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000067",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "虎山路端点",
+      "placements": [
+        {
+          "featureId": "bf_000029",
+          "partIndex": 1,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000068",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "虎山路端点",
+      "placements": [
+        {
+          "featureId": "bf_000029",
+          "partIndex": 1,
+          "vertexIndex": 14
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000069",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "虎山路端点",
+      "placements": [
+        {
+          "featureId": "bf_000029",
+          "partIndex": 2,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000070",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "虎山路端点",
+      "placements": [
+        {
+          "featureId": "bf_000029",
+          "partIndex": 2,
+          "vertexIndex": 13
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000071",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "迎春路端点",
+      "placements": [
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000072",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "迎春路端点",
+      "placements": [
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 32
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000073",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "青年路端点",
+      "placements": [
+        {
+          "featureId": "bf_000031",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000074",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "青年路端点",
+      "placements": [
+        {
+          "featureId": "bf_000031",
+          "partIndex": 0,
+          "vertexIndex": 35
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000075",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "傲徕峰路端点",
+      "placements": [
+        {
+          "featureId": "bf_000032",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000076",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "傲徕峰路端点",
+      "placements": [
+        {
+          "featureId": "bf_000032",
+          "partIndex": 0,
+          "vertexIndex": 17
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000077",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "科山路端点",
+      "placements": [
+        {
+          "featureId": "bf_000033",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000078",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "科山路端点",
+      "placements": [
+        {
+          "featureId": "bf_000033",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000079",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "渿河西路端点",
+      "placements": [
+        {
+          "featureId": "bf_000034",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000080",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "渿河西路端点",
+      "placements": [
+        {
+          "featureId": "bf_000034",
+          "partIndex": 0,
+          "vertexIndex": 13
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000081",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "渿河东路端点",
+      "placements": [
+        {
+          "featureId": "bf_000035",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000082",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "渿河东路端点",
+      "placements": [
+        {
+          "featureId": "bf_000035",
+          "partIndex": 0,
+          "vertexIndex": 28
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000083",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "校场街端点",
+      "placements": [
+        {
+          "featureId": "bf_000036",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000084",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "校场街端点",
+      "placements": [
+        {
+          "featureId": "bf_000036",
+          "partIndex": 0,
+          "vertexIndex": 23
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000085",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "财源北街端点",
+      "placements": [
+        {
+          "featureId": "bf_000037",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000086",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "财源北街端点",
+      "placements": [
+        {
+          "featureId": "bf_000037",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000087",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "通天街端点",
+      "placements": [
+        {
+          "featureId": "bf_000038",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000088",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "通天街端点",
+      "placements": [
+        {
+          "featureId": "bf_000038",
+          "partIndex": 0,
+          "vertexIndex": 11
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000089",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "岱道庵路端点",
+      "placements": [
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000090",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "岱道庵路端点",
+      "placements": [
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 32
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000091",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "天烛峰路端点",
+      "placements": [
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000092",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "天烛峰路端点",
+      "placements": [
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 91
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000093",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "明堂路端点",
+      "placements": [
+        {
+          "featureId": "bf_000041",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000094",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "明堂路端点",
+      "placements": [
+        {
+          "featureId": "bf_000041",
+          "partIndex": 0,
+          "vertexIndex": 43
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000095",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "博阳路端点",
+      "placements": [
+        {
+          "featureId": "bf_000042",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000096",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "博阳路端点",
+      "placements": [
+        {
+          "featureId": "bf_000042",
+          "partIndex": 0,
+          "vertexIndex": 56
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000097",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "佳苑路端点",
+      "placements": [
+        {
+          "featureId": "bf_000043",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000098",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "佳苑路端点",
+      "placements": [
+        {
+          "featureId": "bf_000043",
+          "partIndex": 0,
+          "vertexIndex": 5
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000099",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "迎胜路端点",
+      "placements": [
+        {
+          "featureId": "bf_000044",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000100",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "迎胜路端点",
+      "placements": [
+        {
+          "featureId": "bf_000044",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000101",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "迎胜路端点",
+      "placements": [
+        {
+          "featureId": "bf_000044",
+          "partIndex": 1,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000102",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "迎胜路端点",
+      "placements": [
+        {
+          "featureId": "bf_000044",
+          "partIndex": 1,
+          "vertexIndex": 26
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000103",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "万官大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000104",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "万官大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 153
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000105",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "财源大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000046",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000106",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "财源大街端点",
+      "placements": [
+        {
+          "featureId": "bf_000046",
+          "partIndex": 0,
+          "vertexIndex": 23
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000107",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "仰圣街端点",
+      "placements": [
+        {
+          "featureId": "bf_000047",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000108",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "仰圣街端点",
+      "placements": [
+        {
+          "featureId": "bf_000047",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000109",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "岱庙北街端点",
+      "placements": [
+        {
+          "featureId": "bf_000048",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000110",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "岱庙北街端点",
+      "placements": [
+        {
+          "featureId": "bf_000048",
+          "partIndex": 0,
+          "vertexIndex": 2
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000111",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "虎山东路端点",
+      "placements": [
+        {
+          "featureId": "bf_000049",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000112",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "虎山东路端点",
+      "placements": [
+        {
+          "featureId": "bf_000049",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000113",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "梅山东路端点",
+      "placements": [
+        {
+          "featureId": "bf_000050",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000114",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "梅山东路端点",
+      "placements": [
+        {
+          "featureId": "bf_000050",
+          "partIndex": 0,
+          "vertexIndex": 2
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000115",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "花园路端点",
+      "placements": [
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000116",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "花园路端点",
+      "placements": [
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000117",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "望岳东路端点",
+      "placements": [
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000118",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "望岳东路端点",
+      "placements": [
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 29
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000119",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "御碑楼路端点",
+      "placements": [
+        {
+          "featureId": "bf_000053",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000120",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "御碑楼路端点",
+      "placements": [
+        {
+          "featureId": "bf_000053",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000121",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "御碑楼路端点",
+      "placements": [
+        {
+          "featureId": "bf_000053",
+          "partIndex": 1,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000122",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "御碑楼路端点",
+      "placements": [
+        {
+          "featureId": "bf_000053",
+          "partIndex": 1,
+          "vertexIndex": 8
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000123",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "罗汉崖路端点",
+      "placements": [
+        {
+          "featureId": "bf_000054",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000124",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "罗汉崖路端点",
+      "placements": [
+        {
+          "featureId": "bf_000054",
+          "partIndex": 0,
+          "vertexIndex": 22
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000125",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "康复路端点",
+      "placements": [
+        {
+          "featureId": "bf_000055",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000126",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "康复路端点",
+      "placements": [
+        {
+          "featureId": "bf_000055",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000127",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "泰山大桥端点",
+      "placements": [
+        {
+          "featureId": "bf_000056",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000128",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "泰山大桥端点",
+      "placements": [
+        {
+          "featureId": "bf_000056",
+          "partIndex": 0,
+          "vertexIndex": 2
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000129",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "唐王街端点",
+      "placements": [
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000130",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "唐王街端点",
+      "placements": [
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 67
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000131",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "上高东路端点",
+      "placements": [
+        {
+          "featureId": "bf_000058",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000132",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "上高东路端点",
+      "placements": [
+        {
+          "featureId": "bf_000058",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000133",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "凤台路端点",
+      "placements": [
+        {
+          "featureId": "bf_000059",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000134",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "凤台路端点",
+      "placements": [
+        {
+          "featureId": "bf_000059",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000135",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "双龙路端点",
+      "placements": [
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000136",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "双龙路端点",
+      "placements": [
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 23
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000137",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "五马街端点",
+      "placements": [
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000138",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "五马街端点",
+      "placements": [
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "counters": {
     "boundaryFeature": 61,
-    "networkNode": 0,
-    "networkEdge": 0,
+    "networkNode": 138,
+    "networkEdge": 69,
     "zoneRing": 14,
     "zoneStep": 118,
     "boundaryRuling": 7
@@ -2199,6 +2199,1869 @@
       "id": "br_000007",
       "entityType": "boundaryRuling",
       "createdAt": "2026-11-17"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000001",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000002",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000003",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000004",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000005",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000006",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000007",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000008",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000009",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000010",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000011",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000012",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000013",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000014",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000015",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000016",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000017",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000018",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000019",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000020",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000021",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000022",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000023",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000024",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000025",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000026",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000027",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000028",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000029",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000030",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000031",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000032",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000033",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000034",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000035",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000036",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000037",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000038",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000039",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000040",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000041",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000042",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000043",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000044",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000045",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000046",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000047",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000048",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000049",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000050",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000051",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000052",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000053",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000054",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000055",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000056",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000057",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000058",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000059",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000060",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000061",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000062",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000063",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000064",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000065",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000066",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000067",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000068",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000069",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000070",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000071",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000072",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000073",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000074",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000075",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000076",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000077",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000078",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000079",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000080",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000081",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000082",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000083",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000084",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000085",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000086",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000087",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000088",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000089",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000090",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000091",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000092",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000093",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000094",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000095",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000096",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000097",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000098",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000099",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000100",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000101",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000102",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000103",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000104",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000105",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000106",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000107",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000108",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000109",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000110",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000111",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000112",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000113",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000114",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000115",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000116",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000117",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000118",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000119",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000120",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000121",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000122",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000123",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000124",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000125",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000126",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000127",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000128",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000129",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000130",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000131",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000132",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000133",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000134",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000135",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000136",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000137",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "bn_000138",
+      "entityType": "networkNode",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000001",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000002",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000003",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000004",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000005",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000006",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000007",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000008",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000009",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000010",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000011",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000012",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000013",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000014",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000015",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000016",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000017",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000018",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000019",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000020",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000021",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000022",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000023",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000024",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000025",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000026",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000027",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000028",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000029",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000030",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000031",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000032",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000033",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000034",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000035",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000036",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000037",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000038",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000039",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000040",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000041",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000042",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000043",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000044",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000045",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000046",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000047",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000048",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000049",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000050",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000051",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000052",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000053",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000054",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000055",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000056",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000057",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000058",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000059",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000060",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000061",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000062",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000063",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000064",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000065",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000066",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000067",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000068",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
+    },
+    {
+      "lifecycle": "active",
+      "retiredAt": null,
+      "supersededBy": [],
+      "legacyRefs": [],
+      "id": "be_0000069",
+      "entityType": "networkEdge",
+      "createdAt": "2026-11-21"
     }
   ]
 }

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 2,
+  "zones": [
+    {
+      "zoneId": "zone_900",
+      "zoneName": "点选演示学区（mock）",
+      "schoolId": "school_mock_900",
+      "stage": "演示",
+      "year": 2026,
+      "boundaryText": "东至测试东界，南至测试南界，西至测试西界，北至测试北界。",
+      "policyIds": [],
+      "boundaryRulings": [],
+      "rings": [
+        {
+          "ringId": "zr_900001",
+          "role": "outer",
+          "steps": [
+            {
+              "stepId": "zs_9000001",
+              "side": "南",
+              "text": "南至测试南界",
+              "sourceType": "officialText",
+              "rulingIds": [],
+              "edgeRefs": []
+            },
+            {
+              "stepId": "zs_9000002",
+              "side": "东",
+              "text": "东至测试东界",
+              "sourceType": "officialText",
+              "rulingIds": [],
+              "edgeRefs": []
+            },
+            {
+              "stepId": "zs_9000003",
+              "side": "北",
+              "text": "北至测试北界",
+              "sourceType": "officialText",
+              "rulingIds": [],
+              "edgeRefs": []
+            },
+            {
+              "stepId": "zs_9000004",
+              "side": "西",
+              "text": "西至测试西界",
+              "sourceType": "officialText",
+              "rulingIds": [],
+              "edgeRefs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "zoneId": "zone_901",
+      "zoneName": "已占用示例学区（mock）",
+      "schoolId": "school_mock_901",
+      "stage": "演示",
+      "year": 2026,
+      "boundaryText": "东至测试东界，北至测试北界。",
+      "policyIds": [],
+      "boundaryRulings": [],
+      "rings": [
+        {
+          "ringId": "zr_900002",
+          "role": "outer",
+          "steps": [
+            {
+              "stepId": "zs_9000011",
+              "side": "东",
+              "text": "东至测试东界",
+              "sourceType": "legacyMigration",
+              "rulingIds": [],
+              "edgeRefs": [{ "edgeId": "be_0000003", "direction": "forward" }]
+            },
+            {
+              "stepId": "zs_9000012",
+              "side": "北",
+              "text": "北至测试北界",
+              "sourceType": "legacyMigration",
+              "rulingIds": [],
+              "edgeRefs": [{ "edgeId": "be_0000004", "direction": "forward" }]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
