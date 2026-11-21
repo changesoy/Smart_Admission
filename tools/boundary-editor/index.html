@@ -26,10 +26,36 @@
             <option value="real">真实 data/</option>
           </select>
         </label>
-        <label class="field">
-          学区
-          <select id="zone-select"></select>
-        </label>
+        <div class="field zone-picker" id="zone-picker">
+          <span>学区</span>
+          <button
+            id="zone-picker-button"
+            type="button"
+            class="zone-picker-button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="zone-picker-popup"
+          >
+            <span id="zone-picker-current">加载中…</span>
+            <span class="zone-picker-caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="zone-picker-popup" id="zone-picker-popup" hidden>
+            <input
+              id="zone-search"
+              type="search"
+              placeholder="搜索学区名 / zoneId / 学段"
+              autocomplete="off"
+            />
+            <div
+              id="zone-picker-list"
+              class="zone-picker-list"
+              role="listbox"
+              aria-label="学区列表"
+            ></div>
+            <div id="zone-picker-empty" class="zone-picker-empty hidden">没有匹配的学区</div>
+          </div>
+          <input id="zone-select" type="hidden" value="" />
+        </div>
         <button id="btn-undo" type="button" title="Ctrl+Z">撤销</button>
         <button id="btn-redo" type="button" title="Ctrl+Shift+Z">重做</button>
         <button id="btn-validate" type="button">本地校验</button>

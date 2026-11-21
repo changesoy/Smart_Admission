@@ -17,6 +17,7 @@ import {
   draftFromState,
   edgeAvailability,
   edgeEndpoints,
+  expandRefsToCoordinates,
   findCandidatePaths,
   findReuseOptions,
   flattenRingRefs,
@@ -217,19 +218,152 @@ const loadDataSource = async (mode) => {
   ui.usageIndex = buildUsageIndex(zoneSpecs);
 };
 
-const populateZoneSelect = (preferredZoneId = null) => {
-  const select = $("zone-select");
-  select.innerHTML = "";
-  ui.zoneSpecs.zones.forEach((zone) => {
-    const option = document.createElement("option");
-    option.value = zone.zoneId;
-    option.textContent = `${zone.zoneId} · ${zone.zoneName ?? ""}`;
-    select.append(option);
+const ZONE_SELECT_STORAGE_KEY = "boundary-editor.selectedZoneId";
+const zoneCollator = new Intl.Collator("zh-Hans-CN", { sensitivity: "base" });
+
+const zoneSteps = (zone) => (zone.rings ?? []).flatMap((ring) => ring.steps ?? []);
+
+const zoneBindingState = (zone) => {
+  const steps = zoneSteps(zone);
+  const boundSteps = steps.filter((step) => (step.edgeRefs?.length ?? 0) > 0).length;
+  if (boundSteps === 0) return { key: "unbound", label: "未绑定" };
+  if (boundSteps < steps.length) {
+    return { key: "partial", label: `部分绑定 ${boundSteps}/${steps.length}` };
+  }
+  const outer = (zone.rings ?? []).find((ring) => ring.role === "outer");
+  const coordinates = expandRefsToCoordinates(flattenRingRefs(outer), ui.edges, ui.featureMap);
+  const first = coordinates.at(0);
+  const last = coordinates.at(-1);
+  const closed =
+    coordinates.length > 2 &&
+    Array.isArray(first) &&
+    Array.isArray(last) &&
+    first[0] === last[0] &&
+    first[1] === last[1];
+  return closed
+    ? { key: "closed", label: "已闭环" }
+    : { key: "bound", label: "已绑定未闭合" };
+};
+
+const currentZoneId = () => $("zone-select").value;
+
+const rememberZoneId = (zoneId) => {
+  try {
+    localStorage.setItem(ZONE_SELECT_STORAGE_KEY, zoneId);
+  } catch {
+    /* 隐私模式下忽略 */
+  }
+};
+
+const rememberedZoneId = () => {
+  try {
+    return localStorage.getItem(ZONE_SELECT_STORAGE_KEY);
+  } catch {
+    return null;
+  }
+};
+
+const setZoneValue = (zoneId) => {
+  $("zone-select").value = zoneId;
+  const zone = ui.zoneSpecs?.zones.find((item) => item.zoneId === zoneId);
+  $("zone-picker-current").textContent = zone
+    ? `${zone.zoneId} · ${zone.zoneName ?? ""}`
+    : "未选择学区";
+};
+
+const renderZoneList = (keyword = "") => {
+  const list = $("zone-picker-list");
+  const normalized = keyword.trim().toLowerCase();
+  const zones = ui.zoneSpecs.zones
+    .filter(
+      (zone) =>
+        normalized.length === 0 ||
+        `${zone.zoneId} ${zone.zoneName ?? ""} ${zone.stage ?? ""}`
+          .toLowerCase()
+          .includes(normalized),
+    )
+    .sort((left, right) => zoneCollator.compare(left.zoneName ?? "", right.zoneName ?? ""));
+
+  list.innerHTML = "";
+  $("zone-picker-empty").classList.toggle("hidden", zones.length > 0);
+  if (zones.length === 0) return;
+
+  const groups = new Map();
+  zones.forEach((zone) => {
+    const key = zone.stage || "其他";
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(zone);
   });
-  const fallback = preferredZoneId ?? ui.zoneSpecs.zones[0].zoneId;
-  select.value = ui.zoneSpecs.zones.some((zone) => zone.zoneId === fallback)
-    ? fallback
-    : ui.zoneSpecs.zones[0].zoneId;
+
+  groups.forEach((items, stage) => {
+    const title = document.createElement("div");
+    title.className = "zone-picker-group";
+    title.textContent = stage;
+    list.append(title);
+
+    items.forEach((zone) => {
+      const state = zoneBindingState(zone);
+      const option = document.createElement("button");
+      option.type = "button";
+      option.className = "zone-option";
+      option.dataset.zoneId = zone.zoneId;
+      option.setAttribute("role", "option");
+      option.setAttribute("aria-selected", zone.zoneId === currentZoneId() ? "true" : "false");
+      option.innerHTML =
+        `<span class="zone-option-name">${escapeHtml(zone.zoneName ?? zone.zoneId)}</span>` +
+        `<span class="zone-option-meta"><code>${escapeHtml(zone.zoneId)}</code>` +
+        `<span class="zone-badge ${state.key}">${escapeHtml(state.label)}</span></span>`;
+      option.addEventListener("click", () => applyZoneSelection(zone.zoneId));
+      list.append(option);
+    });
+  });
+};
+
+const openZonePicker = () => {
+  $("zone-picker-popup").hidden = false;
+  $("zone-picker-button").setAttribute("aria-expanded", "true");
+  $("zone-search").value = "";
+  renderZoneList("");
+  $("zone-search").focus();
+};
+
+const closeZonePicker = () => {
+  $("zone-picker-popup").hidden = true;
+  $("zone-picker-button").setAttribute("aria-expanded", "false");
+};
+
+const moveZoneActive = (delta) => {
+  const options = [...$("zone-picker-list").querySelectorAll(".zone-option")];
+  if (options.length === 0) return;
+  const current = options.findIndex((option) => option.classList.contains("active"));
+  const next =
+    current < 0
+      ? delta > 0
+        ? 0
+        : options.length - 1
+      : (current + delta + options.length) % options.length;
+  options.forEach((option, index) => option.classList.toggle("active", index === next));
+  options[next].scrollIntoView({ block: "nearest" });
+};
+
+const applyZoneSelection = (zoneId) => {
+  setZoneValue(zoneId);
+  rememberZoneId(zoneId);
+  closeZonePicker();
+  try {
+    initEditorForZone(zoneId);
+    hideBanner();
+  } catch (error) {
+    showBanner(error.message, "error");
+  }
+};
+
+const populateZoneSelect = (preferredZoneId = null) => {
+  const { zones } = ui.zoneSpecs;
+  const candidate = preferredZoneId ?? rememberedZoneId();
+  const selected = zones.some((zone) => zone.zoneId === candidate) ? candidate : zones[0].zoneId;
+  setZoneValue(selected);
+  renderZoneList("");
 };
 
 const initEditorForZone = (zoneId) => {
@@ -1026,7 +1160,8 @@ const importDraft = async (file) => {
     return;
   }
   ui.zoneSpec = zoneSpec;
-  $("zone-select").value = zoneSpec.zoneId;
+  setZoneValue(zoneSpec.zoneId);
+  rememberZoneId(zoneSpec.zoneId);
   ui.editor = createEditorState({ zoneSpec, draft, date: today() });
   ui.ringIndex = 0;
   ui.activeStepId = ui.editor.rings[0]?.steps?.[0]?.stepId ?? null;
@@ -1052,7 +1187,8 @@ const bindEvents = () => {
       const preferred = ui.zoneSpec?.zoneId ?? null;
       populateZoneSelect(preferred);
       drawMap();
-      initEditorForZone($("zone-select").value);
+      initEditorForZone(currentZoneId());
+      rememberZoneId(currentZoneId());
       hideBanner();
     } catch (error) {
       ui.mode = previous;
@@ -1061,13 +1197,36 @@ const bindEvents = () => {
     }
   });
 
-  $("zone-select").addEventListener("change", (event) => {
-    try {
-      initEditorForZone(event.target.value);
-      hideBanner();
-    } catch (error) {
-      showBanner(error.message, "error");
+  $("zone-picker-button").addEventListener("click", () => {
+    if ($("zone-picker-popup").hidden) openZonePicker();
+    else closeZonePicker();
+  });
+
+  $("zone-search").addEventListener("input", (event) => {
+    renderZoneList(event.target.value);
+  });
+
+  $("zone-search").addEventListener("keydown", (event) => {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      moveZoneActive(1);
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      moveZoneActive(-1);
+    } else if (event.key === "Enter") {
+      event.preventDefault();
+      const active = $("zone-picker-list").querySelector(".zone-option.active");
+      const zoneId = active?.dataset.zoneId ?? currentZoneId();
+      applyZoneSelection(zoneId);
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      closeZonePicker();
+      $("zone-picker-button").focus();
     }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!$("zone-picker").contains(event.target)) closeZonePicker();
   });
 
   $("btn-undo").addEventListener("click", () => {
@@ -1193,7 +1352,7 @@ const boot = async () => {
     await loadDataSource(ui.mode);
     populateZoneSelect();
     drawMap();
-    initEditorForZone($("zone-select").value);
+    initEditorForZone(currentZoneId());
     showBanner(
       "mock 模式：矩形演示网络。切换「真实 data/」可编辑正式网络（需先运行生成器）。",
       "info",
