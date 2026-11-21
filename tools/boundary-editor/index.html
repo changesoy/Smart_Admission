@@ -16,7 +16,7 @@
     <header class="topbar">
       <div class="brand">
         学区边界点选编辑器
-        <span class="tag">工具页 · 只导出草稿，不写正式数据</span>
+        <span class="tag">工具页 · 写入需确认</span>
       </div>
       <div class="controls">
         <label class="field">
@@ -105,9 +105,15 @@
           <div id="validation" class="validation">尚未校验</div>
           <pre id="export-preview" class="preview hidden"></pre>
           <div class="row">
-            <button id="btn-download" type="button" class="primary">下载 JSON</button>
+            <button id="btn-write" type="button" class="primary">写入项目</button>
+            <button id="btn-download" type="button">下载 JSON</button>
             <button id="btn-copy" type="button">复制 JSON</button>
           </div>
+          <p class="hint">
+            写入调用 <code>scripts/import-zone-draft.mjs</code>（唯一回写路径）：要求状态
+            <code>readyForReview</code>、零校验错误，并在确认弹窗同意后才修改
+            <code>data/zone_specs.v2.json</code>。仅真实数据模式可用。
+          </p>
         </section>
       </aside>
 

@@ -12,7 +12,9 @@
  * 当前 release 目录, 不复制工作副本数据文件与历史 release。
  */
 import { defineConfig } from "vite";
-import { cpSync, existsSync, mkdirSync, readFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -67,8 +69,96 @@ const copyData = () => ({
   },
 });
 
+const zoneDraftImport = () => ({
+  name: "zone-draft-import",
+  apply: "serve",
+  configureServer(server) {
+    const root = fileURLToPath(new URL("./", import.meta.url));
+
+    server.middlewares.use("/__tools/import-draft", (req, res) => {
+      const reply = (status, payload) => {
+        res.statusCode = status;
+        res.setHeader("Content-Type", "application/json; charset=utf-8");
+        res.end(JSON.stringify(payload));
+      };
+
+      if (req.method !== "POST") {
+        reply(405, { ok: false, error: "只接受 POST" });
+        return;
+      }
+
+      const chunks = [];
+      let size = 0;
+      req.on("data", (chunk) => {
+        size += chunk.length;
+        if (size <= 8 * 1024 * 1024) chunks.push(chunk);
+      });
+      req.on("end", () => {
+        if (size > 8 * 1024 * 1024) {
+          reply(413, { ok: false, error: "草稿超过 8 MB，拒绝处理" });
+          return;
+        }
+
+        let payload;
+        try {
+          const text = Buffer.concat(chunks).toString("utf8").replace(/^\uFEFF/, "");
+          payload = JSON.parse(text);
+        } catch {
+          reply(400, { ok: false, error: "请求体不是合法 JSON" });
+          return;
+        }
+
+        const draft = payload?.draft;
+        const confirm = payload?.confirm;
+        if (!draft?.draftId || draft.draftId !== confirm) {
+          reply(400, { ok: false, error: "confirm 必须等于草稿 draftId" });
+          return;
+        }
+        if (draft.status !== "readyForReview") {
+          reply(400, { ok: false, error: `只有 readyForReview 可写入，当前为 ${draft.status}` });
+          return;
+        }
+
+        const tmp = mkdtempSync(join(tmpdir(), "zone-draft-"));
+        try {
+          const draftPath = join(tmp, "draft.json");
+          const reportPath = join(tmp, "report.json");
+          writeFileSync(draftPath, `${JSON.stringify(draft, null, 2)}\n`, "utf8");
+
+          const result = spawnSync(
+            process.execPath,
+            [
+              "scripts/import-zone-draft.mjs",
+              draftPath,
+              "--write",
+              "--confirm",
+              confirm,
+              "--report",
+              reportPath,
+            ],
+            { cwd: root, encoding: "utf8" },
+          );
+          const report = existsSync(reportPath) ? readFileSync(reportPath, "utf8") : null;
+
+          reply(result.status === 0 ? 200 : 409, {
+            ok: result.status === 0,
+            code: result.status,
+            stdout: result.stdout?.trim() ?? "",
+            stderr: result.stderr?.trim() ?? "",
+            report,
+          });
+        } catch (error) {
+          reply(500, { ok: false, error: error.message });
+        } finally {
+          rmSync(tmp, { recursive: true, force: true });
+        }
+      });
+    });
+  },
+});
+
 export default defineConfig({
-  plugins: [copyData()],
+  plugins: [copyData(), zoneDraftImport()],
   server: {
     proxy: apiProxy,
   },

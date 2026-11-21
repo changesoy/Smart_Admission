@@ -3,10 +3,11 @@
  *
  * 约束：
  * - 只读 boundary_features / network_nodes / network_edges / zone_specs / zones.geojson；
- * - 只导出 zone_draft JSON，不直接写任何正式数据；
+ * - 写入只能走 /__tools/import-draft 转交 import-zone-draft CLI，本页不直接改文件；
  * - 所有选择落为 edgeRefs，导出不含自由坐标；
  * - 几何相交不等于连通，只读节点 connectionType。
  */
+import AppConfig from "../../js/config.js";
 import {
   buildUsageIndex,
   clearRing,
@@ -258,11 +259,12 @@ const initEditorForZone = (zoneId) => {
 
 const initMap = () => {
   if (ui.map) return;
-  ui.map = L.map("map", { zoomControl: true }).setView([36.19, 117.1], 13);
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution: "&copy; OpenStreetMap contributors",
-  }).addTo(ui.map);
+  ui.map = L.map("map", { zoomControl: true }).setView(AppConfig.mapCenter, 14);
+
+  const { token, vecUrl, cvaUrl, subdomains, attribution } = AppConfig.tianditu;
+  const tileOptions = { subdomains, maxZoom: 18, attribution };
+  L.tileLayer(vecUrl.replace("{token}", token), tileOptions).addTo(ui.map);
+  L.tileLayer(cvaUrl.replace("{token}", token), { ...tileOptions, attribution: "" }).addTo(ui.map);
   ui.featureLayer = L.layerGroup().addTo(ui.map);
   ui.edgeLayerGroup = L.layerGroup().addTo(ui.map);
   ui.nodeLayerGroup = L.layerGroup().addTo(ui.map);
@@ -964,6 +966,52 @@ const copyDraft = async () => {
   }
 };
 
+const writeDraft = async () => {
+  if (ui.mode !== "real") {
+    showBanner("mock 模式只用于演示，不能写入项目数据", "warn");
+    return;
+  }
+  const draft = buildDraft();
+  if (!draft) return;
+  const result = runValidation();
+  if (draft.status !== "readyForReview") {
+    showBanner(`只有 readyForReview 的草稿允许写入，当前为 ${draft.status}`, "error");
+    return;
+  }
+  if (result.errors.length > 0) {
+    showBanner(`草稿存在 ${result.errors.length} 个错误，拒绝写入`, "error");
+    return;
+  }
+  const confirmed = window.confirm(
+    `将把 ${draft.zoneId} 的 edgeRefs 写入 data/zone_specs.v2.json\n` +
+      `草稿：${draft.draftId}\n\n这会修改正式数据，继续？`,
+  );
+  if (!confirmed) return;
+
+  try {
+    const response = await fetch("/__tools/import-draft", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ draft, confirm: draft.draftId }),
+    });
+    const payload = await response.json();
+    const detail = payload.report ?? payload.stdout ?? "";
+    if (payload.ok) {
+      $("export-preview").textContent = detail;
+      $("export-preview").classList.remove("hidden");
+      showBanner(`已写入 ${draft.zoneId}（草稿 ${draft.draftId}），刷新页面可看到最新绑定。`, "info");
+      return;
+    }
+    if (detail) {
+      $("export-preview").textContent = detail;
+      $("export-preview").classList.remove("hidden");
+    }
+    showBanner(payload.error || payload.stderr || `写入失败（退出码 ${payload.code}）`, "error");
+  } catch (error) {
+    showBanner(`写入请求失败：${error.message}（需通过 npm run ui 启动）`, "error");
+  }
+};
+
 const importDraft = async (file) => {
   let draft;
   try {
@@ -1107,6 +1155,7 @@ const bindEvents = () => {
     );
   });
 
+  $("btn-write").addEventListener("click", writeDraft);
   $("btn-download").addEventListener("click", downloadDraft);
   $("btn-copy").addEventListener("click", copyDraft);
 
