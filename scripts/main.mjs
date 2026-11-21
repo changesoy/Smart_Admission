@@ -18,6 +18,10 @@ const COMMANDS = {
     script: "scripts/export-network-refs.mjs",
     desc: "导出要素清单与学区绑定待办",
   },
+  "network:candidates": {
+    script: "scripts/build-connection-candidates.mjs",
+    desc: "连接候选只读报告（ncc_*，不写 data/）",
+  },
   "draft:validate": {
     script: "scripts/validate-zone-draft.mjs",
     desc: "校验学区草稿（D01–D17，只读）",
