@@ -609,23 +609,12 @@
               "text": "北至北上高大街",
               "sourceType": "officialText",
               "rulingIds": [],
-              "edgeRefs": []
-            },
-            {
-              "stepId": "zs_0000045",
-              "side": "东",
-              "text": "东至天烛峰路",
-              "sourceType": "officialText",
-              "rulingIds": [],
-              "edgeRefs": []
-            },
-            {
-              "stepId": "zs_0000043",
-              "side": "南",
-              "text": "南至东湖路",
-              "sourceType": "officialText",
-              "rulingIds": [],
-              "edgeRefs": []
+              "edgeRefs": [
+                { "edgeId": "be_0000290", "direction": "reverse" },
+                { "edgeId": "be_0000289", "direction": "reverse" },
+                { "edgeId": "be_0000288", "direction": "reverse" },
+                { "edgeId": "be_0000287", "direction": "reverse" }
+              ]
             },
             {
               "stepId": "zs_0000044",
@@ -633,7 +622,39 @@
               "text": "西至唐王河",
               "sourceType": "officialText",
               "rulingIds": [],
-              "edgeRefs": []
+              "edgeRefs": [
+                { "edgeId": "be_0000154", "direction": "forward" },
+                { "edgeId": "be_0000155", "direction": "forward" },
+                { "edgeId": "be_0000156", "direction": "forward" },
+                { "edgeId": "be_0000157", "direction": "forward" },
+                { "edgeId": "be_0000158", "direction": "forward" },
+                { "edgeId": "be_0000159", "direction": "forward" }
+              ]
+            },
+            {
+              "stepId": "zs_0000043",
+              "side": "南",
+              "text": "南至东湖路",
+              "sourceType": "officialText",
+              "rulingIds": [],
+              "edgeRefs": [
+                { "edgeId": "be_0000279", "direction": "reverse" },
+                { "edgeId": "be_0000278", "direction": "reverse" },
+                { "edgeId": "be_0000277", "direction": "reverse" }
+              ]
+            },
+            {
+              "stepId": "zs_0000045",
+              "side": "东",
+              "text": "东至天烛峰路",
+              "sourceType": "officialText",
+              "rulingIds": [],
+              "edgeRefs": [
+                { "edgeId": "be_0000380", "direction": "reverse" },
+                { "edgeId": "be_0000379", "direction": "reverse" },
+                { "edgeId": "be_0000378", "direction": "reverse" },
+                { "edgeId": "be_0000377", "direction": "reverse" }
+              ]
             }
           ]
         }

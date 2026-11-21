@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
 import { buildBoundaryTopologyPlan } from "../lib/boundary-topology.mjs";
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
 const feature = (featureId, name, coordinates, featureType = "road") => ({
   type: "Feature",
@@ -58,4 +63,18 @@ test("相同输入重复执行保持结果深相等", () => {
   const second = buildBoundaryTopologyPlan({ features: first.features });
   assert.deepEqual(second.features, first.features);
   assert.deepEqual(second.decisions, first.decisions);
+});
+
+test("真实边界数据保持冻结的交点与 anchor 基线", () => {
+  const features = JSON.parse(
+    fs.readFileSync(path.join(ROOT, "data/boundary_features.v2.geojson"), "utf8"),
+  );
+  const result = buildBoundaryTopologyPlan({ features });
+  assert.equal(result.report.generatedIntersections, 218);
+  assert.equal(result.report.anchorGroups.length, 16);
+  assert.equal(result.report.suppressedIntersections, 20);
+  assert.equal(result.report.acceptedIntersections, 198);
+  assert.equal(result.report.unresolved.nearMiss, 92);
+  assert.equal(result.report.unresolved.collinearOverlap, 1);
+  assert.equal(result.report.unresolved.segmentCrossing, 0);
 });

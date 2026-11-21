@@ -15,11 +15,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000139"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000002",
@@ -55,11 +57,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000139"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000004",
@@ -315,11 +319,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000173"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000017",
@@ -395,11 +401,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000186"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000021",
@@ -535,11 +543,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000203"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000028",
@@ -555,11 +565,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000183"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000029",
@@ -595,11 +607,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000229"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000031",
@@ -615,11 +629,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000230"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000032",
@@ -655,11 +671,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000243"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000034",
@@ -675,11 +693,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000250"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000035",
@@ -715,11 +735,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000139"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000037",
@@ -795,11 +817,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000275"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000041",
@@ -975,11 +999,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000293"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000050",
@@ -995,11 +1021,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000296"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000051",
@@ -1015,11 +1043,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000299"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000052",
@@ -1035,11 +1065,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000304"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000053",
@@ -1055,11 +1087,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000306"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000054",
@@ -1075,11 +1109,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000309"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000055",
@@ -1095,11 +1131,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000257"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000056",
@@ -1135,11 +1173,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000313"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000058",
@@ -1275,11 +1315,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000262"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000065",
@@ -1295,11 +1337,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000233"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000066",
@@ -1315,11 +1359,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000288"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000067",
@@ -1375,11 +1421,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000255"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000070",
@@ -1395,11 +1443,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000234"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000071",
@@ -1415,11 +1465,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000270"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000072",
@@ -1435,11 +1487,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000232"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000073",
@@ -1455,11 +1509,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000290"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000074",
@@ -1475,11 +1531,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000237"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000075",
@@ -1515,11 +1573,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000216"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000077",
@@ -1575,11 +1635,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000310"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000080",
@@ -1595,11 +1657,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000239"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000081",
@@ -1615,11 +1679,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000266"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000082",
@@ -1655,11 +1721,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000240"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000084",
@@ -1675,11 +1743,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000265"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000085",
@@ -1755,11 +1825,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000220"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000089",
@@ -1775,11 +1847,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000224"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000090",
@@ -1795,11 +1869,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000261"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000091",
@@ -1815,11 +1891,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000139"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000092",
@@ -1835,11 +1913,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000274"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000093",
@@ -1855,11 +1935,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000326"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000094",
@@ -1935,11 +2017,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000281"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000098",
@@ -1995,11 +2079,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000215"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000101",
@@ -2015,11 +2101,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000329"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000102",
@@ -2035,11 +2123,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000312"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000103",
@@ -2055,11 +2145,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000286"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000104",
@@ -2115,11 +2207,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000317"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000107",
@@ -2135,11 +2229,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000221"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000108",
@@ -2155,11 +2251,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000235"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000109",
@@ -2195,11 +2293,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000331"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000111",
@@ -2215,11 +2315,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000231"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000112",
@@ -2235,11 +2337,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000260"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000113",
@@ -2295,11 +2399,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000272"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000116",
@@ -2315,11 +2421,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000305"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000117",
@@ -2335,11 +2443,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000277"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000118",
@@ -2375,11 +2485,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000264"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000120",
@@ -2395,11 +2507,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000213"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000121",
@@ -2415,11 +2529,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000333"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000122",
@@ -2435,11 +2551,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000328"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000123",
@@ -2515,11 +2633,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000320"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000127",
@@ -2535,11 +2655,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000238"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000128",
@@ -2555,11 +2677,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000239"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000129",
@@ -2575,11 +2699,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000318"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000130",
@@ -2635,11 +2761,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000275"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000133",
@@ -2655,11 +2783,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000227"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000134",
@@ -2695,11 +2825,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000273"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000136",
@@ -2715,11 +2847,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "reviewed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000263"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000137",
@@ -2735,11 +2869,13 @@
       ],
       "derivationType": "featureEndpoint",
       "verificationStatus": "disputed",
-      "lifecycle": "active",
+      "lifecycle": "retired",
       "supersedes": [],
-      "supersededBy": [],
+      "supersededBy": [
+        "bn_000199"
+      ],
       "createdAt": "2026-11-21",
-      "retiredAt": null
+      "retiredAt": "2026-11-21"
     },
     {
       "nodeId": "bn_000138",
@@ -2754,6 +2890,4978 @@
         }
       ],
       "derivationType": "featureEndpoint",
+      "verificationStatus": "disputed",
+      "lifecycle": "retired",
+      "supersedes": [],
+      "supersededBy": [
+        "bn_000208"
+      ],
+      "createdAt": "2026-11-21",
+      "retiredAt": "2026-11-21"
+    },
+    {
+      "nodeId": "bn_000139",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泰明路×碧霞大街×环山路×天烛峰路",
+      "placements": [
+        {
+          "featureId": "bf_000001",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000002",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 322
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000140",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "碧霞大街×明堂路",
+      "placements": [
+        {
+          "featureId": "bf_000002",
+          "partIndex": 0,
+          "vertexIndex": 21
+        },
+        {
+          "featureId": "bf_000041",
+          "partIndex": 0,
+          "vertexIndex": 38
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000141",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "碧霞大街×博阳路",
+      "placements": [
+        {
+          "featureId": "bf_000002",
+          "partIndex": 0,
+          "vertexIndex": 40
+        },
+        {
+          "featureId": "bf_000042",
+          "partIndex": 0,
+          "vertexIndex": 53
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000142",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "碧霞大街×芝田河",
+      "placements": [
+        {
+          "featureId": "bf_000002",
+          "partIndex": 0,
+          "vertexIndex": 63
+        },
+        {
+          "featureId": "bf_000010",
+          "partIndex": 0,
+          "vertexIndex": 16
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000143",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "谢过城街×博阳路",
+      "placements": [
+        {
+          "featureId": "bf_000003",
+          "partIndex": 0,
+          "vertexIndex": 14
+        },
+        {
+          "featureId": "bf_000042",
+          "partIndex": 0,
+          "vertexIndex": 44
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000144",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "谢过城街×芝田河",
+      "placements": [
+        {
+          "featureId": "bf_000003",
+          "partIndex": 0,
+          "vertexIndex": 17
+        },
+        {
+          "featureId": "bf_000010",
+          "partIndex": 0,
+          "vertexIndex": 25
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000145",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "谢过城街×天烛峰路",
+      "placements": [
+        {
+          "featureId": "bf_000003",
+          "partIndex": 0,
+          "vertexIndex": 3
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000146",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "谢过城街×明堂路",
+      "placements": [
+        {
+          "featureId": "bf_000003",
+          "partIndex": 0,
+          "vertexIndex": 7
+        },
+        {
+          "featureId": "bf_000041",
+          "partIndex": 0,
+          "vertexIndex": 25
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000147",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "谢过城街×明堂河",
+      "placements": [
+        {
+          "featureId": "bf_000003",
+          "partIndex": 0,
+          "vertexIndex": 8
+        },
+        {
+          "featureId": "bf_000009",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000148",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "京沪铁路×灵山大街",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 0,
+          "vertexIndex": 135
+        },
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 106
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000149",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "京沪铁路×龙潭路",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 0,
+          "vertexIndex": 145
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 37
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000150",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "京沪铁路×东岳大街",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 0,
+          "vertexIndex": 259
+        },
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 14
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000151",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "京沪铁路×万官大街",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 1,
+          "vertexIndex": 103
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 56
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000152",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "京沪铁路×泮河",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 1,
+          "vertexIndex": 123
+        },
+        {
+          "featureId": "bf_000011",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000153",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "京沪铁路×泮河大街",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 1,
+          "vertexIndex": 124
+        },
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 218
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000154",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "京沪铁路×望岳东路",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 1,
+          "vertexIndex": 171
+        },
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 20
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000155",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "京沪铁路×长城路",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 1,
+          "vertexIndex": 186
+        },
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 91
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000156",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "辛泰铁路×芝田河",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 114
+        },
+        {
+          "featureId": "bf_000010",
+          "partIndex": 0,
+          "vertexIndex": 44
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000157",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "辛泰铁路×博阳路",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 121
+        },
+        {
+          "featureId": "bf_000042",
+          "partIndex": 0,
+          "vertexIndex": 24
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000158",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "辛泰铁路×明堂河",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 129
+        },
+        {
+          "featureId": "bf_000009",
+          "partIndex": 0,
+          "vertexIndex": 35
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000159",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "辛泰铁路×灵山大街",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 139
+        },
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 229
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000160",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "辛泰铁路×双龙河",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 145
+        },
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 112
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000161",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "辛泰铁路×梳洗河",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 154
+        },
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 69
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000162",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "辛泰铁路×温泉路",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 157
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 19
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000163",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "辛泰铁路×南关大街",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 169
+        },
+        {
+          "featureId": "bf_000021",
+          "partIndex": 0,
+          "vertexIndex": 13
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000164",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "辛泰铁路×渿河",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 178
+        },
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 183
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000165",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "渿河×环山路",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 136
+        },
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 106
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000166",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "渿河×擂鼓石大街",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 149
+        },
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 35
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000167",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "渿河×岱宗大街×泰山大桥",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 155
+        },
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 46
+        },
+        {
+          "featureId": "bf_000056",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000168",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "渿河×东岳大街",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 161
+        },
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 194
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000169",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "渿河×财源大街",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 167
+        },
+        {
+          "featureId": "bf_000046",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000170",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "渿河×灵山大街",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 171
+        },
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 123
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000171",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "渿河×南湖大街",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 176
+        },
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 34
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000172",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "渿河×泮河大街",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 197
+        },
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 267
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000173",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "渿河×泮河",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 199
+        },
+        {
+          "featureId": "bf_000011",
+          "partIndex": 0,
+          "vertexIndex": 10
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000174",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×万官大街",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 103
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 31
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000175",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×虎山路",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 12
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 2,
+          "vertexIndex": 7
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000176",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×岱宗大街",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 23
+        },
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000177",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×擂鼓石大街",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 4
+        },
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 73
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000178",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×东岳大街",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 41
+        },
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 214
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000179",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×东湖路",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 45
+        },
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 14
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000180",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×迎春路",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 49
+        },
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000181",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×温泉路",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 54
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 29
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000182",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×灵山大街",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 56
+        },
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 180
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000183",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×唐王河",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 62
+        },
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 89
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000184",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×南湖大街",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 64
+        },
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 4
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000185",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×泮河大街",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 81
+        },
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 310
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000186",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "梳洗河×双龙河",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 92
+        },
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 151
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000187",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "双龙河×灵山大街",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 102
+        },
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 208
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000188",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "双龙河×泮河大街",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 126
+        },
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 312
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000189",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "双龙河×环山路",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 32
+        },
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 263
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000190",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "双龙河×北上高大街",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 67
+        },
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 30
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000191",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "双龙河×擂鼓石大街",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 78
+        },
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 156
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000192",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "双龙河×唐王街",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 84
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 42
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000193",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "双龙河×东岳大街",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 88
+        },
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 249
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000194",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "双龙河×东湖路",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 93
+        },
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 2
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000195",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "双龙河×五马街",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 99
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 13
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000196",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "明堂河×唐王街",
+      "placements": [
+        {
+          "featureId": "bf_000009",
+          "partIndex": 0,
+          "vertexIndex": 15
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 59
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000197",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "明堂河×五马街",
+      "placements": [
+        {
+          "featureId": "bf_000009",
+          "partIndex": 0,
+          "vertexIndex": 18
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000198",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "明堂河×北上高大街",
+      "placements": [
+        {
+          "featureId": "bf_000009",
+          "partIndex": 0,
+          "vertexIndex": 5
+        },
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 53
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000199",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "芝田河×五马街",
+      "placements": [
+        {
+          "featureId": "bf_000010",
+          "partIndex": 0,
+          "vertexIndex": 42
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000200",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泮河×南关大街",
+      "placements": [
+        {
+          "featureId": "bf_000011",
+          "partIndex": 0,
+          "vertexIndex": 16
+        },
+        {
+          "featureId": "bf_000021",
+          "partIndex": 0,
+          "vertexIndex": 6
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000201",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泮河×万官大街",
+      "placements": [
+        {
+          "featureId": "bf_000011",
+          "partIndex": 0,
+          "vertexIndex": 22
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 42
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000202",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泮河×龙潭路",
+      "placements": [
+        {
+          "featureId": "bf_000011",
+          "partIndex": 0,
+          "vertexIndex": 5
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 70
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000203",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "唐王河×北上高大街",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 5
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000204",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "唐王河×唐王街",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 16
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 26
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000205",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "唐王河×擂鼓石大街",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 2
+        },
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 116
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000206",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "唐王河×东岳大街",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 22
+        },
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 234
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000207",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "唐王河×东湖路",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 35
+        },
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000208",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "唐王河×五马街",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 53
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000209",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "唐王河×花园路",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 6
+        },
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 14
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000210",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "唐王河×灵山大街",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 66
+        },
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 192
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000211",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "唐王河×擂鼓石大街",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 8
+        },
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 127
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000212",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×长城路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 120
+        },
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 113
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000213",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×御碑楼路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 136
+        },
+        {
+          "featureId": "bf_000053",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000214",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×望岳东路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 144
+        },
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 26
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000215",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×迎胜路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 153
+        },
+        {
+          "featureId": "bf_000044",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000216",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×傲徕峰路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 170
+        },
+        {
+          "featureId": "bf_000032",
+          "partIndex": 0,
+          "vertexIndex": 17
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000217",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×龙潭路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 181
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 25
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000218",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×校场街",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 187
+        },
+        {
+          "featureId": "bf_000036",
+          "partIndex": 0,
+          "vertexIndex": 4
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000219",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×青年路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 197
+        },
+        {
+          "featureId": "bf_000031",
+          "partIndex": 0,
+          "vertexIndex": 22
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000220",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×通天街",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 201
+        },
+        {
+          "featureId": "bf_000038",
+          "partIndex": 0,
+          "vertexIndex": 11
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000221",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×仰圣街",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 203
+        },
+        {
+          "featureId": "bf_000047",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000222",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×虎山路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 209
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000223",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×迎春路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 218
+        },
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 20
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000224",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×岱道庵路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 221
+        },
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000225",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×温泉路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 226
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 38
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000226",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×花园路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 231
+        },
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000227",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×凤台路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 236
+        },
+        {
+          "featureId": "bf_000059",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000228",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×双龙路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 243
+        },
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000229",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东岳大街×天烛峰路",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 261
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 19
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000230",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×温泉路",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 46
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000231",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×虎山东路",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 13
+        },
+        {
+          "featureId": "bf_000049",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000232",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×迎春路",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 16
+        },
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 32
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000233",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×虎山路",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 21
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000234",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×虎山路",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 22
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 2,
+          "vertexIndex": 13
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000235",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×仰圣街",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 27
+        },
+        {
+          "featureId": "bf_000047",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000236",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×红门路",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 28
+        },
+        {
+          "featureId": "bf_000026",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000237",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×青年路",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 37
+        },
+        {
+          "featureId": "bf_000031",
+          "partIndex": 0,
+          "vertexIndex": 35
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000238",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×泰山大桥",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 45
+        },
+        {
+          "featureId": "bf_000056",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000239",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×渿河西路×泰山大桥",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 48
+        },
+        {
+          "featureId": "bf_000034",
+          "partIndex": 0,
+          "vertexIndex": 13
+        },
+        {
+          "featureId": "bf_000056",
+          "partIndex": 0,
+          "vertexIndex": 2
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000240",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×校场街",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 56
+        },
+        {
+          "featureId": "bf_000036",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000241",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×岱道庵路",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 6
+        },
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 6
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000242",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱宗大街×龙潭路",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 63
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 20
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000243",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×望岳东路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 28
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000244",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×岱道庵路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 103
+        },
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000245",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×温泉路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 111
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 48
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000246",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×迎胜路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 12
+        },
+        {
+          "featureId": "bf_000044",
+          "partIndex": 0,
+          "vertexIndex": 2
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000247",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×凤台路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 138
+        },
+        {
+          "featureId": "bf_000059",
+          "partIndex": 0,
+          "vertexIndex": 6
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000248",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×双龙路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 148
+        },
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 12
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000249",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×科山路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 16
+        },
+        {
+          "featureId": "bf_000033",
+          "partIndex": 0,
+          "vertexIndex": 5
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000250",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×天烛峰路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 168
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 10
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000251",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×傲徕峰路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 19
+        },
+        {
+          "featureId": "bf_000032",
+          "partIndex": 0,
+          "vertexIndex": 3
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000252",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×龙潭路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 25
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000253",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×渿河西路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 29
+        },
+        {
+          "featureId": "bf_000034",
+          "partIndex": 0,
+          "vertexIndex": 4
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000254",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×红门路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 62
+        },
+        {
+          "featureId": "bf_000026",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000255",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×虎山路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 79
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 2,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000256",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "擂鼓石大街×虎山东路",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 91
+        },
+        {
+          "featureId": "bf_000049",
+          "partIndex": 0,
+          "vertexIndex": 10
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000257",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "环山路×龙潭路",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 103
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000258",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "环山路×红门路",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 154
+        },
+        {
+          "featureId": "bf_000026",
+          "partIndex": 0,
+          "vertexIndex": 19
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000259",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "环山路×虎山路",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 175
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 1,
+          "vertexIndex": 1
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000260",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "环山路×虎山东路",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 199
+        },
+        {
+          "featureId": "bf_000049",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000261",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "环山路×岱道庵路",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 220
+        },
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 32
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000262",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "环山路×温泉路",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 241
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 67
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000263",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "环山路×双龙路",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 285
+        },
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 23
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000264",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "环山路×御碑楼路",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 51
+        },
+        {
+          "featureId": "bf_000053",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000265",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×校场街",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 109
+        },
+        {
+          "featureId": "bf_000036",
+          "partIndex": 0,
+          "vertexIndex": 23
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000266",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×渿河东路",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 125
+        },
+        {
+          "featureId": "bf_000035",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000267",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×青年路",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 135
+        },
+        {
+          "featureId": "bf_000031",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000268",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×通天街",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 140
+        },
+        {
+          "featureId": "bf_000038",
+          "partIndex": 0,
+          "vertexIndex": 3
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000269",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×虎山路",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 152
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 19
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000270",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×迎春路",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 164
+        },
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000271",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×温泉路",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 173
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 26
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000272",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×花园路",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 188
+        },
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000273",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×双龙路",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 201
+        },
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000274",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×天烛峰路",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 217
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 91
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000275",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×上高东路",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 242
+        },
+        {
+          "featureId": "bf_000058",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000276",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×长城路",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 56
+        },
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 67
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000277",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×望岳东路",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 65
+        },
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000278",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "灵山大街×龙潭路",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 91
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 55
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000279",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泰山大街×龙潭路",
+      "placements": [
+        {
+          "featureId": "bf_000018",
+          "partIndex": 0,
+          "vertexIndex": 1
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 46
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000280",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泰山大街×望岳东路",
+      "placements": [
+        {
+          "featureId": "bf_000018",
+          "partIndex": 0,
+          "vertexIndex": 33
+        },
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 5
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000281",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泰山大街×佳苑路",
+      "placements": [
+        {
+          "featureId": "bf_000018",
+          "partIndex": 0,
+          "vertexIndex": 44
+        },
+        {
+          "featureId": "bf_000043",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000282",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泰山大街×长城路",
+      "placements": [
+        {
+          "featureId": "bf_000018",
+          "partIndex": 0,
+          "vertexIndex": 52
+        },
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 85
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000283",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泮河大街×龙潭路",
+      "placements": [
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 212
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 69
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000284",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泮河大街×南关大街",
+      "placements": [
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 300
+        },
+        {
+          "featureId": "bf_000021",
+          "partIndex": 0,
+          "vertexIndex": 10
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000285",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泮河大街×温泉路",
+      "placements": [
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 308
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 12
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000286",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泮河大街×万官大街",
+      "placements": [
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 314
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000287",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "泮河大街×长城路",
+      "placements": [
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 47
+        },
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 59
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000288",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "南湖大街×虎山路",
+      "placements": [
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 22
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 27
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000289",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "南湖大街×通天街",
+      "placements": [
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 27
+        },
+        {
+          "featureId": "bf_000038",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000290",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "南湖大街×青年路",
+      "placements": [
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 30
+        },
+        {
+          "featureId": "bf_000031",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000291",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "南湖大街×温泉路",
+      "placements": [
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 9
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 22
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000292",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "南关大街×万官大街",
+      "placements": [
+        {
+          "featureId": "bf_000021",
+          "partIndex": 0,
+          "vertexIndex": 3
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 47
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000293",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东湖路×天烛峰路",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 51
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000294",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东湖路×温泉路",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 11
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 34
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000295",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东湖路×迎春路",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 13
+        },
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 16
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000296",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东湖路×虎山路",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 18
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 13
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000297",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东湖路×双龙路",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 4
+        },
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 5
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000298",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "东湖路×花园路",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 9
+        },
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 6
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000299",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "北上高大街×岱道庵路",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 20
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000300",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "北上高大街×凤台路",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 16
+        },
+        {
+          "featureId": "bf_000059",
+          "partIndex": 0,
+          "vertexIndex": 12
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000301",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "北上高大街×温泉路",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 2
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 59
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000302",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "北上高大街×天烛峰路",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 42
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000303",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "北上高大街×明堂路",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 50
+        },
+        {
+          "featureId": "bf_000041",
+          "partIndex": 0,
+          "vertexIndex": 15
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000304",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "北上高大街×博阳路",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 63
+        },
+        {
+          "featureId": "bf_000042",
+          "partIndex": 0,
+          "vertexIndex": 38
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000305",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "北上高大街×花园路",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 9
+        },
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000306",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "文化路×渿河西路",
+      "placements": [
+        {
+          "featureId": "bf_000024",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000034",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000307",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "文化路×龙潭路",
+      "placements": [
+        {
+          "featureId": "bf_000024",
+          "partIndex": 0,
+          "vertexIndex": 11
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 13
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000308",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "文化路×傲徕峰路",
+      "placements": [
+        {
+          "featureId": "bf_000024",
+          "partIndex": 0,
+          "vertexIndex": 18
+        },
+        {
+          "featureId": "bf_000032",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000309",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "文化路×科山路",
+      "placements": [
+        {
+          "featureId": "bf_000024",
+          "partIndex": 0,
+          "vertexIndex": 27
+        },
+        {
+          "featureId": "bf_000033",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000310",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "龙潭路×渿河西路",
+      "placements": [
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 6
+        },
+        {
+          "featureId": "bf_000034",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000311",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "龙潭路×万官大街",
+      "placements": [
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 89
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 58
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000312",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "龙潭路×迎胜路",
+      "placements": [
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 97
+        },
+        {
+          "featureId": "bf_000044",
+          "partIndex": 1,
+          "vertexIndex": 26
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000313",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "红门路×岱庙北街",
+      "placements": [
+        {
+          "featureId": "bf_000026",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000048",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000314",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "长城路×万官大街",
+      "placements": [
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 34
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 78
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000315",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "温泉路×万官大街",
+      "placements": [
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 3
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 38
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000316",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "温泉路×唐王街",
+      "placements": [
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 41
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 17
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000317",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "虎山路×财源大街",
+      "placements": [
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 14
+        },
+        {
+          "featureId": "bf_000046",
+          "partIndex": 0,
+          "vertexIndex": 23
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000318",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "迎春路×唐王街",
+      "placements": [
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 22
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000319",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "青年路×财源大街",
+      "placements": [
+        {
+          "featureId": "bf_000031",
+          "partIndex": 0,
+          "vertexIndex": 15
+        },
+        {
+          "featureId": "bf_000046",
+          "partIndex": 0,
+          "vertexIndex": 16
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000320",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "傲徕峰路×康复路",
+      "placements": [
+        {
+          "featureId": "bf_000032",
+          "partIndex": 0,
+          "vertexIndex": 12
+        },
+        {
+          "featureId": "bf_000055",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000321",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "校场街×财源大街",
+      "placements": [
+        {
+          "featureId": "bf_000036",
+          "partIndex": 0,
+          "vertexIndex": 14
+        },
+        {
+          "featureId": "bf_000046",
+          "partIndex": 0,
+          "vertexIndex": 3
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000322",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "通天街×财源大街",
+      "placements": [
+        {
+          "featureId": "bf_000038",
+          "partIndex": 0,
+          "vertexIndex": 8
+        },
+        {
+          "featureId": "bf_000046",
+          "partIndex": 0,
+          "vertexIndex": 20
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000323",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "岱道庵路×唐王街",
+      "placements": [
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 2
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 13
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000324",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "天烛峰路×唐王街",
+      "placements": [
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 15
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 48
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000325",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "天烛峰路×五马街",
+      "placements": [
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 69
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 10
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000326",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "明堂路×唐王街",
+      "placements": [
+        {
+          "featureId": "bf_000041",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 55
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000327",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "博阳路×五马街",
+      "placements": [
+        {
+          "featureId": "bf_000042",
+          "partIndex": 0,
+          "vertexIndex": 28
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 5
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "disputed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000328",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "迎胜路×御碑楼路",
+      "placements": [
+        {
+          "featureId": "bf_000044",
+          "partIndex": 0,
+          "vertexIndex": 6
+        },
+        {
+          "featureId": "bf_000053",
+          "partIndex": 1,
+          "vertexIndex": 8
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000329",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "迎胜路×万官大街",
+      "placements": [
+        {
+          "featureId": "bf_000044",
+          "partIndex": 1,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 71
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000330",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "万官大街×梅山东路",
+      "placements": [
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 89
+        },
+        {
+          "featureId": "bf_000050",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000331",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "仰圣街×岱庙北街",
+      "placements": [
+        {
+          "featureId": "bf_000047",
+          "partIndex": 0,
+          "vertexIndex": 5
+        },
+        {
+          "featureId": "bf_000048",
+          "partIndex": 0,
+          "vertexIndex": 2
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000332",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "花园路×唐王街",
+      "placements": [
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 10
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 23
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000333",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "望岳东路×御碑楼路",
+      "placements": [
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 27
+        },
+        {
+          "featureId": "bf_000053",
+          "partIndex": 1,
+          "vertexIndex": 0
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000334",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "唐王街×凤台路",
+      "placements": [
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 30
+        },
+        {
+          "featureId": "bf_000059",
+          "partIndex": 0,
+          "vertexIndex": 3
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000335",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "唐王街×双龙路",
+      "placements": [
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 37
+        },
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "reviewed",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-21",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000336",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "双龙路×五马街",
+      "placements": [
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 3
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 14
+        }
+      ],
+      "derivationType": "geometryIntersection",
       "verificationStatus": "disputed",
       "lifecycle": "active",
       "supersedes": [],

@@ -4,10 +4,11 @@
  * 契约：docs/planning/节点边生成器规格与样例交接.md（第三章）
  *       docs/planning/统一边界网络数据契约与ID规则.md（第八章）
  *
- * 候选只是人工审核工作项，不是正式裁定：
+ * 候选用于几何质量审核，不直接作为正式裁定：
  *   - candidateId 使用 ncc_*，与正式 ncd_* 分离
- *   - proposedConnectionType 恒为 null，审核前不得推断
- *   - 完全共点不等于可连通，河×路、铁路×路同样需要人工裁定
+ *   - proposedConnectionType 恒为 null，避免只读报告隐式写入正式语义
+ *   - 有效边界交点由 topology prepare 统一自动连通
+ *   - 人工只处理近邻 anchor、共线重叠和无法自动修复的几何缺口
  *
  * 纯计算：不读文件、不打印、不退出。输出按几何内容稳定排序。
  */

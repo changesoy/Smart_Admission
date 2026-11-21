@@ -34,6 +34,10 @@ const COMMANDS = {
     script: "scripts/prepare-boundary-topology.mjs",
     desc: "自动插入边界交点并淘汰近邻重复交点",
   },
+  "zone:build-032-draft": {
+    script: "scripts/build-zone-032-draft.mjs",
+    desc: "从正式网络生成 zone_032 闭环草稿",
+  },
   "draft:validate": {
     script: "scripts/validate-zone-draft.mjs",
     desc: "校验学区草稿（D01–D17，只读）",
