@@ -17,6 +17,7 @@ const FIXTURE = path.join(
   "scripts/fixtures/network-generator/minimal",
 );
 const SCRIPT = path.join(ROOT, "scripts/generate-network.mjs");
+const VALIDATE_SCRIPT = path.join(ROOT, "scripts/validate-network.mjs");
 
 const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf-8"));
 const fixture = (name) => readJson(path.join(FIXTURE, name));
@@ -30,9 +31,30 @@ const baseInput = () => ({
   effectiveDate: "2026-11-17",
 });
 
-const runCliResult = (args) => {
+const buildWithDecisions = (decisions) =>
+  buildNetwork({
+    ...baseInput(),
+    decisions: { schemaVersion: 1, decisions },
+  });
+
+const decisionErrors = (result) =>
+  result.report.errors.map(({ message }) => message).join("\n");
+
+const connectedDecision = (overrides = {}) => ({
+  decisionId: "ncd_000001",
+  connectionType: "connected",
+  placements: [
+    { featureId: "bf_900001", partIndex: 0, vertexIndex: 0 },
+    { featureId: "bf_900004", partIndex: 0, vertexIndex: 2 },
+  ],
+  rulingIds: [],
+  note: "测试裁定",
+  ...overrides,
+});
+
+const runScript = (script, args) => {
   try {
-    const stdout = execFileSync(process.execPath, [SCRIPT, ...args], {
+    const stdout = execFileSync(process.execPath, [script, ...args], {
       cwd: ROOT,
       encoding: "utf-8",
       stdio: ["ignore", "pipe", "pipe"],
@@ -46,6 +68,8 @@ const runCliResult = (args) => {
     };
   }
 };
+
+const runCliResult = (args) => runScript(SCRIPT, args);
 
 const makeTemp = () => fs.mkdtempSync(path.join(os.tmpdir(), "smart-admission-gen-"));
 
@@ -317,4 +341,121 @@ test("报告可在 dry-run 下显式写出", () => {
   assert.equal(report.counts.nodes, 10);
   assert.equal(report.counts.edges, 8);
   assert.equal(report.errors.length, 0);
+});
+
+test("裁定 schemaVersion 错误被拒绝", () => {
+  const input = baseInput();
+  const result = buildNetwork({
+    ...input,
+    decisions: { ...input.decisions, schemaVersion: 2 },
+  });
+  assert.match(decisionErrors(result), /schemaVersion/);
+});
+
+test("裁定 ID 必须匹配 ncd_ 六位格式", () => {
+  const result = buildWithDecisions([
+    connectedDecision({ decisionId: "dec_000001" }),
+  ]);
+  assert.match(decisionErrors(result), /decisionId 必须匹配/);
+});
+
+test("裁定 connectionType 枚举非法被拒绝", () => {
+  const result = buildWithDecisions([
+    connectedDecision({ connectionType: "crossing" }),
+  ]);
+  assert.match(decisionErrors(result), /connectionType 非法/);
+});
+
+test("rulingIds 必须是数组", () => {
+  const result = buildWithDecisions([
+    connectedDecision({ rulingIds: "br_000001" }),
+  ]);
+  assert.match(decisionErrors(result), /rulingIds 必须是数组/);
+});
+
+test("rulingId 格式非法被拒绝", () => {
+  const result = buildWithDecisions([
+    connectedDecision({ connectionType: "conditional", rulingIds: ["br_1"] }),
+  ]);
+  assert.match(decisionErrors(result), /rulingId 格式非法/);
+});
+
+test("rulingId 未在注册表登记被拒绝", () => {
+  const result = buildWithDecisions([
+    connectedDecision({ connectionType: "conditional", rulingIds: ["br_000001"] }),
+  ]);
+  assert.match(decisionErrors(result), /未在注册表登记/);
+});
+
+test("conditional 缺少有效 rulingId 被拒绝", () => {
+  const result = buildWithDecisions([
+    connectedDecision({ connectionType: "conditional", rulingIds: [] }),
+  ]);
+  assert.match(decisionErrors(result), /conditional 裁定必须关联/);
+});
+
+test("placement 下标越界被拒绝", () => {
+  const result = buildWithDecisions([
+    connectedDecision({
+      placements: [
+        { featureId: "bf_900001", partIndex: 0, vertexIndex: 0 },
+        { featureId: "bf_900004", partIndex: 0, vertexIndex: 99 },
+      ],
+    }),
+  ]);
+  assert.match(decisionErrors(result), /vertexIndex 99 超出范围/);
+});
+
+test("connected 的 placement 不共点被拒绝", () => {
+  const result = buildWithDecisions([
+    connectedDecision({
+      placements: [
+        { featureId: "bf_900001", partIndex: 0, vertexIndex: 0 },
+        { featureId: "bf_900002", partIndex: 0, vertexIndex: 0 },
+      ],
+    }),
+  ]);
+  assert.match(decisionErrors(result), /不完全共点/);
+});
+
+test("同一裁定内 placement 重复被拒绝", () => {
+  const placement = { featureId: "bf_900001", partIndex: 0, vertexIndex: 0 };
+  const result = buildWithDecisions([
+    connectedDecision({ placements: [placement, { ...placement }] }),
+  ]);
+  assert.match(decisionErrors(result), /placement 重复/);
+});
+
+test("同一 placement 跨裁定重复占用被拒绝", () => {
+  const result = buildWithDecisions([
+    connectedDecision(),
+    connectedDecision({
+      decisionId: "ncd_000002",
+      connectionType: "nonConnectingCrossing",
+      placements: [
+        { featureId: "bf_900001", partIndex: 0, vertexIndex: 0 },
+        { featureId: "bf_900002", partIndex: 0, vertexIndex: 0 },
+      ],
+    }),
+  ]);
+  assert.match(decisionErrors(result), /同时出现在/);
+});
+
+test("note 为空被拒绝", () => {
+  const result = buildWithDecisions([connectedDecision({ note: "  " })]);
+  assert.match(decisionErrors(result), /note 必须是非空字符串/);
+});
+
+test("validate-network 未知参数以退出码 2 失败", () => {
+  const result = runScript(VALIDATE_SCRIPT, ["--unknown"]);
+  assert.equal(result.status, 2);
+});
+
+test("validate-network 显式裁定文件缺失以退出码 2 失败", () => {
+  const temp = makeTemp();
+  const result = runScript(VALIDATE_SCRIPT, [
+    "--decisions",
+    path.join(temp, "missing.json"),
+  ]);
+  assert.equal(result.status, 2);
 });

@@ -118,7 +118,7 @@ const assertUnchanged = (file, snapshot) => {
   }
 };
 
-const writeAtomic = (files, reportText) => {
+const writeAtomic = (files, reportFile) => {
   const staged = [];
   const backups = [];
   try {
@@ -156,15 +156,14 @@ const writeAtomic = (files, reportText) => {
       fs.renameSync(temp, target);
     });
 
+    if (reportFile) {
+      fs.mkdirSync(path.dirname(reportFile.target), { recursive: true });
+      fs.writeFileSync(reportFile.target, reportFile.text, "utf-8");
+    }
+
     backups.forEach(({ temp }) => {
       if (temp) fs.rmSync(temp, { force: true });
     });
-
-    if (reportText) {
-      const reportTarget = resolve(reportText);
-      fs.mkdirSync(path.dirname(reportTarget), { recursive: true });
-      fs.writeFileSync(reportTarget, reportText, "utf-8");
-    }
   } catch (error) {
     staged.forEach(({ temp }) => fs.rmSync(temp, { force: true }));
     backups.forEach(({ target, temp }) => {
@@ -315,7 +314,7 @@ const main = () => {
         { target: resolve(options.edgesOut), text: edgesText },
         { target: resolve(options.registry), text: registryText },
       ],
-      options.report ? reportText : null,
+      options.report ? { target: resolve(options.report), text: reportText } : null,
     );
 
     console.log(reportText);

@@ -13,15 +13,21 @@ import {
   createReport,
   eachPart,
   isId,
-  roundCoord,
 } from "./network-schema.mjs";
+import {
+  DECISION_SCHEMA_VERSION,
+  normalizePlacements,
+  placementKey,
+  placementSetKey,
+  sameCoordinate,
+  validateConnectionDecisions,
+} from "./connection-decisions.mjs";
 import { addEntry, allocateIds, retireEntry } from "./id-registry.mjs";
 
 /** 输出文件结构版本 */
 export const NETWORK_FILE_SCHEMA_VERSION = 1;
 
-/** 连接裁定结构版本 */
-export const DECISION_SCHEMA_VERSION = 1;
+export { DECISION_SCHEMA_VERSION, normalizePlacements, placementKey, placementSetKey };
 
 /** 可信状态高低（越低越不可信），用于“不得高于最低可信状态” */
 const VERIFICATION_RANK = {
@@ -45,42 +51,8 @@ const lowestVerification = (statuses) =>
 /** 规范 JSON：UTF-8、LF、两空格缩进、末尾一个换行 */
 export const serializeJson = (value) => `${JSON.stringify(value, null, 2)}\n`;
 
-export const placementKey = (placement) =>
-  `${placement.featureId}|${placement.partIndex}|${placement.vertexIndex}`;
-
-export const placementSetKey = (placements) =>
-  [...placements]
-    .map(placementKey)
-    .sort()
-    .join(",");
-
-const compareNumber = (left, right) => left - right;
-
-export const comparePlacement = (left, right) => {
-  if (left.featureId !== right.featureId) {
-    return left.featureId < right.featureId ? -1 : 1;
-  }
-  if (left.partIndex !== right.partIndex) {
-    return compareNumber(left.partIndex, right.partIndex);
-  }
-  return compareNumber(left.vertexIndex, right.vertexIndex);
-};
-
-/** 按 featureId/partIndex/vertexIndex 升序规范化 placement 集合 */
-export const normalizePlacements = (placements) =>
-  [...placements].sort(comparePlacement);
-
-const coordinateAt = (feature, partIndex, vertexIndex) => {
-  const part = eachPart(feature?.geometry)[partIndex];
-  return part?.[vertexIndex] ?? null;
-};
-
-const sameCoordinate = (left, right) =>
-  roundCoord(left[0]) === roundCoord(right[0]) &&
-  roundCoord(left[1]) === roundCoord(right[1]);
-
 /** 建立 active 要素索引，并返回按要素顺序排列的 part 数量 */
-const indexFeatures = (collection, report) => {
+export const indexFeatures = (collection, report) => {
   const section = "boundary_features";
   const map = new Map();
   if (collection?.type !== "FeatureCollection" || !Array.isArray(collection.features)) {
@@ -129,137 +101,6 @@ const indexFeatures = (collection, report) => {
   });
 
   return map;
-};
-
-/** 读取连接裁定，返回按 decisionId 排序的规范化裁定 */
-const normalizeDecisions = (decisionsFile, featureIndex, report) => {
-  const section = "connection_decisions";
-  const list = [];
-  if (!decisionsFile) return list;
-
-  if (decisionsFile.schemaVersion !== DECISION_SCHEMA_VERSION) {
-    report.error(
-      section,
-      `schemaVersion 应为 ${DECISION_SCHEMA_VERSION}，当前: ${decisionsFile.schemaVersion}`,
-    );
-  }
-  if (!Array.isArray(decisionsFile.decisions)) {
-    report.error(section, "缺少 decisions 数组");
-    return list;
-  }
-
-  const seen = new Set();
-  decisionsFile.decisions.forEach((decision, index) => {
-    const at = `第 ${index + 1} 条裁定`;
-    if (typeof decision?.decisionId !== "string" || decision.decisionId.trim() === "") {
-      report.error(section, `${at} decisionId 缺失`);
-      return;
-    }
-    if (seen.has(decision.decisionId)) {
-      report.error(section, `${at} decisionId 重复: ${decision.decisionId}`);
-      return;
-    }
-    seen.add(decision.decisionId);
-
-    if (!["connected", "nonConnectingCrossing", "conditional"].includes(decision.connectionType)) {
-      report.error(
-        section,
-        `${at} connectionType 非法: ${JSON.stringify(decision.connectionType)}`,
-      );
-      return;
-    }
-    if (decision.connectionType === "conditional" && (decision.rulingIds ?? []).length === 0) {
-      report.error(section, `${at} conditional 裁定必须给出 rulingIds`);
-    }
-    if (!Array.isArray(decision.placements) || decision.placements.length < 2) {
-      report.error(section, `${at} placements 至少需要 2 个完全共点的位置`);
-      return;
-    }
-
-    const placements = [];
-    let bad = false;
-    decision.placements.forEach((placement) => {
-      const feature = featureIndex.get(placement?.featureId);
-      if (!feature) {
-        report.error(
-          section,
-          `${at} placement 引用了不存在的要素: ${JSON.stringify(placement?.featureId)}`,
-        );
-        bad = true;
-        return;
-      }
-      if (!Number.isInteger(placement.partIndex) || placement.partIndex < 0) {
-        report.error(section, `${at} partIndex 非法`);
-        bad = true;
-        return;
-      }
-      const part = feature.parts[placement.partIndex];
-      if (!part) {
-        report.error(section, `${at} partIndex ${placement.partIndex} 超出范围`);
-        bad = true;
-        return;
-      }
-      if (!Number.isInteger(placement.vertexIndex) || !part[placement.vertexIndex]) {
-        report.error(section, `${at} vertexIndex ${placement.vertexIndex} 超出范围`);
-        bad = true;
-        return;
-      }
-      placements.push({
-        featureId: placement.featureId,
-        partIndex: placement.partIndex,
-        vertexIndex: placement.vertexIndex,
-      });
-    });
-    if (bad) return;
-
-    if (decision.connectionType === "connected") {
-      const coordinates = placements.map((placement) =>
-        coordinateAt(
-          featureIndex.get(placement.featureId).feature,
-          placement.partIndex,
-          placement.vertexIndex,
-        ),
-      );
-      const base = coordinates[0];
-      if (!coordinates.every((coordinate) => sameCoordinate(coordinate, base))) {
-        report.error(
-          section,
-          `${at} 声明 connected，但各 placement 在 7 位小数下不完全共点`,
-        );
-      }
-    }
-
-    list.push({
-      decisionId: decision.decisionId,
-      connectionType: decision.connectionType,
-      placements: normalizePlacements(placements),
-      rulingIds: [...(decision.rulingIds ?? [])],
-    });
-  });
-
-  return list.sort((left, right) =>
-    left.decisionId < right.decisionId ? -1 : left.decisionId > right.decisionId ? 1 : 0,
-  );
-};
-
-/** 检查同一 placement 是否被互相冲突的裁定重复占用 */
-const assertNoConflictingPlacements = (decisions, report) => {
-  const section = "connection_decisions";
-  const owners = new Map();
-  decisions.forEach((decision) => {
-    decision.placements.forEach((placement) => {
-      const key = placementKey(placement);
-      const previous = owners.get(key);
-      if (!previous) {
-        owners.set(key, decision);
-        return;
-      }
-      report.error(
-        section,
-        `placement ${key} 同时出现在 ${previous.decisionId} 与 ${decision.decisionId}`,
-      );
-    });
-  });
 };
 
 /** 构造节点候选（不含 ID） */
@@ -388,8 +229,12 @@ export const buildNetwork = (input) => {
   }
 
   const featureIndex = indexFeatures(features, report);
-  const normalizedDecisions = normalizeDecisions(decisions, featureIndex, report);
-  assertNoConflictingPlacements(normalizedDecisions, report);
+  const normalizedDecisions = validateConnectionDecisions({
+    decisionsFile: decisions,
+    featureIndex,
+    registry,
+    report,
+  });
 
   const candidates = buildNodeCandidates(featureIndex, normalizedDecisions, report);
   const previousNodeList = previousNodes?.nodes ?? [];

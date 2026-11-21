@@ -5,14 +5,16 @@
  * 契约：docs/planning/统一边界网络数据契约与ID规则.md（第十一章）
  *
  * 当前阶段只校验已存在的文件：
- *   - data/boundary_features.geojson（必需）
+ *   - data/boundary_features.v2.geojson（必需）
  *   - data/id_registry.json（必需）
  *   - data/zone_specs.v2.json（存在则校验）
+ *   - data/network_connection_decisions.json（存在则校验）
  *   - data/network_nodes.json / network_edges.json（存在则校验引用）
  *
  * 用法：
  *   node scripts/validate-network.mjs
  *   node scripts/validate-network.mjs --strict    # 坐标精度等警告升级为错误
+ *   node scripts/validate-network.mjs --decisions reports/network/decisions.candidate.json
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -29,16 +31,69 @@ import {
   validateBoundaryFeatures,
   validateIdRegistry,
 } from "./lib/network-schema.mjs";
+import { indexFeatures } from "./lib/network-generator-core.mjs";
+import { validateConnectionDecisions } from "./lib/connection-decisions.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const STRICT = process.argv.includes("--strict");
 
 const FILES = {
   features: "data/boundary_features.v2.geojson",
   registry: "data/id_registry.json",
   zoneSpecs: "data/zone_specs.v2.json",
+  decisions: "data/network_connection_decisions.json",
   nodes: "data/network_nodes.json",
   edges: "data/network_edges.json",
+};
+
+const USAGE = `统一边界网络校验
+
+用法：
+  node scripts/validate-network.mjs [--strict] [--decisions <path>] [--report <path>]
+
+参数：
+  --strict             把坐标精度等警告升级为错误
+  --decisions <path>   显式校验指定裁定文件；缺省时校验 ${FILES.decisions}（存在才校验）
+  --report <path>      输出 JSON 报告
+  --help               打印本说明
+
+退出码：0 通过；1 存在数据错误；2 参数或读取失败。`;
+
+class CliError extends Error {}
+
+const VALUE_FLAGS = new Map([
+  ["--decisions", "decisions"],
+  ["--report", "report"],
+]);
+
+const parseArgs = (argv) => {
+  const options = {
+    strict: false,
+    help: false,
+    decisions: null,
+    decisionsExplicit: false,
+    report: null,
+  };
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (arg === "--strict") {
+      options.strict = true;
+      continue;
+    }
+    if (arg === "--help" || arg === "-h") {
+      options.help = true;
+      continue;
+    }
+    const key = VALUE_FLAGS.get(arg);
+    if (!key) throw new CliError(`未知参数: ${arg}`);
+    const value = argv[index + 1];
+    if (value === undefined || value.startsWith("--")) {
+      throw new CliError(`参数 ${arg} 缺少值`);
+    }
+    options[key] = value;
+    if (key === "decisions") options.decisionsExplicit = true;
+    index += 1;
+  }
+  return options;
 };
 
 const readJson = (relative) => {
@@ -265,6 +320,20 @@ const validateTopology = (nodes, edges, features, report) => {
 };
 
 const main = () => {
+  let options;
+  try {
+    options = parseArgs(process.argv.slice(2));
+  } catch (error) {
+    console.error(error.message);
+    console.error(USAGE);
+    process.exit(2);
+  }
+
+  if (options.help) {
+    console.log(USAGE);
+    process.exit(0);
+  }
+
   const report = createReport();
   const features = readJson(FILES.features);
   const registry = readJson(FILES.registry);
@@ -278,12 +347,23 @@ const main = () => {
     process.exit(1);
   }
 
-  merge(report, validateBoundaryFeatures(features, { strict: STRICT }));
+  merge(report, validateBoundaryFeatures(features, { strict: options.strict }));
   merge(report, validateIdRegistry(registry));
   crossCheckFeatures(features, registry, report);
 
   const zoneSpecs = readJson(FILES.zoneSpecs);
-  if (zoneSpecs) validateZoneSpecs(zoneSpecs, features, registry, report, { strict: STRICT });
+  if (zoneSpecs) validateZoneSpecs(zoneSpecs, features, registry, report, { strict: options.strict });
+
+  const decisionsPath = options.decisions ?? FILES.decisions;
+  const decisionsFile = readJson(decisionsPath);
+  if (options.decisionsExplicit && !decisionsFile) {
+    console.error(`缺少显式指定的裁定文件: ${decisionsPath}`);
+    process.exit(2);
+  }
+  if (decisionsFile) {
+    const featureIndex = indexFeatures(features, createReport());
+    validateConnectionDecisions({ decisionsFile, featureIndex, registry, report });
+  }
 
   const nodes = readJson(FILES.nodes);
   const edges = readJson(FILES.edges);
@@ -304,20 +384,23 @@ const main = () => {
   });
 
   console.log(
-    `校验完成：${features.features.length} 个要素，${report.errors.length} 个错误，${report.warnings.length} 个警告`,
+    `校验完成：${features.features.length} 个要素，` +
+      `${decisionsFile?.decisions?.length ?? 0} 条裁定，` +
+      `${report.errors.length} 个错误，${report.warnings.length} 个警告`,
   );
 
-  const reportIndex = process.argv.indexOf("--report");
-  if (reportIndex >= 0 && process.argv[reportIndex + 1]) {
-    const target = path.resolve(ROOT, process.argv[reportIndex + 1]);
+  if (options.report) {
+    const target = path.resolve(ROOT, options.report);
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.writeFileSync(
       target,
       `${JSON.stringify(
         {
           generatedAt: new Date().toISOString(),
-          strict: STRICT,
+          strict: options.strict,
           featureCount: features.features.length,
+          decisionCount: decisionsFile?.decisions?.length ?? 0,
+          decisionsPath,
           errors: report.errors,
           warnings: report.warnings,
         },
