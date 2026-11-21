@@ -391,6 +391,17 @@ const freeSchoolStages = (school) =>
 const autoZoneName = (school, stage) =>
   schoolStages(school).length > 1 ? `${school.name}学区（${stage}部）` : `${school.name}学区`;
 
+const createStageOptions = () => {
+  const school = ui.schools.find((item) => item.schoolId === $("create-school").value);
+  return school ? freeSchoolStages(school) : [];
+};
+
+/** 学校记录通常只含一个学段，直接采用；九年一贯制记录才需要显式选择 */
+const selectedCreateStage = () => {
+  const stages = createStageOptions();
+  return stages.length === 1 ? stages[0] : $("create-stage").value;
+};
+
 const syncCreateStages = () => {
   const school = ui.schools.find((item) => item.schoolId === $("create-school").value);
   const stages = school ? freeSchoolStages(school) : [];
@@ -398,6 +409,7 @@ const syncCreateStages = () => {
   stageSelect.innerHTML = "";
   stages.forEach((stage) => stageSelect.append(new Option(stage, stage)));
   stageSelect.disabled = stages.length === 0;
+  $("create-stage-field").classList.toggle("hidden", stages.length <= 1);
 
   const nameInput = $("create-zone-name");
   const suggested = school && stages.length > 0 ? autoZoneName(school, stages[0]) : "";
@@ -427,8 +439,7 @@ const renderCreatePreview = () => {
     more.textContent = `…还有 ${steps.length - 30} 步`;
     list.append(more);
   }
-  $("zone-create-submit").disabled =
-    steps.length < 3 || $("create-school").options.length === 0;
+  $("zone-create-submit").disabled = steps.length < 3 || !selectedCreateStage();
 };
 
 const openZoneCreateDialog = () => {
@@ -466,7 +477,7 @@ const submitZoneCreation = async () => {
   const school = ui.schools.find((item) => item.schoolId === $("create-school").value);
   const payload = {
     schoolId: $("create-school").value,
-    stage: $("create-stage").value,
+    stage: selectedCreateStage(),
     zoneName: $("create-zone-name").value.trim(),
     boundaryText: $("create-boundary-text").value.trim(),
   };
