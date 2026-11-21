@@ -47,7 +47,49 @@ npm run import:draft -- <draft.json> --write --confirm <draftId>
 npm run test:zones
 ```
 
-编辑器：`npm run dev` 后打开 `/tools/boundary-editor/index.html`。顶栏可切换 `mock` 与 `真实 data/`。
+编辑器：`npm run editor` 会启动 Vite 并直接打开 `/tools/boundary-editor/index.html`。顶栏可切换 `mock` 与 `真实 data/`。
+
+底图复用 `js/config.js` 的浏览器端天地图 token（`vec_w` 矢量 + `cva_w` 中文注记），与主站一致，不再使用 OSM；中心点与缩放也取自 `AppConfig.mapCenter`。该 token 属浏览器端 Key，curl 等非浏览器请求会被天地图以 `301012 权限类型错误` 拒绝，属正常现象。
+
+### 3.1 统一入口
+
+`scripts/main.mjs` 把正式流水线与旧道路脚本收在同一个入口下，只做路由和参数转发，不改写参数、不吞退出码：
+
+```powershell
+node scripts/main.mjs --list                 # 列出全部子命令
+npm run cli -- network:generate --help       # 子命令参数由被调用脚本决定
+
+npm run cli -- network:generate --effective-date 2026-11-21           # 默认 dry-run
+npm run cli -- network:generate --effective-date 2026-11-21 --write
+npm run cli -- network:validate --strict
+npm run cli -- draft:validate <draft.json> --json
+npm run cli -- draft:import <draft.json> --write --confirm <draftId>
+
+npm run cli -- ui                            # 数据工具台（编辑器 + 路网/边界可视化）
+npm run cli -- ui:editor                     # 直接打开点选编辑器
+npm run cli -- legacy:roads:audit            # 旧脚本，B14 前逐步退役
+```
+
+工具台页面 `tools/index.html` 同时收录 [boundary-editor](boundary-editor)、`reports/junction-cases.html`（路口诊断）、`reports/roads-compare.html`、`reports/boundary-compare.html`、`reports/boundary-probe.html`。`reports/` 下的页面由脚本生成，不是源码，未生成时打开会 404。
+
+### 3.2 直接写入正式学区
+
+编辑器顶栏「写入项目」不再要求手工下载 JSON：浏览器把草稿 POST 给开发服务器的 `/__tools/import-draft`，由 `vite.config.js` 的 `zone-draft-import` 插件转交 `scripts/import-zone-draft.mjs`，保持「导入 CLI 是唯一回写路径」的契约。
+
+写入条件（缺一不可）：
+
+- 数据源为「真实 data/」，mock 模式拒绝写入；
+- 草稿状态为 `readyForReview`，且 D01–D17 零错误；
+- 浏览器确认弹窗中确认 `draftId`；
+- 主入口 `confirm` 与 `draftId` 完全一致，只允许 `POST`，请求体上限 8 MB。
+
+插件只在 `vite` 开发服务器生效（`apply: "serve"`），`vite build` 产物与 `vite preview` 不含该接口。成功后修改 `data/zone_specs.v2.json`，页面需刷新才能看到最新绑定；`下载 JSON`、`复制 JSON` 仍保留作为备份手段。
+
+IDE 一键入口：`.vscode/tasks.json` 里的「打开学区边界编辑器」已设为默认生成任务，`Ctrl+Shift+B` 直接启动；也可以在命令面板执行 `Tasks: Run Task` 选择。换端口时用 `npm run cli -- ui:editor --port 5180`。
+
+只用**一个** `--`：npm 只吞掉第一个，再写一个会原样转发给子脚本并被判为未知参数。
+
+正式流水线的子命令是 `network:generate`、`network:validate`、`network:export-refs`、`draft:validate`、`draft:import`；旧脚本一律带 `legacy:` 前缀，运行时会向 stderr 打印退役提示，产物不作为正式数据。
 
 ## 4. 真实数据生成结果（2026-11-21）
 
