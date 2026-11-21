@@ -324,9 +324,13 @@ export const buildNetwork = (input) => {
   });
 
   const retiredNodes = [];
+  const retiredNodeIds = [];
   previousNodeList.forEach((previous) => {
     if (reusedNodeIds.has(previous.nodeId)) return;
-    if ((previous.lifecycle ?? "active") !== "active") return;
+    if ((previous.lifecycle ?? "active") !== "active") {
+      retiredNodes.push(previous);
+      return;
+    }
     const supersededBy = [
       ...new Set(
         (previous.placements ?? []).flatMap((placement) => [
@@ -341,6 +345,7 @@ export const buildNetwork = (input) => {
       retiredAt: effectiveDate,
     };
     retiredNodes.push(retired);
+    retiredNodeIds.push(previous.nodeId);
     retireEntry(workingRegistry, previous.nodeId, {
       retiredAt: effectiveDate,
       supersededBy,
@@ -519,10 +524,14 @@ export const buildNetwork = (input) => {
 
   // 退役上一版中不再匹配的边；按“旧跨度包含新边跨度”记录替代
   const retiredEdges = [];
+  const retiredEdgeIds = [];
   const newSupersedes = new Map();
   previousEdgeList.forEach((previous) => {
     if (reusedEdgeIds.has(previous.edgeId)) return;
-    if ((previous.lifecycle ?? "active") !== "active") return;
+    if ((previous.lifecycle ?? "active") !== "active") {
+      retiredEdges.push(previous);
+      return;
+    }
     const replacements = activeEdges
       .filter((edge) => {
         if (edge.featureId !== previous.featureId) return false;
@@ -552,6 +561,7 @@ export const buildNetwork = (input) => {
       supersededBy: replacements,
       retiredAt: effectiveDate,
     });
+    retiredEdgeIds.push(previous.edgeId);
     retireEntry(workingRegistry, previous.edgeId, {
       retiredAt: effectiveDate,
       supersededBy: replacements,
@@ -584,8 +594,8 @@ export const buildNetwork = (input) => {
       edges: newEdgeIds,
       reusedNodes: [...reusedNodeIds].sort(),
       reusedEdges: [...reusedEdgeIds].sort(),
-      retiredNodes: retiredNodes.map((node) => node.nodeId).sort(),
-      retiredEdges: retiredEdges.map((edge) => edge.edgeId).sort(),
+      retiredNodes: [...retiredNodeIds].sort(),
+      retiredEdges: [...retiredEdgeIds].sort(),
     },
   };
 };
@@ -715,6 +725,7 @@ export const validateGeneratedNetwork = ({ nodes, edges, registry, featureIndex 
       report.error(section, `${edge.edgeId} lengthM 与坐标重算不一致`);
     }
 
+    if (edge.lifecycle !== "active") return;
     nodeList.forEach((node) => {
       if (node.lifecycle !== "active" || node.connectionType !== "connected") return;
       node.placements.forEach((placement) => {
