@@ -12,6 +12,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -43,36 +44,67 @@ def _assert_api(client: TestClient) -> None:
     _check("GET /api/version -> 200", r.status_code == 200, f"status={r.status_code}")
     body = r.json()
     _check("  body.ok=true", body.get("ok") is True)
-    _check("  body.dataVersion 非空", bool(body.get("dataVersion")), str(body.get("dataVersion")))
+    _check(
+        "  body.dataVersion 非空",
+        bool(body.get("dataVersion")),
+        str(body.get("dataVersion")),
+    )
 
     r = client.get("/api/search")  # 缺 q -> 应被 API 路由先匹配并收敛为 400
-    _check("GET /api/search(缺参) -> 400", r.status_code == 400, f"status={r.status_code}")
-    _check("  body.error.code=BAD_REQUEST", r.json().get("error", {}).get("code") == "BAD_REQUEST")
+    _check(
+        "GET /api/search(缺参) -> 400",
+        r.status_code == 400,
+        f"status={r.status_code}",
+    )
+    _check(
+        "  body.error.code=BAD_REQUEST",
+        r.json().get("error", {}).get("code") == "BAD_REQUEST",
+    )
 
 
 def _assert_static(client: TestClient) -> None:
     r = client.get("/")
     _check("GET / -> 200 HTML", r.status_code == 200, f"status={r.status_code}")
-    _check("  content-type=text/html", r.headers.get("content-type", "").startswith("text/html"),
-           r.headers.get("content-type", ""))
-    _check("  body 含 <!doctype", r.text.lstrip().lower().startswith("<!doctype"),
-           r.text[:30].replace("\n", " "))
+    _check(
+        "  content-type=text/html",
+        r.headers.get("content-type", "").startswith("text/html"),
+        r.headers.get("content-type", ""),
+    )
+    _check(
+        "  body 含 <!doctype",
+        r.text.lstrip().lower().startswith("<!doctype"),
+        r.text[:30].replace("\n", " "),
+    )
 
     r = client.get("/data/current.json")
-    _check("GET /data/current.json -> 200", r.status_code == 200, f"status={r.status_code}")
+    _check(
+        "GET /data/current.json -> 200",
+        r.status_code == 200,
+        f"status={r.status_code}",
+    )
     pointer_file = ROOT_DIR / "data" / "current.json"
     if pointer_file.is_file():
-        expected = __import__("json").loads(pointer_file.read_text(encoding="utf-8")).get("version")
-        _check("  version 与 data/current.json 一致", r.json().get("version") == expected,
-               f"got={r.json().get('version')} want={expected}")
+        pointer = json.loads(pointer_file.read_text(encoding="utf-8"))
+        expected = pointer.get("version")
+        _check(
+            "  version 与 data/current.json 一致",
+            r.json().get("version") == expected,
+            f"got={r.json().get('version')} want={expected}",
+        )
 
     r = client.get("/docs")
-    _check("GET /docs -> 200（默认路由未被静态挂载吞掉）", r.status_code == 200,
-           f"status={r.status_code}")
+    _check(
+        "GET /docs -> 200（默认路由未被静态挂载吞掉）",
+        r.status_code == 200,
+        f"status={r.status_code}",
+    )
 
     r = client.get("/no-such-static-file-xyz")
-    _check("GET 不存在的静态文件 -> 404（统一错误结构）", r.status_code == 404,
-           f"status={r.status_code}")
+    _check(
+        "GET 不存在的静态文件 -> 404（统一错误结构）",
+        r.status_code == 404,
+        f"status={r.status_code}",
+    )
     _check("  body.error.code=NOT_FOUND",
            r.json().get("error", {}).get("code") == "NOT_FOUND")
 

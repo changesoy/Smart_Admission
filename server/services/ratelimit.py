@@ -17,7 +17,9 @@ COMPACT_THRESHOLD = 1024
 class RateLimiter:
     """固定窗口长度的滑动计数限流器。"""
 
-    def __init__(self, limit: int, window_seconds: float = DEFAULT_WINDOW_SECONDS) -> None:
+    def __init__(
+        self, limit: int, window_seconds: float = DEFAULT_WINDOW_SECONDS
+    ) -> None:
         self._limit = limit
         self._window = window_seconds
         self._hits: dict[str, deque[float]] = {}

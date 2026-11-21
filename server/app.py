@@ -69,7 +69,9 @@ async def handle_api_error(_: Request, exc: ApiError) -> JSONResponse:
 
 
 @app.exception_handler(StarletteHTTPException)
-async def handle_http_exception(_: Request, exc: StarletteHTTPException) -> JSONResponse:
+async def handle_http_exception(
+    _: Request, exc: StarletteHTTPException
+) -> JSONResponse:
     code, message = _HTTP_ERRORS.get(
         exc.status_code,
         ("HTTP_ERROR", str(exc.detail) if exc.detail else "请求失败"),
@@ -83,14 +85,19 @@ async def handle_request_validation_error(
 ) -> JSONResponse:
     """FastAPI 默认的 422 结构与本服务不统一，这里收敛为 BAD_REQUEST。"""
     errors = exc.errors()
-    location = ".".join(str(part) for part in errors[0].get("loc", [])) if errors else ""
+    location = (
+        ".".join(str(part) for part in errors[0].get("loc", [])) if errors else ""
+    )
     field = location or "请求参数"
     return _error_response(400, "BAD_REQUEST", f"请求参数不合法: {field}")
 
 
 @app.exception_handler(Exception)
-async def handle_unexpected_error(_: Request, exc: Exception) -> JSONResponse:
+async def handle_unexpected_error(request: Request, exc: Exception) -> JSONResponse:
     """兜底，保证任何未预期异常也返回统一结构而不是默认 HTML/纯文本。"""
+    logger.error(
+        "未处理的异常: %s %s", request.method, request.url.path, exc_info=exc
+    )
     return _error_response(500, "INTERNAL_ERROR", "服务端内部错误")
 
 

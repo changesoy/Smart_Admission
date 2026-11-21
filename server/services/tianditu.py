@@ -70,7 +70,12 @@ class _TtlCache:
 
     def _evict_expired(self) -> None:
         now = time.monotonic()
-        for key in [k for k, (expires_at, _) in self._items.items() if now >= expires_at]:
+        expired = [
+            key
+            for key, (expires_at, _) in self._items.items()
+            if now >= expires_at
+        ]
+        for key in expired:
             del self._items[key]
 
 

@@ -10,11 +10,14 @@
 from __future__ import annotations
 
 import json
+import logging
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 from .config import DATA_DIR
+
+logger = logging.getLogger("server.data_release")
 
 CURRENT_POINTER_NAME = "current.json"
 RELEASES_DIR_NAME = "releases"
@@ -31,10 +34,17 @@ class DataRelease:
 
 
 def _read_json(path: Path) -> dict[str, Any] | None:
+    """读取 JSON 对象；文件缺失视为未发布，其余读取/解析失败记警告后返回 None。"""
     try:
         with path.open(encoding="utf-8") as handle:
             payload = json.load(handle)
-    except (OSError, ValueError):
+    except FileNotFoundError:
+        return None
+    except OSError as exc:
+        logger.warning("读取 %s 失败: %s", path, exc)
+        return None
+    except ValueError as exc:
+        logger.warning("解析 %s 失败: %s", path, exc)
         return None
     return payload if isinstance(payload, dict) else None
 

@@ -163,6 +163,14 @@ export default XxxService;
 | 数据文件                | 加载模块           | 格式                      |
 | ----------------------- | ------------------ | ------------------------- |
 | `zones.geojson`         | MapService         | GeoJSON FeatureCollection |
+| `boundary_features.v2.geojson` | 网络生成 / 边界编辑器 | GeoJSON FeatureCollection |
+| `network_nodes.json`    | 网络生成 / 边界编辑器 | JSON Object               |
+| `network_edges.json`    | 网络生成 / 边界编辑器 | JSON Object               |
+| `network_connection_decisions.json` | 网络生成  | JSON Object               |
+| `zone_specs.v2.json`    | 网络生成 / 边界编辑器 | JSON Object               |
+| `id_registry.json`      | 各生成脚本         | JSON Object               |
+| `current.json`          | 数据发布           | JSON Object               |
+| `releases/`             | 数据发布           | 不可变发布快照目录        |
 | `district.geojson`      | MapService         | GeoJSON FeatureCollection |
 | `roads.geojson`         | MapService         | GeoJSON FeatureCollection |
 | `intersections.geojson` | MapService         | GeoJSON FeatureCollection |
@@ -183,17 +191,19 @@ export default XxxService;
 
 ```json
 {
-  "zoneId": "m1",
-  "zoneName": "泰安六中学区",
+  "zoneId": "zone_002",
+  "zoneName": "泰安望岳中学学区",
   "stage": "初中",
-  "schoolId": "s01",
+  "schoolId": "school_m_002",
   "description": "招生范围说明",
   "year": 2025,
-  "policyIds": ["p1", "p2"],
+  "policyIds": ["policy_2025_001"],
   "boundaryText": "...",
   "sourceName": "...",
   "sourceUrl": "...",
-  "verifiedDate": "..."
+  "sourceType": "manual",
+  "verifiedDate": "...",
+  "dataStatus": "estimated"
 }
 ```
 
@@ -201,18 +211,28 @@ export default XxxService;
 
 ```json
 {
-  "schoolId": "s01",
-  "name": "泰安市第六中学",
-  "shortName": "泰安六中",
-  "type": "公办",
-  "schoolStage": "初中",
+  "schoolId": "school_m_001",
+  "name": "泰山学院附属中学",
+  "shortName": "学院附中",
+  "type": "初中",
+  "schoolStage": ["初中"],
   "district": "泰山区",
   "address": "...",
   "phone": "...",
   "website": "...",
-  "description": "..."
+  "tags": ["公办", "初中"],
+  "description": "...",
+  "sourceName": "...",
+  "sourceUrl": "...",
+  "verifiedDate": "...",
+  "dataStatus": "estimated"
 }
 ```
+
+**学校编号规则：** 学段内顺序号，`school_m_NNN`（初中）/ `school_p_NNN`（小学）。
+`schools.json` 数组按《泰山区2025四至_原文全文》表格行序排列；原文同一行含
+`初中部` / `小学部` / `中学部` 的学校拆成多条记录并相邻摆放，各学段独立连续编号。
+九年一贯制的单条记录保留 `school_p_` 前缀。
 
 **policies.json 条目：**
 
@@ -619,11 +639,15 @@ copy .env.example .env      # 填入服务端 Key
 
 ```bash
 npm run dev         # 启动 Vite 开发服务器（热更新）
+npm run editor      # 打开学区边界点选编辑器（tools/boundary-editor）
 npm run build       # 产物构建到 dist/（含 data/ 复制），dist/ 不提交
 npm run preview     # 本地预览 dist/ 构建产物
 npm run lint        # ESLint 检查（含 js/、scripts/ 与构建配置）
 npm run lint:fix    # 自动修复可修复的问题
 npm run check       # lint + 数据文件完整性校验（引用一致性等）
+npm run test:zones                           # 学区拆分/新建/草稿等 Node 测试
+npm run validate:network                     # 校验网络节点、边与 zone 绑定
+npm run create:zone -- <payload.json>        # 新建学区骨架，默认 dry-run；加 --write 写盘
 npm run check:release                        # 发布门禁（当前通过，见 4.6）
 node scripts/new-data-release.mjs <版本号>   # 生成不可变数据发布包，见 4.5
 node scripts/extract-zone-specs.mjs          # 逐边来源表 dry-run（默认 4 所试点）；加 --write 写 data/zone_specs.json

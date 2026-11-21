@@ -197,6 +197,7 @@ zones.geojson
 | 学区 | `zoneId` | 保留现有 `zone_NNN` | `zone_006` |
 | 学区环 | `ringId` | `zr_` + 6 位十进制序号 | `zr_000021` |
 | 学区步骤 | `stepId` | `zs_` + 7 位十进制序号 | `zs_0000138` |
+| 学校 | `schoolId` | `school_m_` / `school_p_` + 3 位十进制序号 | `school_m_002` |
 | 人工裁定 | `rulingId` | `br_` + 6 位十进制序号 | `br_000014` |
 
 说明：
@@ -206,11 +207,15 @@ zones.geojson
 - `nodeId` 不编码参与要素或坐标，避免要素增减或微调造成 ID 变化；
 - `edgeId` 不编码顶点下标，避免插点导致所有后续边改名；
 - `zoneId` 已是稳定业务 ID，继续保留；
-- `ringId` 和 `stepId` 不编码学区或顺序，所属关系和先后顺序只由数据字段与数组位置表达。
+- `ringId` 和 `stepId` 不编码学区或顺序，所属关系和先后顺序只由数据字段与数组位置表达；
+- `schoolId` 的序号表达学校在《泰山区2025四至_原文全文》中的行序：按学段各自连续编号，
+  多学段学校按 `初中部` / `小学部` / `中学部` 拆分后在同一行相邻排列；它不进入 `id_registry.json`，
+  新增、合并或删减学校时整体重排，并同步 `zones.geojson` 与 `zone_specs.v2.json` 中的引用。
 
 ### 5.2 分配机制
 
-所有新 ID 必须由一个专用分配器写入 `data/id_registry.json`，禁止人工猜测“下一个编号”。
+所有新 ID（`schoolId` 除外，其顺序由原文行序决定）必须由一个专用分配器写入
+`data/id_registry.json`，禁止人工猜测“下一个编号”。
 
 注册表示例：
 

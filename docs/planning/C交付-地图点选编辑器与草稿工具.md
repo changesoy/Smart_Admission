@@ -12,12 +12,16 @@
 | `scripts/lib/zone-draft-schema.mjs` | D01–D17 草稿校验（既有，未另抄规则） |
 | `scripts/validate-zone-draft.mjs` | 只读草稿校验 CLI |
 | `scripts/import-zone-draft.mjs` | 草稿导入 CLI：唯一获准回写正式 `zone_specs` 的路径 |
+| `scripts/lib/zone-text.mjs` | 四至原文拆分（浏览器与 Node 共用，括号内不拆、方位继承） |
+| `scripts/lib/zone-creation.mjs` | 新建学区校验、ID 分配与文本追加 |
+| `scripts/create-zone.mjs` | 新建学区 CLI：默认 dry-run，`--write` 双文件事务写入 |
 | `tools/boundary-editor/` | 独立 Leaflet 点选编辑器（`index.html` / `app.js` / `style.css` / `mock/`） |
 | `scripts/tests/network-generator.test.mjs` | 生成器测试（13 项） |
 | `scripts/tests/draft-core.test.mjs` | 草稿核心测试（12 项） |
 | `scripts/tests/zone-draft-cli.test.mjs` | validate / import CLI 测试（4 项） |
+| `scripts/tests/zone-creation.test.mjs` | 四至拆分与新建学区测试（9 项） |
 
-未改动生产首页 `index.html`，未改动 `data/boundary_features.v2.geojson`、`data/zone_specs.v2.json`、`data/zones.geojson`。
+未改动生产首页 `index.html`。C 交付当时未改动 `data/boundary_features.v2.geojson`、`data/zone_specs.v2.json`、`data/zones.geojson`；后续统一拓扑阶段已按需更新这些文件。
 
 ## 2. 五阶段状态
 
@@ -42,6 +46,10 @@ npm run validate:draft -- <draft.json> [--json]
 # 导入草稿（默认 dry-run；--write 必须带 --confirm）
 npm run import:draft -- <draft.json> --report <report.json>
 npm run import:draft -- <draft.json> --write --confirm <draftId>
+
+# 新建学区（默认 dry-run；--write 同时推进 id_registry）
+npm run create:zone -- <payload.json> --report <report.json>
+npm run create:zone -- <payload.json> --write
 
 # 测试
 npm run test:zones
@@ -89,9 +97,25 @@ IDE 一键入口：`.vscode/tasks.json` 里的「打开学区边界编辑器」�
 
 只用**一个** `--`：npm 只吞掉第一个，再写一个会原样转发给子脚本并被判为未知参数。
 
-正式流水线的子命令是 `network:generate`、`network:validate`、`network:export-refs`、`draft:validate`、`draft:import`；旧脚本一律带 `legacy:` 前缀，运行时会向 stderr 打印退役提示，产物不作为正式数据。
+正式流水线的子命令是 `network:generate`、`network:validate`、`network:export-refs`、`draft:validate`、`draft:import`、`zone:create`；旧脚本一律带 `legacy:` 前缀，运行时会向 stderr 打印退役提示，产物不作为正式数据。
+
+### 3.3 学区选择与新建学区
+
+顶栏学区选择器改为可搜索弹层：按学段分组、显示绑定状态徽标（未绑定 / 部分绑定 / 已绑定未闭合 / 已闭环），数据源是 `data/zone_specs.v2.json`，是否有坐标不影响能否选中。
+
+「＋ 新建学区」对话框允许选择尚未建学区的学校，填写学区名称与四至原文，前端调用 `scripts/lib/zone-text.mjs` 实时拆分预览：
+
+- 学校选项自带学段，单学段学校自动采用，不再显示独立的学段选择；仅九年一贯制学校保留学段选择。
+- 拆分不足 3 步、学校/学段已存在学区、学区重名、原文片段不连续时禁止提交。
+- 提交走 `POST /__tools/create-zone`，由 `vite.config.js` 的 `zone-create` 插件转交 `scripts/create-zone.mjs`，并要求确认文本与学区名完全一致；成功后写入 `data/zone_specs.v2.json` 与 `data/id_registry.json`（双文件事务）。
+- CLI 等价入口：`npm run create:zone -- <payload.json>`，默认 dry-run，`--write` 落盘。
+
+已知边界：只接受原文中按方位可拆分的连续片段。纯村居列举（如“邱家店镇刘家庄村、梨园村……”）拆不出闭合路径，会停留在“N 步（至少需要 3 步）”，需要先人工整理四至。
 
 ## 4. 真实数据生成结果（2026-11-21）
+
+> 第 4–6 节保留 C 交付当时的结果。后续统一边界网络连接裁定阶段已补齐 `data/network_connection_decisions.json`，
+> 当前数据为 336 个节点、464 条边；网络与 zone 绑定状态以 `npm run validate:network` 的当前输出为准。
 
 - 输入：61 个要素；`data/network_connection_decisions.json` 不存在。
 - 输出：138 个节点、69 条边，全部 `active`、`connectionType=connected`。
@@ -184,9 +208,9 @@ zone_901 已绑定 `be_0000003` / `be_0000004`，用于演示“已用学区”�
 ```text
 node --test "scripts/tests/*.test.mjs"
 
-tests 80
-pass 80
+tests 128
+pass 128
 fail 0
 ```
 
-覆盖要点：fixture 深相等、canonical 字节、输入顺序扰动、二次写入字节不变、退役双向记录、事务回滚、候选路径 0/1/多解、nonConnecting 不参与、断链/重复/不可用阻断、撤销重做、草稿恢复、自交检测、CLI 的 dry-run/confirm/定点替换/格式保留。
+覆盖要点：fixture 深相等、canonical 字节、输入顺序扰动、二次写入字节不变、退役双向记录、事务回滚、候选路径 0/1/多解、nonConnecting 不参与、断链/重复/不可用阻断、撤销重做、草稿恢复、自交检测、四至拆分、新建学区 ID 分配与事务写入、CLI 的 dry-run/confirm/定点替换/格式保留。

@@ -98,6 +98,7 @@ npm run preview    # 本地预览 dist/ 产物（同样把 /api 代理到 8010�
 | 命令                                                                 | 作用                                                        |
 | -------------------------------------------------------------------- | ----------------------------------------------------------- |
 | `npm run dev`                                                        | 启动 Vite 开发服务器（热更新）                              |
+| `npm run editor`                                                     | 打开学区边界点选编辑器                                      |
 | `npm run dev:all`                                                    | 一键启动后端 + 前端（Windows）                              |
 | `npm run build`                                                      | 构建到 `dist/`（含 `data/` 复制）                           |
 | `npm run preview`                                                    | 本地预览 `dist/` 构建产物                                   |
@@ -108,6 +109,9 @@ npm run preview    # 本地预览 dist/ 产物（同样把 /api 代理到 8010�
 | `npm run audit:roads`                                                | 路网体检报告（断口、双线、示意线、悬空端点）                |
 | `npm run build:intersections`                                        | 重算交点图（默认 dry-run，加 `--write` 才落盘）             |
 | `npm run diagnose:junctions`                                         | 诊断 A 接近交点 / B 欠伸 / C 过冲（`--fix --write` 可修复） |
+| `npm run validate:network`                                           | 校验网络节点、边与 zone 绑定                                |
+| `npm run test:zones`                                                 | 学区拆分、新建、草稿与生成器 Node 测试                      |
+| `npm run create:zone -- <payload.json>`                              | 新建学区骨架（默认 dry-run，`--write` 落盘）                |
 | `npm run test:server`                                                | 运行后端测试                                                |
 | `node scripts/new-data-release.mjs <版本号> [--effective-year <年>]` | 生成不可变数据发布包（不自动改指针）                        |
 

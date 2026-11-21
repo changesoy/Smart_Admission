@@ -10,11 +10,14 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 from dataclasses import dataclass
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
+
+logger = logging.getLogger("server.config")
 
 
 def _load_dotenv() -> None:
@@ -41,6 +44,7 @@ def _env_int(name: str, default: int) -> int:
     try:
         return int(raw)
     except ValueError:
+        logger.warning("环境变量 %s=%r 不是整数，回退默认值 %s", name, raw, default)
         return default
 
 
@@ -51,6 +55,7 @@ def _env_float(name: str, default: float) -> float:
     try:
         return float(raw)
     except ValueError:
+        logger.warning("环境变量 %s=%r 不是浮点数，回退默认值 %s", name, raw, default)
         return default
 
 
@@ -80,7 +85,10 @@ class SearchBounds:
     max_lat: float
 
     def contains(self, lng: float, lat: float) -> bool:
-        return self.min_lng <= lng <= self.max_lng and self.min_lat <= lat <= self.max_lat
+        return (
+            self.min_lng <= lng <= self.max_lng
+            and self.min_lat <= lat <= self.max_lat
+        )
 
     def as_map_bound(self) -> str:
         """天地图 mapBound 参数格式: minLng,minLat,maxLng,maxLat"""
@@ -94,7 +102,9 @@ SEARCH_KEYWORD_PREFIX = "泰安市"
 SEARCH_MAX_QUERY_LENGTH = 50
 SEARCH_DEFAULT_COUNT = 10
 SEARCH_MAX_COUNT = 20
-SEARCH_BOUNDS = SearchBounds(min_lng=116.85, max_lng=117.30, min_lat=35.85, max_lat=36.35)
+SEARCH_BOUNDS = SearchBounds(
+    min_lng=116.85, max_lng=117.30, min_lat=35.85, max_lat=36.35
+)
 
 # --- 流量与缓存控制 ---
 SEARCH_TIMEOUT_SECONDS = _env_float("SEARCH_TIMEOUT_SECONDS", 5.0)
