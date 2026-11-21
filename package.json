@@ -6,7 +6,10 @@
   "description": "智慧入学信息公示平台",
   "scripts": {
     "dev": "vite",
+    "ui": "vite --open /tools/index.html",
+    "editor": "vite --open /tools/boundary-editor/index.html",
     "dev:all": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/dev.ps1",
+    "cli": "node scripts/main.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
