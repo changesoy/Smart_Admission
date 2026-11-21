@@ -30,10 +30,12 @@ import {
   unselectEdge,
 } from "../../scripts/lib/draft-core.mjs";
 import { validateZoneDraft } from "../../scripts/lib/zone-draft-schema.mjs";
+import { splitBoundaryText } from "../../scripts/lib/zone-text.mjs";
 
 const ui = {
   mode: "mock",
   zoneSpecs: null,
+  schools: [],
   zonesGeo: null,
   features: null,
   nodes: [],
@@ -182,6 +184,7 @@ const loadDataSource = async (mode) => {
     nodes = await loadJson(mockUrl("network_nodes.json"));
     edges = await loadJson(mockUrl("network_edges.json"));
     features = await loadJson(mockUrl("boundary_features.geojson"));
+    ui.schools = [];
   } else {
     try {
       nodes = await loadJson("/data/network_nodes.json");
@@ -194,6 +197,7 @@ const loadDataSource = async (mode) => {
     zoneSpecs = await loadJson("/data/zone_specs.v2.json");
     features = await loadJson("/data/boundary_features.v2.geojson");
     zonesGeo = await loadJson("/data/zones.geojson", { optional: true });
+    ui.schools = (await loadJson("/data/schools.json", { optional: true })) ?? [];
   }
 
   if (!Array.isArray(zoneSpecs?.zones) || zoneSpecs.zones.length === 0) {
@@ -322,6 +326,7 @@ const renderZoneList = (keyword = "") => {
 const openZonePicker = () => {
   $("zone-picker-popup").hidden = false;
   $("zone-picker-button").setAttribute("aria-expanded", "true");
+  $("zone-create-button").hidden = ui.mode !== "real";
   $("zone-search").value = "";
   renderZoneList("");
   $("zone-search").focus();
@@ -364,6 +369,146 @@ const populateZoneSelect = (preferredZoneId = null) => {
   const selected = zones.some((zone) => zone.zoneId === candidate) ? candidate : zones[0].zoneId;
   setZoneValue(selected);
   renderZoneList("");
+};
+
+/* --------------------------- 新建学区对话框 --------------------------- */
+
+const schoolStages = (school) => {
+  if (Array.isArray(school?.schoolStage) && school.schoolStage.length > 0) {
+    return school.schoolStage.filter((stage) => stage === "小学" || stage === "初中");
+  }
+  return school?.type === "小学" || school?.type === "初中" ? [school.type] : [];
+};
+
+const freeSchoolStages = (school) =>
+  schoolStages(school).filter(
+    (stage) =>
+      !ui.zoneSpecs.zones.some(
+        (zone) => zone.schoolId === school.schoolId && zone.stage === stage,
+      ),
+  );
+
+const autoZoneName = (school, stage) =>
+  schoolStages(school).length > 1 ? `${school.name}学区（${stage}部）` : `${school.name}学区`;
+
+const syncCreateStages = () => {
+  const school = ui.schools.find((item) => item.schoolId === $("create-school").value);
+  const stages = school ? freeSchoolStages(school) : [];
+  const stageSelect = $("create-stage");
+  stageSelect.innerHTML = "";
+  stages.forEach((stage) => stageSelect.append(new Option(stage, stage)));
+  stageSelect.disabled = stages.length === 0;
+
+  const nameInput = $("create-zone-name");
+  const suggested = school && stages.length > 0 ? autoZoneName(school, stages[0]) : "";
+  if (!nameInput.value || nameInput.value === ui.createAutoName) {
+    nameInput.value = suggested;
+  }
+  ui.createAutoName = suggested;
+
+  const textarea = $("create-boundary-text");
+  if (school?.description) textarea.value = school.description;
+  renderCreatePreview();
+};
+
+const renderCreatePreview = () => {
+  const steps = splitBoundaryText($("create-boundary-text").value);
+  $("create-step-count").textContent =
+    steps.length < 3 ? `${steps.length} 步（至少需要 3 步）` : `${steps.length} 步`;
+  const list = $("create-step-preview");
+  list.innerHTML = "";
+  steps.slice(0, 30).forEach((step) => {
+    const item = document.createElement("li");
+    item.innerHTML = `<span class="side">${escapeHtml(step.side)}</span>${escapeHtml(step.text)}`;
+    list.append(item);
+  });
+  if (steps.length > 30) {
+    const more = document.createElement("li");
+    more.textContent = `…还有 ${steps.length - 30} 步`;
+    list.append(more);
+  }
+  $("zone-create-submit").disabled =
+    steps.length < 3 || $("create-school").options.length === 0;
+};
+
+const openZoneCreateDialog = () => {
+  if (ui.mode !== "real") {
+    showBanner("新建学区只在真实数据模式可用", "warn");
+    return;
+  }
+  closeZonePicker();
+  $("create-error").classList.add("hidden");
+  $("create-zone-name").value = "";
+  $("create-boundary-text").value = "";
+  ui.createAutoName = "";
+
+  const select = $("create-school");
+  select.innerHTML = "";
+  ui.schools
+    .filter((school) => freeSchoolStages(school).length > 0)
+    .sort((left, right) => zoneCollator.compare(left.name ?? "", right.name ?? ""))
+    .forEach((school) => {
+      select.append(new Option(`${school.name}（${freeSchoolStages(school).join("/")}）`, school.schoolId));
+    });
+  $("zone-create-submit").disabled = select.options.length === 0;
+
+  if (select.options.length > 0) syncCreateStages();
+  renderCreatePreview();
+  $("zone-create-dialog").showModal();
+  select.focus();
+};
+
+const submitZoneCreation = async () => {
+  const errorBox = $("create-error");
+  const button = $("zone-create-submit");
+  errorBox.classList.add("hidden");
+
+  const school = ui.schools.find((item) => item.schoolId === $("create-school").value);
+  const payload = {
+    schoolId: $("create-school").value,
+    stage: $("create-stage").value,
+    zoneName: $("create-zone-name").value.trim(),
+    boundaryText: $("create-boundary-text").value.trim(),
+  };
+  if (school?.verifiedDate) payload.year = Number(school.verifiedDate.slice(0, 4));
+
+  button.disabled = true;
+  button.textContent = "创建中…";
+  try {
+    const response = await fetch("/__tools/create-zone", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ payload, confirm: payload.zoneName }),
+    });
+    const result = await response.json();
+    if (!result.ok) {
+      let message = result.error ?? result.stderr ?? "创建失败";
+      try {
+        message = JSON.parse(result.report)?.errors?.[0]?.message ?? message;
+      } catch {
+        /* 保留原始错误 */
+      }
+      throw new Error(message);
+    }
+
+    const report = JSON.parse(result.report);
+    $("zone-create-dialog").close();
+    await loadDataSource(ui.mode);
+    populateZoneSelect(report.zoneId);
+    drawMap();
+    initEditorForZone(report.zoneId);
+    rememberZoneId(report.zoneId);
+    showBanner(
+      `已创建 ${report.zoneId} · ${report.zoneName}，共 ${report.stepCount} 步，可开始绑定边。`,
+      "success",
+    );
+  } catch (error) {
+    errorBox.textContent = error.message;
+    errorBox.classList.remove("hidden");
+  } finally {
+    button.textContent = "创建学区";
+    renderCreatePreview();
+  }
 };
 
 const initEditorForZone = (zoneId) => {
@@ -1228,6 +1373,30 @@ const bindEvents = () => {
   document.addEventListener("click", (event) => {
     if (!$("zone-picker").contains(event.target)) closeZonePicker();
   });
+
+  $("zone-create-button").addEventListener("click", openZoneCreateDialog);
+
+  $("create-school").addEventListener("change", syncCreateStages);
+
+  $("create-stage").addEventListener("change", () => {
+    const school = ui.schools.find((item) => item.schoolId === $("create-school").value);
+    const nameInput = $("create-zone-name");
+    if (school && (!nameInput.value || nameInput.value === ui.createAutoName)) {
+      const suggested = autoZoneName(school, $("create-stage").value);
+      nameInput.value = suggested;
+      ui.createAutoName = suggested;
+    }
+  });
+
+  $("create-zone-name").addEventListener("input", () => {
+    if ($("create-zone-name").value !== ui.createAutoName) ui.createAutoName = null;
+  });
+
+  $("create-boundary-text").addEventListener("input", renderCreatePreview);
+
+  $("zone-create-close").addEventListener("click", () => $("zone-create-dialog").close());
+  $("zone-create-cancel").addEventListener("click", () => $("zone-create-dialog").close());
+  $("zone-create-submit").addEventListener("click", submitZoneCreation);
 
   $("btn-undo").addEventListener("click", () => {
     const result = undo(ui.editor, {

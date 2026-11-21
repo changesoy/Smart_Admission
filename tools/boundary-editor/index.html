@@ -53,6 +53,9 @@
               aria-label="学区列表"
             ></div>
             <div id="zone-picker-empty" class="zone-picker-empty hidden">没有匹配的学区</div>
+            <div class="zone-picker-footer">
+              <button id="zone-create-button" type="button">＋ 新建学区</button>
+            </div>
           </div>
           <input id="zone-select" type="hidden" value="" />
         </div>
@@ -145,6 +148,43 @@
 
       <div id="map" class="map"></div>
     </main>
+
+    <dialog id="zone-create-dialog" class="zone-create-dialog">
+      <div class="dialog-head">
+        <h2>新建学区</h2>
+        <button id="zone-create-close" type="button" class="icon-btn" aria-label="关闭">×</button>
+      </div>
+      <div class="dialog-body">
+        <label class="dialog-field">
+          学校
+          <select id="create-school"></select>
+        </label>
+        <label class="dialog-field">
+          学段
+          <select id="create-stage"></select>
+        </label>
+        <label class="dialog-field">
+          学区名称
+          <input id="create-zone-name" maxlength="40" />
+        </label>
+        <label class="dialog-field">
+          四至原文
+          <textarea id="create-boundary-text" rows="6" placeholder="粘贴官方四至原文"></textarea>
+        </label>
+        <div class="dialog-preview">
+          <div class="kv"><span>自动拆分</span><code id="create-step-count">0 步</code></div>
+          <ol id="create-step-preview" class="create-step-preview"></ol>
+        </div>
+        <p class="hint">
+          创建只追加学区骨架（zoneId、环、步骤），不绑定任何边；提交后即可在地图上点选。
+        </p>
+        <p id="create-error" class="dialog-error hidden"></p>
+      </div>
+      <div class="dialog-foot">
+        <button id="zone-create-cancel" type="button">取消</button>
+        <button id="zone-create-submit" type="button" class="primary">创建学区</button>
+      </div>
+    </dialog>
 
     <script
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"

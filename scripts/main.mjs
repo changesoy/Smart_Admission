@@ -46,6 +46,10 @@ const COMMANDS = {
     script: "scripts/import-zone-draft.mjs",
     desc: "把通过的草稿回写正式 zone_specs",
   },
+  "zone:create": {
+    script: "scripts/create-zone.mjs",
+    desc: "从四至原文创建学区骨架（默认 dry-run）",
+  },
   "ui": {
     script: "node_modules/vite/bin/vite.js",
     args: ["--open", "/tools/index.html"],

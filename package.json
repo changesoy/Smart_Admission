@@ -35,6 +35,7 @@
     "build:zone-032-draft": "node scripts/build-zone-032-draft.mjs",
     "validate:draft": "node scripts/validate-zone-draft.mjs",
     "import:draft": "node scripts/import-zone-draft.mjs",
+    "create:zone": "node scripts/create-zone.mjs",
     "export:network-refs": "node scripts/export-network-refs.mjs",
     "test:server": "python -m server.tests.test_app",
     "check": "npm run lint && npm run validate:data"

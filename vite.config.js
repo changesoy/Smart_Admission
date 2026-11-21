@@ -253,8 +253,88 @@ const candidateReviewSave = () => ({
   },
 });
 
+const zoneCreate = () => ({
+  name: "zone-create",
+  apply: "serve",
+  configureServer(server) {
+    const root = fileURLToPath(new URL("./", import.meta.url));
+
+    server.middlewares.use("/__tools/create-zone", (req, res) => {
+      const reply = (status, payload) => {
+        res.statusCode = status;
+        res.setHeader("Content-Type", "application/json; charset=utf-8");
+        res.end(JSON.stringify(payload));
+      };
+
+      if (req.method !== "POST") {
+        reply(405, { ok: false, error: "只接受 POST" });
+        return;
+      }
+
+      const chunks = [];
+      let size = 0;
+      req.on("data", (chunk) => {
+        size += chunk.length;
+        if (size <= 1024 * 1024) chunks.push(chunk);
+      });
+      req.on("end", () => {
+        if (size > 1024 * 1024) {
+          reply(413, { ok: false, error: "创建请求超过 1 MB，拒绝处理" });
+          return;
+        }
+
+        let payload;
+        try {
+          const text = Buffer.concat(chunks).toString("utf8").replace(/^\uFEFF/, "");
+          payload = JSON.parse(text);
+        } catch {
+          reply(400, { ok: false, error: "请求体不是合法 JSON" });
+          return;
+        }
+
+        const input = payload?.payload;
+        const confirm = payload?.confirm;
+        if (!input?.schoolId || !input?.boundaryText) {
+          reply(400, { ok: false, error: "payload 缺少 schoolId 或 boundaryText" });
+          return;
+        }
+        if (!input.zoneName || input.zoneName !== confirm) {
+          reply(400, { ok: false, error: "confirm 必须等于 zoneName" });
+          return;
+        }
+
+        const tmp = mkdtempSync(join(tmpdir(), "zone-create-"));
+        try {
+          const payloadPath = join(tmp, "payload.json");
+          const reportPath = join(tmp, "report.json");
+          writeFileSync(payloadPath, `${JSON.stringify(input, null, 2)}\n`, "utf8");
+
+          const result = spawnSync(
+            process.execPath,
+            ["scripts/create-zone.mjs", payloadPath, "--write", "--report", reportPath],
+            { cwd: root, encoding: "utf8" },
+          );
+          const report = existsSync(reportPath) ? readFileSync(reportPath, "utf8") : null;
+
+          reply(result.status === 0 ? 200 : 409, {
+            ok: result.status === 0,
+            code: result.status,
+            stdout: result.stdout?.trim() ?? "",
+            stderr: result.stderr?.trim() ?? "",
+            report,
+          });
+        } catch (error) {
+          reply(500, { ok: false, error: error.message });
+        } finally {
+          rmSync(tmp, { recursive: true, force: true });
+        }
+      });
+    });
+  },
+});
+
 export default defineConfig({
-  plugins: [copyData(), zoneDraftImport(), candidateReviewSave()],
+  plugins: [copyData(), zoneDraftImport(), zoneCreate(), candidateReviewSave()],
   server: {
     proxy: apiProxy,
   },
