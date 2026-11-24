@@ -639,12 +639,21 @@ export const selectEdge = (state, { edges, nodes }, options) => {
   const duplicates = flattenRingRefs(ring).some((ref) => ref.edgeId === edgeId);
   if (duplicates) return { ok: false, error: `边 ${edgeId} 已在该环中使用` };
 
+  const stepIndex = ring.steps.indexOf(step);
   let expectedStart = null;
   if ((step.edgeRefs ?? []).length > 0) {
     expectedStart = lastEndNode(edgeMap, { steps: [step] });
-  } else {
-    const stepIndex = ring.steps.indexOf(step);
+  } else if (stepIndex > 0) {
     expectedStart = lastEndNode(edgeMap, { steps: ring.steps.slice(0, stepIndex) });
+  } else {
+    // 环是闭合的：第一步为空时，应以最后一个已绑定步骤的终点为起点。
+    // 否则任意边都能落进第一步，链端一旦错位，后续整条环都无法再接上。
+    const predecessor = [...ring.steps]
+      .reverse()
+      .find((item) => (item.edgeRefs ?? []).length > 0);
+    expectedStart = predecessor
+      ? lastEndNode(edgeMap, { steps: [predecessor] })
+      : null;
   }
 
   let direction = "forward";

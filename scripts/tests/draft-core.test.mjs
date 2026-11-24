@@ -357,6 +357,39 @@ test("断链、重复边和不可用边都阻断选择", () => {
   assert.match(unavailable.error, /不可作为学区边界/);
 });
 
+test("空的第一步以环内最后一个已绑定步骤的终点为起点", () => {
+  const state = createEditorState({
+    zoneSpec: mockZoneSpec(),
+    draftId: "draft_zone_900_20261117_01",
+    date: "2026-11-17",
+  });
+  const tail = selectEdge(state, { edges, nodes }, {
+    ringIndex: 0,
+    stepId: "zs_9000004",
+    edgeId: "be_0000005",
+    decidedBy: "用户",
+  });
+  assert.equal(tail.ok, true, tail.error);
+
+  const wrong = selectEdge(state, { edges, nodes }, {
+    ringIndex: 0,
+    stepId: "zs_9000001",
+    edgeId: "be_0000003",
+    decidedBy: "用户",
+  });
+  assert.equal(wrong.ok, false);
+  assert.match(wrong.error, /断链/);
+
+  const right = selectEdge(state, { edges, nodes }, {
+    ringIndex: 0,
+    stepId: "zs_9000001",
+    edgeId: "be_0000001",
+    decidedBy: "用户",
+  });
+  assert.equal(right.ok, true, right.error);
+  assert.equal(right.direction, "forward");
+});
+
 test("取消、反向、清空、撤销与重做保持一致性", () => {
   const state = createEditorState({
     zoneSpec: mockZoneSpec(),
