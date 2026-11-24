@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>路口诊断与裁定</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="/reports/assets/report.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <h1>路口诊断与裁定</h1>
+      <div class="meta" id="meta">加载中…</div>
+      <a class="back" href="/tools/index.html">← 返回工具台</a>
+    </header>
+    <div class="status" id="status">加载诊断报告与交点报告…</div>
+    <div class="layout">
+      <aside class="panel">
+        <div class="panel-head">
+          <div class="tabs" id="tabs"></div>
+        </div>
+        <div class="panel-body" id="list"></div>
+        <div class="detail" id="detail">
+          <div class="empty">点击左侧条目查看详情</div>
+        </div>
+      </aside>
+      <div class="map-wrap">
+        <div id="map"></div>
+        <div class="legend">
+          <div><span class="swatch" style="background:#b9c2cc"></span>路网</div>
+          <div><span class="swatch" style="background:#e8590c"></span>A 接近交点</div>
+          <div><span class="swatch" style="background:#1f6feb"></span>B 欠伸 / 建议</div>
+          <div><span class="swatch" style="background:#c0392b"></span>C 过冲尾巴</div>
+          <div><span class="swatch" style="background:#6b21a8"></span>D 共线重叠</div>
+          <div><span class="swatch" style="background:#475569"></span>E 无交点道路</div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script type="module">
+      import {
+        createMap,
+        escapeHtml,
+        formatM,
+        loadJson,
+        param,
+        renderDetail,
+        showError,
+      } from "/reports/assets/report-common.js";
+
+      const ROADS = param("roads", "/data/roads.geojson");
+      const REPORT = param("report", "/reports/junctions/latest.json");
+      const IX = param("ix", "/reports/intersections/latest.json");
+
+      const map = createMap("map");
+      const baseLayer = L.featureGroup().addTo(map);
+      const highlight = L.featureGroup().addTo(map);
+
+      const state = {
+        category: "all",
+        items: [],
+        selected: null,
+      };
+
+      const categories = [
+        ["all", "全部"],
+        ["A", "A 接近交点"],
+        ["B", "B 欠伸"],
+        ["C", "C 过冲"],
+        ["D", "D 共线重叠"],
+        ["E", "E 无交点"],
+      ];
+
+      const fit = (bounds) => {
+        if (!bounds || !bounds.isValid()) return;
+        map.fitBounds(bounds.pad(0.25), { maxZoom: 18 });
+      };
+
+      const polyline = (coords, options) =>
+        L.polyline(
+          coords.map(([lng, lat]) => [lat, lng]),
+          options,
+        );
+
+      const circle = (coord, options) =>
+        L.circleMarker([coord[1], coord[0]], {
+          radius: 6,
+          weight: 2,
+          color: "#fff",
+          fillOpacity: 1,
+          ...options,
+        });
+
+      const buildItems = (roads, report, ix) => {
+        const items = [];
+        const roadFeatures = roads.features ?? [];
+        const byName = new Map();
+        roadFeatures.forEach((feature) => {
+          const name = feature.properties?.name;
+          const list = byName.get(name) ?? [];
+          list.push(feature);
+          byName.set(name, list);
+        });
+
+        (report.nearGroups ?? []).forEach((group) => {
+          items.push({
+            category: "A",
+            title: `A 接近交点 · ${group.members.length} 个节点`,
+            sub: `跨度 ${formatM(group.spreadM)} · 基准 ${group.anchorReason ?? ""}`,
+            rows: [
+              ["组", group.groupId],
+              ["跨度", formatM(group.spreadM)],
+              ["基准", group.anchorId],
+              ["理由", group.anchorReason ?? "—"],
+              ...group.members.map((member) => [
+                member.anchor ? "基准节点" : member.id,
+                `${member.label} · 距基准 ${formatM(member.dToAnchor)}`,
+              ]),
+            ],
+            draw: () => {
+              const bounds = L.latLngBounds([]);
+              group.members.forEach((member) => {
+                const marker = circle(member.coord, {
+                  color: member.anchor ? "#c0392b" : "#e8590c",
+                  radius: member.anchor ? 8 : 5,
+                  fillColor: member.anchor ? "#c0392b" : "#e8590c",
+                })
+                  .bindTooltip(member.label, { direction: "top" })
+                  .addTo(highlight);
+                bounds.extend(marker.getLatLng());
+              });
+              return bounds;
+            },
+          });
+        });
+
+        (report.under ?? []).forEach((entry) => {
+          items.push({
+            category: "B",
+            title: `B 欠伸 · ${entry.name}`,
+            sub: `${entry.end} 端缺口 ${formatM(entry.gapM)} → ${entry.targetName}`,
+            rows: [
+              ["道路", `${entry.name}（${entry.roadId}）`],
+              ["端点", entry.end],
+              ["目标", `${entry.targetName}（${entry.targetRoadId}）`],
+              ["缺口", formatM(entry.gapM)],
+              ["严重度", entry.severity === "auto" ? "可自动修" : "仅告警"],
+              ["指向偏差", `${entry.pointingDeg}°`],
+              ["夹角", `${entry.lineAngleDeg}°`],
+              ["建议坐标", entry.suggestedCoord.join(", ")],
+            ],
+            draw: () => {
+              polyline([entry.from, entry.suggestedCoord], {
+                color: "#1f6feb",
+                weight: 2,
+                dashArray: "6 4",
+              }).addTo(highlight);
+              circle(entry.from, { fillColor: "#1f6feb" })
+                .bindTooltip("道路端点", { direction: "top" })
+                .addTo(highlight);
+              circle(entry.suggestedCoord, {
+                fillColor: "#11804a",
+              })
+                .bindTooltip("建议落点", { direction: "top" })
+                .addTo(highlight);
+              return L.latLngBounds(
+                [entry.from, entry.suggestedCoord].map(([lng, lat]) => [lat, lng]),
+              );
+            },
+          });
+        });
+
+        (report.over ?? []).forEach((entry) => {
+          items.push({
+            category: "C",
+            title: `C 过冲 · ${entry.name}`,
+            sub: `${entry.end} 端多余尾巴 ${formatM(entry.stubM)}`,
+            rows: [
+              ["道路", `${entry.name}（${entry.roadId}）`],
+              ["端点", `${entry.end}${entry.part ? ` · part ${entry.part}` : ""}`],
+              ["尾巴长", formatM(entry.stubM)],
+              ["节点", `${entry.nodeLabel ?? ""}（${entry.nodeId}）`],
+              ["可删顶点", String(entry.droppedVertices ?? "—")],
+              ["尾巴坐标", (entry.stubCoords ?? []).flat().join(", ")],
+            ],
+            draw: () => {
+              polyline(entry.stubCoords, {
+                color: "#c0392b",
+                weight: 4,
+              }).addTo(highlight);
+              circle(entry.coord, { fillColor: "#c0392b" })
+                .bindTooltip(entry.nodeLabel ?? entry.name, { direction: "top" })
+                .addTo(highlight);
+              return L.latLngBounds(
+                entry.stubCoords.map(([lng, lat]) => [lat, lng]),
+              );
+            },
+          });
+        });
+
+        (ix.overlaps ?? []).forEach((entry) => {
+          items.push({
+            category: "D",
+            title: `D 共线重叠 · ${entry.names.join(" × ")}`,
+            sub: `重叠长度 ${formatM(entry.overlapM)}`,
+            rows: [
+              ["道路", entry.names.join(" × ")],
+              ["roadId", entry.roads.join(" × ")],
+              ["重叠长度", formatM(entry.overlapM)],
+              ["起点", entry.from.join(", ")],
+              ["终点", entry.to.join(", ")],
+            ],
+            draw: () => {
+              polyline([entry.from, entry.to], {
+                color: "#6b21a8",
+                weight: 3,
+                dashArray: "8 5",
+              }).addTo(highlight);
+              circle(entry.from, { fillColor: "#6b21a8" }).addTo(highlight);
+              circle(entry.to, { fillColor: "#6b21a8" }).addTo(highlight);
+              return L.latLngBounds(
+                [entry.from, entry.to].map(([lng, lat]) => [lat, lng]),
+              );
+            },
+          });
+        });
+
+        (ix.isolated ?? []).forEach((name) => {
+          items.push({
+            category: "E",
+            title: `E 无交点 · ${name}`,
+            sub: "整条路未与任何线相交",
+            rows: [
+              ["道路", name],
+              ["说明", "检查是否漏画连接，或该路本应独立存在"],
+            ],
+            draw: () => {
+              const features = byName.get(name) ?? [];
+              const bounds = L.latLngBounds([]);
+              features.forEach((feature) => {
+                const geometry = feature.geometry;
+                const lines =
+                  geometry.type === "LineString"
+                    ? [geometry.coordinates]
+                    : geometry.coordinates;
+                lines.forEach((line) => {
+                  const layer = polyline(line, {
+                    color: "#475569",
+                    weight: 4,
+                  }).addTo(highlight);
+                  bounds.extend(layer.getBounds());
+                });
+              });
+              return bounds;
+            },
+          });
+        });
+
+        return items;
+      };
+
+      const counts = () => {
+        const result = { all: state.items.length };
+        state.items.forEach((item) => {
+          result[item.category] = (result[item.category] ?? 0) + 1;
+        });
+        return result;
+      };
+
+      const renderTabs = () => {
+        const tally = counts();
+        document.getElementById("tabs").innerHTML = categories
+          .map(
+            ([key, label]) =>
+              `<button class="tab ${state.category === key ? "active" : ""}" data-key="${key}">${escapeHtml(
+                label,
+              )}<span class="count">${tally[key] ?? 0}</span></button>`,
+          )
+          .join("");
+      };
+
+      const renderList = () => {
+        const list = document.getElementById("list");
+        const visible =
+          state.category === "all"
+            ? state.items
+            : state.items.filter((item) => item.category === state.category);
+        if (visible.length === 0) {
+          list.innerHTML = `<div class="empty" style="padding:12px;color:var(--muted)">该分类没有条目</div>`;
+          return;
+        }
+        list.innerHTML = visible
+          .map(
+            (item, index) =>
+              `<div class="item" data-index="${state.items.indexOf(item)}">
+                <div class="title"><span class="badge ${item.category}">${item.category}</span>${escapeHtml(
+                  item.title.replace(/^[A-E]\s*/, ""),
+                )}</div>
+                <div class="sub">${escapeHtml(item.sub)}</div>
+              </div>`,
+          )
+          .join("");
+      };
+
+      const select = (index) => {
+        const item = state.items[index];
+        if (!item) return;
+        state.selected = index;
+        document.querySelectorAll(".item").forEach((node) => {
+          node.classList.toggle("active", Number(node.dataset.index) === index);
+        });
+        highlight.clearLayers();
+        const bounds = item.draw();
+        fit(bounds);
+        renderDetail(document.getElementById("detail"), item.rows);
+      };
+
+      const renderMeta = (report, ix, roads) => {
+        const totals = report.totals ?? {};
+        const ixTotals = ix.totals ?? {};
+        document.getElementById("meta").innerHTML =
+          `报告 ${escapeHtml(report.generatedAt ?? "—")} · 路网 ${roads.features.length} 条 · ` +
+          `交点 ${ixTotals.nodes ?? "—"}（tee ${ixTotals.kind?.tee ?? 0} / cross ${ixTotals.kind?.cross ?? 0} / multi ${ixTotals.kind?.multi ?? 0} / end ${ixTotals.kind?.end ?? 0}） · ` +
+          `近邻 ${totals.nearGroups ?? 0} 组 / 欠伸 ${totals.underAuto ?? 0}+${totals.underWarn ?? 0} / 过冲 ${totals.over ?? 0}`;
+        document.getElementById("status").textContent =
+          `数据源：${ROADS} · ${REPORT} · ${IX}`;
+      };
+
+      const boot = async () => {
+        try {
+          const [roads, report, ix] = await Promise.all([
+            loadJson(ROADS),
+            loadJson(REPORT),
+            loadJson(IX),
+          ]);
+          (roads.features ?? []).forEach((feature) => {
+            const geometry = feature.geometry;
+            const lines =
+              geometry.type === "LineString"
+                ? [geometry.coordinates]
+                : geometry.type === "MultiLineString"
+                  ? geometry.coordinates
+                  : [];
+            lines.forEach((line) => {
+              polyline(line, {
+                color: "#b9c2cc",
+                weight: 1,
+                opacity: 0.85,
+                interactive: false,
+              }).addTo(baseLayer);
+            });
+          });
+          map.fitBounds(baseLayer.getBounds().pad(0.02));
+
+          state.items = buildItems(roads, report, ix);
+          renderMeta(report, ix, roads);
+          renderTabs();
+          renderList();
+
+          document.getElementById("tabs").addEventListener("click", (event) => {
+            const button = event.target.closest(".tab");
+            if (!button) return;
+            state.category = button.dataset.key;
+            renderTabs();
+            renderList();
+          });
+          document.getElementById("list").addEventListener("click", (event) => {
+            const node = event.target.closest(".item");
+            if (!node) return;
+            select(Number(node.dataset.index));
+          });
+        } catch (error) {
+          showError(`路口诊断页加载失败：${error.message}`);
+        }
+      };
+
+      boot();
+    </script>
+  </body>
+</html>

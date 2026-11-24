@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>边界探针</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="/reports/assets/report.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <h1>边界探针</h1>
+      <div class="meta" id="meta">加载中…</div>
+      <a class="back" href="/tools/index.html">← 返回工具台</a>
+    </header>
+    <div class="status" id="status">正在加载学区与边界要素…</div>
+    <div class="layout">
+      <aside class="panel">
+        <div class="panel-head">
+          <div class="field-row">
+            <label>学区</label>
+            <select id="zone-select" style="flex:1;padding:5px 8px;border:1px solid var(--border);border-radius:6px"></select>
+          </div>
+          <div class="tabs" id="tabs" style="margin-top:8px"></div>
+        </div>
+        <div class="panel-body" id="list"></div>
+        <div class="detail" id="detail">
+          <div class="empty">点击左侧步骤，在图上查看匹配到的边界要素</div>
+        </div>
+      </aside>
+      <div class="map-wrap">
+        <div id="map"></div>
+        <div class="legend">
+          <div><span class="swatch" style="background:#b9c2cc"></span>全部可作边界要素</div>
+          <div><span class="swatch" style="background:#1f6feb"></span>本步骤匹配要素</div>
+          <div><span class="swatch" style="background:#11804a"></span>已绑定边</div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script type="module">
+      import {
+        createMap,
+        escapeHtml,
+        loadJson,
+        param,
+        renderDetail,
+        showError,
+      } from "/reports/assets/report-common.js";
+
+      const SPECS = param("specs", "/data/zone_specs.v2.json");
+      const FEATURES = param("features", "/data/boundary_features.v2.geojson");
+      const EDGES = param("edges", "/data/network_edges.json");
+      const PRESELECT = param("zone", "zone_006");
+
+      const map = createMap("map");
+      const baseLayer = L.featureGroup().addTo(map);
+      const highlight = L.featureGroup().addTo(map);
+
+      const state = {
+        zones: [],
+        edges: [],
+        featureMap: new Map(),
+        eligibleByFeature: new Map(),
+        zoneId: null,
+        filter: "all",
+        steps: [],
+      };
+
+      const linesOf = (geometry) => {
+        if (!geometry) return [];
+        if (geometry.type === "LineString") return [geometry.coordinates];
+        if (geometry.type === "MultiLineString") return geometry.coordinates;
+        return [];
+      };
+
+      const drawLine = (coords, options) =>
+        L.polyline(
+          coords.map(([lng, lat]) => [lat, lng]),
+          options,
+        );
+
+      const namesOf = (properties) =>
+        [properties?.canonicalName, ...(properties?.aliases ?? [])].filter(
+          (name) => typeof name === "string" && name.length >= 2,
+        );
+
+      const matchFeatures = (text) => {
+        const matches = [];
+        state.featureMap.forEach((feature, featureId) => {
+          const names = namesOf(feature.properties);
+          const hit = names.find((name) => text.includes(name));
+          if (hit) matches.push({ featureId, feature, hit });
+        });
+        return matches;
+      };
+
+      const buildSteps = (zoneSpec) => {
+        const steps = [];
+        zoneSpec.rings.forEach((ring) => {
+          ring.steps.forEach((step) => {
+            const refs = step.edgeRefs ?? [];
+            const matches = matchFeatures(step.text ?? "");
+            steps.push({
+              role: ring.role,
+              ringId: ring.ringId,
+              step,
+              refs,
+              matches,
+            });
+          });
+        });
+        return steps;
+      };
+
+      const renderZoneSelect = () => {
+        const select = document.getElementById("zone-select");
+        select.innerHTML = state.zones
+          .map(
+            (zone) =>
+              `<option value="${zone.zoneId}">${escapeHtml(zone.zoneName)}（${zone.zoneId}）</option>`,
+          )
+          .join("");
+        select.value = state.zoneId;
+      };
+
+      const renderSummary = () => {
+        const bound = state.steps.filter((row) => row.refs.length > 0).length;
+        const matched = state.steps.filter((row) => row.matches.length > 0).length;
+        document.getElementById("meta").textContent =
+          `步骤 ${state.steps.length} 个 · 已绑定 ${bound} 个 · 匹配到要素 ${matched} 个`;
+        document.getElementById("status").textContent = `数据源：${SPECS} · ${FEATURES} · ${EDGES}`;
+      };
+
+      const visibleSteps = () =>
+        state.steps.filter((row) => {
+          if (state.filter === "unmatched") {
+            return row.matches.length === 0 && row.refs.length === 0;
+          }
+          if (state.filter === "bound") return row.refs.length > 0;
+          if (state.filter === "unbound") return row.refs.length === 0;
+          return true;
+        });
+
+      const renderTabs = () => {
+        const tabs = [
+          ["all", "全部", state.steps.length],
+          [
+            "unbound",
+            "未绑定",
+            state.steps.filter((row) => row.refs.length === 0).length,
+          ],
+          ["bound", "已绑定", state.steps.filter((row) => row.refs.length > 0).length],
+          [
+            "unmatched",
+            "无匹配要素",
+            state.steps.filter((row) => row.matches.length === 0 && row.refs.length === 0)
+              .length,
+          ],
+        ];
+        document.getElementById("tabs").innerHTML = tabs
+          .map(
+            ([key, label, count]) =>
+              `<button class="tab ${state.filter === key ? "active" : ""}" data-key="${key}">${label}<span class="count">${count}</span></button>`,
+          )
+          .join("");
+      };
+
+      const renderList = () => {
+        const list = document.getElementById("list");
+        const rows = visibleSteps();
+        if (rows.length === 0) {
+          list.innerHTML = `<div class="empty" style="padding:12px;color:var(--muted)">没有符合条件的步骤</div>`;
+          return;
+        }
+        list.innerHTML = rows
+          .map((row) => {
+            const index = state.steps.indexOf(row);
+            const status = row.refs.length
+              ? `<span class="badge A">已绑定 ${row.refs.length}</span>`
+              : row.matches.length
+                ? `<span class="badge B">待绑定</span>`
+                : `<span class="badge C">无匹配要素</span>`;
+            const featureText = row.matches.length
+              ? row.matches
+                  .map(({ feature, hit }) => {
+                    const properties = feature.properties;
+                    const count =
+                      state.eligibleByFeature.get(properties.featureId)?.length ?? 0;
+                    return `${hit}${properties.canonicalName !== hit ? `→${properties.canonicalName}` : ""}（${count} 条可用边）`;
+                  })
+                  .join("；")
+              : "四至文本中的道路名未在边界要素中找到";
+            return `<div class="item" data-index="${index}">
+              <div class="title">${status} ${escapeHtml(row.step.side ?? "")} · ${escapeHtml(
+                row.step.text ?? row.step.stepId,
+              )}</div>
+              <div class="sub">${escapeHtml(featureText)}</div>
+            </div>`;
+          })
+          .join("");
+      };
+
+      const select = (index) => {
+        const row = state.steps[index];
+        if (!row) return;
+        document.querySelectorAll(".item").forEach((node) => {
+          node.classList.toggle("active", Number(node.dataset.index) === index);
+        });
+        highlight.clearLayers();
+        const bounds = L.latLngBounds([]);
+
+        row.matches.forEach(({ feature, featureId }) => {
+          const eligible = state.eligibleByFeature.get(featureId) ?? [];
+          linesOf(feature.geometry).forEach((line) => {
+            const layer = drawLine(line, {
+              color: "#1f6feb",
+              weight: 5,
+              opacity: 0.85,
+            })
+              .bindTooltip(`${feature.properties.canonicalName ?? featureId}`, {
+                direction: "top",
+              })
+              .addTo(highlight);
+            bounds.extend(layer.getBounds());
+          });
+          eligible.forEach((edge) => {
+            // 只画端点坐标（边几何由要素承载），用圆点提示可选段
+            const ids = [edge.fromNodeId, edge.toNodeId];
+            ids.forEach((nodeId) => {
+              const node = state.nodeMap?.get(nodeId);
+              const placement = node?.placements?.[0];
+              if (!placement) return;
+              const featureRow = state.featureMap.get(placement.featureId);
+              const line = linesOf(featureRow?.geometry)[placement.partIndex];
+              const coordinate = line?.[placement.vertexIndex];
+              if (!coordinate) return;
+              const marker = L.circleMarker(
+                [coordinate[1], coordinate[0]],
+                {
+                  radius: 3,
+                  color: "#1f6feb",
+                  weight: 1,
+                  fillOpacity: 0.9,
+                },
+              ).addTo(highlight);
+              bounds.extend(marker.getLatLng());
+            });
+          });
+        });
+
+        row.refs.forEach((ref) => {
+          const edge = state.edgeMap.get(ref.edgeId);
+          if (!edge) return;
+          const feature = state.featureMap.get(edge.featureId);
+          const line = linesOf(feature?.geometry)[edge.partIndex] ?? [];
+          const segment = line.slice(edge.fromVertexIndex, edge.toVertexIndex + 1);
+          if (segment.length < 2) return;
+          const layer = drawLine(segment, {
+            color: "#11804a",
+            weight: 6,
+            opacity: 0.9,
+          })
+            .bindTooltip(`${ref.edgeId}（${ref.direction}）`, { direction: "top" })
+            .addTo(highlight);
+          bounds.extend(layer.getBounds());
+        });
+
+        if (bounds.isValid()) map.fitBounds(bounds.pad(0.25), { maxZoom: 18 });
+
+        const rows = [
+          ["步骤", row.step.stepId],
+          ["四至", `${row.step.side ?? ""} · ${row.step.text ?? ""}`],
+          ["角色", `${row.role}（${row.ringId}）`],
+          ["来源", row.step.sourceType ?? "—"],
+          ["裁定", (row.step.rulingIds ?? []).join("、") || "—"],
+          ["已绑定", `${row.refs.length} 条`],
+        ];
+        row.matches.forEach(({ featureId, feature, hit }) => {
+          const properties = feature.properties;
+          const count = state.eligibleByFeature.get(featureId)?.length ?? 0;
+          rows.push([
+            "匹配要素",
+            `${properties.canonicalName ?? featureId}（${featureId}）`,
+          ]);
+          rows.push(["命中别名", hit]);
+          rows.push([
+            "要素状态",
+            `${properties.featureType ?? "—"} · ${properties.verificationStatus ?? "—"} · ${
+              properties.boundaryEligible ? "可作边界" : "不可作边界"
+            } · ${count} 条可用边`,
+          ]);
+        });
+        if (row.matches.length === 0) {
+          rows.push(["提示", "请在边界特征名/别名中补充该道路，或改用裁定指定的道路"]);
+        }
+        renderDetail(document.getElementById("detail"), rows);
+      };
+
+      const selectZone = (zoneId) => {
+        const zoneSpec = state.zones.find((zone) => zone.zoneId === zoneId);
+        if (!zoneSpec) return;
+        state.zoneId = zoneId;
+        document.getElementById("zone-select").value = zoneId;
+        state.steps = buildSteps(zoneSpec);
+        highlight.clearLayers();
+        renderSummary();
+        renderTabs();
+        renderList();
+        const bounds = L.latLngBounds([]);
+        state.steps.forEach((row) => {
+          row.matches.forEach(({ feature }) => {
+            linesOf(feature.geometry).forEach((line) => {
+              line.forEach(([lng, lat]) => bounds.extend([lat, lng]));
+            });
+          });
+        });
+        if (bounds.isValid()) map.fitBounds(bounds.pad(0.2), { maxZoom: 17 });
+      };
+
+      const boot = async () => {
+        try {
+          const [specs, featuresFile, edgesFile, nodesFile] = await Promise.all([
+            loadJson(SPECS),
+            loadJson(FEATURES),
+            loadJson(EDGES),
+            loadJson("/data/network_nodes.json"),
+          ]);
+          state.zones = specs.zones ?? [];
+          state.edges = edgesFile.edges ?? [];
+          state.nodeMap = new Map(
+            (nodesFile.nodes ?? []).map((node) => [node.nodeId, node]),
+          );
+          state.edgeMap = new Map(state.edges.map((edge) => [edge.edgeId, edge]));
+          state.featureMap = new Map(
+            (featuresFile.features ?? []).map((feature) => [
+              feature.properties.featureId,
+              feature,
+            ]),
+          );
+          state.edges
+            .filter((edge) => edge.lifecycle === "active" && edge.boundaryEligible)
+            .forEach((edge) => {
+              const list = state.eligibleByFeature.get(edge.featureId) ?? [];
+              list.push(edge);
+              state.eligibleByFeature.set(edge.featureId, list);
+            });
+
+          (featuresFile.features ?? []).forEach((feature) => {
+            linesOf(feature.geometry).forEach((line) => {
+              drawLine(line, {
+                color: "#b9c2cc",
+                weight: 1,
+                opacity: 0.8,
+                interactive: false,
+              }).addTo(baseLayer);
+            });
+          });
+          if (baseLayer.getBounds().isValid()) {
+            map.fitBounds(baseLayer.getBounds().pad(0.02));
+          }
+
+          renderZoneSelect();
+          const initial = state.zones.some((zone) => zone.zoneId === PRESELECT)
+            ? PRESELECT
+            : state.zones[0]?.zoneId;
+          if (initial) selectZone(initial);
+
+          document.getElementById("zone-select").addEventListener("change", (event) => {
+            selectZone(event.target.value);
+          });
+          document.getElementById("tabs").addEventListener("click", (event) => {
+            const button = event.target.closest(".tab");
+            if (!button) return;
+            state.filter = button.dataset.key;
+            renderTabs();
+            renderList();
+          });
+          document.getElementById("list").addEventListener("click", (event) => {
+            const node = event.target.closest(".item");
+            if (!node) return;
+            select(Number(node.dataset.index));
+          });
+        } catch (error) {
+          showError(`边界探针页加载失败：${error.message}`);
+        }
+      };
+
+      boot();
+    </script>
+  </body>
+</html>

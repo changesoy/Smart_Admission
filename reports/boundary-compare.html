@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>两套区界叠加比对</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="/reports/assets/report.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <h1>两套区界叠加比对</h1>
+      <div class="meta" id="meta">加载中…</div>
+      <a class="back" href="/tools/index.html">← 返回工具台</a>
+    </header>
+    <div class="status" id="status">正在加载区界与网络数据…</div>
+    <div class="layout">
+      <aside class="panel">
+        <div class="panel-head">
+          <div class="tabs">
+            <button class="tab active">旧 zones.geojson × 新 edgeRefs 派生环</button>
+          </div>
+        </div>
+        <div class="panel-body" id="list"></div>
+        <div class="detail" id="detail">
+          <div class="empty">点击左侧学区查看新旧环指标差异</div>
+        </div>
+      </aside>
+      <div class="map-wrap">
+        <div id="map"></div>
+        <div class="legend">
+          <div><span class="swatch" style="background:#9aa4b0"></span>旧环（zones.geojson）</div>
+          <div><span class="swatch" style="background:#11804a"></span>新环（edgeRefs 派生）</div>
+          <div><span class="swatch" style="background:#b9c2cc"></span>其他学区</div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script type="module">
+      import {
+        createMap,
+        escapeHtml,
+        formatArea,
+        formatM,
+        formatPct,
+        loadJson,
+        param,
+        renderDetail,
+        showError,
+      } from "/reports/assets/report-common.js";
+      import {
+        diffRingMetrics,
+        expandRefsToCoordinates,
+        findSelfIntersections,
+        flattenRingRefs,
+        ringMetrics,
+      } from "/scripts/lib/draft-core.mjs";
+
+      const ZONES = param("zones", "/data/zones.geojson");
+      const SPECS = param("specs", "/data/zone_specs.v2.json");
+      const EDGES = param("edges", "/data/network_edges.json");
+      const FEATURES = param("features", "/data/boundary_features.v2.geojson");
+      const PRESELECT = param("zone", "");
+
+      const map = createMap("map");
+      const baseLayer = L.featureGroup().addTo(map);
+      const highlight = L.featureGroup().addTo(map);
+
+      const state = { rows: [], selected: null };
+
+      const toLatLng = (coords) =>
+        coords.map(([lng, lat]) => [lat, lng]);
+
+      const drawBase = (zoneFeatures) => {
+        zoneFeatures.forEach((feature) => {
+          const rings = feature.geometry.coordinates;
+          rings.forEach((ring) => {
+            L.polygon(toLatLng(ring), {
+              color: "#b9c2cc",
+              weight: 1,
+              fillColor: "#dfe5ec",
+              fillOpacity: 0.12,
+              interactive: false,
+            }).addTo(baseLayer);
+          });
+        });
+        if (baseLayer.getBounds().isValid()) {
+          map.fitBounds(baseLayer.getBounds().pad(0.02));
+        }
+      };
+
+      const buildRows = (zoneFeatures, specs, edges, featureMap) => {
+        const zonesById = new Map(
+          zoneFeatures.map((feature) => [feature.properties.zoneId, feature]),
+        );
+        return specs.zones.map((zoneSpec) => {
+          const zoneFeature = zonesById.get(zoneSpec.zoneId);
+          const oldPolygonRings = zoneFeature?.geometry?.coordinates ?? [];
+          const rings = zoneSpec.rings.map((ring, ringIndex) => {
+            const refs = flattenRingRefs(ring);
+            const boundSteps = ring.steps.filter(
+              (step) => (step.edgeRefs ?? []).length > 0,
+            ).length;
+            const coordinates = refs.length
+              ? expandRefsToCoordinates(refs, edges, featureMap)
+              : [];
+            const derived = refs.length ? ringMetrics(coordinates) : null;
+            const oldCoordinates =
+              ring.role === "outer"
+                ? oldPolygonRings[ringIndex] ?? oldPolygonRings[0] ?? []
+                : oldPolygonRings[ringIndex] ?? [];
+            const existing = oldCoordinates.length
+              ? ringMetrics(oldCoordinates)
+              : null;
+            return {
+              role: ring.role,
+              ringId: ring.ringId,
+              stepCount: ring.steps.length,
+              boundSteps,
+              refCount: refs.length,
+              coordinates,
+              derived,
+              existing,
+              oldCoordinates,
+              diff:
+                derived && existing ? diffRingMetrics(derived, existing) : null,
+              selfIntersections: coordinates.length
+                ? findSelfIntersections(coordinates)
+                : [],
+            };
+          });
+          return { zoneSpec, zoneFeature, rings };
+        });
+      };
+
+      const renderSummary = (rows) => {
+        const total = rows.length;
+        const bound = rows.filter((row) =>
+          row.rings.some((ring) => ring.refCount > 0),
+        ).length;
+        const selfHits = rows.reduce(
+          (sum, row) =>
+            sum + row.rings.reduce((inner, ring) => inner + ring.selfIntersections.length, 0),
+          0,
+        );
+        document.getElementById("meta").textContent =
+          `学区 ${total} 个 · 已绑定 ${bound} 个 · 未绑定 ${total - bound} 个 · 自交命中 ${selfHits} 处`;
+        document.getElementById("status").textContent =
+          `数据源：${ZONES} × ${SPECS} × ${EDGES}`;
+      };
+
+      const ringLabel = (ring) =>
+        ring.role === "outer" ? "外环" : `洞环 ${ring.ringId}`;
+
+      const renderList = () => {
+        const list = document.getElementById("list");
+        list.innerHTML = state.rows
+          .map((row, index) => {
+            const outer = row.rings.find((ring) => ring.role === "outer");
+            const bound = row.rings.some((ring) => ring.refCount > 0);
+            const areaText =
+              outer?.derived && outer?.existing
+                ? `${formatArea(outer.derived.areaM2)}（旧 ${formatArea(
+                    outer.existing.areaM2,
+                  )}）`
+                : outer?.existing
+                  ? `旧 ${formatArea(outer.existing.areaM2)}`
+                  : "—";
+            const delta =
+              outer?.diff && outer?.existing?.areaM2
+                ? formatPct((outer.diff.areaM2Delta / outer.existing.areaM2) * 100)
+                : "—";
+            return `<div class="item" data-index="${index}">
+              <div class="title"><span class="badge ${bound ? "A" : "E"}">${
+                bound ? "已绑定" : "未绑定"
+              }</span>${escapeHtml(row.zoneSpec.zoneName)} <span class="mono">${escapeHtml(
+                row.zoneSpec.zoneId,
+              )}</span></div>
+              <div class="sub">${escapeHtml(areaText)} · 面积差 ${escapeHtml(delta)} · 边 ${
+                outer?.refCount ?? 0
+              } 条 / 步骤 ${outer?.boundSteps ?? 0}/${outer?.stepCount ?? 0}</div>
+            </div>`;
+          })
+          .join("");
+      };
+
+      const select = (index) => {
+        const row = state.rows[index];
+        if (!row) return;
+        document.querySelectorAll(".item").forEach((node) => {
+          node.classList.toggle("active", Number(node.dataset.index) === index);
+        });
+        highlight.clearLayers();
+        const bounds = L.latLngBounds([]);
+        row.rings.forEach((ring) => {
+          if (ring.oldCoordinates.length) {
+            const layer = L.polygon(toLatLng(ring.oldCoordinates), {
+              color: "#9aa4b0",
+              weight: 2,
+              dashArray: "6 4",
+              fill: false,
+            }).addTo(highlight);
+            bounds.extend(layer.getBounds());
+          }
+          if (ring.coordinates.length >= 3) {
+            const layer = L.polygon(toLatLng(ring.coordinates), {
+              color: ring.role === "outer" ? "#11804a" : "#e8590c",
+              weight: 4,
+              fillColor: ring.role === "outer" ? "#11804a" : "#e8590c",
+              fillOpacity: 0.1,
+            })
+              .bindTooltip(
+                `${ringLabel(ring)} · ${ring.refCount} 条边${
+                  ring.selfIntersections.length
+                    ? ` · 自交 ${ring.selfIntersections.length} 处`
+                    : ""
+                }`,
+                { direction: "top" },
+              )
+              .addTo(highlight);
+            bounds.extend(layer.getBounds());
+          }
+        });
+        if (bounds.isValid()) map.fitBounds(bounds.pad(0.2), { maxZoom: 18 });
+
+        const rows = [["学区", `${row.zoneSpec.zoneName}（${row.zoneSpec.zoneId}）`]];
+        row.rings.forEach((ring) => {
+          rows.push([ringLabel(ring), `步骤 ${ring.boundSteps}/${ring.stepCount} · 边 ${ring.refCount}`]);
+          if (ring.derived) {
+            rows.push([
+              "派生环",
+              `${ring.derived.vertexCount} 点 · ${formatArea(ring.derived.areaM2)} · ${
+                ring.derived.orientation ?? "—"
+              }`,
+            ]);
+          }
+          if (ring.existing) {
+            rows.push([
+              "旧环",
+              `${ring.existing.vertexCount} 点 · ${formatArea(ring.existing.areaM2)} · ${
+                ring.existing.orientation ?? "—"
+              }`,
+            ]);
+          }
+          if (ring.diff) {
+            rows.push([
+              "面积差",
+              `${formatArea(ring.diff.areaM2Delta)}（${
+                ring.existing.areaM2
+                  ? formatPct((ring.diff.areaM2Delta / ring.existing.areaM2) * 100)
+                  : "—"
+              }）`,
+            ]);
+            rows.push(["质心偏移", formatM(ring.diff.centroidDistanceM)]);
+            rows.push(["顶点差", `${ring.diff.vertexCountDelta}`]);
+          }
+          if (ring.selfIntersections.length) {
+            rows.push([
+              "自交",
+              ring.selfIntersections
+                .slice(0, 8)
+                .map((hit) => `段 ${hit.segmentA}×${hit.segmentB}`)
+                .join("，"),
+            ]);
+          }
+        });
+        renderDetail(document.getElementById("detail"), rows);
+      };
+
+      const boot = async () => {
+        try {
+          const [zones, specs, edgesFile, featuresFile] = await Promise.all([
+            loadJson(ZONES),
+            loadJson(SPECS),
+            loadJson(EDGES),
+            loadJson(FEATURES),
+          ]);
+          const edges = edgesFile.edges ?? [];
+          const featureMap = new Map(
+            (featuresFile.features ?? []).map((feature) => [
+              feature.properties.featureId,
+              feature,
+            ]),
+          );
+          state.rows = buildRows(zones.features ?? [], specs, edges, featureMap);
+          renderSummary(state.rows);
+          renderList();
+          drawBase(zones.features ?? []);
+
+          document.getElementById("list").addEventListener("click", (event) => {
+            const node = event.target.closest(".item");
+            if (!node) return;
+            select(Number(node.dataset.index));
+          });
+
+          const preselected = state.rows.findIndex(
+            (row) => row.zoneSpec.zoneId === PRESELECT,
+          );
+          if (preselected >= 0) select(preselected);
+        } catch (error) {
+          showError(`区界比对页加载失败：${error.message}`);
+        }
+      };
+
+      boot();
+    </script>
+  </body>
+</html>

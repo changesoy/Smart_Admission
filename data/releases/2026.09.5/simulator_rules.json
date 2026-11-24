@@ -1,0 +1,438 @@
+{
+  "meta": {
+    "title": "入学条件自查",
+    "effectiveYear": 2026,
+    "dataStatus": "verified",
+    "ruleBase": "依据《2026年泰山区义务教育段学校阳光招生工作方案》（泰山政办发〔2026〕7号）及其问题解答编制；2027年招生政策以教育主管部门正式发布为准。",
+    "disclaimer": "自查结果仅供入学准备参考，不构成录取承诺；最终入学政策、学位安排以教育主管部门及学校正式发布为准。本工具不预测录取概率。"
+  },
+  "materials": {
+    "material_001": {
+      "name": "户口簿",
+      "required": true,
+      "note": "含适龄儿童及其法定监护人的户籍信息（首页、户主页、儿童本人页）。"
+    },
+    "material_002": {
+      "name": "不动产证（房产证）或购房合同",
+      "required": true,
+      "note": "自有住宅须为已实际交房入住、产权份额100%、用途为住宅的房屋。"
+    },
+    "material_003": {
+      "name": "其他佐证材料",
+      "required": true,
+      "note": "根据本人房产实际情况而定；部门联网可核验的信息无需另行提供。"
+    },
+    "material_004": {
+      "name": "居住证",
+      "required": true,
+      "note": "泰安市公安局泰山分局核发的有效期内的法定监护人至少一方的居住证。"
+    },
+    "material_005": {
+      "name": "房屋租赁合同",
+      "required": true,
+      "note": "在房管部门登记备案的房屋租赁合同（随迁子女报名依据备案的租赁地址申报学校）。"
+    },
+    "material_006": {
+      "name": "社会保险参保信息",
+      "required": true,
+      "note": "在泰山区务工者适用：报名时提供参保方身份证号，由人社部门核对审查参保缴费信息（经商者不适用）。"
+    },
+    "material_007": {
+      "name": "纳税申报信息",
+      "required": true,
+      "note": "在泰山区经商者适用：报名时提供纳税人身份证号和统一社会信用代码，由税务部门核对审查纳税信息（务工者不适用）。"
+    },
+    "material_008": {
+      "name": "三代证明材料",
+      "required": true,
+      "note": "以祖父母或外祖父母自有住宅申请入学，三代同住且三代不在同一户口簿时需提供。"
+    },
+    "material_009": {
+      "name": "集体产权住宅产权及实际入住确认材料",
+      "required": true,
+      "note": "需由所在街道（镇、乡）、招生学校及村居（单位）共同对产权和实际入住情况进行调查确认。"
+    },
+    "material_010": {
+      "name": "预防接种证",
+      "required": true,
+      "note": "开学后由学校按国家规定查验，非招生报名材料；建议提前确认免疫规划疫苗接种完成情况。"
+    }
+  },
+  "form": [
+    {
+      "field": "stage",
+      "label": "申请学段",
+      "showWhen": null,
+      "options": [
+        { "value": "小学", "label": "小学" },
+        { "value": "初中", "label": "初中" }
+      ]
+    },
+    {
+      "field": "situation_primary",
+      "label": "小学入学情形",
+      "showWhen": { "field": "stage", "value": "小学" },
+      "options": [
+        {
+          "value": "owned_hukou",
+          "label": "泰山区户籍 + 父母在学区内有自有住宅"
+        },
+        {
+          "value": "owned_nonlocal",
+          "label": "非泰山区户籍 + 父母在泰山区有自有住宅"
+        },
+        {
+          "value": "grandparent",
+          "label": "泰山区户籍 + 父母无自有住宅，祖父母/外祖父母有住宅"
+        },
+        { "value": "rental", "label": "泰山区户籍 + 父母无自有住宅，长期租住" },
+        { "value": "xiaochanquan", "label": "集体产权住宅（小产权住宅）" },
+        {
+          "value": "migrant",
+          "label": "非泰山区户籍 + 无自有住宅（外来务工经商随迁）"
+        }
+      ]
+    },
+    {
+      "field": "situation_middle",
+      "label": "初中入学情形",
+      "showWhen": { "field": "stage", "value": "初中" },
+      "options": [
+        { "value": "taishan_graduate", "label": "具有泰山区学籍的小学毕业生" },
+        { "value": "hukou_outside", "label": "泰山区户籍的区外小学毕业生" },
+        {
+          "value": "owned_outside",
+          "label": "父母在泰山区有自有住宅的区外小学毕业生"
+        },
+        { "value": "migrant", "label": "外来务工（经商）人员随迁子女" }
+      ]
+    },
+    {
+      "field": "permit",
+      "label": "是否持有有效期内居住证",
+      "showWhen": [
+        { "field": "situation_primary", "value": "migrant" },
+        { "field": "situation_middle", "value": "migrant" }
+      ],
+      "options": [
+        { "value": "yes", "label": "是" },
+        { "value": "no", "label": "否" }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "ruleId": "sim_rule_2026_101",
+      "effectiveYear": 2026,
+      "stage": "小学",
+      "resultType": "常住居民子女 · 第①类",
+      "resultClass": "category-a",
+      "resultTitle": "泰山区户籍 + 父母在学区内有自有住宅且实际居住",
+      "resultSummary": "属于常住居民子女入学情形，在分类分批录取中列第①类。实行划片招生、免试入学，通过\"爱山东\"APP\"教育入学一件事\"网上报名。具有本区户籍和登记房产的居民子女报名可\"零证明提交\"，由教育部门联合公安、自然资源等部门在线核验户籍与房产信息。",
+      "conditions": [
+        { "field": "situation_primary", "op": "eq", "value": "owned_hukou" }
+      ],
+      "requiredMaterialIds": ["material_001", "material_002", "material_003"],
+      "warnings": [
+        "小学一年级入学年龄为年满6周岁，即2020年8月31日及以前出生，且尚未注册义务教育学籍",
+        "自有住宅须为已实际交房入住、产权份额100%、房产用途为住宅；工业用房、商业用房（含公寓）、储藏室、车库不能作为入学依据",
+        "每套房产（住址）原则上小学每5年只能享受一次划片招生机会（多胞胎或合法多胎生育除外），学校会做房产年限审核",
+        "报名期间户籍、房产信息需真实有效，将接受公安、自然资源等部门大数据比对审核"
+      ],
+      "manualCheckNotes": [],
+      "policyIds": ["policy_2026_003", "policy_2026_004"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2026/8/17/art_181325_20359.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2026_102",
+      "effectiveYear": 2026,
+      "stage": "小学",
+      "resultType": "常住居民子女 · 第②类",
+      "resultClass": "category-a",
+      "resultTitle": "非泰山区户籍 + 父母在泰山区有自有住宅且实际居住",
+      "resultSummary": "非泰山区户籍、但父母（法定监护人）在泰山区有自有住宅且实际居住的适龄儿童，同样属于\"常住居民子女\"，在分类分批录取中列第②类，按自有住宅所在学区申报学校，无需按随迁子女路径申报。",
+      "conditions": [
+        { "field": "situation_primary", "op": "eq", "value": "owned_nonlocal" }
+      ],
+      "requiredMaterialIds": ["material_001", "material_002", "material_003"],
+      "warnings": [
+        "小学一年级入学年龄为年满6周岁，即2020年8月31日及以前出生，且尚未注册义务教育学籍",
+        "自有住宅须为已实际交房入住、产权份额100%、房产用途为住宅；工业用房、商业用房（含公寓）、储藏室、车库不能作为入学依据",
+        "每套房产（住址）原则上小学每5年只能享受一次划片招生机会（多胞胎或合法多胎生育除外）",
+        "本类情形不属于随迁子女，申报时按自有住宅所在学区填报，不按居住证地址统筹"
+      ],
+      "manualCheckNotes": [],
+      "policyIds": ["policy_2026_003", "policy_2026_004"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2026/8/17/art_181325_20359.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2026_103",
+      "effectiveYear": 2026,
+      "stage": "小学",
+      "resultType": "统筹安排生源 · 第③类",
+      "resultClass": "category-b",
+      "resultTitle": "泰山区户籍 + 父母无自有住宅，以祖父母或外祖父母住宅申请入学",
+      "resultSummary": "属于\"三代同住\"情形，在分类分批录取中列第③类，属统筹安排生源。以祖父母或外祖父母的自有住宅申请入学，适龄儿童须为泰山区户籍；三代不在同一户口簿的，需提供三代证明材料。住宅所在学校是否接收取决于该校空余学位，学校确实不能接收的，由街道（镇、乡）教育党委（办公室）或区教体局统筹安排到有空余学位的学校。",
+      "conditions": [
+        { "field": "situation_primary", "op": "eq", "value": "grandparent" }
+      ],
+      "requiredMaterialIds": [
+        "material_001",
+        "material_002",
+        "material_003",
+        "material_008"
+      ],
+      "warnings": [
+        "小学一年级入学年龄为年满6周岁，即2020年8月31日及以前出生，且尚未注册义务教育学籍",
+        "以祖父母或外祖父母的自有住宅申请入学，适龄儿童须为泰山区户籍",
+        "祖父母或外祖父母的住宅同样须为已实际交房入住、用途为住宅的房屋",
+        "属统筹安排生源，无法保证入读该住宅所在学区学校"
+      ],
+      "manualCheckNotes": [
+        "三代同住的认定材料与统筹结果，建议提前向住宅所在学校或区教体局确认"
+      ],
+      "policyIds": ["policy_2026_003", "policy_2026_004"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2026/8/17/art_181325_20359.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2026_104",
+      "effectiveYear": 2026,
+      "stage": "小学",
+      "resultType": "统筹安排生源 · 第④类",
+      "resultClass": "category-b",
+      "resultTitle": "泰山区户籍 + 父母无自有住宅，长期租住在学区内",
+      "resultSummary": "属于分类分批录取第④类，前提是父母（法定监护人）确实在泰山区无自有住宅且长期租住在学校学区内。所在学区学校能够容纳时，结合学位情况、房屋租赁备案合同时间长短依次录取；不能容纳时，按属地管理和相对就近原则调剂到其他公办学校。本类属统筹安排生源。",
+      "conditions": [
+        { "field": "situation_primary", "op": "eq", "value": "rental" }
+      ],
+      "requiredMaterialIds": ["material_001", "material_005", "material_003"],
+      "warnings": [
+        "小学一年级入学年龄为年满6周岁，即2020年8月31日及以前出生，且尚未注册义务教育学籍",
+        "适用前提是父母在泰山区确实无自有住宅；若父母另有自有住宅，则不属于本类情形",
+        "房屋租赁需在房管部门登记备案，租赁备案合同时间长短会影响录取顺序",
+        "属统筹安排生源，无法保证入读租住地所在学区学校"
+      ],
+      "manualCheckNotes": [
+        "租赁备案的办理要求与实际居住认定标准，建议提前向对口学校或区教体局确认"
+      ],
+      "policyIds": ["policy_2026_003", "policy_2026_004"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2026/8/17/art_181325_20359.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2026_105",
+      "effectiveYear": 2026,
+      "stage": "小学",
+      "resultType": "集体产权住宅（小产权住宅）",
+      "resultClass": "category-b",
+      "resultTitle": "以集体产权住宅（小产权住宅）申请入学",
+      "resultSummary": "泰山区辖区内社区（单位）建设的集体产权住宅（小产权住宅）所有人子女可登录平台注册填报入学信息。除由公安比对审核户籍信息外，还需所在街道（镇、乡）、招生学校及村居（单位）共同对集体产权住宅的产权和实际入住情况进行调查确认。情况属实且为所属村居户籍的，按常住人口子女序列依次录取；非所属村居户籍的，视申报学校学位情况录取。",
+      "conditions": [
+        { "field": "situation_primary", "op": "eq", "value": "xiaochanquan" }
+      ],
+      "requiredMaterialIds": ["material_001", "material_003", "material_009"],
+      "warnings": [
+        "小学一年级入学年龄为年满6周岁，即2020年8月31日及以前出生，且尚未注册义务教育学籍",
+        "产权与实际入住情况需经街道（镇、乡）、招生学校及村居（单位）共同调查确认，情况不属实可能影响入学",
+        "非所属村居户籍的，视申报学校学位情况录取；学位不足时按就近或相对就近调剂入学"
+      ],
+      "manualCheckNotes": [
+        "小产权住宅的调查确认流程与所需材料，建议提前向所在社区（村居）或招生学校咨询"
+      ],
+      "policyIds": ["policy_2026_003", "policy_2026_004"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2026/8/17/art_181325_20359.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2026_106",
+      "effectiveYear": 2026,
+      "stage": "小学",
+      "resultType": "随迁子女入学",
+      "resultClass": "category-b",
+      "resultTitle": "非泰山区户籍 + 无自有住宅，持有效期内居住证",
+      "resultSummary": "符合外来务工（经商）人员随迁子女入学基本条件。父母（法定监护人）至少一方需同时具备：持有泰安市公安局泰山分局核发的有效期内的居住证、在泰山区务工或经商、在泰山区有稳定住所。审查通过后按居住证地址（备案的房屋租赁地址）申报有空余学位的公办学校，学校依据居住证、社保、经商纳税时间长短，按空余学位情况依次录取至满额。",
+      "conditions": [
+        { "field": "situation_primary", "op": "eq", "value": "migrant" },
+        { "field": "permit", "op": "eq", "value": "yes" }
+      ],
+      "requiredMaterialIds": [
+        "material_001",
+        "material_004",
+        "material_005",
+        "material_006",
+        "material_007",
+        "material_010"
+      ],
+      "warnings": [
+        "小学一年级入学年龄为年满6周岁，即2020年8月31日及以前出生，且尚未注册义务教育学籍",
+        "父母至少一方需同时满足：持有效期内的居住证、在泰山区务工或经商、在泰山区有稳定住所",
+        "务工与经商满足其一即可：务工者提供参保方身份证号由人社部门核对社保；经商者提供纳税人身份证号和统一社会信用代码由税务部门核对纳税信息",
+        "随迁子女属统筹生源，按居住证、社保、经商纳税时间长短结合空余学位依次录取，不能保证入读指定学校"
+      ],
+      "manualCheckNotes": [
+        "居住证、社保、纳税等信息的审核以公安、人社、税务等部门系统查询结果为准",
+        "因申报学校学位不足未被录取的，可继续申请区内其他有空余学位的公办学校，也可回户籍所在地学校就读"
+      ],
+      "policyIds": ["policy_2026_003", "policy_2026_004"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2026/8/17/art_181325_20359.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2026_107",
+      "effectiveYear": 2026,
+      "stage": "小学",
+      "resultType": "暂不符合随迁子女入学条件",
+      "resultClass": "category-c",
+      "resultTitle": "非泰山区户籍、无自有住宅，且未持有有效期内居住证",
+      "resultSummary": "随迁子女入学要求父母（法定监护人）至少一方持有泰安市公安局泰山分局核发的有效期内的居住证。未持有有效居住证的，暂不符合按随迁子女申报入学的条件，建议尽快向公安部门咨询居住证申领事宜，并向教育部门确认当年政策要求。",
+      "conditions": [
+        { "field": "situation_primary", "op": "eq", "value": "migrant" },
+        { "field": "permit", "op": "eq", "value": "no" }
+      ],
+      "requiredMaterialIds": ["material_001"],
+      "warnings": [
+        "未持有有效期内居住证，不符合按随迁子女申报入学的基本条件",
+        "如无法在泰山区入学，可回户籍所在地学校就读"
+      ],
+      "manualCheckNotes": [
+        "请尽快到居住地派出所咨询居住证申领条件与流程",
+        "泰安市岱岳区、高新区、景区户籍人员是否属于在泰山区办理居住证范围，建议向公安部门或教育部门确认"
+      ],
+      "policyIds": ["policy_2026_003"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2026/8/17/art_181325_20359.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2026_201",
+      "effectiveYear": 2026,
+      "stage": "初中",
+      "resultType": "初中招生 · 泰山区学籍小学毕业生",
+      "resultClass": "category-a",
+      "resultTitle": "具有泰山区学籍的小学毕业生",
+      "resultSummary": "属于初中招生入学条件第（1）类。报名流程与泰山区常住居民子女小学报名流程相同，通过\"爱山东\"APP\"教育入学一件事\"网上报名，录取办法与小学录取办法相同（按划片招生、分类分批录取）。初中招生不涉及小学入学年龄要求。",
+      "conditions": [
+        { "field": "situation_middle", "op": "eq", "value": "taishan_graduate" }
+      ],
+      "requiredMaterialIds": ["material_001", "material_002", "material_003"],
+      "warnings": [
+        "初中招生不涉及\"年满6周岁\"的小学入学年龄要求",
+        "自有住宅须为已实际交房入住、产权份额100%、房产用途为住宅；工业用房、商业用房（含公寓）、储藏室、车库不能作为入学依据",
+        "每套房产（住址）原则上初中每4年只能享受一次划片招生机会（多胞胎或合法多胎生育除外），学校会做房产年限审核"
+      ],
+      "manualCheckNotes": [],
+      "policyIds": ["policy_2026_003", "policy_2026_004"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2026/8/17/art_181325_20359.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2026_202",
+      "effectiveYear": 2026,
+      "stage": "初中",
+      "resultType": "初中招生 · 泰山区户籍区外小学毕业生",
+      "resultClass": "category-a",
+      "resultTitle": "具有泰山区户籍的区外小学毕业生",
+      "resultSummary": "属于初中招生入学条件第（2）类。报名流程与泰山区常住居民子女小学报名流程相同，通过\"爱山东\"APP\"教育入学一件事\"网上报名，录取办法与小学录取办法相同。",
+      "conditions": [
+        { "field": "situation_middle", "op": "eq", "value": "hukou_outside" }
+      ],
+      "requiredMaterialIds": ["material_001", "material_002", "material_003"],
+      "warnings": [
+        "初中招生不涉及\"年满6周岁\"的小学入学年龄要求",
+        "自有住宅须为已实际交房入住、产权份额100%、房产用途为住宅",
+        "每套房产（住址）原则上初中每4年只能享受一次划片招生机会"
+      ],
+      "manualCheckNotes": [
+        "区外小学毕业生的学籍与毕业生信息衔接要求，建议向区教体局确认"
+      ],
+      "policyIds": ["policy_2026_003", "policy_2026_004"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2026/8/17/art_181325_20359.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2026_203",
+      "effectiveYear": 2026,
+      "stage": "初中",
+      "resultType": "初中招生 · 父母在泰山区有自有住宅的区外小学毕业生",
+      "resultClass": "category-a",
+      "resultTitle": "父母（法定监护人）在泰山区有自有住宅的区外小学毕业生",
+      "resultSummary": "属于初中招生入学条件第（3）类。报名流程与泰山区常住居民子女小学报名流程相同，通过\"爱山东\"APP\"教育入学一件事\"网上报名，录取办法与小学录取办法相同。",
+      "conditions": [
+        { "field": "situation_middle", "op": "eq", "value": "owned_outside" }
+      ],
+      "requiredMaterialIds": ["material_001", "material_002", "material_003"],
+      "warnings": [
+        "初中招生不涉及\"年满6周岁\"的小学入学年龄要求",
+        "自有住宅须为已实际交房入住、产权份额100%、房产用途为住宅；未交房入住的住宅不属于该校划片招生范畴",
+        "每套房产（住址）原则上初中每4年只能享受一次划片招生机会"
+      ],
+      "manualCheckNotes": [
+        "区外小学毕业生的学籍与毕业生信息衔接要求，建议向区教体局确认"
+      ],
+      "policyIds": ["policy_2026_003", "policy_2026_004"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2026/8/17/art_181325_20359.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2026_204",
+      "effectiveYear": 2026,
+      "stage": "初中",
+      "resultType": "初中随迁子女入学",
+      "resultClass": "category-b",
+      "resultTitle": "非泰山区小学毕业的随迁子女，持有效期内居住证",
+      "resultSummary": "属于初中招生入学条件第（4）类。报名流程与小学随迁子女报名流程相同。父母（法定监护人）至少一方需同时具备：持有泰安市公安局泰山分局核发的有效期内的居住证、在泰山区务工或经商、在泰山区有稳定住所。录取办法与小学随迁子女录取办法相同，按空余学位依次录取。",
+      "conditions": [
+        { "field": "situation_middle", "op": "eq", "value": "migrant" },
+        { "field": "permit", "op": "eq", "value": "yes" }
+      ],
+      "requiredMaterialIds": [
+        "material_001",
+        "material_004",
+        "material_005",
+        "material_006",
+        "material_007",
+        "material_010"
+      ],
+      "warnings": [
+        "初中招生不涉及\"年满6周岁\"的小学入学年龄要求",
+        "父母至少一方需同时满足：持有效期内的居住证、在泰山区务工或经商、在泰山区有稳定住所",
+        "务工与经商满足其一即可：务工者提供参保方身份证号由人社部门核对社保；经商者提供纳税人身份证号和统一社会信用代码由税务部门核对纳税信息",
+        "随迁子女属统筹生源，按居住证、社保、经商纳税时间长短结合空余学位依次录取，不能保证入读指定学校"
+      ],
+      "manualCheckNotes": [
+        "居住证、社保、纳税等信息的审核以公安、人社、税务等部门系统查询结果为准",
+        "因申报学校学位不足未被录取的，可继续申请区内其他有空余学位的公办学校，也可回户籍所在地学校就读"
+      ],
+      "policyIds": ["policy_2026_003", "policy_2026_004"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2026/8/17/art_181325_20359.html",
+      "dataStatus": "verified"
+    },
+    {
+      "ruleId": "sim_rule_2026_205",
+      "effectiveYear": 2026,
+      "stage": "初中",
+      "resultType": "暂不符合随迁子女入学条件",
+      "resultClass": "category-c",
+      "resultTitle": "初中随迁子女，但未持有有效期内居住证",
+      "resultSummary": "初中随迁子女入学要求父母（法定监护人）至少一方持有泰安市公安局泰山分局核发的有效期内的居住证。未持有有效居住证的，暂不符合按随迁子女申报入学的条件，建议尽快向公安部门咨询居住证申领事宜，并向教育部门确认当年政策要求。",
+      "conditions": [
+        { "field": "situation_middle", "op": "eq", "value": "migrant" },
+        { "field": "permit", "op": "eq", "value": "no" }
+      ],
+      "requiredMaterialIds": ["material_001"],
+      "warnings": [
+        "未持有有效期内居住证，不符合按随迁子女申报入学的基本条件",
+        "如无法在泰山区入学，可回户籍所在地学校就读"
+      ],
+      "manualCheckNotes": [
+        "请尽快到居住地派出所咨询居住证申领条件与流程",
+        "泰安市岱岳区、高新区、景区户籍人员是否属于在泰山区办理居住证范围，建议向公安部门或教育部门确认"
+      ],
+      "policyIds": ["policy_2026_003"],
+      "sourceUrl": "http://www.sdtaishan.gov.cn/art/2026/8/17/art_181325_20359.html",
+      "dataStatus": "verified"
+    }
+  ]
+}
