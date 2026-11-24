@@ -133,6 +133,86 @@ test("候选路径：唯一解、多解、无解都原样返回", () => {
   assert.ok(none.reason);
 });
 
+test("候选路径按长度优先，长支路不会吞掉邻近直连通路", () => {
+  const chain = Array.from({ length: 8 }, (_, index) => ({
+    nodeId: `bn_t${index}`,
+    connectionType: "connected",
+    lifecycle: "active",
+  }));
+  const makeEdge = (edgeId, fromNodeId, toNodeId, lengthM) => ({
+    edgeId,
+    fromNodeId,
+    toNodeId,
+    lifecycle: "active",
+    boundaryEligible: true,
+    featureId: `bf_${edgeId}`,
+    lengthM,
+  });
+  const longBranch = [
+    ["be_a0", "bn_t0", "bn_t3"],
+    ["be_a1", "bn_t3", "bn_t4"],
+    ["be_a2", "bn_t4", "bn_t5"],
+    ["be_a3", "bn_t5", "bn_t6"],
+    ["be_a4", "bn_t6", "bn_t7"],
+    ["be_a5", "bn_t7", "bn_t2"],
+  ].map(([edgeId, from, to]) => makeEdge(edgeId, from, to, 50));
+  const direct = [
+    makeEdge("be_b0", "bn_t0", "bn_t1", 100),
+    makeEdge("be_b1", "bn_t1", "bn_t2", 100),
+  ];
+
+  const result = findCandidatePaths({
+    fromNodeId: "bn_t0",
+    toNodeId: "bn_t2",
+    edges: [...longBranch, ...direct],
+    nodes: chain,
+    maxDepth: 5,
+  });
+
+  assert.equal(result.paths.length, 1);
+  assert.deepEqual(
+    result.paths[0].edgeRefs.map((ref) => ref.edgeId),
+    ["be_b0", "be_b1"],
+  );
+  assert.equal(result.truncated, true);
+});
+
+test("候选路径按总长度升序返回", () => {
+  const nodes = ["bn_s0", "bn_s1", "bn_s2", "bn_s3"].map((nodeId) => ({
+    nodeId,
+    connectionType: "connected",
+    lifecycle: "active",
+  }));
+  const edge = (edgeId, fromNodeId, toNodeId, lengthM) => ({
+    edgeId,
+    fromNodeId,
+    toNodeId,
+    lifecycle: "active",
+    boundaryEligible: true,
+    featureId: `bf_${edgeId}`,
+    lengthM,
+  });
+  const edges = [
+    edge("be_d0", "bn_s0", "bn_s2", 900),
+    edge("be_d1", "bn_s2", "bn_s3", 900),
+    edge("be_c0", "bn_s0", "bn_s1", 100),
+    edge("be_c1", "bn_s1", "bn_s3", 100),
+  ];
+
+  const result = findCandidatePaths({
+    fromNodeId: "bn_s0",
+    toNodeId: "bn_s3",
+    edges,
+    nodes,
+  });
+
+  assert.equal(result.paths.length, 2);
+  assert.deepEqual(
+    result.paths.map((path) => path.lengthM),
+    [200, 1800],
+  );
+});
+
 test("nonConnectingCrossing 节点不参与路径", () => {
   // bn_000009 与 bn_000010 之间唯一的边属于不可作边界的要素
   const ineligible = findCandidatePaths({

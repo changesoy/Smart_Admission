@@ -100,9 +100,64 @@ export const buildUsageIndex = (zoneSpecs) => {
 const compareEdge = (left, right) =>
   left.edgeId < right.edgeId ? -1 : left.edgeId > right.edgeId ? 1 : 0;
 
+const createMinHeap = (compare) => {
+  const items = [];
+  const swap = (left, right) => {
+    [items[left], items[right]] = [items[right], items[left]];
+  };
+  const bubbleUp = (index) => {
+    let current = index;
+    while (current > 0) {
+      const parent = (current - 1) >> 1;
+      if (compare(items[current], items[parent]) >= 0) break;
+      swap(current, parent);
+      current = parent;
+    }
+  };
+  const sinkDown = (index) => {
+    let current = index;
+    for (;;) {
+      const left = current * 2 + 1;
+      const right = left + 1;
+      let smallest = current;
+      if (left < items.length && compare(items[left], items[smallest]) < 0) smallest = left;
+      if (right < items.length && compare(items[right], items[smallest]) < 0) smallest = right;
+      if (smallest === current) break;
+      swap(current, smallest);
+      current = smallest;
+    }
+  };
+  return {
+    push(item) {
+      items.push(item);
+      bubbleUp(items.length - 1);
+    },
+    pop() {
+      if (items.length === 0) return null;
+      const [top] = items;
+      const last = items.pop();
+      if (items.length > 0) {
+        items[0] = last;
+        sinkDown(0);
+      }
+      return top;
+    },
+    get size() {
+      return items.length;
+    },
+  };
+};
+
+const pathKeyOf = (refs) =>
+  refs.map((ref) => `${ref.edgeId}${ref.direction === "reverse" ? "<" : ">"}`).join("|");
+
 /**
- * 枚举两个节点之间的全部简单路径（按 edgeId 字典序确定性输出）。
+ * 枚举两个节点之间的候选路径，按总长度升序返回（等长按边序列字典序）。
  * 零条、一条、多条都原样返回，绝不自动选择。
+ *
+ * 采用按长度优先的搜索：短路径先出，避免深度优先在长支路上耗尽预算后
+ * 漏掉相邻的直连通路。分支超过 maxDepth 或搜索超出预算时只放弃该部分，
+ * 已找到的候选仍然返回，并以 truncated 标记结果不完整。
  *
  * @returns {{paths: Array, truncated: boolean, reason: string|null}}
  */
@@ -113,6 +168,7 @@ export const findCandidatePaths = ({
   nodes,
   maxPaths = 20,
   maxDepth = 64,
+  maxExpansions = 20000,
 }) => {
   const nodeMap = nodeMapOf(nodes);
   const usable = [];
@@ -150,55 +206,77 @@ export const findCandidatePaths = ({
 
   const paths = [];
   let truncated = false;
+  let expansions = 0;
 
-  const walk = (currentNodeId, visited, refs) => {
-    if (truncated) return;
-    if (refs.length > maxDepth) {
-      truncated = true;
-      return;
-    }
-    if (currentNodeId === toNodeId) {
-      if (refs.length > 0) {
-        const lengthM = refs.reduce(
-          (sum, ref) => sum + (usableMap.get(ref.edgeId)?.lengthM ?? 0),
-          0,
-        );
-        paths.push({
-          edgeRefs: refs.map((ref) => ({ ...ref })),
-          nodeIds: [fromNodeId, ...refs.map((ref) => ref.endNodeId)],
-          lengthM: Math.round(lengthM * 10) / 10,
-          featureIds: [...new Set(refs.map((ref) => usableMap.get(ref.edgeId)?.featureId))],
-        });
-        if (paths.length >= maxPaths) truncated = true;
-      }
-      return;
-    }
-
-    const nextEdges = adjacency.get(currentNodeId) ?? [];
-    for (const { edge, toNodeId: nextNodeId, direction } of nextEdges) {
-      if (visited.has(nextNodeId)) continue;
-      visited.add(nextNodeId);
-      refs.push({ edgeId: edge.edgeId, direction, endNodeId: nextNodeId });
-      walk(nextNodeId, visited, refs);
-      refs.pop();
-      visited.delete(nextNodeId);
-      if (truncated) return;
-    }
-  };
-
-  walk(fromNodeId, new Set([fromNodeId]), []);
-
-  const pathsSorted = paths.sort((left, right) =>
-    left.edgeRefs.map((ref) => ref.edgeId).join("|") <
-    right.edgeRefs.map((ref) => ref.edgeId).join("|")
-      ? -1
-      : 1,
+  const queue = createMinHeap(
+    (left, right) => left.lengthM - right.lengthM || (left.key < right.key ? -1 : 1),
   );
+  queue.push({
+    nodeId: fromNodeId,
+    refs: [],
+    visited: new Set([fromNodeId]),
+    lengthM: 0,
+    key: "",
+  });
+
+  while (queue.size > 0) {
+    if (paths.length >= maxPaths) {
+      truncated = true;
+      break;
+    }
+    if (expansions >= maxExpansions) {
+      truncated = true;
+      break;
+    }
+
+    const state = queue.pop();
+    expansions += 1;
+    if (state.nodeId === toNodeId) {
+      const lengthM = state.refs.reduce(
+        (sum, ref) => sum + (usableMap.get(ref.edgeId)?.lengthM ?? 0),
+        0,
+      );
+      paths.push({
+        edgeRefs: state.refs.map((ref) => ({ ...ref })),
+        nodeIds: [fromNodeId, ...state.refs.map((ref) => ref.endNodeId)],
+        lengthM: Math.round(lengthM * 10) / 10,
+        featureIds: [...new Set(state.refs.map((ref) => usableMap.get(ref.edgeId)?.featureId))],
+      });
+      continue;
+    }
+    if (state.refs.length >= maxDepth) {
+      truncated = true;
+      continue;
+    }
+
+    const nextEdges = adjacency.get(state.nodeId) ?? [];
+    for (const { edge, toNodeId: nextNodeId, direction } of nextEdges) {
+      if (state.visited.has(nextNodeId)) continue;
+      const visited = new Set(state.visited);
+      visited.add(nextNodeId);
+      const refs = [
+        ...state.refs,
+        { edgeId: edge.edgeId, direction, endNodeId: nextNodeId },
+      ];
+      queue.push({
+        nodeId: nextNodeId,
+        refs,
+        visited,
+        lengthM: state.lengthM + (edge.lengthM ?? 0),
+        key: pathKeyOf(refs),
+      });
+    }
+  }
 
   return {
-    paths: pathsSorted,
+    paths,
     truncated,
-    reason: pathsSorted.length === 0 ? "无符合条件的通路" : null,
+    reason:
+      paths.length > 0
+        ? null
+        : truncated
+          ? "搜索被截断：范围内未找到完整通路，请缩小起终点范围或人工指定中间节点"
+          : "无符合条件的通路",
   };
 };
 

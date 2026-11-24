@@ -986,8 +986,10 @@ const renderPathPanel = () => {
 
   if (result.paths.length === 0) {
     const message = document.createElement("div");
-    message.className = "message error";
-    message.textContent = `无解：${result.reason ?? "无符合条件的通路"}。不会补画直线，也不会退化为最近道路。`;
+    message.className = `message ${result.truncated ? "warn" : "error"}`;
+    message.textContent = result.truncated
+      ? `${result.reason ?? "搜索被截断"}。可先绑定相邻一步，或人工指定中间节点缩小范围。`
+      : `无解：${result.reason ?? "无符合条件的通路"}。不会补画直线，也不会退化为最近道路。`;
     container.append(message);
     return;
   }
