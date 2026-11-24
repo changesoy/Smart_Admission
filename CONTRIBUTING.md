@@ -640,6 +640,7 @@ copy .env.example .env      # 填入服务端 Key
 ```bash
 npm run dev         # 启动 Vite 开发服务器（热更新）
 npm run editor      # 打开学区边界点选编辑器（tools/boundary-editor）
+.\打开工具台.cmd     # 双击：启动开发服务器并打开工具台（已在运行则直接打开）
 npm run build       # 产物构建到 dist/（含 data/ 复制），dist/ 不提交
 npm run preview     # 本地预览 dist/ 构建产物
 npm run lint        # ESLint 检查（含 js/、scripts/ 与构建配置）
