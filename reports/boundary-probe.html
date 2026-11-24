@@ -310,6 +310,7 @@
         const zoneSpec = state.zones.find((zone) => zone.zoneId === zoneId);
         if (!zoneSpec) return;
         state.zoneId = zoneId;
+        document.getElementById("zone-select").value = zoneId;
         state.steps = buildSteps(zoneSpec);
         highlight.clearLayers();
         renderSummary();
