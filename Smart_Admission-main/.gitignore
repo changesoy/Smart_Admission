@@ -1,0 +1,14 @@
+MERGE_PLAN.md
+node_modules/
+dist/
+exports/
+reports/*
+!reports/*.html
+!reports/assets/
+!reports/assets/**
+.venv/
+.env
+storage/
+__pycache__/
+*.pyc
+111.txt

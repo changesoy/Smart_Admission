@@ -1,0 +1,3589 @@
+{
+  "schemaVersion": 1,
+  "decisions": [
+    {
+      "decisionId": "ncd_000001",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 0,
+          "vertexIndex": 259
+        },
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 14
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000002",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 120
+        },
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 113
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000003",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 1,
+          "vertexIndex": 186
+        },
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 91
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000004",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000018",
+          "partIndex": 0,
+          "vertexIndex": 52
+        },
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 85
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000005",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 89
+        },
+        {
+          "featureId": "bf_000050",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000006",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 56
+        },
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 67
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000007",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 47
+        },
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 59
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000008",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000018",
+          "partIndex": 0,
+          "vertexIndex": 44
+        },
+        {
+          "featureId": "bf_000043",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000009",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 136
+        },
+        {
+          "featureId": "bf_000053",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000010",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 51
+        },
+        {
+          "featureId": "bf_000053",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000011",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 1,
+          "vertexIndex": 171
+        },
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 20
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000012",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 144
+        },
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 26
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000013",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 27
+        },
+        {
+          "featureId": "bf_000053",
+          "partIndex": 1,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000014",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 28
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000015",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000018",
+          "partIndex": 0,
+          "vertexIndex": 33
+        },
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 5
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000016",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 65
+        },
+        {
+          "featureId": "bf_000052",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000017",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000027",
+          "partIndex": 0,
+          "vertexIndex": 34
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 78
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000018",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 153
+        },
+        {
+          "featureId": "bf_000044",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000019",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000044",
+          "partIndex": 0,
+          "vertexIndex": 6
+        },
+        {
+          "featureId": "bf_000053",
+          "partIndex": 1,
+          "vertexIndex": 8
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000020",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 12
+        },
+        {
+          "featureId": "bf_000044",
+          "partIndex": 0,
+          "vertexIndex": 2
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000021",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000044",
+          "partIndex": 1,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 71
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000022",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000024",
+          "partIndex": 0,
+          "vertexIndex": 27
+        },
+        {
+          "featureId": "bf_000033",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000023",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 16
+        },
+        {
+          "featureId": "bf_000033",
+          "partIndex": 0,
+          "vertexIndex": 5
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000024",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 170
+        },
+        {
+          "featureId": "bf_000032",
+          "partIndex": 0,
+          "vertexIndex": 17
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000025",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 19
+        },
+        {
+          "featureId": "bf_000032",
+          "partIndex": 0,
+          "vertexIndex": 3
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000026",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000024",
+          "partIndex": 0,
+          "vertexIndex": 18
+        },
+        {
+          "featureId": "bf_000032",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000027",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000032",
+          "partIndex": 0,
+          "vertexIndex": 12
+        },
+        {
+          "featureId": "bf_000055",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000028",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 103
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000029",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 136
+        },
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 106
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000030",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000018",
+          "partIndex": 0,
+          "vertexIndex": 1
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 46
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000031",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 6
+        },
+        {
+          "featureId": "bf_000034",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000032",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 0,
+          "vertexIndex": 145
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 37
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000033",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 25
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000034",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 91
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 55
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000035",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 89
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 58
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000036",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000024",
+          "partIndex": 0,
+          "vertexIndex": 11
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 13
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000037",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 63
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 20
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000038",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 181
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 25
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000039",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 1,
+          "vertexIndex": 103
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 56
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000040",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 97
+        },
+        {
+          "featureId": "bf_000044",
+          "partIndex": 1,
+          "vertexIndex": 26
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000041",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000011",
+          "partIndex": 0,
+          "vertexIndex": 5
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 70
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000042",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 29
+        },
+        {
+          "featureId": "bf_000034",
+          "partIndex": 0,
+          "vertexIndex": 4
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000043",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 212
+        },
+        {
+          "featureId": "bf_000025",
+          "partIndex": 0,
+          "vertexIndex": 69
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000044",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 1,
+          "vertexIndex": 123
+        },
+        {
+          "featureId": "bf_000011",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000045",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 1,
+          "vertexIndex": 124
+        },
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 218
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000046",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 56
+        },
+        {
+          "featureId": "bf_000036",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000047",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 187
+        },
+        {
+          "featureId": "bf_000036",
+          "partIndex": 0,
+          "vertexIndex": 4
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000048",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000036",
+          "partIndex": 0,
+          "vertexIndex": 14
+        },
+        {
+          "featureId": "bf_000046",
+          "partIndex": 0,
+          "vertexIndex": 3
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000049",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 149
+        },
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 35
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000050",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000004",
+          "partIndex": 0,
+          "vertexIndex": 135
+        },
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 106
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000051",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 109
+        },
+        {
+          "featureId": "bf_000036",
+          "partIndex": 0,
+          "vertexIndex": 23
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000052",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000024",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000034",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000053",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 48
+        },
+        {
+          "featureId": "bf_000034",
+          "partIndex": 0,
+          "vertexIndex": 13
+        },
+        {
+          "featureId": "bf_000056",
+          "partIndex": 0,
+          "vertexIndex": 2
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000054",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 167
+        },
+        {
+          "featureId": "bf_000046",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000055",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 155
+        },
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 46
+        },
+        {
+          "featureId": "bf_000056",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000056",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 199
+        },
+        {
+          "featureId": "bf_000011",
+          "partIndex": 0,
+          "vertexIndex": 10
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000057",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 45
+        },
+        {
+          "featureId": "bf_000056",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000058",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 197
+        },
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 267
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000059",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 161
+        },
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 194
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000060",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 171
+        },
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 123
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000061",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 125
+        },
+        {
+          "featureId": "bf_000035",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000062",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 176
+        },
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 34
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000063",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 37
+        },
+        {
+          "featureId": "bf_000031",
+          "partIndex": 0,
+          "vertexIndex": 35
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000064",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 154
+        },
+        {
+          "featureId": "bf_000026",
+          "partIndex": 0,
+          "vertexIndex": 19
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000065",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 178
+        },
+        {
+          "featureId": "bf_000006",
+          "partIndex": 0,
+          "vertexIndex": 183
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000066",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 197
+        },
+        {
+          "featureId": "bf_000031",
+          "partIndex": 0,
+          "vertexIndex": 22
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000067",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 30
+        },
+        {
+          "featureId": "bf_000031",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000068",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 135
+        },
+        {
+          "featureId": "bf_000031",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000069",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000031",
+          "partIndex": 0,
+          "vertexIndex": 15
+        },
+        {
+          "featureId": "bf_000046",
+          "partIndex": 0,
+          "vertexIndex": 16
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000070",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000021",
+          "partIndex": 0,
+          "vertexIndex": 3
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 47
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000071",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 62
+        },
+        {
+          "featureId": "bf_000026",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000072",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000011",
+          "partIndex": 0,
+          "vertexIndex": 16
+        },
+        {
+          "featureId": "bf_000021",
+          "partIndex": 0,
+          "vertexIndex": 6
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000073",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 28
+        },
+        {
+          "featureId": "bf_000026",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000074",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000026",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000048",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000075",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 300
+        },
+        {
+          "featureId": "bf_000021",
+          "partIndex": 0,
+          "vertexIndex": 10
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000076",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 201
+        },
+        {
+          "featureId": "bf_000038",
+          "partIndex": 0,
+          "vertexIndex": 11
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000077",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 175
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 1,
+          "vertexIndex": 1
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000078",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 27
+        },
+        {
+          "featureId": "bf_000047",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000079",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000038",
+          "partIndex": 0,
+          "vertexIndex": 8
+        },
+        {
+          "featureId": "bf_000046",
+          "partIndex": 0,
+          "vertexIndex": 20
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000080",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000047",
+          "partIndex": 0,
+          "vertexIndex": 5
+        },
+        {
+          "featureId": "bf_000048",
+          "partIndex": 0,
+          "vertexIndex": 2
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000081",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 140
+        },
+        {
+          "featureId": "bf_000038",
+          "partIndex": 0,
+          "vertexIndex": 3
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000082",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 169
+        },
+        {
+          "featureId": "bf_000021",
+          "partIndex": 0,
+          "vertexIndex": 13
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000083",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 27
+        },
+        {
+          "featureId": "bf_000038",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000084",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 203
+        },
+        {
+          "featureId": "bf_000047",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000085",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 4
+        },
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 73
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000086",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 79
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 2,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000087",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 12
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 2,
+          "vertexIndex": 7
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000088",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 22
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 2,
+          "vertexIndex": 13
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000089",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 21
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000090",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 209
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000091",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 18
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 13
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000092",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 14
+        },
+        {
+          "featureId": "bf_000046",
+          "partIndex": 0,
+          "vertexIndex": 23
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000093",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 152
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 19
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000094",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 22
+        },
+        {
+          "featureId": "bf_000029",
+          "partIndex": 0,
+          "vertexIndex": 27
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000095",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 23
+        },
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000096",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 16
+        },
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 32
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000097",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000011",
+          "partIndex": 0,
+          "vertexIndex": 22
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 42
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000098",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 199
+        },
+        {
+          "featureId": "bf_000049",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000099",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 91
+        },
+        {
+          "featureId": "bf_000049",
+          "partIndex": 0,
+          "vertexIndex": 10
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000100",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 13
+        },
+        {
+          "featureId": "bf_000049",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000101",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 41
+        },
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 214
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000102",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 45
+        },
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 14
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000103",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 22
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000104",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 164
+        },
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000105",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 49
+        },
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000106",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 13
+        },
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 16
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000107",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 218
+        },
+        {
+          "featureId": "bf_000030",
+          "partIndex": 0,
+          "vertexIndex": 20
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000108",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 220
+        },
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 32
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000109",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 103
+        },
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000110",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 20
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000111",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 6
+        },
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 6
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000112",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 2
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 13
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000113",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 221
+        },
+        {
+          "featureId": "bf_000039",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000114",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 3
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 38
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000115",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 157
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 19
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000116",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 9
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 22
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000117",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 308
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 12
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000118",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 173
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 26
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000119",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 241
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 67
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000120",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 54
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 29
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000121",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 11
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 34
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000122",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 226
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 38
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000123",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 41
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 17
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000124",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000014",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 46
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000125",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 111
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 48
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000126",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 2
+        },
+        {
+          "featureId": "bf_000028",
+          "partIndex": 0,
+          "vertexIndex": 59
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000127",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 56
+        },
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 180
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000128",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 81
+        },
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 310
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000129",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 5
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000130",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 154
+        },
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 69
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000131",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 103
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 31
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000132",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 92
+        },
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 151
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000133",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 2
+        },
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 116
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000134",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 62
+        },
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 89
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000135",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000007",
+          "partIndex": 0,
+          "vertexIndex": 64
+        },
+        {
+          "featureId": "bf_000020",
+          "partIndex": 0,
+          "vertexIndex": 4
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000136",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 188
+        },
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000137",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 9
+        },
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 6
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000138",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 231
+        },
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000139",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 32
+        },
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 263
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000140",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 10
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 23
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000141",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 6
+        },
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 14
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000142",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 9
+        },
+        {
+          "featureId": "bf_000051",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000143",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 16
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 26
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000144",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 8
+        },
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 127
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000145",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 22
+        },
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 234
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000146",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 66
+        },
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 192
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000147",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 53
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000148",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000012",
+          "partIndex": 0,
+          "vertexIndex": 35
+        },
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000149",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 30
+        },
+        {
+          "featureId": "bf_000059",
+          "partIndex": 0,
+          "vertexIndex": 3
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000150",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 138
+        },
+        {
+          "featureId": "bf_000059",
+          "partIndex": 0,
+          "vertexIndex": 6
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000151",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 16
+        },
+        {
+          "featureId": "bf_000059",
+          "partIndex": 0,
+          "vertexIndex": 12
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000152",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 236
+        },
+        {
+          "featureId": "bf_000059",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000153",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 285
+        },
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 23
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000154",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 126
+        },
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 312
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000155",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 201
+        },
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000156",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 145
+        },
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 112
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000157",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 3
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 14
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000158",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 243
+        },
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000159",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 4
+        },
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 5
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000160",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 37
+        },
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 9
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000161",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 148
+        },
+        {
+          "featureId": "bf_000060",
+          "partIndex": 0,
+          "vertexIndex": 12
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000162",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 67
+        },
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 30
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000163",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 102
+        },
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 208
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000164",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 99
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 13
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000165",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 93
+        },
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 2
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000166",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 78
+        },
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 156
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000167",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 88
+        },
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 249
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000168",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000008",
+          "partIndex": 0,
+          "vertexIndex": 84
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 42
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000169",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000019",
+          "partIndex": 0,
+          "vertexIndex": 314
+        },
+        {
+          "featureId": "bf_000045",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000170",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 217
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 91
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000171",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 69
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 10
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000172",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000022",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 51
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000173",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000013",
+          "partIndex": 0,
+          "vertexIndex": 261
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 19
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000174",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 15
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 48
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000175",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000015",
+          "partIndex": 0,
+          "vertexIndex": 168
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 10
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000176",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 42
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 8
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000177",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 139
+        },
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 229
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000178",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000003",
+          "partIndex": 0,
+          "vertexIndex": 3
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000179",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000001",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000002",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000016",
+          "partIndex": 0,
+          "vertexIndex": 322
+        },
+        {
+          "featureId": "bf_000040",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000180",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000017",
+          "partIndex": 0,
+          "vertexIndex": 242
+        },
+        {
+          "featureId": "bf_000058",
+          "partIndex": 0,
+          "vertexIndex": 18
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000181",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000041",
+          "partIndex": 0,
+          "vertexIndex": 0
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 55
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000182",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 50
+        },
+        {
+          "featureId": "bf_000041",
+          "partIndex": 0,
+          "vertexIndex": 15
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000183",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000002",
+          "partIndex": 0,
+          "vertexIndex": 21
+        },
+        {
+          "featureId": "bf_000041",
+          "partIndex": 0,
+          "vertexIndex": 38
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000184",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000003",
+          "partIndex": 0,
+          "vertexIndex": 7
+        },
+        {
+          "featureId": "bf_000041",
+          "partIndex": 0,
+          "vertexIndex": 25
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000185",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 129
+        },
+        {
+          "featureId": "bf_000009",
+          "partIndex": 0,
+          "vertexIndex": 35
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000186",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000003",
+          "partIndex": 0,
+          "vertexIndex": 8
+        },
+        {
+          "featureId": "bf_000009",
+          "partIndex": 0,
+          "vertexIndex": 1
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000187",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000009",
+          "partIndex": 0,
+          "vertexIndex": 15
+        },
+        {
+          "featureId": "bf_000057",
+          "partIndex": 0,
+          "vertexIndex": 59
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000188",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000009",
+          "partIndex": 0,
+          "vertexIndex": 5
+        },
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 53
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000189",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000009",
+          "partIndex": 0,
+          "vertexIndex": 18
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 7
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000190",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 121
+        },
+        {
+          "featureId": "bf_000042",
+          "partIndex": 0,
+          "vertexIndex": 24
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000191",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000042",
+          "partIndex": 0,
+          "vertexIndex": 28
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 5
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000192",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000023",
+          "partIndex": 0,
+          "vertexIndex": 63
+        },
+        {
+          "featureId": "bf_000042",
+          "partIndex": 0,
+          "vertexIndex": 38
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000193",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000003",
+          "partIndex": 0,
+          "vertexIndex": 14
+        },
+        {
+          "featureId": "bf_000042",
+          "partIndex": 0,
+          "vertexIndex": 44
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000194",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000002",
+          "partIndex": 0,
+          "vertexIndex": 40
+        },
+        {
+          "featureId": "bf_000042",
+          "partIndex": 0,
+          "vertexIndex": 53
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000195",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000002",
+          "partIndex": 0,
+          "vertexIndex": 63
+        },
+        {
+          "featureId": "bf_000010",
+          "partIndex": 0,
+          "vertexIndex": 16
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000196",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000003",
+          "partIndex": 0,
+          "vertexIndex": 17
+        },
+        {
+          "featureId": "bf_000010",
+          "partIndex": 0,
+          "vertexIndex": 25
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000197",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000005",
+          "partIndex": 0,
+          "vertexIndex": 114
+        },
+        {
+          "featureId": "bf_000010",
+          "partIndex": 0,
+          "vertexIndex": 44
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    },
+    {
+      "decisionId": "ncd_000198",
+      "connectionType": "connected",
+      "placements": [
+        {
+          "featureId": "bf_000010",
+          "partIndex": 0,
+          "vertexIndex": 42
+        },
+        {
+          "featureId": "bf_000061",
+          "partIndex": 0,
+          "vertexIndex": 0
+        }
+      ],
+      "rulingIds": [],
+      "note": "边界几何交点自动连通；规则版本 1"
+    }
+  ]
+}

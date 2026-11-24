@@ -1,0 +1,707 @@
+# 贡献指南 (CONTRIBUTING)
+
+> **⚠️ 修改任何源文件之前，必须先完整阅读本文档。**
+>
+> 本文档是多人协作的基线约定。违反规范可能导致合并冲突、运行时错误或功能回归。
+
+---
+
+## 一、项目架构概览
+
+```
+index.html ─────────────────────────── 主页面（仅引入第三方库 CDN 与唯一模块入口 main.js）
+  │
+  js/（ES Modules，依赖由 import 显式声明）
+  │
+  ├── config.js ────────────────────── 全局配置（所有模块的单一数据源）
+  │
+  ├── dataService.js ──────────────── 数据加载（fetch + async/await）
+  │
+  ├── render.js ──────────────────── DOM 渲染（统计卡片/结果面板/错误状态）
+  │
+  ├── policyService.js ───────────── 政策渲染与年度对比
+  │
+  ├── mapService.js ──────────────── 地图服务（Leaflet + Turf 点面判断 + 业务查询入口）
+  │
+  ├── searchService.js ───────────── 地址搜索（与地图点击共用统一查询入口）
+  │                                   唯一与后端交互的前端模块，见第十一章
+  │
+  ├── simulatorService.js ────────── 入学条件自查 / 情形判断助手
+  │
+  ├── faqService.js ──────────────── 常见问题（搜索/分类/展开）
+  │
+  ├── interactionService.js ──────── 政民互动（留言/联系卡片）
+  │
+  └── main.js ────────────────────── 主入口（协调初始化顺序）
+
+server/（Python FastAPI，Backend Lite：仅 health / version / 搜索代理三个接口）
+  └── 不承载业务逻辑：点面判断、数据加载、政策匹配全部在前端完成
+```
+
+> ⚠️ 涉及搜索、接口或密钥的改动，请先阅读[第十一章](#十一后端接口与密钥边界)。
+
+---
+
+## 二、模块依赖与加载方式（ES Modules）
+
+项目已迁移为 **ES Modules**，依赖关系通过 `import`/`export` 显式声明，**不再依赖 `<script>` 标签顺序**，也**禁止**通过 `window.XxxService` 挂载或读取模块。
+
+### 2.1 模块依赖图
+
+```
+config.js ← dataService.js
+           ← render.js
+           ← mapService.js
+           ← searchService.js
+           ← main.js
+
+render.js  ← policyService.js
+           ← simulatorService.js
+           ← faqService.js
+           ← interactionService.js
+           ← searchService.js
+           ← main.js
+
+dataService.js ← main.js
+```
+
+### 2.2 index.html 中的脚本
+
+`index.html` 仅包含两类 `<script>`，**不要**新增业务模块脚本标签：
+
+| 标签                                       | 说明                                                   |
+| ------------------------------------------ | ------------------------------------------------------ |
+| Leaflet / Turf.js CDN                      | 第三方库，作为全局变量 `L` / `turf` 暴露给所有模块使用 |
+| `<script type="module" src="/js/main.js">` | 唯一项目入口；其余模块由 `main.js` 通过 `import` 加载  |
+
+### 2.3 禁止事项
+
+- **禁止**在 `index.html` 中为业务模块单独添加 `<script>` 标签
+- **禁止**使用 `window.XxxService = ...` 挂载模块；模块只通过 `export default` 暴露接口
+- **禁止**靠脚本顺序解决依赖；任何依赖必须用 `import` 显式声明
+- 新增模块时，只需在 `main.js` 顶部添加 `import` 并在 `bootstrapPage()` 中初始化
+
+---
+
+## 三、模块开发规范
+
+### 3.1 模块结构模板
+
+所有 JS 模块**必须**使用 ES Module，内部以 IIFE 封装私有作用域，`export default` 暴露公共接口：
+
+```javascript
+/**
+ * xxxService.js - 模块简述
+ *
+ * ⚠️ 修改前必读: CONTRIBUTING.md
+ *
+ * 功能: ...
+ * 关键接口: ...
+ * 数据格式: ...
+ */
+import OtherService from "./otherService.js";
+
+const XxxService = (() => {
+  // 私有变量以 _ 前缀命名
+  let _data = [];
+
+  /** 函数简述 */
+  const method = () => { ... };
+
+  /** 公共接口 */
+  return { method };
+})();
+
+export default XxxService;
+```
+
+### 3.2 命名约定
+
+| 类别     | 规则                        | 示例                           |
+| -------- | --------------------------- | ------------------------------ |
+| 模块导出 | `export default PascalCase` | `export default MapService`    |
+| 文件名   | `camelCase.js`              | `mapService.js`                |
+| 私有变量 | `_camelCase` 前缀下划线     | `_faqData`, `_currentCategory` |
+| 公共方法 | `camelCase`                 | `filterByCategory()`           |
+| DOM ID   | `kebab-case`                | `faq-list`, `simulator-form`   |
+| CSS 类名 | `kebab-case`                | `faq-item`, `zone-primary`     |
+| 数据字段 | `camelCase`                 | `zoneId`, `policyId`           |
+
+> **例外**：`js/geo/` 下的纯计算库（如 `zone-geometry.js`）需要同时被浏览器与 `scripts/` 复用，
+> 采用 kebab-case 文件名 + 具名导出，不套用 IIFE + `export default` 的模块模板。
+> 不要为了统一约定另写一份脚本专用副本。
+
+### 3.3 公共接口约束
+
+- 每个模块**只通过 `return` 暴露必要方法**，内部实现一律私有
+- **禁止**直接访问其他模块的私有变量，必须通过其公共接口
+- 新增公共方法时，须同步更新文件头注释的"关键接口"部分
+
+### 3.4 新增模块检查清单
+
+- [ ] 文件头包含 `⚠️ 修改前必读: CONTRIBUTING.md`
+- [ ] 使用 ES Module（IIFE 封装 + `export default`），不挂载 `window`
+- [ ] 依赖的其他模块全部通过顶部 `import` 显式声明
+- [ ] 在 `main.js` 顶部添加 `import`，并在 `bootstrapPage()` 中用 `safeInit` 添加初始化调用
+- [ ] 在 `dataService.js` 的 `loadAllData()` 中添加数据加载（如需要）
+- [ ] 在 `config.js` 的 `dataPaths` 中添加文件名（如需要，目录由数据版本决定）
+- [ ] 运行 `npm run lint` 无报错
+- [ ] 浏览器控制台无 JS 报错
+
+---
+
+## 四、数据文件规范
+
+### 4.1 文件格式
+
+- 所有数据文件位于 `data/` 目录，格式为 JSON 或 GeoJSON
+- **JSON 严格规范**：无双引号注释、无尾随逗号、字符串必须双引号
+- 修改后务必在 https://jsonlint.com 校验
+
+### 4.2 数据文件与模块对应关系
+
+| 数据文件                | 加载模块           | 格式                      |
+| ----------------------- | ------------------ | ------------------------- |
+| `zones.geojson`         | MapService         | GeoJSON FeatureCollection |
+| `boundary_features.v2.geojson` | 网络生成 / 边界编辑器 | GeoJSON FeatureCollection |
+| `network_nodes.json`    | 网络生成 / 边界编辑器 | JSON Object               |
+| `network_edges.json`    | 网络生成 / 边界编辑器 | JSON Object               |
+| `network_connection_decisions.json` | 网络生成  | JSON Object               |
+| `zone_specs.v2.json`    | 网络生成 / 边界编辑器 | JSON Object               |
+| `id_registry.json`      | 各生成脚本         | JSON Object               |
+| `current.json`          | 数据发布           | JSON Object               |
+| `releases/`             | 数据发布           | 不可变发布快照目录        |
+| `district.geojson`      | MapService         | GeoJSON FeatureCollection |
+| `roads.geojson`         | MapService         | GeoJSON FeatureCollection |
+| `intersections.geojson` | MapService         | GeoJSON FeatureCollection |
+| `schools.json`          | RenderService      | JSON Array                |
+| `policies.json`         | PolicyService      | JSON Array                |
+| `policy_diff.json`      | PolicyService      | JSON Array                |
+| `simulator_rules.json`  | SimulatorService   | JSON Object               |
+| `faq.json`              | FaqService         | JSON Array                |
+| `contacts.json`         | InteractionService | JSON Array                |
+| `address_points.json`   | SearchService      | JSON Array                |
+| `keywords_index.json`   | SearchService      | JSON Array                |
+| `zones_history.json`    | RenderService      | JSON Array                |
+| `rumors.json`           | 预留               | JSON Array                |
+
+### 4.3 关键数据结构
+
+**zones.geojson Feature properties：**
+
+```json
+{
+  "zoneId": "zone_002",
+  "zoneName": "泰安望岳中学学区",
+  "stage": "初中",
+  "schoolId": "school_m_002",
+  "description": "招生范围说明",
+  "year": 2025,
+  "policyIds": ["policy_2025_001"],
+  "boundaryText": "...",
+  "sourceName": "...",
+  "sourceUrl": "...",
+  "sourceType": "manual",
+  "verifiedDate": "...",
+  "dataStatus": "estimated"
+}
+```
+
+**schools.json 条目：**
+
+```json
+{
+  "schoolId": "school_m_001",
+  "name": "泰山学院附属中学",
+  "shortName": "学院附中",
+  "type": "初中",
+  "schoolStage": ["初中"],
+  "district": "泰山区",
+  "address": "...",
+  "phone": "...",
+  "website": "...",
+  "tags": ["公办", "初中"],
+  "description": "...",
+  "sourceName": "...",
+  "sourceUrl": "...",
+  "verifiedDate": "...",
+  "dataStatus": "estimated"
+}
+```
+
+**学校编号规则：** 学段内顺序号，`school_m_NNN`（初中）/ `school_p_NNN`（小学）。
+`schools.json` 数组按《泰山区2025四至_原文全文》表格行序排列；原文同一行含
+`初中部` / `小学部` / `中学部` 的学校拆成多条记录并相邻摆放，各学段独立连续编号。
+九年一贯制的单条记录保留 `school_p_` 前缀。
+
+**policies.json 条目：**
+
+```json
+{
+  "policyId": "p1",
+  "title": "...",
+  "year": 2025,
+  "category": "招生政策",
+  "source": "...",
+  "publishDate": "2025-04-01",
+  "summary": "...",
+  "url": "#"
+}
+```
+
+**policy_diff.json 条目：**
+
+```json
+{
+  "yearA": 2024,
+  "yearB": 2025,
+  "diffPoints": [
+    {
+      "topic": "入学年龄",
+      "valueA": "...",
+      "valueB": "...",
+      "isChange": true,
+      "changeNote": "..."
+    }
+  ]
+}
+```
+
+**simulator_rules.json 结构：**
+
+```json
+{
+  "meta": { "title": "...", "effectiveYear": 2025, "dataStatus": "verified" },
+  "materials": {
+    "material_001": { "name": "户口簿", "required": true, "note": "..." }
+  },
+  "form": [
+    {
+      "field": "stage",
+      "label": "申请学段",
+      "showWhen": null,
+      "options": [{ "value": "小学", "label": "小学" }]
+    }
+  ],
+  "rules": [
+    {
+      "ruleId": "sim_rule_2025_001",
+      "conditions": [{ "field": "hukou", "op": "eq", "value": "local" }],
+      "requiredMaterialIds": ["material_001"],
+      "policyIds": ["policy_2025_001"]
+    }
+  ]
+}
+```
+
+`materials` 为材料字典，规则通过 `requiredMaterialIds` 按 id 引用；材料信息归自查助手所有，不再有独立数据文件。
+
+**faq.json 条目：**
+
+```json
+{
+  "faqId": "faq01",
+  "question": "...",
+  "answer": "...",
+  "category": "报名流程",
+  "priority": 90,
+  "keywords": ["..."],
+  "relatedFaqIds": ["faq02"]
+}
+```
+
+**contacts.json 条目：**
+
+```json
+{
+  "type": "教育局",
+  "name": "...",
+  "phone": "...",
+  "email": "...",
+  "address": "...",
+  "hours": "...",
+  "note": "..."
+}
+```
+
+**address_points.json 条目：**
+
+```json
+{
+  "name": "...",
+  "fullAddress": "...",
+  "lng": 117.13,
+  "lat": 36.2,
+  "aliases": ["..."]
+}
+```
+
+**keywords_index.json 条目：**
+
+```json
+{
+  "keyword": "...",
+  "aliases": ["..."],
+  "matchedZoneIds": ["m1"],
+  "type": "学校",
+  "displayName": "..."
+}
+```
+
+**zones_history.json 条目：**
+
+```json
+{
+  "zoneId": "m1",
+  "history": [
+    {
+      "year": 2024,
+      "changeType": "范围调整",
+      "change": "范围调整",
+      "title": "...",
+      "description": "...",
+      "reason": "..."
+    }
+  ]
+}
+```
+
+#### 4.3.1 元字段与引用约束（原 `docs/data-schema.md` 的有效部分）
+
+真实或团队整理的数据建议带上来源与状态元字段（缺失只提示、不拒发）：
+
+| 字段               | 类型   | 取值                                                                   | 说明                                                                                                                   |
+| ------------------ | ------ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `sourceName`       | string | —                                                                      | 来源名称                                                                                                               |
+| `sourceUrl`        | string | —                                                                      | 原始链接；找不到就留空，**不要编造**                                                                                   |
+| `sourceType`       | string | `official` / `school` / `media` / `manual` / `demo`                    | 来源类型                                                                                                               |
+| `verifiedDate`     | string | `YYYY-MM-DD`                                                           | 核验日期                                                                                                               |
+| `dataStatus`       | string | `verified` / `estimated` / `demo` / `outdated`                         | 数据状态                                                                                                               |
+| `geometryAccuracy` | string | `officialBoundary` / `manualApproximation` / `demoBoundary`            | 仅几何数据用；按文字四至人工绘制的学区必须标 `manualApproximation`                                                     |
+| `boundaryRulings`  | array  | `{ edge, original, adopted, geometryRef, reason, decidedAt, decider }` | 仅 `zones` 用；四至原文与环几何冲突、经人工裁定采信环时记录。**`boundaryText` 必须保留官方原文不改**，裁定只写在此字段 |
+
+`boundaryRulings[].edge` 取 `东`/`西`/`南`/`北`；`geometryRef` 指向 `roads.geojson` 的 `roadId`，便于人工核对“被采信的要素确实存在”。
+
+数据字段名统一 `camelCase`（见 3.1）。引用完整性由 `npm run validate:data` 与 `check:release` 共同校验：
+
+- 各自文件内 ID 不得重复：`zoneId` / `schoolId` / `policyId` / `faqId` / `contactId`；
+- `zones.schoolId` 必须存在于 `schools.json`，`policyIds` 必须存在于 `policies.json`；
+- `address_points.matchedZoneId`、`keywords_index.matchedZoneIds`、`zones_history.zoneId` 必须存在于 `zones.geojson`；
+- `simulator_rules.rules[].requiredMaterialIds` 必须存在于 `simulator_rules.materials`；
+- GeoJSON 环必须闭合，坐标不得越出项目范围。
+
+`admission_scores.json` 与 `interaction_topics.json` 是早期可选设计，当前未启用、不在 `dataPaths` 中，不要新增。
+
+### 4.4 新增数据文件检查清单
+
+- [ ] 在 `data/` 目录放置文件，格式符合 JSON 规范
+- [ ] 在 `config.js` 的 `dataPaths` 中添加该文件的**文件名**（不含目录，目录由数据版本决定）
+- [ ] 在 `dataService.js` 的 `optionalDefaults` 中添加对应键与降级默认值
+- [ ] 在 `main.js` 的 `bootstrapPage()` 中将数据传递给目标模块
+- [ ] 按 4.5 生成新的数据发布包，并切换 `data/current.json` 指针
+
+### 4.5 数据版本与发布（重要）
+
+**前端读取的数据不是 `data/` 根目录下的文件，而是 `data/releases/<版本>/` 下的不可变快照。**
+启动时先读指针文件 `data/current.json` 拿到版本号，再从该版本目录整包加载
+（见 `dataService.js` 的 `resolveRelease()`）。三者职责分明：
+
+| 路径                    | 角色         | 能否就地修改       |
+| ----------------------- | ------------ | ------------------ |
+| `data/*.json`           | 工作副本     | 可，日常改这里     |
+| `data/releases/<版本>/` | 已发布快照   | **不可**，只增不改 |
+| `data/current.json`     | 当前生效指针 | 可，切换版本即改它 |
+
+**发布新版本流程：**
+
+```bash
+# 1. 修改 data/ 下的工作副本
+# 2. 生成不可变快照（纳入的文件清单取自 js/config.js 的 dataPaths，不另维护一份）
+node scripts/new-data-release.mjs 2026.10.1
+# 3. 切换指针：把 data/current.json 的 version 改成新版本号
+```
+
+- 版本号格式为 `YYYY.MM.N`；
+- 脚本为每个文件记录 `bytes` 与 `sha256`，并写出 `manifest.json`
+  （含 `version` / `generatedAt` / `effectiveYear` / `files`）；
+- 目标版本目录已存在时脚本会直接报错退出，以保证快照不可变；
+- `effectiveYear` 默认取 `simulator_rules.json` 的 `meta.effectiveYear`，可用 `--effective-year` 覆盖。
+
+**回滚：** 把 `data/current.json` 的 `version` 改回目标版本号即可，**无需重新构建前端**
+（数据版本与应用版本相互独立）。若指针指向不存在的版本，页面会显示带失败文件路径的
+错误提示，不会白屏。
+
+### 4.6 发布门禁 `npm run check:release`
+
+开发期校验与发布期门禁是**两条**命令，不要合并：
+
+| 命令                    | 校验对象                        | 宽严                                      |
+| ----------------------- | ------------------------------- | ----------------------------------------- |
+| `npm run check`         | `data/` 下的工作副本            | 只查结构合法，允许 `estimated` 与占位数据 |
+| `npm run check:release` | `current.json` 指向的**发布包** | 在其上启用 strict，并追加发布专属检查     |
+
+`check:release` 的**拒发项**（任一命中即 `exit 1`）：
+
+- 占位/示例数据命中黑名单：`example.gov.cn`、`待补`、`【待`、`TODO`、`示例电话`、`000000`、`XXXXXXXX`、`fake`、`mock`
+  （`待补` 覆盖 `changeType` / `title` 这类无括号的裸词，`【待` 覆盖 `【待补：…】` / `【待查：…】` / `【待填：…】` 等全部方括号哨兵）；
+- `manifest.json` 缺失，或缺少 `version` / `generatedAt` / `effectiveYear` / `files`；
+- `manifest.version` 与所在目录名不一致；
+- `manifest.files` 与实际目录文件不一致（漏记或多记）；
+- 文件内容与 manifest 记录的 `sha256` 不符；
+- `current.json` 指向的版本目录不存在；
+- 结构与引用错误：重复 ID、引用不存在的 id、环未闭合、坐标越界。
+
+仅**提示**、不阻断的项：`dataStatus` / `geometryAccuracy` / 年份分布、未被任何学区或自查规则引用的学校与政策。
+
+> **当前状态：通过。** 生效版本见 `data/current.json`，发布包为 `data/releases/<版本>/`
+> （0 拒发、15 项提示）。提示项是占位数据与未被引用的学校/政策，不阻断发布；新增拒发问题
+> 时应先修数据，不要放宽门禁规则。
+
+两个入口共用 `scripts/lib/validate-core.mjs`，校验规则只维护一份。新增规则请改公共核心，
+不要在任一入口里复制一份。
+
+---
+
+## 五、地图与坐标规范（极易出错）
+
+**GeoJSON 与 Leaflet 坐标顺序不同，混淆会导致地图显示异常或点面判断失败：**
+
+| 场景                       | 坐标顺序                  | 示例                                      |
+| -------------------------- | ------------------------- | ----------------------------------------- |
+| GeoJSON `coordinates`      | `[经度, 纬度]` (lng, lat) | `[117.13, 36.20]`                         |
+| Leaflet `setView` / marker | `[纬度, 经度]` (lat, lng) | `[36.20, 117.13]`                         |
+| `turf.point()`             | `[经度, 纬度]` (lng, lat) | `turf.point([117.13, 36.20])`             |
+| Leaflet `e.latlng`         | `{ lat, lng }`            | 传给 Turf: `[e.latlng.lng, e.latlng.lat]` |
+
+**Polygon 必须首尾点相同**才算闭合，否则 Turf 几何判断异常。
+
+---
+
+## 六、样式规范
+
+### 6.1 CSS 变量（定义在 `:root`）
+
+| 变量               | 值        | 用途           |
+| ------------------ | --------- | -------------- |
+| `--primary-color`  | `#1e3a5f` | 主色（深蓝）   |
+| `--primary-dark`   | `#15294a` | 主色深色变体   |
+| `--primary-hover`  | `#2a5080` | 主色悬停变体   |
+| `--accent-color`   | `#f0a04b` | 强调色（琥珀） |
+| `--bg-color`       | `#f5f7fa` | 页面背景       |
+| `--card-bg`        | `#ffffff` | 卡片背景       |
+| `--text-primary`   | `#2c3e50` | 主文本色       |
+| `--text-secondary` | `#6c757d` | 次文本色       |
+| `--border-light`   | `#e9ecef` | 边框色         |
+| `--radius-card`    | `8px`     | 卡片圆角       |
+| `--radius-btn`     | `6px`     | 按钮圆角       |
+
+### 6.2 响应式断点
+
+| 断点   | 宽度     | 场景              |
+| ------ | -------- | ----------------- |
+| 中屏   | `≤992px` | 平板横屏          |
+| 小屏   | `≤768px` | 平板竖屏/小笔记本 |
+| 超小屏 | `≤576px` | 手机              |
+
+### 6.3 样式修改原则
+
+- **禁止**使用 `!important`，除非覆盖第三方库样式
+- 新增颜色**必须**使用 CSS 变量，禁止硬编码色值
+- 新增组件样式**必须**放在对应模块注释区块内（如 `/* ========== FAQ ========== */`）
+- 样式区块之间保持 `/* ========== 模块名 ========== */` 分隔注释
+
+---
+
+## 七、ESLint 配置
+
+项目使用 ESLint 9.x 扁平配置（`eslint.config.js`），关键规则：
+
+| 规则                     | 级别  | 说明                               |
+| ------------------------ | ----- | ---------------------------------- |
+| `no-var`                 | error | 禁止 `var`，必须使用 `const`/`let` |
+| `prefer-const`           | warn  | 优先使用 `const`                   |
+| `prefer-arrow-callback`  | warn  | 优先使用箭头函数                   |
+| `prefer-template`        | warn  | 优先使用模板字符串                 |
+| `prefer-destructuring`   | warn  | 优先使用解构赋值                   |
+| `object-shorthand`       | warn  | 优先使用对象属性简写               |
+| `template-curly-spacing` | error | 模板字符串花括号内不加空格         |
+| `arrow-spacing`          | error | 箭头函数前后加空格                 |
+| `no-useless-concat`      | error | 禁止无意义字符串拼接               |
+
+**全局只读变量**：`L`（Leaflet）、`turf`（Turf.js）——由 CDN `<script>` 引入，模块内直接使用，**不要**再写 `/* global */` 注释或 `window.L`。
+
+**模块格式**：`sourceType: "module"`，支持 `import`/`export` 语法。
+
+**忽略目录**：`node_modules/`、`dist/`、`data/`、`docs/`
+
+**运行命令：**
+
+```bash
+npm run lint        # 检查
+npm run lint:fix    # 自动修复
+```
+
+---
+
+## 八、Git 提交规范
+
+### _严格禁止强制推送_
+
+### 8.1 Commit Message 格式
+
+\*type 取值：\*\*
+
+| type       | 用途                           |
+| ---------- | ------------------------------ |
+| `feat`     | 新功能                         |
+| `fix`      | 修复 Bug                       |
+| `docs`     | 文档/注释变更                  |
+| `style`    | 代码格式调整（不影响逻辑）     |
+| `refactor` | 重构（不新增功能、不修复 Bug） |
+| `perf`     | 性能优化                       |
+| `test`     | 测试相关                       |
+| `chore`    | 构建/工具/配置变更             |
+
+### 8.2 分支约定
+
+| 分支        | 用途         |
+| ----------- | ------------ |
+| `main`      | 稳定发布版本 |
+| `feature/*` | 功能开发     |
+| `fix/*`     | Bug 修复     |
+
+### 8.3 提交前检查清单
+
+- [ ] `npm run lint` 无报错
+- [ ] `npm run check` 数据校验通过
+- [ ] `npm run dev` 启动后页面功能正常（或 `npm run build` 构建成功）
+- [ ] 浏览器控制台无 JS 报错
+- [ ] 如改动 `data/` 下的数据，已生成新的数据发布包并切换 `data/current.json` 指针（见 4.5）
+- [ ] 如涉及搜索或接口，已确认前端未直连天地图、未写入任何 Key（见 11.4）
+- [ ] **不要**提交 `node_modules/`、`dist/`、`.env` 或 `.venv/`（已在 `.gitignore` 中忽略）
+
+---
+
+## 九、常见冲突场景与避免方法
+
+| 冲突场景                              | 避免方法                                                    |
+| ------------------------------------- | ----------------------------------------------------------- |
+| 多人同时修改同一模块                  | 每个模块尽量由一人负责；修改前先 `git pull`                 |
+| 同时修改 `index.html`                 | 不新增业务 `<script>` 标签（模块由 `main.js` import 加载）  |
+| 同时修改 `main.js` 的 import 区块     | 在已有 import 列表末尾追加新模块导入                        |
+| 同时修改 `config.js`                  | 只在对应对象末尾追加新配置项，不修改已有项                  |
+| 同时修改 `main.js` 的 `bootstrapPage` | 在已有初始化调用之后追加新调用                              |
+| 同时修改 `style.css`                  | 在文件末尾对应模块区块追加样式，不修改已有样式              |
+| 同时修改数据文件                      | 不同数据文件互不影响，但同一文件需协商                      |
+| 同时修改 `dataService.js`             | 只在 `loadAllData()` 末尾追加新的 `loadFile` 调用和返回字段 |
+
+---
+
+## 十、本地开发环境
+
+### 10.1 前置要求
+
+- Node.js 18+（项目基于 Vite，开发/构建/数据校验均依赖 npm）
+- Python 3.10+（仅后端需要；不涉及搜索功能时可不装）
+- 现代浏览器（Chrome / Edge / Firefox 最新版）
+
+### 10.2 启动步骤
+
+只跑前端（地图、学区查询、政策、自查均可正常使用，仅联网搜索不可用）：
+
+```bash
+# 1. 克隆仓库
+git clone <repo-url>
+cd smart-admission
+
+# 2. 安装开发依赖（Vite + ESLint）
+npm install
+
+# 3. 启动开发服务器
+npm run dev
+
+# 4. 浏览器访问（终端会输出实际端口）
+http://localhost:5173
+```
+
+需要联网搜索时，另开一个终端启动后端（详见第十一章）：
+
+```bash
+python -m venv .venv
+.venv\Scripts\pip.exe install -r server/requirements.txt
+copy .env.example .env      # 填入服务端 Key
+.venv\Scripts\python.exe -m uvicorn server.app:app --port 8010 --reload
+```
+
+> ⚠️ **不要直接双击 `index.html` 运行。** 浏览器对 `file://` 协议下的 ES Module 和 `fetch()` 有跨域限制，会导致页面无法加载。
+
+### 10.3 常用命令
+
+```bash
+npm run dev         # 启动 Vite 开发服务器（热更新）
+npm run editor      # 打开学区边界点选编辑器（tools/boundary-editor）
+npm run build       # 产物构建到 dist/（含 data/ 复制），dist/ 不提交
+npm run preview     # 本地预览 dist/ 构建产物
+npm run lint        # ESLint 检查（含 js/、scripts/ 与构建配置）
+npm run lint:fix    # 自动修复可修复的问题
+npm run check       # lint + 数据文件完整性校验（引用一致性等）
+npm run test:zones                           # 学区拆分/新建/草稿等 Node 测试
+npm run validate:network                     # 校验网络节点、边与 zone 绑定
+npm run create:zone -- <payload.json>        # 新建学区骨架，默认 dry-run；加 --write 写盘
+npm run check:release                        # 发布门禁（当前通过，见 4.6）
+node scripts/new-data-release.mjs <版本号>   # 生成不可变数据发布包，见 4.5
+node scripts/extract-zone-specs.mjs          # 逐边来源表 dry-run（默认 4 所试点）；加 --write 写 data/zone_specs.json
+```
+
+---
+
+## 十一、后端接口与密钥边界
+
+### 11.1 后端职责边界（不得扩张）
+
+`server/` 是 **Backend Lite**，只提供三个接口：
+
+| 接口           | 作用                                     |
+| -------------- | ---------------------------------------- |
+| `/api/health`  | 存活检查                                 |
+| `/api/version` | 上报应用版本、构建时间与当前数据版本     |
+| `/api/search`  | 代理天地图 v2 搜索，做范围过滤与结果归一 |
+
+**明确不负责**：点面判断、学区查询、下发学校/政策数据、用户账号、管理后台。
+任何"顺手把业务逻辑搬到后端"的改动都超出边界，应先讨论而不是直接实现。
+
+### 11.2 两枚天地图 Key 必须分开
+
+| 用途         | 存放位置                                | Key 类型     | 浏览器可见 |
+| ------------ | --------------------------------------- | ------------ | ---------- |
+| 地图瓦片加载 | `js/config.js` 的 `tianditu.token`      | 浏览器端 Key | 是         |
+| 地址搜索代理 | 环境变量 `TIANDITU_SEARCH_TK`（`.env`） | 服务端 Key   | 否         |
+
+- **禁止**把服务端 Key 写入 `js/`、`server/` 源码或任何提交到仓库的文件；只能通过 `.env` 注入。
+- **禁止**让前端直接请求 `api.tianditu.gov.cn`。浏览器端 Key 调用搜索接口会被上游拒绝（`301012`），
+  而服务端 Key 一旦出现在前端代码里即等同泄露。
+- 瓦片 Key 无法隐藏，属既定事实：靠天地图控制台的**域名绑定 + 配额**控制风险，
+  不要试图用混淆、拼接等方式"藏"起来。
+
+### 11.3 前端调用约定
+
+- 前端只使用**同源相对路径** `AppConfig.searchApi`（当前为 `/api/search`），
+  不在代码里写 `127.0.0.1:8010` 或任何后端域名；`dev`/`preview` 由 `vite.config.js` 的
+  `API_TARGET` 代理，生产由 Nginx 等反向代理转发。
+- 服务端返回统一为 `{ ok, results }` 或 `{ ok: false, error: { code, message } }`；
+  前端按 `error.code` 映射用户文案（`RATE_LIMITED` / `TOKEN_MISSING` / `UPSTREAM_TIMEOUT` 等），
+  技术细节只进 `console.warn`，不直接展示给用户。
+- **搜索范围的唯一来源是 `server/config.py` 的 `SEARCH_BOUNDS`**，前端不得再持有一份副本自己过滤。
+- 服务端拼 `keyWord` 时会补 `泰安市` 前缀；若查询词本身已含"泰安"，不再叠加，避免
+  「泰安市泰安望岳中学」这类重复词干扰上游排序。
+
+### 11.4 改后自查
+
+```bash
+npm run check        # 前端 lint + 数据校验
+# 后端启动后，确认代理链路（应返回 200 且 ok: true）
+curl "http://localhost:5173/api/search?q=岱庙&count=10"
+```
+
+浏览器侧确认：Network 面板中 `/api/search` 的请求域名是前端同源域名，
+且页面资源列表里**不出现** `127.0.0.1:8010`。

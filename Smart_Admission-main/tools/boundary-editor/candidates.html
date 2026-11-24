@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>连接候选审核 · 工具页</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./candidates.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        连接候选审核
+        <span class="tag">ncc_* · 只读 data/ · 保存到 reports/network/</span>
+      </div>
+      <div class="controls">
+        <label class="field">
+          审核人
+          <input id="reviewer" value="用户" maxlength="20" />
+        </label>
+        <button id="btn-save" type="button" class="primary">保存审核结果</button>
+        <button id="btn-download" type="button">下载 JSON</button>
+        <a class="field link" href="./index.html">返回边界编辑器</a>
+      </div>
+    </header>
+
+    <div id="banner" class="banner hidden" role="status"></div>
+
+    <main class="candidate-layout">
+      <aside class="candidate-sidebar">
+        <section class="card">
+          <h2>坐标源</h2>
+          <div class="kv"><span>SHA-256</span><code id="source-sha">-</code></div>
+          <div class="kv"><span>Git commit</span><code id="source-commit">-</code></div>
+          <p class="hint">
+            审核结果绑定该几何快照。A 修改顶点后必须重新生成候选并重新审核，
+            否则 vertexIndex 会漂移。
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>筛选</h2>
+          <div id="category-filters" class="check-grid"></div>
+          <div class="kv">
+            <span>要素组合</span>
+            <select id="combo-filter">
+              <option value="all">全部</option>
+              <option value="road-road">road × road</option>
+              <option value="road-river">road × river</option>
+              <option value="road-railway">road × railway</option>
+              <option value="railway-river">railway × river</option>
+              <option value="river-river">river × river</option>
+              <option value="mixed">三个以上类型</option>
+            </select>
+          </div>
+          <div class="kv">
+            <span>审核状态</span>
+            <select id="status-filter">
+              <option value="all">全部</option>
+              <option value="pending">pending</option>
+              <option value="connected">acceptedIntersection</option>
+              <option value="needsGeometryFix">needsGeometryFix</option>
+            </select>
+          </div>
+          <div class="kv">
+            <span>搜索</span>
+            <input id="search-input" placeholder="要素名 / candidateId" />
+          </div>
+          <p class="hint" id="filter-summary">-</p>
+        </section>
+
+        <section class="card list-card">
+          <h2>候选列表</h2>
+          <div id="candidate-list" class="candidate-list"></div>
+        </section>
+      </aside>
+
+      <div id="map" class="map"></div>
+
+      <aside class="candidate-detail">
+        <section class="card">
+          <h2>候选详情</h2>
+          <div id="detail-empty" class="hint">点击地图或列表中的候选查看详情。</div>
+          <div id="detail-body" class="hidden">
+            <div class="kv"><span>candidateId</span><code id="detail-id">-</code></div>
+            <div class="kv"><span>类别</span><span id="detail-category">-</span></div>
+            <div class="kv"><span>坐标</span><code id="detail-coordinate">-</code></div>
+            <div class="kv"><span>距离 / 重叠</span><span id="detail-metric">-</span></div>
+            <div class="kv"><span>状态</span><span id="detail-status" class="state">-</span></div>
+
+            <h3>参与顶点</h3>
+            <div id="detail-placements" class="mini-table"></div>
+
+            <h3>参与线段</h3>
+            <div id="detail-segments" class="mini-table"></div>
+
+            <h3>相关学区步骤（按名称提示）</h3>
+            <div id="detail-steps" class="mini-table"></div>
+
+            <h3>审核</h3>
+            <div class="action-grid">
+              <button id="btn-connected" type="button" class="success">接受边界交点</button>
+              <button id="btn-pending" type="button">暂不处理</button>
+              <button id="btn-geometry" type="button" class="danger">修复边界几何</button>
+            </div>
+            <label class="block-field">
+              审核说明
+              <textarea id="review-note" rows="3" placeholder="needsGeometryFix 必须说明缺口"></textarea>
+            </label>
+            <p class="hint">
+              几何有效交点默认连通；审核只处理重复近邻 anchor 与几何缺口，
+              不判断道路、河道或铁路是否现实可通行。
+            </p>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script type="module" src="./candidates.js"></script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "nodes": [
+    {
+      "nodeId": "bn_000001",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "测试南界×测试西界",
+      "placements": [
+        { "featureId": "bf_900001", "partIndex": 0, "vertexIndex": 0 },
+        { "featureId": "bf_900004", "partIndex": 0, "vertexIndex": 2 }
+      ],
+      "derivationType": "manualControl",
+      "verificationStatus": "verified",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-17",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000002",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "测试南界×测试连通穿越线",
+      "placements": [
+        { "featureId": "bf_900001", "partIndex": 0, "vertexIndex": 1 },
+        { "featureId": "bf_900005", "partIndex": 0, "vertexIndex": 1 }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "verified",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-17",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000003",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "测试南界×测试东界",
+      "placements": [
+        { "featureId": "bf_900001", "partIndex": 0, "vertexIndex": 2 },
+        { "featureId": "bf_900002", "partIndex": 0, "vertexIndex": 0 }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "verified",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-17",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000004",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "测试东界×测试北界",
+      "placements": [
+        { "featureId": "bf_900002", "partIndex": 0, "vertexIndex": 1 },
+        { "featureId": "bf_900003", "partIndex": 0, "vertexIndex": 0 }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "verified",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-17",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000005",
+      "nodeType": "intersection",
+      "connectionType": "connected",
+      "label": "测试北界×测试西界",
+      "placements": [
+        { "featureId": "bf_900003", "partIndex": 0, "vertexIndex": 1 },
+        { "featureId": "bf_900004", "partIndex": 0, "vertexIndex": 0 }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "verified",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-17",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000006",
+      "nodeType": "intersection",
+      "connectionType": "nonConnectingCrossing",
+      "label": "测试西界×测试非连通穿越线",
+      "placements": [
+        { "featureId": "bf_900004", "partIndex": 0, "vertexIndex": 1 },
+        { "featureId": "bf_900006", "partIndex": 0, "vertexIndex": 1 }
+      ],
+      "derivationType": "geometryIntersection",
+      "verificationStatus": "verified",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-17",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000007",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "测试连通穿越线端点",
+      "placements": [
+        { "featureId": "bf_900005", "partIndex": 0, "vertexIndex": 0 }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "verified",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-17",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000008",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "测试连通穿越线端点",
+      "placements": [
+        { "featureId": "bf_900005", "partIndex": 0, "vertexIndex": 2 }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "verified",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-17",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000009",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "测试非连通穿越线端点",
+      "placements": [
+        { "featureId": "bf_900006", "partIndex": 0, "vertexIndex": 0 }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "verified",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-17",
+      "retiredAt": null
+    },
+    {
+      "nodeId": "bn_000010",
+      "nodeType": "terminal",
+      "connectionType": "connected",
+      "label": "测试非连通穿越线端点",
+      "placements": [
+        { "featureId": "bf_900006", "partIndex": 0, "vertexIndex": 2 }
+      ],
+      "derivationType": "featureEndpoint",
+      "verificationStatus": "verified",
+      "lifecycle": "active",
+      "supersedes": [],
+      "supersededBy": [],
+      "createdAt": "2026-11-17",
+      "retiredAt": null
+    }
+  ]
+}
